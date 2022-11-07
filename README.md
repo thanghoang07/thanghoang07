@@ -1,6 +1,6 @@
 ### Hi there 👋 Wellcome to my GitHub
 - 📃 I’m currently working on TK25.inc
-- 💬 Ask me about engineering 
+- 💬 Ask me about xamarin mobile developer 
 - 📫 How to reach me: [Linkedin 💼](https://www.linkedin.com/in/thanghoang07)
 - 😄 Pronouns: he/him 
 
