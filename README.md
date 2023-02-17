@@ -1,6 +1,6 @@
 ### Hi there 👋 Wellcome to my GitHub
-- 📃 I’m currently working on TK25.inc
-- 💬 Ask me about xamarin mobile developer 
+- 📃 I’m currently working on HPT VietNam corporation
+- 💬 Develop xamarin, java, javascript, ... 
 - 📫 How to reach me: [Linkedin 💼](https://www.linkedin.com/in/thanghoang07)
 - 😄 Pronouns: he/him 
 
