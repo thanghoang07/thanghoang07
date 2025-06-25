@@ -1,1 +1,311 @@
-<p>Hello</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thang Hoang Duc Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50">
+  <!-- Language Switcher -->
+  <script>
+    const translations = {
+      vi: {
+        name: "Thang Hoang Duc.",
+        intro: "Front-end developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng, đam mê tạo ra sản phẩm web hiện đại, tối ưu trải nghiệm người dùng.",
+        services: "Dịch vụ",
+        portfolio: "Dự án",
+        experience: "Kinh nghiệm",
+        blog: "Blog",
+        resume: "Tải CV",
+        myNameIs: "Tôi tên là",
+        specialized: "Chuyên môn",
+        ux: "Thiết kế trải nghiệm người dùng tối ưu, trực quan.",
+        webdev: "Xây dựng website responsive, tối ưu hiệu suất.",
+        webdesign: "Thiết kế giao diện đẹp, hiện đại cho ứng dụng web.",
+        featured: "Dự án tiêu biểu",
+        workexp: "Kinh nghiệm làm việc",
+        seniorux: "Dẫn dắt team thiết kế trải nghiệm người dùng cho nhiều sản phẩm.",
+        uidev: "Phát triển và bảo trì các thành phần front-end cho công cụ nội bộ.",
+        webdes: "Thiết kế web và prototype cho các chiến dịch marketing.",
+        blogtitle: "Blog cá nhân",
+        blog1: "Xu hướng thiết kế web hiện đại và phát triển trong tương lai.",
+        blog2: "Các mẹo thiết kế UX giúp nâng cao trải nghiệm người dùng.",
+        blog3: "Kinh nghiệm và best practice cho phát triển web hiện đại.",
+        testimonials: "Khách hàng nhận xét",
+        testi1: "Làm việc với Thang rất tuyệt vời. Sự tỉ mỉ và sáng tạo đã giúp dự án thành công.",
+        testi2: "Chuyên môn về UX của Thang giúp chúng tôi tăng tương tác người dùng rõ rệt.",
+        testi3: "Chuyên nghiệp, sáng tạo và luôn đúng deadline. Rất đáng tin cậy!",
+        copyright: "© 2025 thanghoang07. Đã đăng ký bản quyền."
+      },
+      en: {
+        name: "Thang Hoang Duc.",
+        intro: "Front-end developer with 5+ years of experience in UI development, passionate about creating modern web products and optimizing user experience.",
+        services: "Services",
+        portfolio: "Portfolio",
+        experience: "Experience",
+        blog: "Blog",
+        resume: "Resume",
+        myNameIs: "My name is",
+        specialized: "Specialized in",
+        ux: "Creating optimal, intuitive user experiences.",
+        webdev: "Building responsive, high-performance websites.",
+        webdesign: "Designing beautiful, modern web interfaces.",
+        featured: "Featured Portfolios",
+        workexp: "Work Experience",
+        seniorux: "Led the UX team for various products.",
+        uidev: "Developed and maintained front-end components for internal tools.",
+        webdes: "Designed websites and prototypes for marketing campaigns.",
+        blogtitle: "Personal Blog",
+        blog1: "Trends in modern web design and future development.",
+        blog2: "UX design tips to enhance user experience.",
+        blog3: "Best practices and experience for modern web development.",
+        testimonials: "Testimonials",
+        testi1: "Working with Thang was great. His attention to detail and creativity made the project a success.",
+        testi2: "Thang's UX expertise helped us increase user engagement significantly.",
+        testi3: "Professional, creative, and always on time. Highly reliable!",
+        copyright: "© 2025 thanghoang07. All rights reserved."
+      }
+    };
+    let lang = 'vi';
+    function setLang(l) {
+      lang = l;
+      const t = translations[lang];
+      document.getElementById('nav-services').textContent = t.services;
+      document.getElementById('nav-portfolio').textContent = t.portfolio;
+      document.getElementById('nav-experience').textContent = t.experience;
+      document.getElementById('nav-blog').textContent = t.blog;
+      document.getElementById('nav-resume').textContent = t.resume;
+      document.getElementById('hero-mynameis').textContent = t.myNameIs;
+      document.getElementById('hero-name').textContent = t.name;
+      document.getElementById('hero-intro').textContent = t.intro;
+      document.getElementById('specialized-title').textContent = t.specialized;
+      document.getElementById('ux-desc').textContent = t.ux;
+      document.getElementById('webdev-desc').textContent = t.webdev;
+      document.getElementById('webdesign-desc').textContent = t.webdesign;
+      document.getElementById('portfolio-title').textContent = t.featured;
+      document.getElementById('workexp-title').textContent = t.workexp;
+      document.getElementById('seniorux-desc').textContent = t.seniorux;
+      document.getElementById('uidev-desc').textContent = t.uidev;
+      document.getElementById('webdes-desc').textContent = t.webdes;
+      document.getElementById('blog-title').textContent = t.blogtitle;
+      document.getElementById('blog1-desc').textContent = t.blog1;
+      document.getElementById('blog2-desc').textContent = t.blog2;
+      document.getElementById('blog3-desc').textContent = t.blog3;
+      document.getElementById('testimonials-title').textContent = t.testimonials;
+      document.getElementById('testi1-desc').textContent = t.testi1;
+      document.getElementById('testi2-desc').textContent = t.testi2;
+      document.getElementById('testi3-desc').textContent = t.testi3;
+      document.getElementById('copyright').textContent = t.copyright;
+    }
+    window.onload = function () {
+      setLang(lang);
+      document.getElementById('lang-vi').onclick = () => setLang('vi');
+      document.getElementById('lang-en').onclick = () => setLang('en');
+    };
+  </script>
+  <!-- Header -->
+  <header class="container mx-auto px-4 py-6 flex items-center justify-between">
+    <div class="text-2xl font-bold">Thang Hoang Duc.</div>
+    <nav class="flex-1 flex justify-center">
+      <div class="hidden md:flex space-x-8">
+        <a id="nav-services" href="#services" class="text-gray-600 hover:text-black">Services</a>
+        <a id="nav-portfolio" href="#portfolio" class="text-gray-600 hover:text-black">Portfolio</a>
+        <a id="nav-experience" href="#experience" class="text-gray-600 hover:text-black">Experience</a>
+        <a id="nav-blog" href="#blog" class="text-gray-600 hover:text-black">Blog</a>
+      </div>
+    </nav>
+    <div class="flex items-center space-x-2">
+      <button id="nav-resume" class="hidden md:block px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Resume</button>
+      <button id="lang-vi" class="px-2 py-1 text-sm rounded border border-gray-300 hover:bg-gray-200 flex items-center ml-2" title="Tiếng Việt">
+        <svg class="w-5 h-5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#da251d"/><polygon points="12,6 13.18,10.09 17.5,10.09 13.91,12.91 15.09,17 12,14.18 8.91,17 10.09,12.91 6.5,10.09 10.82,10.09" fill="#ff0"/></svg>
+      </button>
+      <button id="lang-en" class="px-2 py-1 text-sm rounded border border-gray-300 hover:bg-gray-200 flex items-center" title="English">
+        <svg class="w-5 h-5" viewBox="0 0 24 24"><rect width="24" height="24" fill="#00247d"/><path d="M0 0l24 24M24 0L0 24" stroke="#fff" stroke-width="3"/><path d="M0 0l24 24M24 0L0 24" stroke="#cf142b" stroke-width="2"/><rect x="10" width="4" height="24" fill="#fff"/><rect y="10" width="24" height="4" fill="#fff"/><rect x="11" width="2" height="24" fill="#cf142b"/><rect y="11" width="24" height="2" fill="#cf142b"/></svg>
+      </button>
+    </div>
+  </header>
+  <!-- Hero Section -->
+  <section class="container mx-auto px-4 py-16">
+    <div class="max-w-4xl mx-auto">
+      <div id="hero-mynameis" class="text-sm text-purple-600 mb-2">My name is</div>
+      <h1 id="hero-name" class="text-4xl font-bold mb-4">Thang Hoang Duc.</h1>
+      <p id="hero-intro" class="text-gray-600 mb-8">Front-end developer với hơn 5 năm kinh nghiệm phát triển giao diện
+        người dùng, đam mê tạo ra sản phẩm web hiện đại, tối ưu trải nghiệm người dùng.</p>
+      <div class="flex space-x-4">
+        <a href="#" class="text-gray-600 hover:text-black" aria-label="Facebook">
+          <img src="images/facebook.svg" class="w-6 h-6" alt="Facebook" />
+        </a>
+        <a href="#" class="text-gray-600 hover:text-black" aria-label="Twitter">
+          <img src="images/twitter.svg" class="w-6 h-6" alt="Twitter" />
+        </a>
+        <a href="#" class="text-gray-600 hover:text-black" aria-label="LinkedIn">
+          <img src="images/linkedin.svg" class="w-6 h-6" alt="LinkedIn" />
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- Specialized Section -->
+  <section id="services" class="container mx-auto px-4 py-16">
+    <h2 id="specialized-title" class="text-2xl font-bold mb-12 text-center">Specialized in</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+        <div class="w-12 h-12 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
+          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">UX Design</h3>
+        <p id="ux-desc" class="text-gray-600">Thiết kế trải nghiệm người dùng tối ưu, trực quan.</p>
+      </div>
+      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+        <div class="w-12 h-12 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
+          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Web Development</h3>
+        <p id="webdev-desc" class="text-gray-600">Xây dựng website responsive, tối ưu hiệu suất.</p>
+      </div>
+      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+        <div class="w-12 h-12 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
+          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Web Design</h3>
+        <p id="webdesign-desc" class="text-gray-600">Thiết kế giao diện đẹp, hiện đại cho ứng dụng web.</p>
+      </div>
+    </div>
+  </section>
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="container mx-auto px-4 py-16">
+    <h2 id="portfolio-title" class="text-2xl font-bold mb-12 text-center">Featured Portfolios</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+        <img src="https://via.placeholder.com/400x300" alt="Agency Website project" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Agency Website</h3>
+          <p class="text-gray-600">Web Design</p>
+        </div>
+      </div>
+      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+        <img src="https://via.placeholder.com/400x300" alt="Dashboard Platform project"
+          class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Dashboard Platform</h3>
+          <p class="text-gray-600">Web Development</p>
+        </div>
+      </div>
+      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+        <img src="https://via.placeholder.com/400x300" alt="E-commerce Website project"
+          class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">E-commerce Website</h3>
+          <p class="text-gray-600">UX Design</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Work Experience -->
+  <section id="experience" class="container mx-auto px-4 py-16">
+    <h2 id="workexp-title" class="text-2xl font-bold mb-12 text-center">Work Experience</h2>
+    <div class="max-w-3xl mx-auto">
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold">Senior UX Designer</h3>
+        <p class="text-gray-600">Apple Inc. • 2020 - Present</p>
+        <p id="seniorux-desc" class="mt-2">Dẫn dắt team thiết kế trải nghiệm người dùng cho nhiều sản phẩm.</p>
+      </div>
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold">UI Developer</h3>
+        <p class="text-gray-600">Google • 2018 - 2020</p>
+        <p id="uidev-desc" class="mt-2">Phát triển và bảo trì các thành phần front-end cho công cụ nội bộ.</p>
+      </div>
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold">Web Designer</h3>
+        <p class="text-gray-600">Facebook • 2016 - 2018</p>
+        <p id="webdes-desc" class="mt-2">Thiết kế web và prototype cho các chiến dịch marketing.</p>
+      </div>
+    </div>
+  </section>
+  <!-- Blog Section -->
+  <section id="blog" class="container mx-auto px-4 py-16">
+    <h2 id="blog-title" class="text-2xl font-bold mb-12 text-center">Personal Blog</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+        <img src="https://via.placeholder.com/400x300" alt="The Future of Web Design" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">The Future of Web Design</h3>
+          <p id="blog1-desc" class="text-gray-600 mb-4">Xu hướng thiết kế web hiện đại và phát triển trong tương lai.
+          </p>
+          <a href="#" class="text-purple-600 hover:text-purple-700">Continue Reading →</a>
+        </div>
+      </div>
+      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+        <img src="https://via.placeholder.com/400x300" alt="UX Design Tips" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">UX Design Tips</h3>
+          <p id="blog2-desc" class="text-gray-600 mb-4">Các mẹo thiết kế UX giúp nâng cao trải nghiệm người dùng.</p>
+          <a href="#" class="text-purple-600 hover:text-purple-700">Continue Reading →</a>
+        </div>
+      </div>
+      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+        <img src="https://via.placeholder.com/400x300" alt="Web Development Best Practices"
+          class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Web Development Best Practices</h3>
+          <p id="blog3-desc" class="text-gray-600 mb-4">Kinh nghiệm và best practice cho phát triển web hiện đại.</p>
+          <a href="#" class="text-purple-600 hover:text-purple-700">Continue Reading →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Testimonials Section -->
+  <section class="container mx-auto px-4 py-16">
+    <h2 id="testimonials-title" class="text-2xl font-bold mb-12 text-center">Testimonials</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+        <img src="https://via.placeholder.com/60x60" alt="John Doe" class="w-16 h-16 rounded-full mb-4">
+        <p id="testi1-desc" class="text-gray-600 mb-4">Làm việc với Thang rất tuyệt vời. Sự tỉ mỉ và sáng tạo đã giúp dự
+          án thành công.</p>
+        <p class="font-semibold">John Doe</p>
+        <p class="text-gray-600 text-sm">CEO, Company Inc.</p>
+      </div>
+      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+        <img src="https://via.placeholder.com/60x60" alt="Jane Smith" class="w-16 h-16 rounded-full mb-4">
+        <p id="testi2-desc" class="text-gray-600 mb-4">Chuyên môn về UX của Thang giúp chúng tôi tăng tương tác người
+          dùng rõ rệt.</p>
+        <p class="font-semibold">Jane Smith</p>
+        <p class="text-gray-600 text-sm">Product Manager, Tech Co.</p>
+      </div>
+      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+        <img src="https://via.placeholder.com/60x60" alt="Mike Johnson" class="w-16 h-16 rounded-full mb-4">
+        <p id="testi3-desc" class="text-gray-600 mb-4">Chuyên nghiệp, sáng tạo và luôn đúng deadline. Rất đáng tin cậy!
+        </p>
+        <p class="font-semibold">Mike Johnson</p>
+        <p class="text-gray-600 text-sm">Founder, Startup Ltd.</p>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-8">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex justify-center space-x-4 mb-4">
+        <a href="#" class="text-gray-600 hover:text-black" aria-label="Facebook">
+          <img src="images/facebook.svg" class="w-6 h-6" alt="Facebook" />
+        </a>
+        <a href="#" class="text-gray-600 hover:text-black" aria-label="Twitter">
+          <img src="images/twitter.svg" class="w-6 h-6" alt="Twitter" />
+        </a>
+        <a href="#" class="text-gray-600 hover:text-black" aria-label="LinkedIn">
+          <img src="images/linkedin.svg" class="w-6 h-6" alt="LinkedIn" />
+        </a>
+      </div>
+      <p id="copyright" class="text-gray-600">© 2025 thanghoang07. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
