@@ -70,35 +70,41 @@
       }
     };
     let lang = 'vi';
+    const idsMap = {
+      "nav-services": "services",
+      "nav-portfolio": "portfolio",
+      "nav-experience": "experience",
+      "nav-blog": "blog",
+      "nav-resume": "resume",
+      "hero-mynameis": "myNameIs",
+      "hero-name": "name",
+      "hero-intro": "intro",
+      "specialized-title": "specialized",
+      "ux-desc": "ux",
+      "webdev-desc": "webdev",
+      "webdesign-desc": "webdesign",
+      "portfolio-title": "featured",
+      "workexp-title": "workexp",
+      "seniorux-desc": "seniorux",
+      "uidev-desc": "uidev",
+      "webdes-desc": "webdes",
+      "blog-title": "blogtitle",
+      "blog1-desc": "blog1",
+      "blog2-desc": "blog2",
+      "blog3-desc": "blog3",
+      "testimonials-title": "testimonials",
+      "testi1-desc": "testi1",
+      "testi2-desc": "testi2",
+      "testi3-desc": "testi3",
+      "copyright": "copyright"
+    };
     function setLang(l) {
       lang = l;
       const t = translations[lang];
-      document.getElementById('nav-services').textContent = t.services;
-      document.getElementById('nav-portfolio').textContent = t.portfolio;
-      document.getElementById('nav-experience').textContent = t.experience;
-      document.getElementById('nav-blog').textContent = t.blog;
-      document.getElementById('nav-resume').textContent = t.resume;
-      document.getElementById('hero-mynameis').textContent = t.myNameIs;
-      document.getElementById('hero-name').textContent = t.name;
-      document.getElementById('hero-intro').textContent = t.intro;
-      document.getElementById('specialized-title').textContent = t.specialized;
-      document.getElementById('ux-desc').textContent = t.ux;
-      document.getElementById('webdev-desc').textContent = t.webdev;
-      document.getElementById('webdesign-desc').textContent = t.webdesign;
-      document.getElementById('portfolio-title').textContent = t.featured;
-      document.getElementById('workexp-title').textContent = t.workexp;
-      document.getElementById('seniorux-desc').textContent = t.seniorux;
-      document.getElementById('uidev-desc').textContent = t.uidev;
-      document.getElementById('webdes-desc').textContent = t.webdes;
-      document.getElementById('blog-title').textContent = t.blogtitle;
-      document.getElementById('blog1-desc').textContent = t.blog1;
-      document.getElementById('blog2-desc').textContent = t.blog2;
-      document.getElementById('blog3-desc').textContent = t.blog3;
-      document.getElementById('testimonials-title').textContent = t.testimonials;
-      document.getElementById('testi1-desc').textContent = t.testi1;
-      document.getElementById('testi2-desc').textContent = t.testi2;
-      document.getElementById('testi3-desc').textContent = t.testi3;
-      document.getElementById('copyright').textContent = t.copyright;
+      for (const [id, key] of Object.entries(idsMap)) {
+        const el = document.getElementById(id);
+        if (el && t[key]) el.textContent = t[key];
+      }
     }
     window.onload = function () {
       setLang(lang);
@@ -151,7 +157,7 @@
   <section id="services" class="container mx-auto px-4 py-16">
     <h2 id="specialized-title" class="text-2xl font-bold mb-12 text-center">Specialized in</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <div class="w-12 h-12 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
           <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -160,7 +166,7 @@
         <h3 class="text-xl font-semibold mb-2">UX Design</h3>
         <p id="ux-desc" class="text-gray-600">Thiết kế trải nghiệm người dùng tối ưu, trực quan.</p>
       </div>
-      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <div class="w-12 h-12 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
           <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -169,7 +175,7 @@
         <h3 class="text-xl font-semibold mb-2">Web Development</h3>
         <p id="webdev-desc" class="text-gray-600">Xây dựng website responsive, tối ưu hiệu suất.</p>
       </div>
-      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <div class="w-12 h-12 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
           <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -184,14 +190,14 @@
   <section id="portfolio" class="container mx-auto px-4 py-16">
     <h2 id="portfolio-title" class="text-2xl font-bold mb-12 text-center">Featured Portfolios</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <img src="https://via.placeholder.com/400x300" alt="Agency Website project" class="w-full h-48 object-cover">
         <div class="p-6">
           <h3 class="text-xl font-semibold mb-2">Agency Website</h3>
           <p class="text-gray-600">Web Design</p>
         </div>
       </div>
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <img src="https://via.placeholder.com/400x300" alt="Dashboard Platform project"
           class="w-full h-48 object-cover">
         <div class="p-6">
@@ -199,7 +205,7 @@
           <p class="text-gray-600">Web Development</p>
         </div>
       </div>
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <img src="https://via.placeholder.com/400x300" alt="E-commerce Website project"
           class="w-full h-48 object-cover">
         <div class="p-6">
@@ -234,7 +240,7 @@
   <section id="blog" class="container mx-auto px-4 py-16">
     <h2 id="blog-title" class="text-2xl font-bold mb-12 text-center">Personal Blog</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <img src="https://via.placeholder.com/400x300" alt="The Future of Web Design" class="w-full h-48 object-cover">
         <div class="p-6">
           <h3 class="text-xl font-semibold mb-2">The Future of Web Design</h3>
@@ -243,7 +249,7 @@
           <a href="#" class="text-purple-600 hover:text-purple-700">Continue Reading →</a>
         </div>
       </div>
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <img src="https://via.placeholder.com/400x300" alt="UX Design Tips" class="w-full h-48 object-cover">
         <div class="p-6">
           <h3 class="text-xl font-semibold mb-2">UX Design Tips</h3>
@@ -251,7 +257,7 @@
           <a href="#" class="text-purple-600 hover:text-purple-700">Continue Reading →</a>
         </div>
       </div>
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:-translate-y-1 transition">
+      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <img src="https://via.placeholder.com/400x300" alt="Web Development Best Practices"
           class="w-full h-48 object-cover">
         <div class="p-6">
@@ -266,21 +272,21 @@
   <section class="container mx-auto px-4 py-16">
     <h2 id="testimonials-title" class="text-2xl font-bold mb-12 text-center">Testimonials</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <img src="https://via.placeholder.com/60x60" alt="John Doe" class="w-16 h-16 rounded-full mb-4">
         <p id="testi1-desc" class="text-gray-600 mb-4">Làm việc với Thang rất tuyệt vời. Sự tỉ mỉ và sáng tạo đã giúp dự
           án thành công.</p>
         <p class="font-semibold">John Doe</p>
         <p class="text-gray-600 text-sm">CEO, Company Inc.</p>
       </div>
-      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <img src="https://via.placeholder.com/60x60" alt="Jane Smith" class="w-16 h-16 rounded-full mb-4">
         <p id="testi2-desc" class="text-gray-600 mb-4">Chuyên môn về UX của Thang giúp chúng tôi tăng tương tác người
           dùng rõ rệt.</p>
         <p class="font-semibold">Jane Smith</p>
         <p class="text-gray-600 text-sm">Product Manager, Tech Co.</p>
       </div>
-      <div class="card bg-white p-6 rounded-lg shadow-lg hover:-translate-y-1 transition">
+      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform duration-300">
         <img src="https://via.placeholder.com/60x60" alt="Mike Johnson" class="w-16 h-16 rounded-full mb-4">
         <p id="testi3-desc" class="text-gray-600 mb-4">Chuyên nghiệp, sáng tạo và luôn đúng deadline. Rất đáng tin cậy!
         </p>
