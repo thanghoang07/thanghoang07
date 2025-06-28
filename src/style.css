@@ -391,7 +391,7 @@ section,
 
 /* Certification card hover effects */
 .cert-card {
-  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -400,9 +400,9 @@ section,
   gap: 1rem;
 }
 .cert-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 20px 40px rgba(147, 51, 234, 0.15), 0 2px 8px rgba(0,0,0,0.04);
-  background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
+  transform: translateY(-5px) rotateY(5deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 .cert-icon {
   display: inline-flex;
@@ -417,15 +417,13 @@ section,
   border-radius: 9999px;
   background: #f3e8ff;
   color: #9333ea;
-  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  transition: all 0.3s ease-in-out;
   box-shadow: 0 2px 8px rgba(147, 51, 234, 0.08);
   flex-shrink: 0;
 }
 .cert-card:hover .cert-icon {
-  background: #9333ea;
-  color: #fff;
-  transform: scale(1.1) rotate(-6deg);
-  box-shadow: 0 4px 16px rgba(147, 51, 234, 0.18);
+  transform: scale(1.1) rotate(5deg);
+  color: #9333ea;
 }
 
 html, body {
@@ -451,4 +449,45 @@ html, body {
 .contact-card,
 .company-detail {
   border-radius: 20px !important;
+}
+
+@keyframes float1 {
+  0% { transform: translateY(0) rotate(12deg); }
+  50% { transform: translateY(-16px) rotate(18deg); }
+  100% { transform: translateY(0) rotate(12deg); }
+}
+@keyframes float2 {
+  0% { transform: translateX(0) rotate(-6deg); }
+  50% { transform: translateX(18px) rotate(-12deg); }
+  100% { transform: translateX(0) rotate(-6deg); }
+}
+@keyframes float3 {
+  0% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.12) translateY(10px); }
+  100% { transform: scale(1) translateY(0); }
+}
+.avatar-shape-1 {
+  animation: float1 4s ease-in-out infinite;
+}
+.avatar-shape-2 {
+  animation: float2 5.5s ease-in-out infinite;
+}
+.avatar-shape-3 {
+  animation: float3 6.5s ease-in-out infinite;
+}
+@keyframes float4 {
+  0% { transform: translateY(0) scale(1) rotate(-8deg); }
+  50% { transform: translateY(-18px) scale(1.08) rotate(-14deg); }
+  100% { transform: translateY(0) scale(1) rotate(-8deg); }
+}
+@keyframes float5 {
+  0% { transform: translateX(0) scale(1) rotate(0deg); }
+  50% { transform: translateX(14px) scale(1.13) rotate(8deg); }
+  100% { transform: translateX(0) scale(1) rotate(0deg); }
+}
+.avatar-shape-4 {
+  animation: float4 5.2s ease-in-out infinite;
+}
+.avatar-shape-5 {
+  animation: float5 4.7s ease-in-out infinite;
 } 
