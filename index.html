@@ -11,28 +11,7 @@
 
 <body class="bg-transparent">
   <!-- Background Shapes -->
-  <div class="fixed inset-0 z-0 pointer-events-none">
-    <div class="floating-shape absolute top-10 left-10 w-24 h-24 bg-purple-100 rounded-[20px]"></div>
-    <div class="floating-shape absolute top-20 right-10 w-20 h-20 bg-purple-200 rounded-full"></div>
-    <div class="floating-shape absolute bottom-10 left-20 w-16 h-16 bg-blue-100 rounded-[20px]"></div>
-    <div class="floating-shape absolute bottom-20 right-20 w-14 h-14 bg-yellow-100 rounded-full"></div>
-    <div class="floating-shape absolute top-1/3 left-1/3 w-20 h-10 bg-pink-200 rounded-[16px] opacity-70"></div>
-    <div class="floating-shape absolute top-1/2 right-1/3 w-10 h-10 bg-green-100 rounded-full opacity-60"></div>
-    <div class="floating-shape absolute bottom-1/3 left-1/4 w-12 h-12 bg-blue-200 rounded-[30px] opacity-50"></div>
-    <div class="floating-shape absolute top-1/4 right-1/4 w-16 h-16 bg-yellow-200 rounded-full opacity-80"></div>
-    <div class="floating-shape absolute bottom-1/4 left-1/2 w-12 h-24 bg-purple-300 rounded-[40px] opacity-60"></div>
-    <div class="floating-shape absolute top-1/6 right-1/6 w-14 h-14 bg-green-300 rounded-[30px] opacity-50"></div>
-    <div class="floating-shape absolute top-5 left-5 w-10 h-10 bg-pink-100 rounded-full opacity-40"></div>
-    <div class="floating-shape absolute bottom-5 right-5 w-14 h-14 bg-yellow-200 rounded-[20px] opacity-50"></div>
-    <div class="floating-shape absolute top-1/5 left-1/6 w-16 h-12 bg-green-100 rounded-[16px] opacity-60"></div>
-    <div class="floating-shape absolute bottom-1/6 right-1/5 w-12 h-16 bg-blue-200 rounded-[30px] opacity-45"></div>
-    <div class="floating-shape absolute top-1/8 left-1/8 w-20 h-20 bg-purple-200 rounded-full opacity-30"></div>
-    <div class="floating-shape absolute bottom-1/8 right-1/8 w-18 h-18 bg-pink-200 rounded-[24px] opacity-35"></div>
-    <div class="floating-shape absolute top-1/7 left-1/7 w-15 h-15 bg-yellow-100 rounded-[10px] opacity-50"></div>
-    <div class="floating-shape absolute bottom-1/7 right-1/7 w-13 h-13 bg-green-200 rounded-full opacity-40"></div>
-    <div class="floating-shape absolute top-1/9 left-1/9 w-12 h-12 bg-blue-100 rounded-[14px] opacity-55"></div>
-    <div class="floating-shape absolute bottom-1/9 right-1/9 w-11 h-11 bg-purple-100 rounded-full opacity-60"></div>
-  </div>
+  <div class="fixed inset-0 z-0 pointer-events-none" id="floating-shapes-container"></div>
 
   <!-- Header -->
   <header class="sticky top-0 z-30 bg-white shadow-sm py-4">
@@ -357,59 +336,6 @@
     </div>
   </footer>
   
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Floating shapes animation
-    const shapes = document.querySelectorAll('.floating-shape');
-    let vw = window.innerWidth;
-    let vh = window.innerHeight;
-
-    function moveShape(shape) {
-      shape.style.transform = 'translate(0, 0)';
-      const rect = shape.getBoundingClientRect();
-      const maxX = Math.max(0, vw - rect.width);
-      const maxY = Math.max(0, vh - rect.height);
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-      shape.style.transform = `translate(${x}px, ${y}px)`;
-      setTimeout(() => moveShape(shape), 12000);
-    }
-
-    shapes.forEach(shape => {
-      shape.style.transition = 'transform 12s cubic-bezier(0.4, 0, 0.2, 1)';
-      moveShape(shape);
-    });
-
-    window.addEventListener('resize', () => {
-      vw = window.innerWidth;
-      vh = window.innerHeight;
-    });
-
-    // Progress bars animation
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const bar = entry.target;
-          const targetWidth = bar.getAttribute("data-target-width");
-          bar.style.width = "0%";
-          bar.offsetWidth;
-          bar.style.transition = "width 4s ease-out";
-          requestAnimationFrame(() => {
-            bar.style.width = targetWidth;
-          });
-          observer.unobserve(bar);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    document.querySelectorAll(".progress-bar").forEach(bar => {
-      const width = bar.style.width;
-      bar.setAttribute("data-target-width", width);
-      bar.style.width = "0%";
-      observer.observe(bar);
-    });
-  });
-  </script>
   <script type="module" src="/src/main.js"></script>
 </body>
 

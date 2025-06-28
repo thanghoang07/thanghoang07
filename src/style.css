@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles */
 .card {
   @apply bg-white dark:bg-gray-800 transition-all duration-300;
   transition: all 0.3s ease-in-out;
@@ -16,12 +15,10 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Scroll Reveal Animations */
 .scroll-reveal,
 .scroll-reveal-left,
 .scroll-reveal-right,
@@ -43,20 +40,17 @@ html {
   transform: scale(0.8);
 }
 
-/* Revealed state - animation will play when this class is added */
 .revealed {
   opacity: 1;
   transform: translateY(0) translateX(0) scale(1);
 }
 
-/* Section and card elements should be visible by default */
 section,
 .card {
   opacity: 1;
   transform: translateY(0) translateX(0) scale(1);
 }
 
-/* Animation classes that will be added/removed */
 .fade-in-up {
   animation: fadeInUp 0.8s ease-out forwards;
 }
@@ -81,14 +75,12 @@ section,
   animation: slideInDown 0.8s ease-out forwards;
 }
 
-/* Stagger delays */
 .stagger-1 { animation-delay: 0.1s; }
 .stagger-2 { animation-delay: 0.2s; }
 .stagger-3 { animation-delay: 0.3s; }
 .stagger-4 { animation-delay: 0.4s; }
 .stagger-5 { animation-delay: 0.5s; }
 
-/* Keyframe animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -155,12 +147,10 @@ section,
   }
 }
 
-/* Parallax effect */
 .parallax {
   transition: transform 0.1s ease-out;
 }
 
-/* Hover effects */
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -170,7 +160,6 @@ section,
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Loading animation */
 @keyframes shimmer {
   0% {
     background-position: -200px 0;
@@ -186,10 +175,20 @@ section,
   animation: shimmer 1.5s infinite;
 }
 
-/* Project card specific hover effects */
-.project-card {
+.project-card,
+.skill-card,
+.cert-card,
+.contact-card {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+}
+
+.project-card:hover,
+.skill-card:hover,
+.cert-card:hover,
+.contact-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
 .project-card:hover {
@@ -205,16 +204,8 @@ section,
   color: #9333ea;
 }
 
-/* Skill card hover effects */
-.skill-card {
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-}
-
 .skill-card:hover {
   transform: translateY(-5px) rotateY(5deg);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
 .skill-card:hover .skill-icon {
@@ -222,10 +213,39 @@ section,
   color: #9333ea;
 }
 
-/* Contact card hover effects */
-.contact-card {
+.cert-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cert-card:hover {
+  transform: translateY(-5px) rotateY(5deg);
+}
+
+.cert-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
+  max-width: 3rem;
+  max-height: 3rem;
+  border-radius: 9999px;
+  background: #f3e8ff;
+  color: #9333ea;
   transition: all 0.3s ease-in-out;
-  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(147, 51, 234, 0.08);
+  flex-shrink: 0;
+}
+
+.cert-card:hover .cert-icon {
+  transform: scale(1.1) rotate(5deg);
+  color: #9333ea;
 }
 
 .contact-card:hover {
@@ -240,7 +260,6 @@ section,
   color: white;
 }
 
-/* Image hover effects */
 .project-image {
   transition: transform 0.3s ease-in-out;
 }
@@ -253,14 +272,18 @@ section,
   transition: all 0.3s ease-in-out;
 }
 
-/* Text hover effects */
 .project-title {
   transition: color 0.3s ease-in-out;
 }
 
-/* Button hover effects */
-.btn {
+.btn,
+.theme-toggle,
+.language-toggle,
+.nav-links a {
   transition: all 0.3s ease-in-out;
+}
+
+.btn {
   position: relative;
   overflow: hidden;
 }
@@ -274,7 +297,6 @@ section,
   transform: translateY(0);
 }
 
-/* Social media links hover effects */
 .social-links a {
   transition: all 0.3s ease-in-out;
   display: inline-block;
@@ -285,9 +307,7 @@ section,
   color: #9333ea;
 }
 
-/* Navigation links hover effects */
 .nav-links a {
-  transition: all 0.3s ease-in-out;
   position: relative;
 }
 
@@ -310,19 +330,12 @@ section,
   color: #9333ea;
 }
 
-/* Theme toggle hover effect */
-.theme-toggle {
-  transition: all 0.3s ease-in-out;
-}
-
 .theme-toggle:hover {
   transform: rotate(180deg);
   color: #9333ea;
 }
 
-/* Language toggle hover effect */
 .language-toggle {
-  transition: all 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
 }
@@ -332,7 +345,6 @@ section,
   color: #9333ea;
 }
 
-/* Language icon transitions */
 #lang-vi-icon,
 #lang-en-icon {
   transition: all 0.3s ease-in-out;
@@ -350,34 +362,39 @@ section,
   transform: scale(1);
 }
 
-/* Work Experience Tab Layout */
 .company-tab {
   @apply text-left cursor-pointer transition-all duration-200;
 }
+
 .company-tab.active {
   @apply bg-purple-50 text-purple-600 font-semibold shadow;
 }
+
 .company-tab:not(.active) {
   @apply bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200;
 }
+
 .company-detail {
   @apply bg-white dark:bg-gray-900 rounded-lg shadow p-8 transition-all duration-300;
   opacity: 0;
   transform: translateY(24px);
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .company-detail:not(.hidden) {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
+
 .company-detail.hidden {
   display: block;
   opacity: 0;
   transform: translateY(24px);
   pointer-events: none;
 }
+
 @media (max-width: 768px) {
   .company-tab {
     min-width: 140px;
@@ -389,52 +406,15 @@ section,
   }
 }
 
-/* Certification card hover effects */
-.cert-card {
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.cert-card:hover {
-  transform: translateY(-5px) rotateY(5deg);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-}
-.cert-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  min-width: 3rem;
-  min-height: 3rem;
-  max-width: 3rem;
-  max-height: 3rem;
-  border-radius: 9999px;
-  background: #f3e8ff;
-  color: #9333ea;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 2px 8px rgba(147, 51, 234, 0.08);
-  flex-shrink: 0;
-}
-.cert-card:hover .cert-icon {
-  transform: scale(1.1) rotate(5deg);
-  color: #9333ea;
-}
-
 html, body {
   background: #fff !important;
 }
 
-/* Fix Work Experience details alignment */
 #experience .md\:col-span-2 {
   display: block;
   position: relative;
 }
+
 #experience .company-detail {
   position: absolute;
   top: 0;
@@ -451,43 +431,53 @@ html, body {
   border-radius: 20px !important;
 }
 
+/* Avatar floating animations */
 @keyframes float1 {
   0% { transform: translateY(0) rotate(12deg); }
   50% { transform: translateY(-16px) rotate(18deg); }
   100% { transform: translateY(0) rotate(12deg); }
 }
+
 @keyframes float2 {
   0% { transform: translateX(0) rotate(-6deg); }
   50% { transform: translateX(18px) rotate(-12deg); }
   100% { transform: translateX(0) rotate(-6deg); }
 }
+
 @keyframes float3 {
   0% { transform: scale(1) translateY(0); }
   50% { transform: scale(1.12) translateY(10px); }
   100% { transform: scale(1) translateY(0); }
 }
+
 .avatar-shape-1 {
   animation: float1 4s ease-in-out infinite;
 }
+
 .avatar-shape-2 {
   animation: float2 5.5s ease-in-out infinite;
 }
+
 .avatar-shape-3 {
   animation: float3 6.5s ease-in-out infinite;
 }
+
 @keyframes float4 {
   0% { transform: translateY(0) scale(1) rotate(-8deg); }
   50% { transform: translateY(-18px) scale(1.08) rotate(-14deg); }
   100% { transform: translateY(0) scale(1) rotate(-8deg); }
 }
+
 @keyframes float5 {
   0% { transform: translateX(0) scale(1) rotate(0deg); }
   50% { transform: translateX(14px) scale(1.13) rotate(8deg); }
   100% { transform: translateX(0) scale(1) rotate(0deg); }
 }
+
 .avatar-shape-4 {
   animation: float4 5.2s ease-in-out infinite;
 }
+
 .avatar-shape-5 {
   animation: float5 4.7s ease-in-out infinite;
-} 
+}
