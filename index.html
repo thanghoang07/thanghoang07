@@ -10,80 +10,43 @@
 </head>
 
 <body class="bg-transparent">
-  <!-- Background Shapes (fixed, không cuộn) -->
+  <!-- Background Shapes -->
   <div class="fixed inset-0 z-0 pointer-events-none">
-    <div class="absolute top-10 left-10 w-24 h-24 bg-purple-100 rounded-[20px] animate-float"></div>
-    <div class="absolute top-20 right-10 w-20 h-20 bg-purple-200 rounded-full animate-float-reverse"></div>
-    <div class="absolute bottom-10 left-20 w-16 h-16 bg-blue-100 rounded-[20px] animate-float-slow"></div>
-    <div class="absolute bottom-20 right-20 w-14 h-14 bg-yellow-100 rounded-full animate-float"></div>
-    <div class="absolute top-1/3 left-1/3 w-20 h-10 bg-pink-200 rounded-[16px] opacity-70 animate-rotate"></div>
-    <div class="absolute top-1/2 right-1/3 w-10 h-10 bg-green-100 rounded-full opacity-60 animate-float-x"></div>
-    <div class="absolute bottom-1/3 left-1/4 w-12 h-12 bg-blue-200 rounded-[30px] opacity-50 animate-scale"></div>
-    <div class="absolute top-1/4 right-1/4 w-16 h-16 bg-yellow-200 rounded-full opacity-80 animate-float"></div>
-    <div class="absolute bottom-1/4 left-1/2 w-12 h-24 bg-purple-300 rounded-[40px] opacity-60 animate-float-reverse"></div>
-    <div class="absolute top-1/6 right-1/6 w-14 h-14 bg-green-300 rounded-[30px] opacity-50 animate-float"></div>
+    <div class="floating-shape absolute top-10 left-10 w-24 h-24 bg-purple-100 rounded-[20px]"></div>
+    <div class="floating-shape absolute top-20 right-10 w-20 h-20 bg-purple-200 rounded-full"></div>
+    <div class="floating-shape absolute bottom-10 left-20 w-16 h-16 bg-blue-100 rounded-[20px]"></div>
+    <div class="floating-shape absolute bottom-20 right-20 w-14 h-14 bg-yellow-100 rounded-full"></div>
+    <div class="floating-shape absolute top-1/3 left-1/3 w-20 h-10 bg-pink-200 rounded-[16px] opacity-70"></div>
+    <div class="floating-shape absolute top-1/2 right-1/3 w-10 h-10 bg-green-100 rounded-full opacity-60"></div>
+    <div class="floating-shape absolute bottom-1/3 left-1/4 w-12 h-12 bg-blue-200 rounded-[30px] opacity-50"></div>
+    <div class="floating-shape absolute top-1/4 right-1/4 w-16 h-16 bg-yellow-200 rounded-full opacity-80"></div>
+    <div class="floating-shape absolute bottom-1/4 left-1/2 w-12 h-24 bg-purple-300 rounded-[40px] opacity-60"></div>
+    <div class="floating-shape absolute top-1/6 right-1/6 w-14 h-14 bg-green-300 rounded-[30px] opacity-50"></div>
+    <div class="floating-shape absolute top-5 left-5 w-10 h-10 bg-pink-100 rounded-full opacity-40"></div>
+    <div class="floating-shape absolute bottom-5 right-5 w-14 h-14 bg-yellow-200 rounded-[20px] opacity-50"></div>
+    <div class="floating-shape absolute top-1/5 left-1/6 w-16 h-12 bg-green-100 rounded-[16px] opacity-60"></div>
+    <div class="floating-shape absolute bottom-1/6 right-1/5 w-12 h-16 bg-blue-200 rounded-[30px] opacity-45"></div>
+    <div class="floating-shape absolute top-1/8 left-1/8 w-20 h-20 bg-purple-200 rounded-full opacity-30"></div>
+    <div class="floating-shape absolute bottom-1/8 right-1/8 w-18 h-18 bg-pink-200 rounded-[24px] opacity-35"></div>
+    <div class="floating-shape absolute top-1/7 left-1/7 w-15 h-15 bg-yellow-100 rounded-[10px] opacity-50"></div>
+    <div class="floating-shape absolute bottom-1/7 right-1/7 w-13 h-13 bg-green-200 rounded-full opacity-40"></div>
+    <div class="floating-shape absolute top-1/9 left-1/9 w-12 h-12 bg-blue-100 rounded-[14px] opacity-55"></div>
+    <div class="floating-shape absolute bottom-1/9 right-1/9 w-11 h-11 bg-purple-100 rounded-full opacity-60"></div>
   </div>
-  <style>
-    @keyframes float {
-      0% { transform: translateY(0) scale(1) rotate(0deg); }
-      50% { transform: translateY(-20px) scale(1.05) rotate(3deg); }
-      100% { transform: translateY(0) scale(1) rotate(0deg); }
-    }
-    @keyframes float-reverse {
-      0% { transform: translateY(0) scale(1) rotate(0deg); }
-      50% { transform: translateY(20px) scale(0.97) rotate(-3deg); }
-      100% { transform: translateY(0) scale(1) rotate(0deg); }
-    }
-    @keyframes float-x {
-      0% { transform: translateX(0) scale(1) rotate(0deg); }
-      50% { transform: translateX(20px) scale(1.05) rotate(3deg); }
-      100% { transform: translateX(0) scale(1) rotate(0deg); }
-    }
-    @keyframes rotate {
-      0% { transform: rotate(0deg) scale(1); }
-      50% { transform: rotate(15deg) scale(1.08); }
-      100% { transform: rotate(0deg) scale(1); }
-    }
-    @keyframes scale {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-      100% { transform: scale(1); }
-    }
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
-    }
-    .animate-float-slow {
-      animation: float 10s ease-in-out infinite;
-    }
-    .animate-float-reverse {
-      animation: float-reverse 8s ease-in-out infinite;
-    }
-    .animate-float-x {
-      animation: float-x 7s ease-in-out infinite;
-    }
-    .animate-rotate {
-      animation: rotate 12s linear infinite;
-    }
-    .animate-scale {
-      animation: scale 9s ease-in-out infinite;
-    }
-  </style>
+
   <!-- Header -->
   <header class="sticky top-0 z-30 bg-white shadow-sm py-4">
     <div class="container mx-auto flex items-center justify-between px-4">
-      <!-- Logo -->
       <div class="flex items-center space-x-2">
         <span class="text-2xl font-extrabold text-gray-900 tracking-tight">Thang.</span>
       </div>
-      <!-- Navigation -->
-      <nav class="hidden md:flex space-x-8 mx-auto nav-links">
+      <nav class="hidden md:flex space-x-8 mx-auto">
         <a href="#services" id="nav-services" class="text-gray-700 hover:text-purple-600 transition">Services</a>
         <a href="#portfolio" id="nav-portfolio" class="text-gray-700 hover:text-purple-600 transition">Portfolio</a>
         <a href="#experience" id="nav-experience" class="text-gray-700 hover:text-purple-600 transition">Experience</a>
         <a href="#blog" id="nav-blog" class="text-gray-700 hover:text-purple-600 transition">Blog</a>
         <a href="#resume" id="nav-resume" class="text-gray-700 hover:text-purple-600 transition">Resume</a>
       </nav>
-      <!-- Right controls -->
       <div class="flex items-center space-x-2">
         <button id="toggle-language" class="language-toggle text-xl px-2 py-1 rounded-full hover:bg-purple-100 transition">
           <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese" class="w-6 h-4">
@@ -95,7 +58,6 @@
   
   <!-- Hero Section -->
   <section class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center md:items-stretch gap-12 md:gap-0 min-h-[70vh] relative z-10">
-    <!-- Left: Text -->
     <div class="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left">
       <span class="uppercase tracking-widest text-sm text-gray-400 mb-2" id="hero-mynameis">My name is</span>
       <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
@@ -108,7 +70,6 @@
         <a href="#" class="text-gray-500 hover:text-purple-600 text-2xl transition"><i class="fab fa-github"></i></a>
       </div>
     </div>
-    <!-- Right: Avatar with background -->
     <div class="flex-1 flex justify-center items-center relative min-h-[220px]">
       <img src="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=256" alt="Avatar" class="relative z-10 w-48 h-48 object-cover rounded-[20px] shadow-lg border-4 border-white bg-white" />
     </div>
@@ -182,23 +143,20 @@
     </div>
   </section>
   
-  <!-- Work Experience (Tab style) -->
+  <!-- Work Experience -->
   <section id="experience" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl relative z-10 mt-[10px]">
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="workexp-subtitle">Career Path</span>
       <h2 id="workexp-title" class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up">Work Experience</h2>
     </div>
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-      <!-- Company Tabs -->
       <div class="md:col-span-1 flex md:block overflow-x-auto md:overflow-visible space-x-2 md:space-x-0 md:space-y-6">
         <button class="company-tab active w-full px-6 py-4 rounded-xl bg-purple-50 text-purple-600 font-semibold shadow transition-all duration-200 focus:outline-none scroll-reveal-left" data-animation="fade-in-left" data-stagger="stagger-1" data-company="hpt" id="company-hpt">HPT Vietnam</button>
         <button class="company-tab w-full px-6 py-4 rounded-xl bg-white text-gray-700 shadow transition-all duration-200 focus:outline-none scroll-reveal-left" data-animation="fade-in-left" data-stagger="stagger-2" data-company="tk25" id="company-tk25">TK25 Tech</button>
         <button class="company-tab w-full px-6 py-4 rounded-xl bg-white text-gray-700 shadow transition-all duration-200 focus:outline-none scroll-reveal-left" data-animation="fade-in-left" data-stagger="stagger-3" data-company="nbn" id="company-nbn">NBN Media</button>
         <button class="company-tab w-full px-6 py-4 rounded-xl bg-white text-gray-700 shadow transition-all duration-200 focus:outline-none scroll-reveal-left" data-animation="fade-in-left" data-stagger="stagger-4" data-company="devup" id="company-devup">DevUp</button>
       </div>
-      <!-- Experience Details -->
       <div class="md:col-span-2">
-        <!-- HPT Vietnam -->
         <div class="company-detail bg-white rounded-2xl shadow-md p-8" id="exp-hpt">
           <div class="mb-2 text-lg font-semibold"><span id="role-hpt">IBM BPM Developer</span> <span class="text-purple-600">@ <span id="company-hpt-full">HPT Vietnam Corporation</span></span></div>
           <div class="text-gray-500 mb-1" id="location-hpt">Ho Chi Minh City, Vietnam</div>
@@ -216,7 +174,6 @@
             <li id="hpt-desc-4">Dự án theo mô hình agile scrum.</li>
           </ul>
         </div>
-        <!-- TK25 Tech -->
         <div class="company-detail hidden bg-white rounded-2xl shadow-md p-8" id="exp-tk25">
           <div class="mb-2 text-lg font-semibold"><span id="role-tk25">Xamarin Developer</span> <span class="text-purple-600">@ <span id="company-tk25-full">TK25 Technology Incorporation</span></span></div>
           <div class="text-gray-500 mb-1" id="location-tk25">Ho Chi Minh City, Vietnam</div>
@@ -234,7 +191,6 @@
             <li id="tk25-desc-4">Sử dụng Native, Xamarin.Android, Azure IoT hub.</li>
           </ul>
         </div>
-        <!-- NBN Media -->
         <div class="company-detail hidden bg-white rounded-2xl shadow-md p-8" id="exp-nbn">
           <div class="mb-2 text-lg font-semibold"><span id="role-nbn">Xamarin Developer Intern</span> <span class="text-purple-600">@ <span id="company-nbn-full">NBN Media</span></span></div>
           <div class="text-gray-500 mb-1" id="location-nbn">Ho Chi Minh City, Vietnam</div>
@@ -248,7 +204,6 @@
             <li id="nbn-desc-1">Phát triển chức năng đo bước chân cho app "Sanus" trên Android/iOS.</li>
           </ul>
         </div>
-        <!-- DevUp -->
         <div class="company-detail hidden bg-white rounded-2xl shadow-md p-8" id="exp-devup">
           <div class="mb-2 text-lg font-semibold"><span id="role-devup">Xamarin Developer (Part-time)</span> <span class="text-purple-600">@ <span id="company-devup-full">DevUp</span></span></div>
           <div class="text-gray-500 mb-1" id="location-devup">Ho Chi Minh City, Vietnam</div>
@@ -270,7 +225,6 @@
       <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up" id="education-title">Education & Skills</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-5xl mx-auto">
-      <!-- Education List -->
       <div class="flex flex-col justify-center">
         <div class="space-y-8">
           <div>
@@ -280,7 +234,6 @@
           </div>
         </div>
       </div>
-      <!-- Skills -->
       <div class="flex flex-col justify-center">
         <p class="text-gray-500 mb-8" id="skills-intro">For 5+ years, I have been continuously learning in the field of IT and experimenting with new technologies and frameworks, and today have gained a summary of key skills:</p>
         <div class="mb-6">
@@ -305,7 +258,7 @@
     </div>
   </section>
   
-  <!-- Certifications Section (replace Blog) -->
+  <!-- Certifications Section -->
   <section id="certifications" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl relative z-10 mt-[10px]">
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="certifications-subtitle">Certifications</span>
@@ -340,18 +293,15 @@
       <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up" id="contact-title">Contact</h2>
     </div>
     <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
-      <!-- Contact Form Card -->
       <form class="bg-white rounded-2xl p-10 flex flex-col space-y-6">
         <input type="text" id="contact-name-input" placeholder="Name" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700" required>
         <input type="email" id="contact-email-input" placeholder="Email" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700" required>
         <textarea id="contact-message-input" placeholder="Message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700" required></textarea>
         <button type="submit" id="contact-send-btn" class="w-full py-3 rounded-lg bg-purple-600 text-white font-semibold text-lg hover:bg-purple-700 transition">Send Message</button>
       </form>
-      <!-- Contact Info Card -->
       <div class="bg-white rounded-2xl p-10 flex flex-col justify-center space-y-8">
         <div class="flex items-center space-x-4">
           <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 text-purple-600">
-            <!-- Address: Map Pin Icon -->
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4.418 0-8-4.03-8-9a8 8 0 1116 0c0 4.97-3.582 9-8 9z"/>
               <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -364,7 +314,6 @@
         </div>
         <div class="flex items-center space-x-4">
           <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 text-purple-600">
-            <!-- Email: Envelope Icon -->
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 0l8 7 8-7"/></svg>
           </span>
           <div>
@@ -374,7 +323,6 @@
         </div>
         <div class="flex items-center space-x-4">
           <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 text-purple-600">
-            <!-- Phone: Classic Handset Icon -->
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2A19.72 19.72 0 013 5.18 2 2 0 015 3h3a2 2 0 012 1.72c.13.81.36 1.6.7 2.34a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0122 16.92z"/>
             </svg>
@@ -386,7 +334,6 @@
         </div>
         <div class="flex items-center space-x-4">
           <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 text-purple-600">
-            <!-- LinkedIn: LinkedIn Icon -->
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 10.28h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.58h-3v-9h2.89v1.23h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59v4.72z"/></svg>
           </span>
           <div>
@@ -410,32 +357,58 @@
     </div>
   </footer>
   
-</script>
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const bar = entry.target;
-            const targetWidth = bar.getAttribute("data-target-width");
-            bar.style.width = "0%";
-            bar.offsetWidth; // Trigger reflow
-            bar.style.transition = "width 4s ease-out";
-            requestAnimationFrame(() => {
-              bar.style.width = targetWidth;
-            });
-            observer.unobserve(bar);
-          }
-        });
-      }, { threshold: 0.5 });
-      
-      document.querySelectorAll(".progress-bar").forEach(bar => {
-        const width = bar.style.width;
-        bar.setAttribute("data-target-width", width);
-        bar.style.width = "0%";
-        observer.observe(bar);
-      });
+  document.addEventListener("DOMContentLoaded", () => {
+    // Floating shapes animation
+    const shapes = document.querySelectorAll('.floating-shape');
+    let vw = window.innerWidth;
+    let vh = window.innerHeight;
+
+    function moveShape(shape) {
+      shape.style.transform = 'translate(0, 0)';
+      const rect = shape.getBoundingClientRect();
+      const maxX = Math.max(0, vw - rect.width);
+      const maxY = Math.max(0, vh - rect.height);
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+      shape.style.transform = `translate(${x}px, ${y}px)`;
+      setTimeout(() => moveShape(shape), 12000);
+    }
+
+    shapes.forEach(shape => {
+      shape.style.transition = 'transform 12s cubic-bezier(0.4, 0, 0.2, 1)';
+      moveShape(shape);
     });
+
+    window.addEventListener('resize', () => {
+      vw = window.innerWidth;
+      vh = window.innerHeight;
+    });
+
+    // Progress bars animation
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const targetWidth = bar.getAttribute("data-target-width");
+          bar.style.width = "0%";
+          bar.offsetWidth;
+          bar.style.transition = "width 4s ease-out";
+          requestAnimationFrame(() => {
+            bar.style.width = targetWidth;
+          });
+          observer.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll(".progress-bar").forEach(bar => {
+      const width = bar.style.width;
+      bar.setAttribute("data-target-width", width);
+      bar.style.width = "0%";
+      observer.observe(bar);
+    });
+  });
   </script>
   <script type="module" src="/src/main.js"></script>
 </body>
