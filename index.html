@@ -5,343 +5,347 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thang Hoang Duc Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="bg-gray-50">
-  <!-- Language Switcher -->
-  <script>
-    const translations = {
-      vi: {
-        name: "Thang Hoang Duc.",
-        intro: "Front-end developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng, đam mê tạo ra sản phẩm web hiện đại, tối ưu trải nghiệm người dùng.",
-        services: "Dịch vụ",
-        portfolio: "Dự án",
-        experience: "Kinh nghiệm",
-        blog: "Blog",
-        resume: "Tải CV",
-        myNameIs: "Tôi tên là",
-        specialized: "Chuyên môn",
-        ux: "Thiết kế trải nghiệm người dùng tối ưu, trực quan.",
-        webdev: "Xây dựng website responsive, tối ưu hiệu suất.",
-        webdesign: "Thiết kế giao diện đẹp, hiện đại cho ứng dụng web.",
-        featured: "Dự án tiêu biểu",
-        workexp: "Kinh nghiệm làm việc",
-        seniorux: "Dẫn dắt team thiết kế trải nghiệm người dùng cho nhiều sản phẩm.",
-        uidev: "Phát triển và bảo trì các thành phần front-end cho công cụ nội bộ.",
-        webdes: "Thiết kế web và prototype cho các chiến dịch marketing.",
-        blogtitle: "Blog cá nhân",
-        blog1: "Xu hướng thiết kế web hiện đại và phát triển trong tương lai.",
-        blog2: "Các mẹo thiết kế UX giúp nâng cao trải nghiệm người dùng.",
-        blog3: "Kinh nghiệm và best practice cho phát triển web hiện đại.",
-        testimonials: "Khách hàng nhận xét",
-        testi1: "Làm việc với Thang rất tuyệt vời. Sự tỉ mỉ và sáng tạo đã giúp dự án thành công.",
-        testi2: "Chuyên môn về UX của Thang giúp chúng tôi tăng tương tác người dùng rõ rệt.",
-        testi3: "Chuyên nghiệp, sáng tạo và luôn đúng deadline. Rất đáng tin cậy!",
-        copyright: "© 2025 thanghoang07. All rights reserved."
-      },
-      en: {
-        name: "Thang Hoang Duc.",
-        intro: "Front-end developer with 5+ years of experience in UI development, passionate about creating modern web products and optimizing user experience.",
-        services: "Services",
-        portfolio: "Portfolio",
-        experience: "Experience",
-        blog: "Blog",
-        resume: "Resume",
-        myNameIs: "My name is",
-        specialized: "Specialized in",
-        ux: "Creating optimal, intuitive user experiences.",
-        webdev: "Building responsive, high-performance websites.",
-        webdesign: "Designing beautiful, modern web interfaces.",
-        featured: "Featured Portfolios",
-        workexp: "Work Experience",
-        seniorux: "Led the UX team for various products.",
-        uidev: "Developed and maintained front-end components for internal tools.",
-        webdes: "Designed websites and prototypes for marketing campaigns.",
-        blogtitle: "Personal Blog",
-        blog1: "Trends in modern web design and future development.",
-        blog2: "UX design tips to enhance user experience.",
-        blog3: "Best practices and experience for modern web development.",
-        testimonials: "Testimonials",
-        testi1: "Working with Thang was great. His attention to detail and creativity made the project a success.",
-        testi2: "Thang's UX expertise helped us increase user engagement significantly.",
-        testi3: "Professional, creative, and always on time. Highly reliable!",
-        copyright: "© 2025 thanghoang07. All rights reserved."
-      }
-    };
-    let lang = 'vi';
-    const idsMap = {
-      "nav-services": "services",
-      "nav-portfolio": "portfolio",
-      "nav-experience": "experience",
-      "nav-blog": "blog",
-      "nav-resume": "resume",
-      "hero-mynameis": "myNameIs",
-      "hero-name": "name",
-      "hero-intro": "intro",
-      "specialized-title": "specialized",
-      "ux-desc": "ux",
-      "webdev-desc": "webdev",
-      "webdesign-desc": "webdesign",
-      "portfolio-title": "featured",
-      "workexp-title": "workexp",
-      "seniorux-desc": "seniorux",
-      "uidev-desc": "uidev",
-      "webdes-desc": "webdes",
-      "blog-title": "blogtitle",
-      "blog1-desc": "blog1",
-      "blog2-desc": "blog2",
-      "blog3-desc": "blog3",
-      "testimonials-title": "testimonials",
-      "testi1-desc": "testi1",
-      "testi2-desc": "testi2",
-      "testi3-desc": "testi3",
-      "copyright": "copyright"
-    };
-    function setLang(l) {
-      lang = l;
-      const t = translations[lang];
-      for (const [id, key] of Object.entries(idsMap)) {
-        const el = document.getElementById(id);
-        if (el && t[key]) el.textContent = t[key];
-      }
-    }
-    window.onload = function () {
-      setLang(lang);
-      document.getElementById('lang-vi').onclick = () => setLang('vi');
-      document.getElementById('lang-en').onclick = () => setLang('en');
-    };
-  </script>
-  <!-- Theme Toggle Button moved outside header -->
-  <button id="toggle-theme" class="fixed top-4 right-4 z-50 px-3 py-1 text-sm rounded border border-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
-    🌙 / ☀️
-  </button>
+<body class="bg-gray-50 dark:bg-gray-900">
   <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 w-full bg-white dark:bg-gray-900 shadow z-50 px-4 py-6 flex items-center justify-between">
-    <div class="w-full max-w-7xl mx-auto flex items-center justify-between">
-      <div class="text-2xl font-bold">Thang Hoang Duc.</div>
-      <nav class="flex-1 flex justify-center">
-        <div class="hidden md:flex space-x-8">
-          <a id="nav-services" href="#services" class="text-gray-600 hover:text-black">Services</a>
-          <a id="nav-portfolio" href="#portfolio" class="text-gray-600 hover:text-black">Portfolio</a>
-          <a id="nav-experience" href="#experience" class="text-gray-600 hover:text-black">Experience</a>
-          <a id="nav-blog" href="#blog" class="text-gray-600 hover:text-black">Blog</a>
-        </div>
-      </nav>
+  <header class="sticky top-0 z-30 bg-white dark:bg-gray-900 shadow-sm py-4">
+    <div class="container mx-auto flex items-center justify-between px-4">
+      <!-- Logo -->
       <div class="flex items-center space-x-2">
-        <button id="nav-resume" class="hidden md:block px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Resume</button>
-        <button id="lang-vi" class="px-2 py-1 text-sm rounded border border-gray-300 hover:bg-gray-200 flex items-center ml-2" title="Tiếng Việt">
-          <svg class="w-5 h-5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#da251d"/><polygon points="12,6 13.18,10.09 17.5,10.09 13.91,12.91 15.09,17 12,14.18 8.91,17 10.09,12.91 6.5,10.09 10.82,10.09" fill="#ff0"/></svg>
-        </button>
-        <button id="lang-en" class="px-2 py-1 text-sm rounded border border-gray-300 hover:bg-gray-200 flex items-center" title="English">
-          <svg class="w-5 h-5" viewBox="0 0 24 24"><rect width="24" height="24" fill="#00247d"/><path d="M0 0l24 24M24 0L0 24" stroke="#fff" stroke-width="3"/><path d="M0 0l24 24M24 0L0 24" stroke="#cf142b" stroke-width="2"/><rect x="10" width="4" height="24" fill="#fff"/><rect y="10" width="24" height="4" fill="#fff"/><rect x="11" width="2" height="24" fill="#cf142b"/><rect y="11" width="24" height="2" fill="#cf142b"/></svg>
+        <span class="text-2xl font-extrabold text-gray-900 dark:text-white tracking-tight">Thang.</span>
+      </div>
+      <!-- Navigation -->
+      <nav class="hidden md:flex space-x-8 mx-auto nav-links">
+        <a href="#services" id="nav-services" class="text-gray-700 dark:text-gray-200 hover:text-purple-600 transition">Services</a>
+        <a href="#portfolio" id="nav-portfolio" class="text-gray-700 dark:text-gray-200 hover:text-purple-600 transition">Portfolio</a>
+        <a href="#experience" id="nav-experience" class="text-gray-700 dark:text-gray-200 hover:text-purple-600 transition">Experience</a>
+        <a href="#blog" id="nav-blog" class="text-gray-700 dark:text-gray-200 hover:text-purple-600 transition">Blog</a>
+        <a href="#resume" id="nav-resume" class="text-gray-700 dark:text-gray-200 hover:text-purple-600 transition">Resume</a>
+      </nav>
+      <!-- Right controls -->
+      <div class="flex items-center space-x-2">
+        <button id="toggle-theme" class="theme-toggle text-xl px-2 py-1 rounded-full hover:bg-purple-100 dark:hover:bg-gray-800 transition"></button>
+        <button id="toggle-language" class="language-toggle text-xl px-2 py-1 rounded-full hover:bg-purple-100 dark:hover:bg-gray-800 transition">
+          <span id="lang-vi-icon" class="">🇻🇳</span>
+          <span id="lang-en-icon" class="hidden">🇬🇧</span>
         </button>
       </div>
     </div>
   </header>
+  
   <!-- Hero Section -->
-  <section class="container mx-auto px-4 pt-32 pb-16">
-    <div class="max-w-4xl mx-auto">
-      <div id="hero-mynameis" class="text-sm text-purple-600 mb-2">My name is</div>
-      <h1 id="hero-name" class="text-4xl font-bold mb-4">Thang Hoang Duc.</h1>
-      <p id="hero-intro" class="text-gray-600 mb-8">Front-end developer với hơn 5 năm kinh nghiệm phát triển giao diện
-        người dùng, đam mê tạo ra sản phẩm web hiện đại, tối ưu trải nghiệm người dùng.</p>
-      <div class="flex space-x-4">
-        <a href="#" class="text-gray-600 hover:text-black" aria-label="Facebook">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-2.9h2v-2.2c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2v1.9h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12z"/></svg>
-        </a>
-        <a href="#" class="text-gray-600 hover:text-black" aria-label="Twitter">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 5.9a8.3 8.3 0 0 1-2.4.7 4.2 4.2 0 0 0 1.8-2.3 8.3 8.3 0 0 1-2.6 1A4.1 4.1 0 0 0 12 8.4a11.6 11.6 0 0 1-8.4-4.3s-4 9 5 13a11.6 11.6 0 0 1-7 2c9 5.6 20 0 20-11.5v-.5A6 6 0 0 0 22 5.9z"/></svg>
-        </a>
-        <a href="#" class="text-gray-600 hover:text-black" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C3.88 3.5 3 4.4 3 5.5S3.88 7.5 4.98 7.5C6.07 7.5 7 6.6 7 5.5 7 4.4 6.07 3.5 4.98 3.5zM3.5 8.75H6.5V20H3.5V8.75zM8.75 8.75H11.5V10.2H11.55C11.95 9.45 13 8.6 14.6 8.6C17.4 8.6 18 10.2 18 13V20H15V13.5C15 12.2 14.7 11.3 13.7 11.3C12.7 11.3 12.25 12.1 12.25 13.5V20H9.25V8.75H8.75Z"/></svg>
-        </a>
+  <section class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center md:items-stretch gap-12 md:gap-0 min-h-[70vh]">
+    <!-- Left: Text -->
+    <div class="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left">
+      <span class="uppercase tracking-widest text-sm text-gray-400 mb-2" id="hero-mynameis">My name is</span>
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-4 dark:text-white">
+        <span id="hero-name" class="text-purple-600">Thang Hoang Duc.</span>
+      </h1>
+      <p id="hero-intro" class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-xl">Front-end developer with 5+ years of experience in UI development, passionate about creating modern web products and optimizing user experience.</p>
+      <div class="flex space-x-4 justify-center md:justify-start mb-6">
+        <a href="#" class="text-gray-500 hover:text-purple-600 text-2xl transition"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="text-gray-500 hover:text-purple-600 text-2xl transition"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="text-gray-500 hover:text-purple-600 text-2xl transition"><i class="fab fa-github"></i></a>
       </div>
     </div>
+    <!-- Right: Avatar with background -->
+    <div class="flex-1 flex justify-center items-center relative">
+      <div class="absolute -top-8 -left-8 w-48 h-48 bg-purple-200 rounded-3xl rotate-12 z-0"></div>
+      <div class="absolute -bottom-8 -right-8 w-40 h-40 bg-purple-300 rounded-full z-0"></div>
+      <img src="https://i.imgur.com/1Q9Z1Zm.png" alt="Avatar" class="relative z-10 w-48 h-48 object-cover rounded-2xl shadow-lg border-4 border-white dark:border-gray-900 bg-white" />
+    </div>
   </section>
+  
   <!-- Specialized Section -->
-  <section id="services" class="container mx-auto px-4 py-16">
-    <h2 id="specialized-title" class="text-2xl font-bold mb-12 text-center">Specialized in</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <div class="w-12 h-12 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
-          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+  <section id="services" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl">
+    <div class="mb-4 text-center">
+      <span class="uppercase tracking-widest text-xs text-gray-400">Specialized</span>
+      <h2 id="specialized-title" class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up">Specialized in</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div class="card skill-card flex flex-col items-center bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 scroll-reveal-left" data-animation="fade-in-left" data-stagger="stagger-1">
+        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-purple-600 skill-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-        <h3 class="text-xl font-semibold mb-2">UX Design</h3>
-        <p id="ux-desc" class="text-gray-600">Thiết kế trải nghiệm người dùng tối ưu, trực quan.</p>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white text-center">IBM BPM Development</h3>
+        <p id="ux-desc" class="text-gray-600 dark:text-gray-300 text-center">Phát triển ứng dụng IBM BPM với JavaScript và Java, thiết kế giao diện theo gui-spec.</p>
       </div>
-      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <div class="w-12 h-12 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
-          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      <div class="card skill-card flex flex-col items-center bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 scroll-reveal" data-animation="fade-in-up" data-stagger="stagger-2">
+        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-purple-600 skill-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
           </svg>
         </div>
-        <h3 class="text-xl font-semibold mb-2">Web Development</h3>
-        <p id="webdev-desc" class="text-gray-600">Xây dựng website responsive, tối ưu hiệu suất.</p>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white text-center">Mobile Development</h3>
+        <p id="webdev-desc" class="text-gray-600 dark:text-gray-300 text-center">Phát triển ứng dụng mobile cross-platform bằng Xamarin.Forms cho iOS/Android.</p>
       </div>
-      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <div class="w-12 h-12 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
-          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="card skill-card flex flex-col items-center bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 scroll-reveal-right" data-animation="fade-in-right" data-stagger="stagger-3">
+        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-purple-600 skill-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         </div>
-        <h3 class="text-xl font-semibold mb-2">Web Design</h3>
-        <p id="webdesign-desc" class="text-gray-600">Thiết kế giao diện đẹp, hiện đại cho ứng dụng web.</p>
+        <h3 class="text-lg font-semibold mb-2 dark:text-white text-center">IoT Development</h3>
+        <p id="webdesign-desc" class="text-gray-600 dark:text-gray-300 text-center">Phát triển ứng dụng IoT và kết nối Azure IoT hub cho thiết bị tùy biến.</p>
       </div>
     </div>
   </section>
+  
   <!-- Portfolio Section -->
-  <section id="portfolio" class="container mx-auto px-4 py-16">
-    <h2 id="portfolio-title" class="text-2xl font-bold mb-12 text-center">Featured Portfolios</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <img src="https://via.placeholder.com/400x300" alt="Agency Website project" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h3 class="text-xl font-semibold mb-2">Agency Website</h3>
-          <p class="text-gray-600">Web Design</p>
+  <section id="portfolio" class="container mx-auto px-4 py-24 bg-white">
+    <div class="mb-4 text-center">
+      <span class="uppercase tracking-widest text-xs text-gray-400">My Works</span>
+      <h2 id="portfolio-title" class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up">Featured Portfolios</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div class="card project-card flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale" data-animation="fade-in-scale" data-stagger="stagger-1">
+        <img src="https://via.placeholder.com/400x300" alt="Agency Website project" class="w-full h-56 object-cover">
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <h3 class="text-lg font-semibold mb-2 dark:text-white project-title text-center">Agency Website</h3>
+          <p class="text-gray-500 text-sm text-center">Web Design</p>
         </div>
       </div>
-      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <img src="https://via.placeholder.com/400x300" alt="Dashboard Platform project"
-          class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h3 class="text-xl font-semibold mb-2">Dashboard Platform</h3>
-          <p class="text-gray-600">Web Development</p>
+      <div class="card project-card flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale" data-animation="fade-in-scale" data-stagger="stagger-2">
+        <img src="https://via.placeholder.com/400x300" alt="Dashboard Platform project" class="w-full h-56 object-cover">
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <h3 class="text-lg font-semibold mb-2 dark:text-white project-title text-center">Dashboard Platform</h3>
+          <p class="text-gray-500 text-sm text-center">Web Development</p>
         </div>
       </div>
-      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <img src="https://via.placeholder.com/400x300" alt="E-commerce Website project"
-          class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h3 class="text-xl font-semibold mb-2">E-commerce Website</h3>
-          <p class="text-gray-600">UX Design</p>
+      <div class="card project-card flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale" data-animation="fade-in-scale" data-stagger="stagger-3">
+        <img src="https://via.placeholder.com/400x300" alt="E-commerce Website project" class="w-full h-56 object-cover">
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <h3 class="text-lg font-semibold mb-2 dark:text-white project-title text-center">E-commerce Website</h3>
+          <p class="text-gray-500 text-sm text-center">UX Design</p>
         </div>
       </div>
     </div>
   </section>
-  <!-- Work Experience -->
-  <section id="experience" class="container mx-auto px-4 py-16">
-    <h2 id="workexp-title" class="text-2xl font-bold mb-12 text-center">Work Experience</h2>
-    <div class="max-w-3xl mx-auto">
-      <div class="mb-8">
-        <h3 class="text-xl font-semibold">Senior UX Designer</h3>
-        <p class="text-gray-600">Apple Inc. • 2020 - Present</p>
-        <p id="seniorux-desc" class="mt-2">Dẫn dắt team thiết kế trải nghiệm người dùng cho nhiều sản phẩm.</p>
+  
+  <!-- Work Experience (Tab style) -->
+  <section id="experience" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl">
+    <div class="mb-4 text-center">
+      <span class="uppercase tracking-widest text-xs text-gray-400">Career Path</span>
+      <h2 id="workexp-title" class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up">Work Experience</h2>
+    </div>
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+      <!-- Company Tabs -->
+      <div class="md:col-span-1 flex md:block overflow-x-auto md:overflow-visible space-x-2 md:space-x-0 md:space-y-6">
+        <button class="company-tab active w-full px-6 py-4 rounded-xl bg-purple-50 text-purple-600 font-semibold shadow transition-all duration-200 focus:outline-none scroll-reveal-left" data-animation="fade-in-left" data-stagger="stagger-1" data-company="hpt">HPT Vietnam</button>
+        <button class="company-tab w-full px-6 py-4 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 shadow transition-all duration-200 focus:outline-none scroll-reveal-left" data-animation="fade-in-left" data-stagger="stagger-2" data-company="tk25">TK25 Tech</button>
+        <button class="company-tab w-full px-6 py-4 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 shadow transition-all duration-200 focus:outline-none scroll-reveal-left" data-animation="fade-in-left" data-stagger="stagger-3" data-company="nbn">NBN Media</button>
+        <button class="company-tab w-full px-6 py-4 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 shadow transition-all duration-200 focus:outline-none scroll-reveal-left" data-animation="fade-in-left" data-stagger="stagger-4" data-company="devup">DevUp</button>
       </div>
-      <div class="mb-8">
-        <h3 class="text-xl font-semibold">UI Developer</h3>
-        <p class="text-gray-600">Google • 2018 - 2020</p>
-        <p id="uidev-desc" class="mt-2">Phát triển và bảo trì các thành phần front-end cho công cụ nội bộ.</p>
-      </div>
-      <div class="mb-8">
-        <h3 class="text-xl font-semibold">Web Designer</h3>
-        <p class="text-gray-600">Facebook • 2016 - 2018</p>
-        <p id="webdes-desc" class="mt-2">Thiết kế web và prototype cho các chiến dịch marketing.</p>
+      <!-- Experience Details -->
+      <div class="md:col-span-2">
+        <!-- HPT Vietnam -->
+        <div class="company-detail bg-white rounded-2xl shadow-md p-8" id="exp-hpt">
+          <div class="mb-2 text-lg font-semibold dark:text-white">IBM BPM Developer <span class="text-purple-600">@ HPT Vietnam Corporation</span></div>
+          <div class="text-gray-500 mb-1">Ho Chi Minh City, Vietnam</div>
+          <div class="text-gray-400 text-sm mb-2">Oct 2022 - Present · Full-time</div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">JavaScript</span>
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">Java</span>
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">IBM BPM</span>
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">Agile</span>
+          </div>
+          <ul class="text-gray-600 dark:text-gray-300 space-y-2">
+            <li>Phát triển ứng dụng web cho LOS (Loan Origination System) Eximbank SALLEM (IBM BPM base) bằng JavaScript và Java.</li>
+            <li>Thiết kế giao diện theo gui-spec từ BA.</li>
+            <li>Xử lý lỗi giao diện, bug từ tester.</li>
+            <li>Dự án theo mô hình agile scrum.</li>
+          </ul>
+        </div>
+        <!-- TK25 Tech -->
+        <div class="company-detail hidden bg-white rounded-2xl shadow-md p-8" id="exp-tk25">
+          <div class="mb-2 text-lg font-semibold dark:text-white">Xamarin Developer <span class="text-purple-600">@ TK25 Technology Incorporation</span></div>
+          <div class="text-gray-500 mb-1">Ho Chi Minh City, Vietnam</div>
+          <div class="text-gray-400 text-sm mb-2">Jul 2019 – Oct 2022 · Full-time</div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">Xamarin</span>
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">C#</span>
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">Azure IoT</span>
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">Agile</span>
+          </div>
+          <ul class="text-gray-600 dark:text-gray-300 space-y-2">
+            <li>Phát triển app locators.asia trên iOS/Android bằng Xamarin.Forms cho các cửa hàng bán lẻ kết nối shipper.</li>
+            <li>Chịu trách nhiệm coding các chức năng "Advertising", "Placement", "Signee".</li>
+            <li>Phát triển ứng dụng cho thiết bị Signee (Android tùy biến, kết nối Bluetooth, Azure IoT hub).</li>
+            <li>Sử dụng Native, Xamarin.Android, Azure IoT hub.</li>
+          </ul>
+        </div>
+        <!-- NBN Media -->
+        <div class="company-detail hidden bg-white rounded-2xl shadow-md p-8" id="exp-nbn">
+          <div class="mb-2 text-lg font-semibold dark:text-white">Xamarin Developer Intern <span class="text-purple-600">@ NBN Media</span></div>
+          <div class="text-gray-500 mb-1">Ho Chi Minh City, Vietnam</div>
+          <div class="text-gray-400 text-sm mb-2">Feb 2019 – Jul 2019 · Internship</div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">Xamarin</span>
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">C#</span>
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">Mobile</span>
+          </div>
+          <ul class="text-gray-600 dark:text-gray-300 space-y-2">
+            <li>Phát triển chức năng đo bước chân cho app "Sanus" trên Android/iOS.</li>
+          </ul>
+        </div>
+        <!-- DevUp -->
+        <div class="company-detail hidden bg-white rounded-2xl shadow-md p-8" id="exp-devup">
+          <div class="mb-2 text-lg font-semibold dark:text-white">Xamarin Developer (Part-time) <span class="text-purple-600">@ DevUp</span></div>
+          <div class="text-gray-500 mb-1">Ho Chi Minh City, Vietnam</div>
+          <div class="text-gray-400 text-sm mb-2">Aug 2018 – Jan 2019 · Part-time</div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">Xamarin</span>
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">C#</span>
+            <span class="px-2 py-1 bg-purple-100 text-purple-600 rounded text-xs">Mobile</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-  <!-- Blog Section -->
-  <section id="blog" class="container mx-auto px-4 py-16">
-    <h2 id="blog-title" class="text-2xl font-bold mb-12 text-center">Personal Blog</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <img src="https://via.placeholder.com/400x300" alt="The Future of Web Design" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h3 class="text-xl font-semibold mb-2">The Future of Web Design</h3>
-          <p id="blog1-desc" class="text-gray-600 mb-4">Xu hướng thiết kế web hiện đại và phát triển trong tương lai.
-          </p>
-          <a href="#" class="text-purple-600 hover:text-purple-700">Continue Reading →</a>
+  
+  <!-- Education & Skills Section -->
+  <section id="education-skills" class="container mx-auto px-4 py-24 bg-white">
+    <div class="mb-4 text-center">
+      <span class="uppercase tracking-widest text-xs text-gray-400">Education & Skills</span>
+      <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up">Education & Skills</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-5xl mx-auto">
+      <!-- Education List -->
+      <div>
+        <div class="space-y-8">
+          <div>
+            <div class="font-semibold text-gray-800 dark:text-gray-200 text-lg">NONG LAM UNIVERSITY – HO CHI MINH CITY</div>
+            <div class="text-gray-500 text-sm">Faculty of information technology</div>
+            <div class="text-gray-400 text-xs mt-1">09/2014 – 2018</div>
+          </div>
         </div>
       </div>
-      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <img src="https://via.placeholder.com/400x300" alt="UX Design Tips" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h3 class="text-xl font-semibold mb-2">UX Design Tips</h3>
-          <p id="blog2-desc" class="text-gray-600 mb-4">Các mẹo thiết kế UX giúp nâng cao trải nghiệm người dùng.</p>
-          <a href="#" class="text-purple-600 hover:text-purple-700">Continue Reading →</a>
+      <!-- Skills & Description -->
+      <div>
+        <p class="text-gray-500 dark:text-gray-300 mb-8">For 5+ years, I have been continuously learning in the field of IT and experimenting with new technologies and frameworks, and today have gained a summary of key skills:</p>
+        <div class="mb-6">
+          <div class="text-gray-400 mb-1">C#</div>
+          <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="h-2 bg-purple-500 rounded-full progress-bar" style="width: 85%"></div>
+          </div>
         </div>
-      </div>
-      <div class="card bg-white rounded-lg shadow hover:shadow-lg overflow-hidden hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <img src="https://via.placeholder.com/400x300" alt="Web Development Best Practices"
-          class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h3 class="text-xl font-semibold mb-2">Web Development Best Practices</h3>
-          <p id="blog3-desc" class="text-gray-600 mb-4">Kinh nghiệm và best practice cho phát triển web hiện đại.</p>
-          <a href="#" class="text-purple-600 hover:text-purple-700">Continue Reading →</a>
+        <div class="mb-6">
+          <div class="text-gray-400 mb-1">Java</div>
+          <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="h-2 bg-purple-500 rounded-full progress-bar" style="width: 75%"></div>
+          </div>
+        </div>
+        <div class="mb-6">
+          <div class="text-gray-400 mb-1">JavaScript</div>
+          <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="h-2 bg-purple-500 rounded-full progress-bar" style="width: 80%"></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Testimonials Section -->
-  <section class="container mx-auto px-4 py-16">
-    <h2 id="testimonials-title" class="text-2xl font-bold mb-12 text-center">Testimonials</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <img src="https://via.placeholder.com/60x60" alt="John Doe" class="w-16 h-16 rounded-full mb-4">
-        <p id="testi1-desc" class="text-gray-600 mb-4">Làm việc với Thang rất tuyệt vời. Sự tỉ mỉ và sáng tạo đã giúp dự
-          án thành công.</p>
-        <p class="font-semibold">John Doe</p>
-        <p class="text-gray-600 text-sm">CEO, Company Inc.</p>
+  
+  <!-- Certifications Section (replace Blog) -->
+  <section id="certifications" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl">
+    <div class="mb-4 text-center">
+      <span class="uppercase tracking-widest text-xs text-gray-400">Certifications</span>
+      <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up">Certifications</h2>
+    </div>
+    <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="cert-card bg-white dark:bg-gray-800 rounded-lg shadow p-6 border border-gray-100 dark:border-gray-700">
+        <span class="cert-icon">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 17.75l-6.16 3.24 1.18-6.88-5-4.87 6.91-1L12 2.5l3.09 6.24 6.91 1-5 4.87 1.18 6.88z"/></svg>
+        </span>
+        <div>
+          <div class="font-semibold text-gray-800 dark:text-gray-200">Xamarin Crosss-Platform Mobile Apps Development</div>
+          <div class="text-gray-400 text-sm">05/2018</div>
+        </div>
       </div>
-      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <img src="https://via.placeholder.com/60x60" alt="Jane Smith" class="w-16 h-16 rounded-full mb-4">
-        <p id="testi2-desc" class="text-gray-600 mb-4">Chuyên môn về UX của Thang giúp chúng tôi tăng tương tác người
-          dùng rõ rệt.</p>
-        <p class="font-semibold">Jane Smith</p>
-        <p class="text-gray-600 text-sm">Product Manager, Tech Co.</p>
-      </div>
-      <div class="card bg-white p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 hover:scale-105 transform transition-transform hover:bg-gray-50 dark:hover:bg-gray-800 duration-500">
-        <img src="https://via.placeholder.com/60x60" alt="Mike Johnson" class="w-16 h-16 rounded-full mb-4">
-        <p id="testi3-desc" class="text-gray-600 mb-4">Chuyên nghiệp, sáng tạo và luôn đúng deadline. Rất đáng tin cậy!
-        </p>
-        <p class="font-semibold">Mike Johnson</p>
-        <p class="text-gray-600 text-sm">Founder, Startup Ltd.</p>
+      <div class="cert-card bg-white dark:bg-gray-800 rounded-lg shadow p-6 border border-gray-100 dark:border-gray-700">
+        <span class="cert-icon">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 17.75l-6.16 3.24 1.18-6.88-5-4.87 6.91-1L12 2.5l3.09 6.24 6.91 1-5 4.87 1.18 6.88z"/></svg>
+        </span>
+        <div>
+          <div class="font-semibold text-gray-800 dark:text-gray-200">Flutter Development</div>
+          <div class="text-gray-400 text-sm">01/2023</div>
+        </div>
       </div>
     </div>
   </section>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="container mx-auto px-4 py-24 bg-white">
+    <div class="mb-4 text-center">
+      <span class="uppercase tracking-widest text-xs text-gray-400">Contact</span>
+      <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up">Contact</h2>
+    </div>
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+      <!-- Contact Form -->
+      <form class="bg-white rounded-2xl shadow-md p-10 flex flex-col space-y-6">
+        <input type="text" placeholder="Name" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700" required>
+        <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700" required>
+        <textarea placeholder="Message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700" required></textarea>
+        <button type="submit" class="w-full py-3 rounded-lg bg-purple-600 text-white font-semibold text-lg hover:bg-purple-700 transition">Send Message</button>
+      </form>
+      <!-- Contact Info -->
+      <div class="flex flex-col justify-center space-y-8">
+        <div class="flex items-center space-x-4">
+          <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 text-purple-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 12.414a2 2 0 0 0-2.828 0l-4.243 4.243M15 11a3 3 0 1 0-6 0 3 3 0 0 0 6 0z"/></svg>
+          </span>
+          <div>
+            <div class="font-semibold text-gray-800 dark:text-gray-200">Address</div>
+            <div class="text-gray-500 dark:text-gray-300">DaKao, District 1, HCMC, VietNam</div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 text-purple-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
+          </span>
+          <div>
+            <div class="font-semibold text-gray-800 dark:text-gray-200">Email</div>
+            <a href="mailto:thanghoang07@gmail.com" class="text-gray-500 dark:text-gray-300 hover:text-purple-600">thanghoang07@gmail.com</a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 text-purple-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5zm0 12a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2zm12-12a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V5zm0 12a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"/></svg>
+          </span>
+          <div>
+            <div class="font-semibold text-gray-800 dark:text-gray-200">Phone</div>
+            <a href="tel:+84932431562" class="text-gray-500 dark:text-gray-300 hover:text-purple-600">(+84) 93 243 1562</a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 text-purple-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 1 1-12 0 6 6 0 0 1 12 0zm6 8a6 6 0 0 0-12 0v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2z"/></svg>
+          </span>
+          <div>
+            <div class="font-semibold text-gray-800 dark:text-gray-200">LinkedIn</div>
+            <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="text-gray-500 dark:text-gray-300 hover:text-purple-600">linkedin.com/in/thanghoang07</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
   <!-- Footer -->
-  <footer class="bg-gray-100 py-8">
+  <footer class="bg-white">
     <div class="container mx-auto px-4 text-center">
-      <div class="flex justify-center space-x-4 mb-4">
-        <a href="#" class="text-gray-600 hover:text-black" aria-label="Facebook">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-2.9h2v-2.2c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2v1.9h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12z"/></svg>
-        </a>
-        <a href="#" class="text-gray-600 hover:text-black" aria-label="Twitter">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 5.9a8.3 8.3 0 0 1-2.4.7 4.2 4.2 0 0 0 1.8-2.3 8.3 8.3 0 0 1-2.6 1A4.1 4.1 0 0 0 12 8.4a11.6 11.6 0 0 1-8.4-4.3s-4 9 5 13a11.6 11.6 0 0 1-7 2c9 5.6 20 0 20-11.5v-.5A6 6 0 0 0 22 5.9z"/></svg>
-        </a>
-        <a href="#" class="text-gray-600 hover:text-black" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C3.88 3.5 3 4.4 3 5.5S3.88 7.5 4.98 7.5C6.07 7.5 7 6.6 7 5.5 7 4.4 6.07 3.5 4.98 3.5zM3.5 8.75H6.5V20H3.5V8.75zM8.75 8.75H11.5V10.2H11.55C11.95 9.45 13 8.6 14.6 8.6C17.4 8.6 18 10.2 18 13V20H15V13.5C15 12.2 14.7 11.3 13.7 11.3C12.7 11.3 12.25 12.1 12.25 13.5V20H9.25V8.75H8.75Z"/></svg>
-        </a>
+      <div class="flex justify-center space-x-8 mb-4 social-links">
+        <a href="#" class="text-gray-400 hover:text-purple-600 text-3xl transition" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="text-gray-400 hover:text-purple-600 text-3xl transition" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-gray-400 hover:text-purple-600 text-3xl transition" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
       </div>
-      <p id="copyright" class="text-gray-600">© 2025 thanghoang07. All rights reserved.</p>
+      <p id="copyright" class="text-gray-400 text-xs mb-20">© 2025 thanghoang07. All rights reserved.</p>
     </div>
   </footer>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const html = document.documentElement;
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark") {
-        html.classList.add("dark");
-      } else {
-        html.classList.remove("dark");
-      }
-
-      const themeToggle = document.getElementById("toggle-theme");
-      if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-          html.classList.toggle("dark");
-          localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
-        });
-      }
-
-      // Language switcher
-      setLang(lang);
-      document.getElementById('lang-vi').onclick = () => setLang('vi');
-      document.getElementById('lang-en').onclick = () => setLang('en');
-    });
-  </script>
+  
+  <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>

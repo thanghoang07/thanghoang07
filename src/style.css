@@ -1,0 +1,454 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+.card {
+  @apply bg-white dark:bg-gray-800 transition-all duration-300;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll Reveal Animations */
+.scroll-reveal,
+.scroll-reveal-left,
+.scroll-reveal-right,
+.scroll-reveal-scale {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.scroll-reveal-left {
+  transform: translateX(-50px);
+}
+
+.scroll-reveal-right {
+  transform: translateX(50px);
+}
+
+.scroll-reveal-scale {
+  transform: scale(0.8);
+}
+
+/* Revealed state - animation will play when this class is added */
+.revealed {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Section and card elements should be visible by default */
+section,
+.card {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Animation classes that will be added/removed */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in-left {
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.fade-in-right {
+  animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.fade-in-scale {
+  animation: fadeInScale 0.8s ease-out forwards;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.8s ease-out forwards;
+}
+
+.slide-in-down {
+  animation: slideInDown 0.8s ease-out forwards;
+}
+
+/* Stagger delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Keyframe animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Parallax effect */
+.parallax {
+  transition: transform 0.1s ease-out;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Project card specific hover effects */
+.project-card {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 25px 50px rgba(147, 51, 234, 0.2);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.05);
+}
+
+.project-card:hover .project-title {
+  color: #9333ea;
+}
+
+/* Skill card hover effects */
+.skill-card {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px) rotateY(5deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.skill-card:hover .skill-icon {
+  transform: scale(1.1) rotate(5deg);
+  color: #9333ea;
+}
+
+/* Contact card hover effects */
+.contact-card {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(147, 51, 234, 0.15);
+  background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+  color: white;
+}
+
+.contact-card:hover .contact-icon {
+  transform: scale(1.2);
+  color: white;
+}
+
+/* Image hover effects */
+.project-image {
+  transition: transform 0.3s ease-in-out;
+}
+
+.skill-icon {
+  transition: all 0.3s ease-in-out;
+}
+
+.contact-icon {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Text hover effects */
+.project-title {
+  transition: color 0.3s ease-in-out;
+}
+
+/* Button hover effects */
+.btn {
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(147, 51, 234, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Social media links hover effects */
+.social-links a {
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.social-links a:hover {
+  transform: translateY(-3px) scale(1.1);
+  color: #9333ea;
+}
+
+/* Navigation links hover effects */
+.nav-links a {
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #9333ea;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: #9333ea;
+}
+
+/* Theme toggle hover effect */
+.theme-toggle {
+  transition: all 0.3s ease-in-out;
+}
+
+.theme-toggle:hover {
+  transform: rotate(180deg);
+  color: #9333ea;
+}
+
+/* Language toggle hover effect */
+.language-toggle {
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.language-toggle:hover {
+  transform: scale(1.1);
+  color: #9333ea;
+}
+
+/* Language icon transitions */
+#lang-vi-icon,
+#lang-en-icon {
+  transition: all 0.3s ease-in-out;
+}
+
+#lang-vi-icon.hidden,
+#lang-en-icon.hidden {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+#lang-vi-icon:not(.hidden),
+#lang-en-icon:not(.hidden) {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Work Experience Tab Layout */
+.company-tab {
+  @apply text-left cursor-pointer transition-all duration-200;
+}
+.company-tab.active {
+  @apply bg-purple-50 text-purple-600 font-semibold shadow;
+}
+.company-tab:not(.active) {
+  @apply bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200;
+}
+.company-detail {
+  @apply bg-white dark:bg-gray-900 rounded-lg shadow p-8 transition-all duration-300;
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.company-detail:not(.hidden) {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.company-detail.hidden {
+  display: block;
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  .company-tab {
+    min-width: 140px;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+  }
+  .company-detail {
+    padding: 1.5rem;
+  }
+}
+
+/* Certification card hover effects */
+.cert-card {
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.cert-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(147, 51, 234, 0.15), 0 2px 8px rgba(0,0,0,0.04);
+  background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
+}
+.cert-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
+  max-width: 3rem;
+  max-height: 3rem;
+  border-radius: 9999px;
+  background: #f3e8ff;
+  color: #9333ea;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 2px 8px rgba(147, 51, 234, 0.08);
+  flex-shrink: 0;
+}
+.cert-card:hover .cert-icon {
+  background: #9333ea;
+  color: #fff;
+  transform: scale(1.1) rotate(-6deg);
+  box-shadow: 0 4px 16px rgba(147, 51, 234, 0.18);
+}
+
+html, body {
+  background: #fff !important;
+}
+
+/* Fix Work Experience details alignment */
+#experience .md\:col-span-2 {
+  display: block;
+  position: relative;
+}
+#experience .company-detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.project-card,
+.skill-card,
+.cert-card,
+.contact-card,
+.company-detail {
+  border-radius: 20px !important;
+} 

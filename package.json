@@ -1,0 +1,29 @@
+{
+  "name": "thanghoang07-portfolio",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Thang Hoang Duc Portfolio Website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
+  },
+  "keywords": [
+    "portfolio",
+    "frontend",
+    "developer"
+  ],
+  "author": "Thang Hoang Duc",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "gh-pages": "^6.0.0",
+    "postcss": "^8.5.6",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.3.0"
+  }
+}
