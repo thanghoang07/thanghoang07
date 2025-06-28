@@ -1,0 +1,6 @@
+--- run
+npm install
+npm run build
+git fetch origin gh-pages
+git subtree pull --prefix dist origin gh-pages --squash
+git subtree push --prefix dist origin gh-pages
