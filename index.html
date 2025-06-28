@@ -8,7 +8,42 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="bg-gray-50 dark:bg-gray-900">
+<body class="bg-transparent dark:bg-gray-900">
+  <!-- Background Shapes (fixed, không cuộn) -->
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <div class="absolute top-10 left-10 w-28 h-28 bg-purple-100 rounded-[20px] rotate-12 animate-float-slow"></div>
+    <div class="absolute top-20 right-10 w-24 h-24 bg-purple-200 rounded-[20px] -rotate-6 animate-float"></div>
+    <div class="absolute bottom-10 left-32 w-20 h-20 bg-purple-100 rounded-full animate-float-reverse"></div>
+    <div class="absolute bottom-0 right-32 w-16 h-16 bg-blue-100 rounded-[20px] animate-float"></div>
+    <div class="absolute top-1/2 left-0 w-12 h-12 bg-yellow-100 rounded-full animate-float-slow"></div>
+    <!-- 5 shape random mới -->
+    <div class="absolute top-1/4 left-1/3 w-16 h-16 bg-pink-200 rounded-full opacity-70 animate-float"></div>
+    <div class="absolute bottom-1/3 right-1/4 w-24 h-10 bg-green-100 rounded-[30px] opacity-60 animate-float-reverse"></div>
+    <div class="absolute top-2/3 right-10 w-12 h-24 bg-blue-200 rounded-[40px] opacity-50 animate-float"></div>
+    <div class="absolute bottom-20 left-1/2 w-10 h-10 bg-yellow-200 rounded-full opacity-80 animate-float-slow"></div>
+    <div class="absolute top-10 right-1/2 w-20 h-8 bg-purple-300 rounded-[16px] opacity-60 animate-float"></div>
+  </div>
+  <style>
+    @keyframes float {
+      0% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(-20px) scale(1.05) rotate(3deg); }
+      100% { transform: translateY(0) scale(1) rotate(0deg); }
+    }
+    @keyframes float-reverse {
+      0% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(20px) scale(0.97) rotate(-3deg); }
+      100% { transform: translateY(0) scale(1) rotate(0deg); }
+    }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    .animate-float-slow {
+      animation: float 10s ease-in-out infinite;
+    }
+    .animate-float-reverse {
+      animation: float-reverse 8s ease-in-out infinite;
+    }
+  </style>
   <!-- Header -->
   <header class="sticky top-0 z-30 bg-white dark:bg-gray-900 shadow-sm py-4">
     <div class="container mx-auto flex items-center justify-between px-4">
@@ -36,7 +71,7 @@
   </header>
   
   <!-- Hero Section -->
-  <section class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center md:items-stretch gap-12 md:gap-0 min-h-[70vh]">
+  <section class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center md:items-stretch gap-12 md:gap-0 min-h-[70vh] relative z-10">
     <!-- Left: Text -->
     <div class="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left">
       <span class="uppercase tracking-widest text-sm text-gray-400 mb-2" id="hero-mynameis">My name is</span>
@@ -52,17 +87,12 @@
     </div>
     <!-- Right: Avatar with background -->
     <div class="flex-1 flex justify-center items-center relative min-h-[220px]">
-      <div class="absolute -top-2 -left-2 w-28 h-28 bg-purple-100 rounded-[20px] rotate-12 z-0 avatar-shape-1"></div>
-      <div class="absolute top-4 -right-4 w-24 h-24 bg-purple-200 rounded-[20px] -rotate-6 z-0 avatar-shape-2"></div>
-      <div class="absolute bottom-2 left-12 w-20 h-20 bg-purple-100 rounded-full z-0 avatar-shape-3"></div>
-      <div class="absolute -bottom-6 right-10 w-16 h-16 bg-blue-100 rounded-[20px] z-0 avatar-shape-4"></div>
-      <div class="absolute top-1/2 left-0 w-12 h-12 bg-yellow-100 rounded-full z-0 avatar-shape-5"></div>
       <img src="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=256" alt="Avatar" class="relative z-10 w-48 h-48 object-cover rounded-[20px] shadow-lg border-4 border-white bg-white" />
     </div>
   </section>
   
   <!-- Specialized Section -->
-  <section id="services" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl">
+  <section id="services" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl relative z-10">
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="specialized-subtitle">Specialized</span>
       <h2 id="specialized-title" class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up">Specialized in</h2>
@@ -99,7 +129,7 @@
   </section>
   
   <!-- Portfolio Section -->
-  <section id="portfolio" class="container mx-auto px-4 py-24 bg-white">
+  <section id="portfolio" class="container mx-auto px-4 py-24 bg-white relative z-10">
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="portfolio-subtitle">My Works</span>
       <h2 id="portfolio-title" class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up">Featured Portfolios</h2>
@@ -130,7 +160,7 @@
   </section>
   
   <!-- Work Experience (Tab style) -->
-  <section id="experience" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl">
+  <section id="experience" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl relative z-10">
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="workexp-subtitle">Career Path</span>
       <h2 id="workexp-title" class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up">Work Experience</h2>
@@ -211,7 +241,7 @@
   </section>
   
   <!-- Education & Skills Section -->
-  <section id="education-skills" class="container mx-auto px-4 py-24 bg-white">
+  <section id="education-skills" class="container mx-auto px-4 py-24 bg-white relative z-10">
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="education-subtitle">Education & Skills</span>
       <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up" id="education-title">Education & Skills</h2>
@@ -253,7 +283,7 @@
   </section>
   
   <!-- Certifications Section (replace Blog) -->
-  <section id="certifications" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl">
+  <section id="certifications" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl relative z-10">
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="certifications-subtitle">Certifications</span>
       <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up" id="certifications-title">Certifications</h2>
@@ -281,7 +311,7 @@
   </section>
   
   <!-- Contact Section -->
-  <section id="contact" class="container mx-auto px-4 py-24 bg-white">
+  <section id="contact" class="container mx-auto px-4 py-24 bg-white relative z-10">
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="contact-subtitle">Contact</span>
       <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center dark:text-white scroll-reveal" data-animation="fade-in-up" id="contact-title">Contact</h2>
@@ -346,7 +376,7 @@
   </section>
   
   <!-- Footer -->
-  <footer class="bg-white">
+  <footer class="bg-white relative z-10">
     <div class="container mx-auto px-4 text-center">
       <div class="flex justify-center space-x-8 mb-4 social-links">
         <a href="#" class="text-gray-400 hover:text-purple-600 text-3xl transition" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
