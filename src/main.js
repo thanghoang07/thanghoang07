@@ -8,6 +8,7 @@ import { initImageLoader } from './image-loader.js'
 import { initAnalytics } from './analytics.js'
 import { initErrorHandler, getErrorHandler } from './error-handler.js'
 import { initSectionLazyLoader } from './section-lazy-loader.js'
+import BrowserPerformanceMonitor from './performance-monitor.js'
 
 // Khởi tạo ứng dụng khi DOM đã sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {

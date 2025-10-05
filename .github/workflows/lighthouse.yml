@@ -1,0 +1,118 @@
+# Lighthouse CI Configuration
+name: Performance Monitoring with Lighthouse CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    # Run performance audit daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm ci
+        npm install -g @lhci/cli@0.12.x
+        
+    - name: Install Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget gnupg
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google.list
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+        
+    - name: Build project
+      run: npm run build
+      
+    - name: Start preview server
+      run: |
+        npm run preview &
+        sleep 10
+        
+    - name: Run Lighthouse CI
+      run: |
+        lhci autorun || echo "Lighthouse CI failed but continuing..."
+        
+    - name: Upload Lighthouse report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: lighthouse-report
+        path: .lighthouseci/
+        
+    - name: Comment PR with results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const path = require('path');
+          
+          try {
+            // Find Lighthouse result files
+            const glob = require('glob');
+            const files = glob.sync('.lighthouseci/lhr-*.json');
+            
+            if (files.length > 0 && fs.existsSync(files[0])) {
+              const results = JSON.parse(fs.readFileSync(files[0], 'utf8'));
+              const scores = results.categories || {};
+              
+              // Helper function to get status emoji
+              const getStatus = (score) => {
+                if (score >= 0.9) return '✅';
+                if (score >= 0.7) return '⚠️';
+                return '❌';
+              };
+              
+              const perfScore = scores.performance?.score || 0;
+              const a11yScore = scores.accessibility?.score || 0;
+              const bpScore = scores['best-practices']?.score || 0;
+              const seoScore = scores.seo?.score || 0;
+              
+              const comment = [
+                '## 🚀 Lighthouse Performance Report',
+                '',
+                '| Metric | Score | Status |',
+                '|--------|-------|--------|',
+                `| 🎯 Performance | ${Math.round(perfScore * 100)} | ${getStatus(perfScore)} |`,
+                `| ♿ Accessibility | ${Math.round(a11yScore * 100)} | ${getStatus(a11yScore)} |`,
+                `| 💡 Best Practices | ${Math.round(bpScore * 100)} | ${getStatus(bpScore)} |`,
+                `| 🔍 SEO | ${Math.round(seoScore * 100)} | ${getStatus(seoScore)} |`,
+                '',
+                '### Core Web Vitals',
+                `- **First Contentful Paint**: ${results.audits['first-contentful-paint']?.displayValue || 'N/A'}`,
+                `- **Largest Contentful Paint**: ${results.audits['largest-contentful-paint']?.displayValue || 'N/A'}`,
+                `- **Cumulative Layout Shift**: ${results.audits['cumulative-layout-shift']?.displayValue || 'N/A'}`,
+                '',
+                `[View detailed report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`
+              ].join('\n');
+              
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            } else {
+              console.log('No Lighthouse reports found');
+            }
+          } catch (error) {
+            console.error('Error processing Lighthouse results:', error);
+          }
