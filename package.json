@@ -13,7 +13,9 @@
     "lighthouse:ci": "lhci autorun",
     "performance": "npm run build && npm run preview & sleep 3 && npm run lighthouse http://localhost:4173 3",
     "performance:mobile": "node scripts/performance-monitor.js http://localhost:4173 3 mobile",
-    "performance:report": "npm run performance && open performance-reports"
+    "performance:report": "npm run performance && open performance-reports",
+    "test:build": "node scripts/test-build.js",
+    "ci:test": "npm ci && npm run test:build"
   },
   "keywords": [
     "portfolio",
