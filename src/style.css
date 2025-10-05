@@ -175,6 +175,136 @@ section,
   animation: shimmer 1.5s infinite;
 }
 
+/* Progressive Image Loading Styles */
+.progressive-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.progressive-image-wrapper[data-loading="true"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #9333ea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 10;
+}
+
+.progressive-image.loading {
+  filter: blur(5px);
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.progressive-image.loaded {
+  filter: blur(0);
+  transform: scale(1);
+  opacity: 1;
+}
+
+.progressive-image.error {
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Dark mode support for image loading */
+html.dark .progressive-image-wrapper {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+}
+
+html.dark .progressive-image-wrapper[data-loading="true"]::before {
+  border-color: #4b5563;
+  border-top-color: #a855f7;
+}
+
+/* Analytics Consent Banner */
+.analytics-consent-banner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 320px;
+  font-size: 14px;
+  animation: slideInUp 0.3s ease-out;
+}
+
+.analytics-consent-banner .consent-content p {
+  margin: 0 0 16px 0;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.analytics-consent-banner .consent-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.analytics-consent-banner .btn-accept,
+.analytics-consent-banner .btn-decline {
+  flex: 1;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.analytics-consent-banner .btn-accept {
+  background: #9333ea;
+  color: white;
+}
+
+.analytics-consent-banner .btn-accept:hover {
+  background: #7c3aed;
+}
+
+.analytics-consent-banner .btn-decline {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.analytics-consent-banner .btn-decline:hover {
+  background: #e5e7eb;
+}
+
+/* Dark mode for consent banner */
+html.dark .analytics-consent-banner {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+html.dark .analytics-consent-banner .consent-content p {
+  color: #d1d5db;
+}
+
+html.dark .analytics-consent-banner .btn-decline {
+  background: #374151;
+  color: #9ca3af;
+}
+
+html.dark .analytics-consent-banner .btn-decline:hover {
+  background: #4b5563;
+}
+
 .project-card,
 .skill-card,
 .cert-card,
@@ -408,6 +538,71 @@ section,
 
 html, body {
   background: #fff !important;
+}
+
+html.dark,
+html.dark body {
+  background: #111827 !important;
+  color: #f9fafb;
+}
+
+:root {
+  --animation-duration: 300ms;
+  --transition-duration: 300ms;
+  --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth transitions for theme switching */
+*,
+*::before,
+*::after {
+  transition: background-color var(--transition-duration) var(--animation-easing), 
+              border-color var(--transition-duration) var(--animation-easing), 
+              color var(--transition-duration) var(--animation-easing);
+}
+
+/* Performance optimizations */
+.card,
+.scroll-reveal,
+.scroll-reveal-left,
+.scroll-reveal-right,
+.scroll-reveal-scale,
+.project-card,
+.skill-card {
+  will-change: auto;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.card:hover,
+.project-card:hover,
+.skill-card:hover {
+  will-change: transform, box-shadow, filter;
+}
+
+/* Optimized hover states */
+.hovering {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .scroll-reveal,
+  .scroll-reveal-left,
+  .scroll-reveal-right,
+  .scroll-reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 #experience .md\:col-span-2 {

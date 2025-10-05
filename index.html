@@ -41,7 +41,7 @@
   <link rel="canonical" href="https://thanghoang07.github.io/">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=64">
+  <link rel="icon" type="image/png" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3e%3ctext y='24' font-size='24'%3e💼%3c/text%3e%3c/svg%3e">
   <link rel="apple-touch-icon" href="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=180">
   
   <!-- Fonts -->
@@ -94,12 +94,12 @@
   </script>
 </head>
 
-<body class="bg-transparent">
+<body class="bg-white dark:bg-gray-900 transition-colors duration-300">
   <!-- Background Shapes -->
   <div class="fixed inset-0 z-0 pointer-events-none" id="floating-shapes-container"></div>
 
   <!-- Header -->
-  <header class="sticky top-0 z-30 bg-white shadow-sm py-4">
+  <header class="sticky top-0 z-30 bg-white dark:bg-gray-800 shadow-sm py-4 transition-colors duration-300">
     <div class="container mx-auto flex items-center justify-between px-4">
       <div class="flex items-center space-x-2">
         <span class="text-2xl font-extrabold text-gray-900 tracking-tight">Thang.</span>
@@ -112,7 +112,11 @@
         <a href="#resume" id="nav-resume" class="text-gray-700 hover:text-purple-600 transition">Resume</a>
       </nav>
       <div class="flex items-center space-x-2">
-        <button id="toggle-language" class="language-toggle text-xl px-2 py-1 rounded-full hover:bg-purple-100 transition">
+        <button id="toggle-theme" class="theme-toggle text-xl px-2 py-1 rounded-full hover:bg-purple-100 dark:hover:bg-gray-700 transition" aria-label="Toggle dark mode">
+          <i class="fas fa-moon dark:hidden"></i>
+          <i class="fas fa-sun hidden dark:block"></i>
+        </button>
+        <button id="toggle-language" class="language-toggle text-xl px-2 py-1 rounded-full hover:bg-purple-100 dark:hover:bg-gray-700 transition">
           <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese" class="w-6 h-4">
           <img id="lang-en-icon" src="https://flagcdn.com/w40/gb.png" alt="English" class="w-6 h-4 hidden">
         </button>
@@ -135,7 +139,7 @@
       </div>
     </div>
     <div class="flex-1 flex justify-center items-center relative min-h-[220px]">
-      <img src="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=256" alt="Avatar" class="relative z-10 w-48 h-48 object-cover rounded-[20px] shadow-lg border-4 border-white bg-white" />
+      <img data-src="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=256" alt="Avatar" class="relative z-10 w-48 h-48 object-cover rounded-[20px] shadow-lg border-4 border-white bg-white" loading="lazy" />
     </div>
   </section>
   
@@ -177,28 +181,28 @@
   </section>
   
   <!-- Portfolio Section -->
-  <section id="portfolio" class="container mx-auto px-4 py-24 bg-white rounded-2xl relative z-10 mt-[10px] mb-[10px]">
+  <section id="portfolio" class="container mx-auto px-4 py-24 bg-white dark:bg-gray-800 rounded-2xl relative z-10 mt-[10px] mb-[10px] transition-colors duration-300" data-lazy>
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="portfolio-subtitle">My Works</span>
       <h2 id="portfolio-title" class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up">Featured Portfolios</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
       <div class="card project-card flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale border border-gray-100" data-animation="fade-in-scale" data-stagger="stagger-1">
-        <img src="https://via.placeholder.com/400x300" alt="Agency Website project" class="w-full h-56 object-cover">
+        <img data-src="https://via.placeholder.com/400x300/9333ea/ffffff?text=Agency+Website" alt="Agency Website project" class="w-full h-56 object-cover project-image" loading="lazy">
         <div class="p-6 flex-1 flex flex-col justify-between">
           <h3 class="text-lg font-semibold mb-2 project-title text-center" id="project-agency-title">Agency Website</h3>
           <p class="text-gray-500 text-sm text-center" id="project-agency-category">Web Design</p>
         </div>
       </div>
       <div class="card project-card flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale border border-gray-100" data-animation="fade-in-scale" data-stagger="stagger-2">
-        <img src="https://via.placeholder.com/400x300" alt="Dashboard Platform project" class="w-full h-56 object-cover">
+        <img data-src="https://via.placeholder.com/400x300/7c3aed/ffffff?text=Dashboard+Platform" alt="Dashboard Platform project" class="w-full h-56 object-cover project-image" loading="lazy">
         <div class="p-6 flex-1 flex flex-col justify-between">
           <h3 class="text-lg font-semibold mb-2 project-title text-center" id="project-dashboard-title">Dashboard Platform</h3>
           <p class="text-gray-500 text-sm text-center" id="project-dashboard-category">Web Development</p>
         </div>
       </div>
       <div class="card project-card flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale border border-gray-100" data-animation="fade-in-scale" data-stagger="stagger-3">
-        <img src="https://via.placeholder.com/400x300" alt="E-commerce Website project" class="w-full h-56 object-cover">
+        <img data-src="https://via.placeholder.com/400x300/a855f7/ffffff?text=E-commerce+Website" alt="E-commerce Website project" class="w-full h-56 object-cover project-image" loading="lazy">
         <div class="p-6 flex-1 flex flex-col justify-between">
           <h3 class="text-lg font-semibold mb-2 project-title text-center" id="project-ecommerce-title">E-commerce Website</h3>
           <p class="text-gray-500 text-sm text-center" id="project-ecommerce-category">UX Design</p>
@@ -208,7 +212,7 @@
   </section>
   
   <!-- Work Experience -->
-  <section id="experience" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl relative z-10 mt-[10px]">
+  <section id="experience" class="container mx-auto px-4 py-24 bg-[#f8f9fb] dark:bg-gray-900 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300" data-lazy>
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="workexp-subtitle">Career Path</span>
       <h2 id="workexp-title" class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up">Work Experience</h2>
@@ -283,7 +287,7 @@
   </section>
   
   <!-- Education & Skills Section -->
-  <section id="education-skills" class="container mx-auto px-4 py-24 bg-white rounded-2xl relative z-10 mt-[10px]">
+  <section id="education-skills" class="container mx-auto px-4 py-24 bg-white dark:bg-gray-800 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300" data-lazy>
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="education-subtitle">Education & Skills</span>
       <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up" id="education-title">Education & Skills</h2>
@@ -323,7 +327,7 @@
   </section>
   
   <!-- Certifications Section -->
-  <section id="certifications" class="container mx-auto px-4 py-24 bg-[#f8f9fb] rounded-2xl relative z-10 mt-[10px]">
+  <section id="certifications" class="container mx-auto px-4 py-24 bg-[#f8f9fb] dark:bg-gray-900 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300" data-lazy>
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="certifications-subtitle">Certifications</span>
       <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up" id="certifications-title">Certifications</h2>
@@ -351,7 +355,7 @@
   </section>
   
   <!-- Contact Section -->
-  <section id="contact" class="container mx-auto px-4 py-24 bg-white rounded-2xl relative z-10 mt-[10px]">
+  <section id="contact" class="container mx-auto px-4 py-24 bg-white dark:bg-gray-800 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300" data-lazy>
     <div class="mb-4 text-center">
       <span class="uppercase tracking-widest text-xs text-gray-400" id="contact-subtitle">Contact</span>
       <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up" id="contact-title">Contact</h2>

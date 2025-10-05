@@ -2,35 +2,64 @@ export function initTheme() {
   const html = document.documentElement
   const themeToggle = document.getElementById('toggle-theme')
   
-  // Lấy theme từ localStorage hoặc mặc định là 'light'
-  const savedTheme = localStorage.getItem('theme') || 'light'
+  // Detect system preference
+  const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   
-  // Áp dụng theme
-  if (savedTheme === 'dark') {
-    html.classList.add('dark')
-  } else {
-    html.classList.remove('dark')
-  }
+  // Get theme from localStorage or use system preference
+  const savedTheme = localStorage.getItem('theme') || systemPreference
   
-  // Thêm event listener cho nút toggle theme
+  // Apply theme
+  applyTheme(savedTheme)
+  
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      applyTheme(e.matches ? 'dark' : 'light')
+    }
+  })
+  
+  // Add event listener for theme toggle
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-      html.classList.toggle('dark')
-      const currentTheme = html.classList.contains('dark') ? 'dark' : 'light'
+      const currentTheme = html.classList.contains('dark') ? 'light' : 'dark'
+      applyTheme(currentTheme)
       localStorage.setItem('theme', currentTheme)
       
-      // Cập nhật icon
-      updateThemeIcon(currentTheme)
+      // Add smooth transition effect
+      document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease'
+      setTimeout(() => {
+        document.body.style.transition = ''
+      }, 300)
     })
-    
-    // Cập nhật icon ban đầu
-    updateThemeIcon(savedTheme)
   }
 }
 
-function updateThemeIcon(theme) {
-  const themeToggle = document.getElementById('toggle-theme')
-  if (themeToggle) {
-    themeToggle.innerHTML = theme === 'dark' ? '☀️' : '🌙'
+function applyTheme(theme) {
+  const html = document.documentElement
+  
+  try {
+    if (theme === 'dark') {
+      html.classList.add('dark')
+    } else {
+      html.classList.remove('dark')
+    }
+    
+    // Update meta theme-color for mobile browsers
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', theme === 'dark' ? '#1f2937' : '#9333ea')
+    }
+    
+    // Dispatch custom event for other components to listen
+    window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }))
+    
+  } catch (error) {
+    console.error('Error applying theme:', error)
+    // Fallback to light theme
+    html.classList.remove('dark')
   }
+}
+
+export function getCurrentTheme() {
+  return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
 } 
