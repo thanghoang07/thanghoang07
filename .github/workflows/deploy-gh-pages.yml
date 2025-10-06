@@ -1,0 +1,51 @@
+# Alternative GitHub Pages deployment using gh-pages package
+name: Deploy via gh-pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["master"]
+    paths-ignore:
+      - '.github/workflows/static.yml'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "gh-pages-deploy"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for gh-pages
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Fix dependencies and build
+        run: |
+          node scripts/fix-rollup.js
+          NODE_ENV=production npm run build
+          
+      - name: Deploy to gh-pages branch
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Verify deployment
+        run: |
+          echo "✅ Deployed to: https://thanghoang07.github.io/thanghoang07/"
+          echo "🔗 Repository Pages: https://github.com/${{ github.repository }}/settings/pages"

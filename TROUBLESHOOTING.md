@@ -42,15 +42,37 @@ npm run ci:build
 ### 3. GitHub Actions Failures
 
 **Workflow Files**:
-- `static.yml` - Main deployment (uses npm ci)
-- `deploy-alt.yml` - Alternative (uses npm install)
+- `static.yml` - Main deployment (GitHub Pages native)
+- `deploy-alt.yml` - Alternative (npm install method)  
+- `deploy-gh-pages.yml` - Backup (gh-pages branch method)
 - `lighthouse.yml` - Performance monitoring
+
+**Common Issues**:
+
+#### Deployment Conflict Error
+```
+Error: Deployment request failed due to in progress deployment
+```
+
+**Solutions**:
+```bash
+# Method 1: Wait and retry (automatic)
+# Workflow has concurrency control to auto-cancel
+
+# Method 2: Use alternative deployment
+# Go to Actions → "Deploy via gh-pages" → Run workflow
+
+# Method 3: Manual deployment
+npm run build
+npm run deploy
+```
 
 **Debugging Steps**:
 1. Check workflow logs for specific error
-2. Try alternative deployment workflow
+2. Try alternative deployment workflow  
 3. Use manual workflow dispatch
 4. Check GitHub Pages settings
+5. Verify Pages source is set to "GitHub Actions"
 
 ### 4. Local Development Issues
 
