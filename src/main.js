@@ -11,6 +11,7 @@ import { initSectionLazyLoader } from './section-lazy-loader.js'
 import BrowserPerformanceMonitor from './performance-monitor.js'
 import { initAdvancedInteractions } from './micro-interactions.js'
 import { initAdvancedThemes } from './advanced-themes.js'
+import { initPWA } from './pwa-manager.js'
 
 // Khởi tạo ứng dụng khi DOM đã sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize advanced theme system
     initAdvancedThemes()
+    
+    // Initialize PWA functionality
+    initPWA()
 
     // Initialize analytics (replace with your actual GA4 measurement ID)
     // initAnalytics('G-XXXXXXXXXX')
