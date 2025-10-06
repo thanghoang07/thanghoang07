@@ -15,22 +15,18 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, wait for in-progress deployments
+# Allow only one concurrent deployment, skip conflicting ones
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: "pages-deployment"
+  cancel-in-progress: true
 
 jobs:
-  # Build and deploy job
-  build-and-deploy:
+  # Single build and deploy job
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    # Cancel any existing deployments
-    concurrency:
-      group: pages-deploy
-      cancel-in-progress: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -60,15 +56,9 @@ jobs:
           # Upload dist folder after build
           path: './dist'
           
-      - name: Wait for deployment slot
-        run: |
-          echo "🔄 Waiting for any existing deployments to complete..."
-          sleep 10
-          
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          timeout: 300000  # 5 minutes timeout
-          error_count: 20  # More retries
-        continue-on-error: false
+          timeout: 600000  # 10 minutes timeout
+          error_count: 10  # Default retries
