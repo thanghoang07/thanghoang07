@@ -1,0 +1,70 @@
+# Simple GitHub Pages deployment using pure git
+name: Deploy to Pages (Simple)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["master"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "simple-deploy"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Fix dependencies and build
+        run: |
+          node scripts/fix-rollup.js
+          NODE_ENV=production npm run build
+          
+      - name: Deploy to gh-pages using git
+        run: |
+          # Configure git
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          # Create/switch to gh-pages branch
+          git checkout --orphan gh-pages || git checkout gh-pages
+          
+          # Clear existing content
+          git rm -rf . 2>/dev/null || true
+          
+          # Copy built files
+          cp -r dist/* .
+          cp dist/.* . 2>/dev/null || true
+          
+          # Create .nojekyll file for GitHub Pages
+          touch .nojekyll
+          
+          # Add CNAME if needed (uncomment and modify if you have custom domain)
+          # echo "yourdomain.com" > CNAME
+          
+          # Commit and push
+          git add .
+          git commit -m "Deploy portfolio - $(date)"
+          git push -f origin gh-pages
+          
+      - name: Verify deployment
+        run: |
+          echo "✅ Deployed successfully!"
+          echo "🔗 Portfolio URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          echo "⚙️  Check Pages settings: https://github.com/${{ github.repository }}/settings/pages"
