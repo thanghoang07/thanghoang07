@@ -9,6 +9,8 @@ import { initAnalytics } from './analytics.js'
 import { initErrorHandler, getErrorHandler } from './error-handler.js'
 import { initSectionLazyLoader } from './section-lazy-loader.js'
 import BrowserPerformanceMonitor from './performance-monitor.js'
+import { initAdvancedInteractions } from './micro-interactions.js'
+import { initAdvancedThemes } from './advanced-themes.js'
 
 // Khởi tạo ứng dụng khi DOM đã sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,6 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
       rootMargin: '50px 0px',
       threshold: 0.1
     })
+
+    // Initialize advanced UX/UI improvements
+    initAdvancedInteractions()
+    
+    // Initialize advanced theme system
+    initAdvancedThemes()
 
     // Initialize analytics (replace with your actual GA4 measurement ID)
     // initAnalytics('G-XXXXXXXXXX')
