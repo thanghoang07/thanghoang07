@@ -38,14 +38,15 @@ jobs:
           node-version: '18'
           cache: 'npm'
           
-      - name: Install dependencies
+      - name: Fix Rollup Dependencies
         run: |
-          # Update package-lock.json to match package.json
-          rm -f package-lock.json
-          npm install
+          # Use custom script to fix Rollup issues
+          node scripts/fix-rollup.js
           
       - name: Build project
-        run: npm run build
+        run: |
+          # Build with proper environment
+          NODE_ENV=production npm run build
         
       - name: Setup Pages
         uses: actions/configure-pages@v5

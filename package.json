@@ -15,7 +15,9 @@
     "performance:mobile": "node scripts/performance-monitor.js http://localhost:4173 3 mobile",
     "performance:report": "npm run performance && open performance-reports",
     "test:build": "node scripts/test-build.js",
-    "ci:test": "npm ci && npm run test:build"
+    "ci:test": "npm ci && npm run test:build",
+    "fix:rollup": "node scripts/fix-rollup.js",
+    "ci:build": "node scripts/fix-rollup.js && npm run build"
   },
   "keywords": [
     "portfolio",
@@ -28,7 +30,8 @@
     "autoprefixer": "^10.4.21",
     "gh-pages": "^6.0.0",
     "postcss": "^8.5.6",
-    "vite": "^5.0.0",
+    "vite": "^5.4.0",
+    "rollup": "^4.0.0",
     "@lhci/cli": "^0.12.0",
     "lighthouse": "^11.0.0",
     "chrome-launcher": "^1.0.0"

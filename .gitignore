@@ -275,6 +275,10 @@ dist/
 performance-reports/
 lighthouse-reports/
 
+# Docker
+.dockerignore
+docker-compose.yml
+
 # Environment variables
 .env
 .env.local
