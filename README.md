@@ -22,11 +22,7 @@ Portfolio cá nhân với các tính năng advanced:
 - 😄 Pronouns: he/him
 
 ## 📈 GitHub Stats
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=thanghoang07&show_icons=true&theme=vue-dark)i there 👋 Wellcome to my GitHub
-- 📃 I’m currently working on HPT VietNam corporation
-- 💬 Develop xamarin, java, javascript, ... 
-- 📫 How to reach me: [Linkedin 💼](https://www.linkedin.com/in/thanghoang07)
-- 😄 Pronouns: he/him 
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=thanghoang07&show_icons=true&theme=vue-dark)
 
 <!--
 ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
