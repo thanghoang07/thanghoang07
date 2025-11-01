@@ -1,17 +1,31 @@
-import { initTranslations } from './translations.js';
-import { initTheme } from './theme.js';
-import { initScrollEffects } from './scroll-effects.js';
-import { initParallaxEffect, addTypingEffect, addCounterEffect } from './animation-effects.js';
-import { initWorkExpTabs } from './work-exp-tabs.js';
-import { initContactForm } from './contact-form.js';
+import { initTranslations } from './utils/translations.js';
+import { initScrollEffects } from './features/scroll-effects.js';
+import { initParallaxEffect, addTypingEffect, addCounterEffect } from './animations.js';
+import { initWorkExpTabs } from './ui/work-exp-tabs.js';
+import { initContactForm } from './ui/contact-form.js';
 
 export function initApp() {
-  initTranslations();
-  initTheme();
-  initScrollEffects();
-  initParallaxEffect();
-  initContactForm();
-  setTimeout(ensureElementsVisible, 100);
+  console.log('🚀 Initializing core app features...');
+  
+  try {
+    initTranslations();
+    console.log('✅ Translations initialized');
+    
+    initScrollEffects();
+    console.log('✅ Scroll effects initialized');
+    
+    initParallaxEffect();
+    console.log('✅ Parallax effects initialized');
+    
+    initContactForm();
+    console.log('✅ Contact form initialized');
+    
+    setTimeout(ensureElementsVisible, 100);
+    console.log('✅ Core app initialization complete');
+    
+  } catch (error) {
+    console.error('❌ Error in core app initialization:', error);
+  }
 }
 
 function ensureElementsVisible() {

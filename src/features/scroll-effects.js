@@ -1,4 +1,5 @@
-import { ANIMATION_CONFIG, ANIMATION_CLASSES, resetAnimationClasses } from './utils.js';
+import { ANIMATION_CONFIG, ANIMATION_CLASSES } from '../core/config.js';
+import { AnimationUtils } from '../utils/index.js';
 
 export function initScrollEffects() {
   const observer = new IntersectionObserver(handleIntersection, {
@@ -23,7 +24,7 @@ function handleIntersection(entries) {
 }
 
 function handleElementVisible(element) {
-  resetAnimationClasses(element);
+  AnimationUtils.resetAnimationClasses(element);
   element.classList.add('revealed');
 
   const animationType = element.dataset.animation || 'fade-in-up';
@@ -40,6 +41,6 @@ function handleElementVisible(element) {
 }
 
 function handleElementHidden(element) {
-  resetAnimationClasses(element);
+  AnimationUtils.resetAnimationClasses(element);
   element.classList.remove('revealed');
 }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div class="container mx-auto p-8">
+        <h1 class="text-2xl font-bold mb-4">Test Page</h1>
+        
+        <div class="flex gap-4 mb-8">
+            <button id="toggle-theme" class="px-4 py-2 bg-blue-500 text-white rounded">
+                <i class="fas fa-moon dark:hidden">🌙</i>
+                <i class="fas fa-sun hidden dark:block">☀️</i>
+            </button>
+            
+            <button id="toggle-language" class="px-4 py-2 bg-green-500 text-white rounded">
+                <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese" class="w-6 h-4 inline">
+                <img id="lang-en-icon" src="https://flagcdn.com/w40/gb.png" alt="English" class="w-6 h-4 hidden">
+            </button>
+        </div>
+        
+        <div class="bg-gray-200 dark:bg-gray-700 p-4 rounded">
+            <p class="text-gray-800 dark:text-gray-200">This text should change color with theme toggle</p>
+        </div>
+    </div>
+    
+    <script>
+        console.log('Test page loaded');
+        
+        // Simple theme toggle
+        document.getElementById('toggle-theme').addEventListener('click', function() {
+            console.log('Theme button clicked');
+            const root = document.documentElement;
+            const button = this;
+            
+            if (root.classList.contains('dark')) {
+                root.classList.remove('dark');
+                button.querySelector('.fa-moon').style.display = 'inline';
+                button.querySelector('.fa-sun').style.display = 'none';
+                console.log('Switched to light mode');
+            } else {
+                root.classList.add('dark');
+                button.querySelector('.fa-moon').style.display = 'none';
+                button.querySelector('.fa-sun').style.display = 'inline';
+                console.log('Switched to dark mode');
+            }
+        });
+        
+        // Simple language toggle
+        document.getElementById('toggle-language').addEventListener('click', function() {
+            console.log('Language button clicked');
+            const viIcon = document.getElementById('lang-vi-icon');
+            const enIcon = document.getElementById('lang-en-icon');
+            
+            if (viIcon.classList.contains('hidden')) {
+                viIcon.classList.remove('hidden');
+                enIcon.classList.add('hidden');
+                console.log('Switched to Vietnamese');
+            } else {
+                viIcon.classList.add('hidden');
+                enIcon.classList.remove('hidden');
+                console.log('Switched to English');
+            }
+        });
+        
+        console.log('Test scripts initialized');
+    </script>
+</body>
+</html>

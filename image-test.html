@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Test</title>
+    <style>
+        body { padding: 20px; font-family: Arial, sans-serif; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        img { margin: 10px; border: 2px solid #333; }
+    </style>
+</head>
+<body>
+    <h1>Image Loading Test</h1>
+    
+    <div class="test-section">
+        <h2>Flag Images (from HTML)</h2>
+        <img src="https://flagcdn.com/w40/vn.png" alt="Vietnamese Flag" style="width: 40px; height: 30px;">
+        <img src="https://flagcdn.com/w40/gb.png" alt="English Flag" style="width: 40px; height: 30px;">
+    </div>
+    
+    <div class="test-section">
+        <h2>Avatar (from HTML)</h2>
+        <img src="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=256" alt="Avatar" style="width: 100px; height: 100px;">
+    </div>
+    
+    <div class="test-section">
+        <h2>Portfolio Images (from HTML)</h2>
+        <img src="https://via.placeholder.com/400x300/9333ea/ffffff?text=Agency+Website" alt="Agency" style="width: 200px; height: 150px;">
+        <img src="https://via.placeholder.com/400x300/7c3aed/ffffff?text=Dashboard+Platform" alt="Dashboard" style="width: 200px; height: 150px;">
+        <img src="https://via.placeholder.com/400x300/a855f7/ffffff?text=E-commerce+Website" alt="Ecommerce" style="width: 200px; height: 150px;">
+    </div>
+    
+    <script>
+        console.log('Image test page loaded');
+        
+        // Check if images load successfully
+        const images = document.querySelectorAll('img');
+        images.forEach((img, index) => {
+            img.onload = () => {
+                console.log(`✅ Image ${index + 1} loaded successfully:`, img.src);
+            };
+            img.onerror = () => {
+                console.error(`❌ Image ${index + 1} failed to load:`, img.src);
+            };
+        });
+    </script>
+</body>
+</html>

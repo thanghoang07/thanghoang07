@@ -2,7 +2,7 @@
  * Advanced Animation Performance Optimizer
  */
 
-import { ANIMATION_CONFIG } from './utils.js';
+import { ANIMATION_CONFIG } from './core/config.js';
 
 class AnimationOptimizer {
   constructor() {

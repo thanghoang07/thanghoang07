@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/thanghoang07/',
+  base: process.env.NODE_ENV === 'production' ? '/thanghoang07/' : '/',
 }) 
