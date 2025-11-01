@@ -274,6 +274,13 @@ class GitHubPagesApplication {
       // Language data
       const translations = {
         'en': {
+          // Navigation
+          'nav-services': 'Services',
+          'nav-portfolio': 'Portfolio',
+          'nav-experience': 'Experience',
+          'nav-blog': 'Blog',
+          'nav-resume': 'Resume',
+          // Content
           'hero-mynameis': 'My name is',
           'hero-name': 'Thang Hoang Duc.',
           'hero-intro': 'Front-end developer with 5+ years of experience in UI development, passionate about creating modern web products and optimizing user experience.',
@@ -299,6 +306,13 @@ class GitHubPagesApplication {
           'contact-title': 'Contact'
         },
         'vi': {
+          // Navigation
+          'nav-services': 'Dịch vụ',
+          'nav-portfolio': 'Dự án',
+          'nav-experience': 'Kinh nghiệm',
+          'nav-blog': 'Blog',
+          'nav-resume': 'Hồ sơ',
+          // Content
           'hero-mynameis': 'Tôi là',
           'hero-name': 'Thắng Hoàng Đức.',
           'hero-intro': 'Lập trình viên front-end với hơn 5 năm kinh nghiệm phát triển giao diện người dùng, đam mê tạo ra sản phẩm web hiện đại và tối ưu trải nghiệm người dùng.',

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation Translation Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .nav-item {
+      display: inline-block;
+      padding: 8px 16px;
+      margin: 4px;
+      background: #f3f4f6;
+      border-radius: 8px;
+      border: 2px solid #e5e7eb;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-item.updated {
+      border-color: #10b981;
+      background: #f0fdf4;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-center mb-8">🧭 Navigation Translation Test</h1>
+
+    <!-- Language Toggle -->
+    <div class="flex justify-center mb-8">
+      <button id="toggle-language"
+        class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition flex items-center space-x-3">
+        <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese" class="w-8 h-5">
+        <img id="lang-en-icon" src="https://flagcdn.com/w40/gb.png" alt="English" class="w-8 h-5 hidden">
+        <span>Toggle Language</span>
+      </button>
+    </div>
+
+    <!-- Navigation Items -->
+    <div class="text-center mb-8">
+      <h2 class="text-xl font-bold mb-4">Navigation Items:</h2>
+      <div class="flex flex-wrap justify-center">
+        <span class="nav-item" id="nav-services">Services</span>
+        <span class="nav-item" id="nav-portfolio">Portfolio</span>
+        <span class="nav-item" id="nav-experience">Experience</span>
+        <span class="nav-item" id="nav-blog">Blog</span>
+        <span class="nav-item" id="nav-resume">Resume</span>
+      </div>
+    </div>
+
+    <!-- Expected Translations -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-lg font-bold text-blue-600 mb-4">🇬🇧 English (Expected):</h3>
+        <ul class="space-y-2 text-gray-700">
+          <li><strong>Services</strong> → Services</li>
+          <li><strong>Portfolio</strong> → Portfolio</li>
+          <li><strong>Experience</strong> → Experience</li>
+          <li><strong>Blog</strong> → Blog</li>
+          <li><strong>Resume</strong> → Resume</li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-lg font-bold text-red-600 mb-4">🇻🇳 Vietnamese (Expected):</h3>
+        <ul class="space-y-2 text-gray-700">
+          <li><strong>Services</strong> → Dịch vụ</li>
+          <li><strong>Portfolio</strong> → Dự án</li>
+          <li><strong>Experience</strong> → Kinh nghiệm</li>
+          <li><strong>Blog</strong> → Blog</li>
+          <li><strong>Resume</strong> → Hồ sơ</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="mt-8 p-6 bg-gray-100 rounded-xl">
+      <h3 class="text-lg font-bold mb-4">📊 Test Status:</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <strong>Current Language:</strong> 
+          <span id="current-lang" class="font-mono">en</span>
+        </div>
+        <div>
+          <strong>Translations Working:</strong> 
+          <span id="translation-status" class="font-mono">Testing...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="mt-8 p-6 bg-yellow-50 border-l-4 border-yellow-400">
+      <h3 class="text-lg font-bold text-yellow-800 mb-2">📝 Test Instructions:</h3>
+      <ol class="text-yellow-700 space-y-1 list-decimal list-inside">
+        <li>Click "Toggle Language" button</li>
+        <li>Watch navigation items change</li>
+        <li>Verify translations match expected values</li>
+        <li>Check both English and Vietnamese</li>
+      </ol>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main-github-pages.js"></script>
+  <script>
+    // Monitor language changes
+    function updateStatus() {
+      const currentLang = localStorage.getItem('language') || 'en';
+      document.getElementById('current-lang').textContent = currentLang;
+
+      // Check if navigation items are translated
+      const navServices = document.getElementById('nav-services').textContent;
+      const navPortfolio = document.getElementById('nav-portfolio').textContent;
+      const navExperience = document.getElementById('nav-experience').textContent;
+
+      let isWorking = false;
+      if (currentLang === 'en') {
+        isWorking = navServices === 'Services' && navPortfolio === 'Portfolio' && navExperience === 'Experience';
+      } else if (currentLang === 'vi') {
+        isWorking = navServices === 'Dịch vụ' && navPortfolio === 'Dự án' && navExperience === 'Kinh nghiệm';
+      }
+
+      const statusEl = document.getElementById('translation-status');
+      if (isWorking) {
+        statusEl.textContent = '✅ Working';
+        statusEl.className = 'font-mono text-green-600';
+        
+        // Highlight updated items
+        document.querySelectorAll('.nav-item').forEach(item => {
+          item.classList.add('updated');
+        });
+      } else {
+        statusEl.textContent = '❌ Not Working';
+        statusEl.className = 'font-mono text-red-600';
+      }
+    }
+
+    // Update status every 500ms
+    setInterval(updateStatus, 500);
+
+    // Monitor language toggle
+    const langToggle = document.getElementById('toggle-language');
+    if (langToggle) {
+      langToggle.addEventListener('click', () => {
+        setTimeout(updateStatus, 100);
+      });
+    }
+  </script>
+</body>
+</html>
