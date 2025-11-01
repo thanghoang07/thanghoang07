@@ -7,7 +7,7 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true,
+        drop_console: false, // Keep console logs for debugging GitHub Pages
         drop_debugger: true
       }
     },

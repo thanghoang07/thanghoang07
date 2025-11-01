@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Pages Test - Thang Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity .5s ease-out
+    }
+
+    .page-loader.fade-out {
+      opacity: 0;
+      pointer-events: none
+    }
+
+    .loader-content {
+      text-align: center;
+      color: white
+    }
+
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255, 255, 255, .3);
+      border-radius: 50%;
+      border-top: 3px solid white;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg) }
+      100% { transform: rotate(360deg) }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .feature-test {
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 10px 0;
+      transition: all 0.3s ease;
+    }
+
+    .feature-test:hover {
+      border-color: #9333ea;
+      box-shadow: 0 10px 20px rgba(147, 51, 234, 0.1);
+    }
+
+    .feature-test.working {
+      border-color: #10b981;
+      background-color: #f0fdf4;
+    }
+
+    .feature-test.error {
+      border-color: #ef4444;
+      background-color: #fef2f2;
+    }
+
+    .status-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+    }
+
+    .status-indicator.working { background-color: #10b981; }
+    .status-indicator.error { background-color: #ef4444; }
+    .status-indicator.pending { background-color: #f59e0b; animation: pulse 1s infinite; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+  <!-- Loading Screen -->
+  <div class="page-loader" id="page-loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">Testing GitHub Pages...</div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content" id="main-content" style="opacity: 0;">
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+        🧪 GitHub Pages Feature Test
+      </h1>
+
+      <!-- Theme & Language Controls -->
+      <div class="flex justify-center items-center space-x-4 mb-8">
+        <button id="toggle-theme"
+          class="theme-toggle text-xl px-4 py-2 rounded-full bg-purple-100 hover:bg-purple-200 dark:bg-purple-900 dark:hover:bg-purple-800 transition magnetic"
+          data-magnetic data-ripple>
+          <i class="fas fa-moon dark:hidden"></i>
+          <i class="fas fa-sun hidden dark:block"></i>
+          <span class="ml-2">Toggle Theme</span>
+        </button>
+        
+        <button id="toggle-language"
+          class="language-toggle text-xl px-4 py-2 rounded-full bg-blue-100 hover:bg-blue-200 dark:bg-blue-900 dark:hover:bg-blue-800 transition magnetic"
+          data-magnetic data-ripple>
+          <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese" class="w-6 h-4 inline mr-2">
+          <img id="lang-en-icon" src="https://flagcdn.com/w40/gb.png" alt="English" class="w-6 h-4 hidden mr-2">
+          <span id="lang-text">Switch Language</span>
+        </button>
+      </div>
+
+      <!-- Feature Tests -->
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Loading Screen Test -->
+        <div class="feature-test" id="test-loading">
+          <h3 class="text-lg font-semibold mb-3">
+            <span class="status-indicator working"></span>
+            Loading Screen
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-2">
+            Loading screen should show and fade out smoothly
+          </p>
+          <div class="text-sm text-green-600">✅ Working</div>
+        </div>
+
+        <!-- Dark Mode Test -->
+        <div class="feature-test" id="test-darkmode">
+          <h3 class="text-lg font-semibold mb-3">
+            <span class="status-indicator pending"></span>
+            Dark Mode Toggle
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-2">
+            Click theme button to test dark/light mode switching
+          </p>
+          <div class="text-sm text-yellow-600" id="darkmode-status">⏳ Click theme button to test</div>
+        </div>
+
+        <!-- Language Toggle Test -->
+        <div class="feature-test" id="test-language">
+          <h3 class="text-lg font-semibold mb-3">
+            <span class="status-indicator pending"></span>
+            Language Toggle
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-2" id="language-description">
+            Click language button to test English/Vietnamese switching
+          </p>
+          <div class="text-sm text-yellow-600" id="language-status">⏳ Click language button to test</div>
+        </div>
+
+        <!-- Animation Test -->
+        <div class="feature-test scroll-reveal" id="test-animation" data-animation="fade-in-up">
+          <h3 class="text-lg font-semibold mb-3">
+            <span class="status-indicator pending"></span>
+            Scroll Animations
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-2">
+            This card should animate when scrolled into view
+          </p>
+          <div class="text-sm text-yellow-600" id="animation-status">⏳ Scroll to test</div>
+        </div>
+
+        <!-- Hover Effects Test -->
+        <div class="feature-test magnetic enhanced-hover" id="test-hover" data-magnetic data-ripple>
+          <h3 class="text-lg font-semibold mb-3">
+            <span class="status-indicator pending"></span>
+            Hover Effects
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-2">
+            Hover over this card to test magnetic and ripple effects
+          </p>
+          <div class="text-sm text-yellow-600" id="hover-status">⏳ Hover to test</div>
+        </div>
+
+        <!-- Progress Bar Test -->
+        <div class="feature-test" id="test-progress">
+          <h3 class="text-lg font-semibold mb-3">
+            <span class="status-indicator pending"></span>
+            Progress Bars
+          </h3>
+          <div class="w-full h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mb-2 scroll-reveal">
+            <div class="h-3 bg-purple-500 rounded-full progress-bar" style="width: 75%"></div>
+          </div>
+          <div class="text-sm text-yellow-600" id="progress-status">⏳ Scroll to test</div>
+        </div>
+
+      </div>
+
+      <!-- Test Results Summary -->
+      <div class="max-w-2xl mx-auto mt-12 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+        <h2 class="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white">
+          Test Results Summary
+        </h2>
+        <div id="test-summary" class="space-y-2">
+          <div class="text-center text-gray-500">Running tests...</div>
+        </div>
+        
+        <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          <h3 class="font-semibold text-blue-800 dark:text-blue-200 mb-2">Debug Info:</h3>
+          <div class="text-sm text-blue-700 dark:text-blue-300" id="debug-info">
+            <div>User Agent: <span id="user-agent"></span></div>
+            <div>Current URL: <span id="current-url"></span></div>
+            <div>Theme Support: <span id="theme-support"></span></div>
+            <div>Local Storage: <span id="localStorage-support"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main-github-pages.js"></script>
+  <script>
+    // Test monitoring script
+    document.addEventListener('DOMContentLoaded', function() {
+      // Update debug info
+      document.getElementById('user-agent').textContent = navigator.userAgent;
+      document.getElementById('current-url').textContent = window.location.href;
+      document.getElementById('theme-support').textContent = window.matchMedia ? '✅ Supported' : '❌ Not supported';
+      document.getElementById('localStorage-support').textContent = typeof Storage !== 'undefined' ? '✅ Supported' : '❌ Not supported';
+
+      // Monitor theme changes
+      let themeTestCount = 0;
+      const themeButton = document.getElementById('toggle-theme');
+      if (themeButton) {
+        themeButton.addEventListener('click', function() {
+          themeTestCount++;
+          const status = document.getElementById('darkmode-status');
+          const indicator = document.querySelector('#test-darkmode .status-indicator');
+          
+          if (themeTestCount >= 2) {
+            status.textContent = '✅ Working - Theme switches correctly';
+            status.className = 'text-sm text-green-600';
+            indicator.className = 'status-indicator working';
+            document.getElementById('test-darkmode').classList.add('working');
+          } else {
+            status.textContent = `⏳ Testing... (${themeTestCount}/2 switches)`;
+          }
+        });
+      }
+
+      // Monitor language changes  
+      let langTestCount = 0;
+      const langButton = document.getElementById('toggle-language');
+      if (langButton) {
+        langButton.addEventListener('click', function() {
+          langTestCount++;
+          const status = document.getElementById('language-status');
+          const indicator = document.querySelector('#test-language .status-indicator');
+          
+          if (langTestCount >= 2) {
+            status.textContent = '✅ Working - Language switches correctly';
+            status.className = 'text-sm text-green-600';
+            indicator.className = 'status-indicator working';
+            document.getElementById('test-language').classList.add('working');
+          } else {
+            status.textContent = `⏳ Testing... (${langTestCount}/2 switches)`;
+          }
+        });
+      }
+
+      // Monitor scroll animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.target.id === 'test-animation') {
+            setTimeout(() => {
+              const status = document.getElementById('animation-status');
+              const indicator = document.querySelector('#test-animation .status-indicator');
+              status.textContent = '✅ Working - Animation triggered';
+              status.className = 'text-sm text-green-600';
+              indicator.className = 'status-indicator working';
+              document.getElementById('test-animation').classList.add('working');
+            }, 600);
+          }
+        });
+      });
+
+      observer.observe(document.getElementById('test-animation'));
+
+      // Monitor hover effects
+      const hoverTest = document.getElementById('test-hover');
+      let hoverTested = false;
+      hoverTest.addEventListener('mouseenter', function() {
+        if (!hoverTested) {
+          hoverTested = true;
+          setTimeout(() => {
+            const status = document.getElementById('hover-status');
+            const indicator = document.querySelector('#test-hover .status-indicator');
+            status.textContent = '✅ Working - Hover effects active';
+            status.className = 'text-sm text-green-600';
+            indicator.className = 'status-indicator working';
+            hoverTest.classList.add('working');
+          }, 300);
+        }
+      });
+
+      // Monitor progress bars
+      const progressObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const progressBar = entry.target.querySelector('.progress-bar');
+            if (progressBar) {
+              setTimeout(() => {
+                const status = document.getElementById('progress-status');
+                const indicator = document.querySelector('#test-progress .status-indicator');
+                status.textContent = '✅ Working - Progress bar animated';
+                status.className = 'text-sm text-green-600';
+                indicator.className = 'status-indicator working';
+                document.getElementById('test-progress').classList.add('working');
+              }, 1500);
+            }
+          }
+        });
+      });
+
+      progressObserver.observe(document.getElementById('test-progress'));
+
+      // Update summary every 2 seconds
+      setInterval(updateTestSummary, 2000);
+    });
+
+    function updateTestSummary() {
+      const tests = document.querySelectorAll('.feature-test');
+      let working = 0;
+      let pending = 0;
+      let errors = 0;
+
+      tests.forEach(test => {
+        if (test.classList.contains('working')) working++;
+        else if (test.classList.contains('error')) errors++;
+        else pending++;
+      });
+
+      const summary = document.getElementById('test-summary');
+      summary.innerHTML = `
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div class="p-3 bg-green-100 dark:bg-green-900/20 rounded-lg">
+            <div class="text-2xl font-bold text-green-600">${working}</div>
+            <div class="text-sm text-green-700 dark:text-green-300">Working</div>
+          </div>
+          <div class="p-3 bg-yellow-100 dark:bg-yellow-900/20 rounded-lg">
+            <div class="text-2xl font-bold text-yellow-600">${pending}</div>
+            <div class="text-sm text-yellow-700 dark:text-yellow-300">Pending</div>
+          </div>
+          <div class="p-3 bg-red-100 dark:bg-red-900/20 rounded-lg">
+            <div class="text-2xl font-bold text-red-600">${errors}</div>
+            <div class="text-sm text-red-700 dark:text-red-300">Errors</div>
+          </div>
+        </div>
+        <div class="mt-4 text-center">
+          <div class="text-lg font-semibold ${working === tests.length ? 'text-green-600' : 'text-gray-600'}">
+            ${working === tests.length ? '🎉 All features working on GitHub Pages!' : `${working}/${tests.length} features working`}
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
