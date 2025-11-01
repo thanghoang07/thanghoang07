@@ -3,6 +3,8 @@
  * Enhanced contact form with validation and better UX
  */
 
+import { colorSystem, getColor } from './colors.js';
+
 /**
  * Contact Form Manager Class
  */
@@ -267,10 +269,10 @@ export class ContactFormManager {
     const updateLabel = () => {
       if (input.value || input === document.activeElement) {
         label.style.transform = 'translateY(-1.5rem) scale(0.875)';
-        label.style.color = '#9333ea';
+        label.style.color = getColor('primary', 600);
       } else {
         label.style.transform = 'translateY(0) scale(1)';
-        label.style.color = '#6b7280';
+        label.style.color = getColor('secondary', 500);
       }
     };
 
@@ -307,11 +309,11 @@ export class ContactFormManager {
       counter.textContent = `${current}/${maxLength}`;
       
       if (current > maxLength * 0.8) {
-        counter.style.color = '#f59e0b';
+        counter.style.color = getColor('warning', 500);
       } else if (current === maxLength) {
-        counter.style.color = '#ef4444';
+        counter.style.color = getColor('error', 500);
       } else {
-        counter.style.color = '#6b7280';
+        counter.style.color = getColor('secondary', 500);
       }
     };
 
@@ -372,6 +374,11 @@ export class ContactFormManager {
     const notification = document.createElement('div');
     notification.className = 'form-notification';
     notification.textContent = message;
+    
+    const backgroundGradient = type === 'success' 
+      ? colorSystem.getGradient('success')
+      : colorSystem.getGradient('error');
+    
     notification.style.cssText = `
       position: fixed;
       top: 2rem;
@@ -383,10 +390,7 @@ export class ContactFormManager {
       z-index: 10000;
       animation: slideIn 0.3s ease;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      ${type === 'success' 
-        ? 'background: linear-gradient(135deg, #10b981, #059669);' 
-        : 'background: linear-gradient(135deg, #ef4444, #dc2626);'
-      }
+      background: ${backgroundGradient};
     `;
 
     document.body.appendChild(notification);
@@ -448,7 +452,7 @@ export class ContactFormManager {
       const label = input.parentNode.querySelector('.floating-label');
       if (label) {
         label.style.transform = 'translateY(0) scale(1)';
-        label.style.color = '#6b7280';
+        label.style.color = getColor('secondary', 500);
       }
     });
 
@@ -459,7 +463,7 @@ export class ContactFormManager {
       if (textarea) {
         const maxLength = textarea.getAttribute('maxlength') || 500;
         counter.textContent = `0/${maxLength}`;
-        counter.style.color = '#6b7280';
+        counter.style.color = getColor('secondary', 500);
       }
     });
   }

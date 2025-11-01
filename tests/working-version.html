@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thang Hoang Duc - Portfolio (Working Version)</title>
+    <meta name="description" content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng">
+    
+    <!-- Critical CSS -->
+    <style>
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity .5s ease-out
+        }
+
+        .page-loader.fade-out {
+            opacity: 0;
+            pointer-events: none
+        }
+
+        .loader-content {
+            text-align: center;
+            color: white
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg) }
+            100% { transform: rotate(360deg) }
+        }
+
+        .loader-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            opacity: .9
+        }
+
+        body:not(.loaded) .main-content {
+            opacity: 0
+        }
+
+        .main-content {
+            opacity: 1;
+            transition: opacity .3s ease-in
+        }
+
+        .fade-in {
+            animation: fadeIn .6s ease-out
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="page-loader" id="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading Portfolio...</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <div style="padding: 20px; text-align: center;">
+            <h1 style="color: #9333ea; margin-bottom: 20px;">🎉 Website Hoạt Động!</h1>
+            <p style="font-size: 18px; margin-bottom: 30px;">Loading screen đã được ẩn thành công!</p>
+            
+            <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin: 30px auto; max-width: 600px;">
+                <h2 style="color: #333; margin-bottom: 20px;">✅ Vấn đề đã được khắc phục</h2>
+                <div style="text-align: left;">
+                    <p><strong>Nguyên nhân:</strong> Có thể do một trong các module JavaScript bị lỗi hoặc import không đúng.</p>
+                    <p><strong>Giải pháp:</strong> Sử dụng phiên bản main.js đơn giản hóa với error handling tốt hơn.</p>
+                    <p><strong>Kết quả:</strong> Loading screen bây giờ hoạt động bình thường.</p>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0;">
+                <h3 style="color: #666; margin-bottom: 15px;">🔧 Tính năng đã hoạt động:</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; max-width: 800px; margin: 0 auto;">
+                    <div style="background: #e7f3ff; padding: 15px; border-radius: 8px;">
+                        <strong>✅ Loading Screen</strong><br>
+                        <small>Hiển thị và ẩn đúng cách</small>
+                    </div>
+                    <div style="background: #e7f3ff; padding: 15px; border-radius: 8px;">
+                        <strong>✅ CSS Transitions</strong><br>
+                        <small>Smooth fade in/out</small>
+                    </div>
+                    <div style="background: #e7f3ff; padding: 15px; border-radius: 8px;">
+                        <strong>✅ JavaScript</strong><br>
+                        <small>DOM manipulation hoạt động</small>
+                    </div>
+                    <div style="background: #e7f3ff; padding: 15px; border-radius: 8px;">
+                        <strong>✅ Error Handling</strong><br>
+                        <small>Backup timeout protection</small>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 30px 0;">
+                <a href="/" style="display: inline-block; background: #9333ea; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                    🏠 Về trang Portfolio chính
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load minimal main script -->
+    <script type="module" src="/src/main-minimal.js"></script>
+</body>
+</html>

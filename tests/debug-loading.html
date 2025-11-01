@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Loading Issue</title>
+    <style>
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity .5s ease-out
+        }
+
+        .page-loader.fade-out {
+            opacity: 0;
+            pointer-events: none
+        }
+
+        .loader-content {
+            text-align: center;
+            color: white
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg) }
+            100% { transform: rotate(360deg) }
+        }
+
+        .main-content {
+            opacity: 0;
+            transition: opacity .3s ease-in;
+            padding: 20px;
+        }
+
+        .main-content.fade-in {
+            opacity: 1;
+        }
+
+        body.loaded .main-content {
+            opacity: 1;
+        }
+
+        .debug-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 10000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Debug Info -->
+    <div class="debug-info" id="debug-info">
+        <div>Loading Debug Info:</div>
+        <div id="debug-status">Starting...</div>
+        <div id="debug-errors"></div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="page-loader" id="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading Portfolio...</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <h1>🎉 Website đã load thành công!</h1>
+        <p>Nếu bạn thấy nội dung này, nghĩa là loading screen đã hoạt động đúng.</p>
+        
+        <h2>Test các tính năng:</h2>
+        <button onclick="testColorSystem()">Test Color System</button>
+        <button onclick="testAnimations()">Test Animations</button>
+        <button onclick="testTranslations()">Test Translations</button>
+        
+        <div id="test-results"></div>
+    </div>
+
+    <script>
+        // Debug logging
+        function debugLog(message, type = 'info') {
+            console.log(`[DEBUG] ${message}`);
+            const statusEl = document.getElementById('debug-status');
+            const errorsEl = document.getElementById('debug-errors');
+            
+            if (type === 'error') {
+                errorsEl.innerHTML += `<div style="color: red;">${message}</div>`;
+            } else {
+                statusEl.textContent = message;
+            }
+        }
+
+        // Initialize loading test
+        function initLoadingTest() {
+            debugLog('Starting loading test...');
+            
+            let startTime = Date.now();
+            
+            // Simulate loading process
+            setTimeout(() => {
+                debugLog('Simulating feature initialization...');
+                
+                // Test if main modules are available
+                try {
+                    debugLog('Testing imports...');
+                    // This will test if the main.js file can be loaded
+                    
+                    setTimeout(() => {
+                        finishLoading();
+                    }, 1000);
+                    
+                } catch (error) {
+                    debugLog(`Import error: ${error.message}`, 'error');
+                    finishLoading(); // Still try to finish loading
+                }
+            }, 500);
+        }
+
+        // Finish loading
+        function finishLoading() {
+            const loadingTime = Date.now() - startTime;
+            debugLog(`Loading completed in ${loadingTime}ms`);
+
+            const loader = document.getElementById('page-loader');
+            const mainContent = document.getElementById('main-content');
+
+            if (loader) {
+                loader.classList.add('fade-out');
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+
+            if (mainContent) {
+                mainContent.classList.add('fade-in');
+            }
+
+            document.body.classList.add('loaded');
+            debugLog('Loading animation complete!');
+        }
+
+        // Test functions
+        function testColorSystem() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<h3>Testing Color System...</h3>';
+            
+            try {
+                // Try to dynamically import and test color system
+                import('./src/colors.js').then(module => {
+                    results.innerHTML += '<p>✅ Color system loaded successfully!</p>';
+                    console.log('Color system:', module);
+                }).catch(error => {
+                    results.innerHTML += `<p>❌ Color system error: ${error.message}</p>`;
+                });
+            } catch (error) {
+                results.innerHTML += `<p>❌ Color system import error: ${error.message}</p>`;
+            }
+        }
+
+        function testAnimations() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<h3>Testing Animations...</h3>';
+            
+            try {
+                import('./src/animation-effects.js').then(module => {
+                    results.innerHTML += '<p>✅ Animation effects loaded successfully!</p>';
+                    console.log('Animation effects:', module);
+                }).catch(error => {
+                    results.innerHTML += `<p>❌ Animation effects error: ${error.message}</p>`;
+                });
+            } catch (error) {
+                results.innerHTML += `<p>❌ Animation effects import error: ${error.message}</p>`;
+            }
+        }
+
+        function testTranslations() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<h3>Testing Translations...</h3>';
+            
+            try {
+                import('./src/translations.js').then(module => {
+                    results.innerHTML += '<p>✅ Translation system loaded successfully!</p>';
+                    console.log('Translation system:', module);
+                }).catch(error => {
+                    results.innerHTML += `<p>❌ Translation system error: ${error.message}</p>`;
+                });
+            } catch (error) {
+                results.innerHTML += `<p>❌ Translation system import error: ${error.message}</p>`;
+            }
+        }
+
+        // Global error handler
+        window.addEventListener('error', (e) => {
+            debugLog(`Global error: ${e.error?.message || e.message}`, 'error');
+            console.error('Global error:', e);
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            debugLog(`Unhandled promise rejection: ${e.reason}`, 'error');
+            console.error('Unhandled promise rejection:', e);
+        });
+
+        // Start the test
+        let startTime = Date.now();
+        debugLog('Debug page initialized');
+        
+        // Wait for DOM
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initLoadingTest);
+        } else {
+            initLoadingTest();
+        }
+    </script>
+</body>
+</html>

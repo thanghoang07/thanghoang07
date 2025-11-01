@@ -4,6 +4,7 @@
  */
 
 import { DOMUtils } from './utils.js';
+import { colorSystem, getGradient, getRandomAnimationColor } from './colors.js';
 
 // Animation configuration
 const ANIMATION_CONFIG = {
@@ -196,9 +197,9 @@ export class ScrollEffects {
       top: 0;
       left: 0;
       height: 4px;
-      background: linear-gradient(90deg, #9333ea, #a855f7);
+      background: ${getGradient('secondary')};
       border-radius: 0 0 2px 2px;
-      box-shadow: 0 2px 10px rgba(147, 51, 234, 0.3);
+      box-shadow: 0 2px 10px ${colorSystem.getColor('primary', 600)}33;
       z-index: 10001;
       width: 0%;
       transition: width 0.1s ease;
@@ -230,7 +231,7 @@ export class ScrollEffects {
 export class FloatingShapes {
   constructor() {
     this.shapes = [];
-    this.colors = ['#9333ea', '#7c3aed', '#a855f7', '#c084fc', '#e879f9'];
+    this.colors = colorSystem.colorPalettes.animation.floatingShapes;
     this.shapeTypes = ['circle', 'square', 'triangle', 'hexagon'];
   }
 
@@ -322,15 +323,16 @@ export class FloatingShapes {
 
   addGradientOverlay(container) {
     const overlay = document.createElement('div');
+    const overlayColors = colorSystem.colorPalettes.animation.floatingOverlay;
     overlay.style.cssText = `
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 30% 40%, rgba(147, 51, 234, 0.03) 0%, transparent 70%),
-                  radial-gradient(circle at 80% 60%, rgba(124, 58, 237, 0.02) 0%, transparent 60%),
-                  radial-gradient(circle at 60% 20%, rgba(168, 85, 247, 0.02) 0%, transparent 50%);
+      background: radial-gradient(circle at 30% 40%, ${overlayColors.gradient1} 0%, transparent 70%),
+                  radial-gradient(circle at 80% 60%, ${overlayColors.gradient2} 0%, transparent 60%),
+                  radial-gradient(circle at 60% 20%, ${overlayColors.gradient3} 0%, transparent 50%);
       pointer-events: none;
     `;
     container.appendChild(overlay);
@@ -417,7 +419,7 @@ export class MicroInteractions {
       top: ${event.clientY - rect.top - radius}px;
       position: absolute;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
+      background: ${colorSystem.colorPalettes.animation.ripple};
       pointer-events: none;
       animation: ripple ${ANIMATION_CONFIG.RIPPLE_DURATION}ms linear;
     `;
@@ -504,7 +506,7 @@ export function addTypingEffect() {
 
   const text = heroName.textContent;
   heroName.textContent = '';
-  heroName.style.borderRight = '2px solid #9333ea';
+  heroName.style.borderRight = `2px solid ${colorSystem.getColor('primary', 600)}`;
 
   let i = 0;
 

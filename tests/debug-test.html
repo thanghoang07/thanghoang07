@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Loading Test</title>
+    
+    <!-- Critical CSS inline -->
+    <style>
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity .5s ease-out
+        }
+
+        .page-loader.fade-out {
+            opacity: 0;
+            pointer-events: none
+        }
+
+        .loader-content {
+            text-align: center;
+            color: white
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg) }
+            100% { transform: rotate(360deg) }
+        }
+
+        .loader-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            opacity: .9
+        }
+
+        body:not(.loaded) .main-content {
+            opacity: 0
+        }
+
+        .main-content {
+            opacity: 1;
+            transition: opacity .3s ease-in;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .fade-in {
+            animation: fadeIn .6s ease-out
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .debug-console {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 400px;
+            height: 300px;
+            background: rgba(0,0,0,0.9);
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            overflow-y: auto;
+            z-index: 10000;
+            border: 1px solid #333;
+        }
+
+        .debug-header {
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <!-- Debug Console -->
+    <div class="debug-console" id="debug-console">
+        <div class="debug-header">🔍 Debug Console</div>
+        <div id="debug-output">Initializing...</div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="page-loader" id="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading Portfolio...</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <div class="success-message">
+            <h1>🎉 Website đã load thành công!</h1>
+            <p>Nếu bạn thấy nội dung này, nghĩa là loading screen đã hoạt động đúng.</p>
+        </div>
+        
+        <h2>Hero Section Test</h2>
+        <div style="padding: 20px; background: #f8f9fa; border-radius: 8px; margin: 20px 0;">
+            <h1 style="color: #9333ea; margin-bottom: 10px;">Thang Hoang Duc.</h1>
+            <p>Front-end developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng, đam mê tạo ra sản phẩm web hiện đại và tối ưu trải nghiệm người dùng.</p>
+        </div>
+
+        <h2>Debug Controls</h2>
+        <button onclick="checkAppStatus()" style="padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Check App Status</button>
+        <button onclick="testColorSystem()" style="padding: 10px 20px; margin: 5px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Test Color System</button>
+        <button onclick="clearDebugConsole()" style="padding: 10px 20px; margin: 5px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">Clear Console</button>
+
+        <div id="test-results" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        // Capture console logs
+        const debugOutput = document.getElementById('debug-output');
+        const originalLog = console.log;
+        const originalError = console.error;
+
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            appendToDebugConsole(args.join(' '), 'log');
+        };
+
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            appendToDebugConsole(args.join(' '), 'error');
+        };
+
+        function appendToDebugConsole(message, type = 'log') {
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#ff6b6b' : '#00ff00';
+            debugOutput.innerHTML += `<div style="color: ${color};">[${timestamp}] ${message}</div>`;
+            debugOutput.scrollTop = debugOutput.scrollHeight;
+        }
+
+        function checkAppStatus() {
+            const results = document.getElementById('test-results');
+            if (window.debugApp) {
+                const status = window.debugApp.getStatus();
+                results.innerHTML = `
+                    <div style="background: #e7f3ff; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <h3>📊 App Status:</h3>
+                        <ul>
+                            <li><strong>Initialized:</strong> ${status.isInitialized ? '✅ Yes' : '❌ No'}</li>
+                            <li><strong>Loading Time:</strong> ${status.loadingTime}ms</li>
+                            <li><strong>Debug Mode:</strong> ${status.debugMode ? '✅ On' : '❌ Off'}</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                results.innerHTML = '<div style="background: #ffe6e6; padding: 15px; border-radius: 8px; color: #d63384;">❌ Debug app not available</div>';
+            }
+        }
+
+        async function testColorSystem() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<div style="background: #fff3cd; padding: 15px; border-radius: 8px;">🔄 Testing color system...</div>';
+            
+            try {
+                const colors = await import('./src/colors.js');
+                if (colors.colorSystem) {
+                    results.innerHTML = `
+                        <div style="background: #d1e7dd; padding: 15px; border-radius: 8px; color: #0f5132;">
+                            <h3>✅ Color System Test Passed!</h3>
+                            <p><strong>Color System Type:</strong> ${typeof colors.colorSystem}</p>
+                            <p><strong>Sample Color:</strong> <span style="display: inline-block; width: 20px; height: 20px; background: ${colors.getColor ? colors.getColor('primary', 600) : '#9333ea'}; margin-left: 10px; border-radius: 3px;"></span> ${colors.getColor ? colors.getColor('primary', 600) : '#9333ea'}</p>
+                        </div>
+                    `;
+                } else {
+                    results.innerHTML = '<div style="background: #f8d7da; padding: 15px; border-radius: 8px; color: #721c24;">❌ Color system not found in module</div>';
+                }
+            } catch (error) {
+                results.innerHTML = `<div style="background: #f8d7da; padding: 15px; border-radius: 8px; color: #721c24;">❌ Color system error: ${error.message}</div>`;
+            }
+        }
+
+        function clearDebugConsole() {
+            debugOutput.innerHTML = '<div style="color: #00ff00;">[Console Cleared]</div>';
+        }
+
+        // Initialize debug console
+        appendToDebugConsole('🔍 Debug console initialized', 'log');
+        appendToDebugConsole('📋 Waiting for main script...', 'log');
+    </script>
+
+    <!-- Load the debug version of main.js -->
+    <script type="module" src="/src/main-debug.js"></script>
+</body>
+</html>

@@ -3,6 +3,8 @@
  * Enhanced theme system with better UX and performance
  */
 
+import { colorSystem, getThemeColor } from './colors.js';
+
 /**
  * Theme Manager Class
  */
@@ -161,7 +163,8 @@ export class ThemeManager {
   updateMetaThemeColor(theme) {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', theme === 'dark' ? '#1e293b' : '#9333ea');
+      const themeColor = getThemeColor(theme, 'metaTheme');
+      metaThemeColor.setAttribute('content', themeColor);
     }
   }
 
