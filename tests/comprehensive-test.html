@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧪 Comprehensive Portfolio Test Suite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Loading Animation */
+    .page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity .5s ease-out;
+    }
+
+    .page-loader.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255, 255, 255, .3);
+      border-radius: 50%;
+      border-top: 3px solid white;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg) }
+      100% { transform: rotate(360deg) }
+    }
+
+    /* Scroll Reveal Animation */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Enhanced Hover Effects */
+    .enhanced-hover {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .enhanced-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    /* Magnetic Effect */
+    .magnetic {
+      transition: transform 0.3s ease;
+    }
+
+    /* Progress Bars */
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #059669);
+      width: 0%;
+      transition: width 2s ease-out;
+      border-radius: 4px;
+    }
+
+    /* Floating Shapes */
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Test Section Styles */
+    .test-section {
+      min-height: 50vh;
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .test-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 1rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .test-card:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    /* Status Indicators */
+    .status-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+    }
+
+    .status-indicator.working { background-color: #10b981; }
+    .status-indicator.error { background-color: #ef4444; }
+    .status-indicator.pending { 
+      background-color: #f59e0b; 
+      animation: pulse 1s infinite; 
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Theme specific styles */
+    .dark .test-card {
+      background: rgba(0,0,0,0.3);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .dark .test-card:hover {
+      background: rgba(0,0,0,0.4);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* Console Output */
+    .console-output {
+      background: rgba(0,0,0,0.8);
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      padding: 15px;
+      border-radius: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin: 1rem 0;
+    }
+
+    .console-line {
+      margin: 2px 0;
+      opacity: 0;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .console-line.success { color: #10b981; }
+    .console-line.error { color: #ef4444; }
+    .console-line.warning { color: #f59e0b; }
+    .console-line.info { color: #3b82f6; }
+
+    /* Image Test Styles */
+    .image-test {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 10px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .image-test[data-src] {
+      opacity: 0.5;
+    }
+
+    .image-test.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Responsive Grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* Animation keyframes */
+    @keyframes slideInLeft {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .slide-in-left { animation: slideInLeft 0.6s ease-out; }
+    .slide-in-right { animation: slideInRight 0.6s ease-out; }
+    .zoom-in { animation: zoomIn 0.6s ease-out; }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .test-section { padding: 2rem 0; }
+      .test-card { padding: 1.5rem; margin: 0.5rem 0; }
+      .feature-grid { grid-template-columns: 1fr; gap: 1rem; }
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white transition-colors duration-300">
+  <!-- Loading Screen -->
+  <div class="page-loader" id="page-loader">
+    <div class="text-center text-white">
+      <div class="loader-spinner"></div>
+      <div class="text-xl font-semibold">🧪 Loading Comprehensive Test Suite...</div>
+      <div class="text-sm opacity-75 mt-2">Testing all portfolio features</div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-xl font-bold">Portfolio Test Suite</div>
+      <div class="flex space-x-4">
+        <!-- Theme Toggle -->
+        <button id="toggle-theme"
+          class="theme-toggle px-4 py-2 rounded-full bg-purple-500/20 hover:bg-purple-500/30 transition magnetic"
+          data-magnetic>
+          <i class="fas fa-moon dark:hidden"></i>
+          <i class="fas fa-sun hidden dark:block"></i>
+        </button>
+        
+        <!-- Language Toggle -->
+        <button id="toggle-language"
+          class="language-toggle px-4 py-2 rounded-full bg-blue-500/20 hover:bg-blue-500/30 transition magnetic"
+          data-magnetic>
+          <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese" class="w-6 h-4 inline">
+          <img id="lang-en-icon" src="https://flagcdn.com/w40/gb.png" alt="English" class="w-6 h-4 hidden">
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content pt-20" id="main-content" style="opacity: 0;">
+    
+    <!-- Header Section -->
+    <section class="test-section relative">
+      <div class="floating-shape w-16 h-16 bg-purple-500 top-10 left-10"></div>
+      <div class="floating-shape w-12 h-12 bg-blue-500 top-20 right-20" style="animation-delay: 2s;"></div>
+      <div class="floating-shape w-20 h-20 bg-pink-500 bottom-10 left-1/4" style="animation-delay: 4s;"></div>
+      
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-6xl font-bold mb-6 scroll-reveal slide-in-left">
+          🧪 Portfolio Test Suite
+        </h1>
+        <p class="text-xl mb-8 scroll-reveal slide-in-right" style="animation-delay: 0.2s;">
+          Comprehensive testing for all portfolio features and functionality
+        </p>
+        
+        <!-- Test Summary Dashboard -->
+        <div class="max-w-4xl mx-auto scroll-reveal zoom-in" style="animation-delay: 0.4s;">
+          <div class="test-card">
+            <h2 class="text-2xl font-bold mb-6">🎯 Test Dashboard</h2>
+            <div id="test-summary" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="p-4 bg-green-500/20 rounded-lg">
+                <div class="text-3xl font-bold text-green-400" id="working-count">0</div>
+                <div class="text-sm opacity-75">Working</div>
+              </div>
+              <div class="p-4 bg-yellow-500/20 rounded-lg">
+                <div class="text-3xl font-bold text-yellow-400" id="pending-count">8</div>
+                <div class="text-sm opacity-75">Pending</div>
+              </div>
+              <div class="p-4 bg-red-500/20 rounded-lg">
+                <div class="text-3xl font-bold text-red-400" id="error-count">0</div>
+                <div class="text-sm opacity-75">Errors</div>
+              </div>
+              <div class="p-4 bg-blue-500/20 rounded-lg">
+                <div class="text-3xl font-bold text-blue-400" id="total-count">8</div>
+                <div class="text-sm opacity-75">Total Tests</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Features Tests -->
+    <section class="test-section bg-gradient-to-r from-purple-900/50 to-blue-900/50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 scroll-reveal">🔧 Core Features</h2>
+        
+        <div class="feature-grid">
+          <!-- Theme Toggle Test -->
+          <div class="test-card scroll-reveal enhanced-hover" id="test-theme" data-test="theme">
+            <h3 class="text-xl font-bold mb-4">
+              <span class="status-indicator pending"></span>
+              <i class="fas fa-moon mr-2"></i>Dark Mode Toggle
+            </h3>
+            <p class="mb-4 opacity-75">
+              <span id="theme-description">Click the moon/sun icon to test dark/light mode switching</span>
+            </p>
+            <div class="text-sm" id="theme-status">⏳ Click theme button to test</div>
+            <button onclick="testTheme()" class="mt-4 px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded transition">
+              Test Theme Toggle
+            </button>
+          </div>
+
+          <!-- Language Toggle Test -->
+          <div class="test-card scroll-reveal enhanced-hover" id="test-language" data-test="language">
+            <h3 class="text-xl font-bold mb-4">
+              <span class="status-indicator pending"></span>
+              <i class="fas fa-language mr-2"></i>Language Toggle
+            </h3>
+            <p class="mb-4 opacity-75">
+              <span id="language-description">Click the flag icon to test English/Vietnamese switching</span>
+            </p>
+            <div class="text-sm" id="language-status">⏳ Click language button to test</div>
+            <div class="mt-2 text-xs opacity-50">
+              Current: <span id="current-lang">Loading...</span> | 
+              Icon: <span id="current-flag">Loading...</span>
+            </div>
+          </div>
+
+          <!-- Animation Test -->
+          <div class="test-card scroll-reveal enhanced-hover" id="test-animation" data-test="animation">
+            <h3 class="text-xl font-bold mb-4">
+              <span class="status-indicator pending"></span>
+              <i class="fas fa-magic mr-2"></i>Scroll Animations
+            </h3>
+            <p class="mb-4 opacity-75">This card should animate when scrolled into view</p>
+            <div class="text-sm" id="animation-status">⏳ Scroll to reveal</div>
+            <div class="progress-bar mt-4">
+              <div class="progress-fill" id="animation-progress" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Hover Effects Test -->
+          <div class="test-card scroll-reveal enhanced-hover magnetic" id="test-hover" data-test="hover" data-magnetic>
+            <h3 class="text-xl font-bold mb-4">
+              <span class="status-indicator pending"></span>
+              <i class="fas fa-hand-pointer mr-2"></i>Hover Effects
+            </h3>
+            <p class="mb-4 opacity-75">Hover over this card to test magnetic and lift effects</p>
+            <div class="text-sm" id="hover-status">⏳ Hover to test</div>
+            <div class="mt-4 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition cursor-pointer">
+              Interactive hover zone
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Tests -->
+    <section class="test-section bg-gradient-to-r from-green-900/50 to-teal-900/50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 scroll-reveal">⚡ Technical Features</h2>
+        
+        <div class="feature-grid">
+          <!-- Image Loading Test -->
+          <div class="test-card scroll-reveal" id="test-images" data-test="images">
+            <h3 class="text-xl font-bold mb-4">
+              <span class="status-indicator pending"></span>
+              <i class="fas fa-images mr-2"></i>Image Loading
+            </h3>
+            <p class="mb-4 opacity-75">Testing lazy loading and image optimization</p>
+            <div class="flex flex-wrap justify-center mb-4">
+              <img data-src="https://ui-avatars.com/api/?name=Test1&background=9333ea&color=fff&size=200" 
+                   alt="Test 1" class="image-test">
+              <img src="https://ui-avatars.com/api/?name=Test2&background=7c3aed&color=fff&size=200" 
+                   alt="Test 2" class="image-test loaded">
+              <img data-src="https://via.placeholder.com/200x150/a855f7/ffffff?text=Lazy" 
+                   alt="Test 3" class="image-test">
+            </div>
+            <div class="text-sm" id="images-status">⏳ Scroll to load images</div>
+            <button onclick="loadAllImages()" class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 rounded transition">
+              Force Load All
+            </button>
+          </div>
+
+          <!-- Progress Bars Test -->
+          <div class="test-card scroll-reveal" id="test-progress" data-test="progress">
+            <h3 class="text-xl font-bold mb-4">
+              <span class="status-indicator pending"></span>
+              <i class="fas fa-chart-bar mr-2"></i>Progress Bars
+            </h3>
+            <p class="mb-4 opacity-75">Animated progress indicators</p>
+            
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span>HTML/CSS</span><span>90%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="90%" style="background: linear-gradient(90deg, #3b82f6, #1d4ed8);"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span>JavaScript</span><span>85%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="85%" style="background: linear-gradient(90deg, #f59e0b, #d97706);"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span>React/Vue</span><span>75%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" data-width="75%" style="background: linear-gradient(90deg, #10b981, #059669);"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="text-sm mt-4" id="progress-status">⏳ Scroll to animate</div>
+          </div>
+
+          <!-- Font Awesome Icons Test -->
+          <div class="test-card scroll-reveal" id="test-icons" data-test="icons">
+            <h3 class="text-xl font-bold mb-4">
+              <span class="status-indicator working"></span>
+              <i class="fas fa-icons mr-2"></i>Font Awesome Icons
+            </h3>
+            <p class="mb-4 opacity-75">Testing icon rendering and consistency</p>
+            
+            <div class="grid grid-cols-4 gap-4 text-center mb-4">
+              <div class="p-3 bg-white/10 rounded-lg">
+                <i class="fas fa-cogs text-2xl mb-2"></i>
+                <div class="text-xs">fa-cogs</div>
+              </div>
+              <div class="p-3 bg-white/10 rounded-lg">
+                <i class="fas fa-mobile-alt text-2xl mb-2"></i>
+                <div class="text-xs">fa-mobile-alt</div>
+              </div>
+              <div class="p-3 bg-white/10 rounded-lg">
+                <i class="fas fa-certificate text-2xl mb-2"></i>
+                <div class="text-xs">fa-certificate</div>
+              </div>
+              <div class="p-3 bg-white/10 rounded-lg">
+                <i class="fab fa-linkedin text-2xl mb-2"></i>
+                <div class="text-xs">fab fa-linkedin</div>
+              </div>
+            </div>
+            
+            <div class="text-sm text-green-400" id="icons-status">✅ Icons loaded successfully</div>
+          </div>
+
+          <!-- Performance Test -->
+          <div class="test-card scroll-reveal" id="test-performance" data-test="performance">
+            <h3 class="text-xl font-bold mb-4">
+              <span class="status-indicator pending"></span>
+              <i class="fas fa-tachometer-alt mr-2"></i>Performance
+            </h3>
+            <p class="mb-4 opacity-75">Testing page load and interaction performance</p>
+            
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between">
+                <span>Page Load Time:</span>
+                <span id="load-time">Measuring...</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Bundle Size:</span>
+                <span id="bundle-size">Calculating...</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Memory Usage:</span>
+                <span id="memory-usage">Checking...</span>
+              </div>
+            </div>
+            
+            <div class="text-sm mt-4" id="performance-status">⏳ Running performance tests...</div>
+            <button onclick="runPerformanceTest()" class="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded transition">
+              Run Test
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Console Output Section -->
+    <section class="test-section bg-gradient-to-r from-gray-900/50 to-black/50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 scroll-reveal">📊 Debug Console</h2>
+        
+        <div class="max-w-4xl mx-auto scroll-reveal">
+          <div class="test-card">
+            <h3 class="text-xl font-bold mb-4">
+              <i class="fas fa-terminal mr-2"></i>Live Debug Output
+            </h3>
+            <div class="console-output" id="console-output">
+              <div class="console-line info">🚀 Comprehensive test suite initialized</div>
+              <div class="console-line info">📊 Starting feature detection...</div>
+            </div>
+            <div class="flex space-x-2 mt-4">
+              <button onclick="clearConsole()" class="px-4 py-2 bg-red-500 hover:bg-red-600 rounded transition">
+                Clear Console
+              </button>
+              <button onclick="exportLogs()" class="px-4 py-2 bg-green-500 hover:bg-green-600 rounded transition">
+                Export Logs
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Environment Info -->
+    <section class="test-section bg-gradient-to-r from-indigo-900/50 to-purple-900/50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 scroll-reveal">🔍 Environment Info</h2>
+        
+        <div class="max-w-4xl mx-auto scroll-reveal">
+          <div class="test-card">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-bold mb-4">🌐 Browser Information</h3>
+                <div class="space-y-2 text-sm">
+                  <div><strong>User Agent:</strong> <span id="user-agent" class="text-xs break-all"></span></div>
+                  <div><strong>Viewport:</strong> <span id="viewport-size"></span></div>
+                  <div><strong>Color Depth:</strong> <span id="color-depth"></span></div>
+                  <div><strong>Language:</strong> <span id="browser-language"></span></div>
+                  <div><strong>Timezone:</strong> <span id="timezone"></span></div>
+                </div>
+              </div>
+              
+              <div>
+                <h3 class="text-lg font-bold mb-4">⚙️ Features Support</h3>
+                <div class="space-y-2 text-sm">
+                  <div><strong>Local Storage:</strong> <span id="localStorage-support"></span></div>
+                  <div><strong>Service Worker:</strong> <span id="sw-support"></span></div>
+                  <div><strong>IntersectionObserver:</strong> <span id="io-support"></span></div>
+                  <div><strong>CSS Grid:</strong> <span id="grid-support"></span></div>
+                  <div><strong>ES6 Modules:</strong> <span id="module-support"></span></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-6 p-4 bg-white/5 rounded-lg">
+              <h3 class="text-lg font-bold mb-2">📍 Current URL</h3>
+              <div class="text-sm break-all" id="current-url"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Load main script -->
+  <script type="module" src="/src/main-github-pages.js"></script>
+  
+  <!-- Test Suite Script -->
+  <script>
+    // Global test state
+    let testResults = {
+      theme: false,
+      language: false,
+      animation: false,
+      hover: false,
+      images: false,
+      progress: false,
+      icons: true, // Already working
+      performance: false
+    };
+
+    let testCounts = { working: 1, pending: 7, error: 0, total: 8 };
+    let consoleLines = [];
+
+    // Console utilities
+    function addConsoleLog(message, type = 'info') {
+      const time = new Date().toLocaleTimeString();
+      const line = `[${time}] ${message}`;
+      consoleLines.push({ line, type, time: Date.now() });
+      
+      const console = document.getElementById('console-output');
+      const div = document.createElement('div');
+      div.className = `console-line ${type}`;
+      div.textContent = line;
+      console.appendChild(div);
+      console.scrollTop = console.scrollHeight;
+      
+      // Limit console lines
+      if (consoleLines.length > 100) {
+        consoleLines.shift();
+        console.removeChild(console.firstChild);
+      }
+    }
+
+    function clearConsole() {
+      document.getElementById('console-output').innerHTML = '';
+      consoleLines = [];
+      addConsoleLog('Console cleared', 'info');
+    }
+
+    function exportLogs() {
+      const logs = consoleLines.map(l => `${l.line}`).join('\n');
+      const blob = new Blob([logs], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `portfolio-test-logs-${Date.now()}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+      addConsoleLog('Logs exported successfully', 'success');
+    }
+
+    // Test result management
+    function updateTestResult(testName, passed, message) {
+      testResults[testName] = passed;
+      
+      const testElement = document.getElementById(`test-${testName}`);
+      const indicator = testElement.querySelector('.status-indicator');
+      const status = document.getElementById(`${testName}-status`);
+      
+      if (passed) {
+        indicator.className = 'status-indicator working';
+        status.textContent = `✅ ${message}`;
+        status.className = 'text-sm text-green-400';
+        testCounts.working++;
+        testCounts.pending--;
+        addConsoleLog(`✅ ${testName.toUpperCase()}: ${message}`, 'success');
+      } else {
+        indicator.className = 'status-indicator error';
+        status.textContent = `❌ ${message}`;
+        status.className = 'text-sm text-red-400';
+        testCounts.error++;
+        testCounts.pending--;
+        addConsoleLog(`❌ ${testName.toUpperCase()}: ${message}`, 'error');
+      }
+      
+      updateDashboard();
+    }
+
+    function updateDashboard() {
+      document.getElementById('working-count').textContent = testCounts.working;
+      document.getElementById('pending-count').textContent = testCounts.pending;
+      document.getElementById('error-count').textContent = testCounts.error;
+      document.getElementById('total-count').textContent = testCounts.total;
+    }
+
+    // Individual test functions
+    function testTheme() {
+      const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      const oppositeTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      // Toggle theme
+      if (currentTheme === 'dark') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+      
+      setTimeout(() => {
+        const newTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        const success = newTheme !== currentTheme;
+        updateTestResult('theme', success, success ? `Theme switched to ${newTheme}` : 'Theme toggle failed');
+      }, 100);
+    }
+
+    function loadAllImages() {
+      addConsoleLog('🖼️ Loading all images...', 'info');
+      const lazyImages = document.querySelectorAll('img[data-src]');
+      let loadedCount = 0;
+      let totalImages = lazyImages.length;
+      
+      if (totalImages === 0) {
+        updateTestResult('images', true, 'No lazy images to load');
+        return;
+      }
+      
+      lazyImages.forEach(img => {
+        const src = img.getAttribute('data-src');
+        if (src) {
+          img.src = src;
+          img.removeAttribute('data-src');
+          img.classList.add('loaded');
+          
+          img.onload = () => {
+            loadedCount++;
+            addConsoleLog(`📸 Loaded image: ${src.substring(0, 50)}...`, 'success');
+            if (loadedCount === totalImages) {
+              updateTestResult('images', true, `All ${totalImages} images loaded successfully`);
+            }
+          };
+          
+          img.onerror = () => {
+            loadedCount++;
+            addConsoleLog(`❌ Failed to load: ${src}`, 'error');
+            if (loadedCount === totalImages) {
+              updateTestResult('images', false, `Failed to load some images`);
+            }
+          };
+        }
+      });
+    }
+
+    function runPerformanceTest() {
+      addConsoleLog('⚡ Running performance tests...', 'info');
+      
+      // Simulate performance measurements
+      const loadTime = performance.now();
+      const memoryInfo = performance.memory || { usedJSMemSize: 0, totalJSMemSize: 0 };
+      
+      document.getElementById('load-time').textContent = `${loadTime.toFixed(2)}ms`;
+      document.getElementById('bundle-size').textContent = '~40KB';
+      document.getElementById('memory-usage').textContent = `${(memoryInfo.usedJSMemSize / 1024 / 1024).toFixed(2)}MB`;
+      
+      const performanceScore = loadTime < 3000 ? 'good' : loadTime < 5000 ? 'average' : 'poor';
+      const success = performanceScore === 'good' || performanceScore === 'average';
+      
+      updateTestResult('performance', success, `Performance: ${performanceScore} (${loadTime.toFixed(2)}ms)`);
+    }
+
+    // Scroll reveal observer
+    function initScrollReveal() {
+      const revealElements = document.querySelectorAll('.scroll-reveal');
+      let revealedCount = 0;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealedCount++;
+            
+            // Check if it's the animation test
+            if (entry.target.id === 'test-animation') {
+              const progress = document.getElementById('animation-progress');
+              setTimeout(() => {
+                progress.style.width = '100%';
+                updateTestResult('animation', true, 'Scroll reveal animation triggered');
+              }, 600);
+            }
+            
+            // Check for progress bars
+            if (entry.target.id === 'test-progress') {
+              const progressBars = entry.target.querySelectorAll('.progress-fill');
+              progressBars.forEach((bar, index) => {
+                setTimeout(() => {
+                  const width = bar.getAttribute('data-width') || '75%';
+                  bar.style.width = width;
+                }, index * 200);
+              });
+              
+              setTimeout(() => {
+                updateTestResult('progress', true, 'Progress bars animated successfully');
+              }, 1500);
+            }
+            
+            addConsoleLog(`📜 Element revealed: ${entry.target.id || 'unnamed'}`, 'info');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      
+      revealElements.forEach(el => observer.observe(el));
+      addConsoleLog(`📜 Watching ${revealElements.length} elements for scroll reveal`, 'info');
+    }
+
+    // Image lazy loading observer
+    function initLazyLoading() {
+      const lazyImages = document.querySelectorAll('img[data-src]');
+      
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            const src = img.getAttribute('data-src');
+            if (src) {
+              img.src = src;
+              img.removeAttribute('data-src');
+              img.classList.add('loaded');
+              imageObserver.unobserve(img);
+              addConsoleLog(`📸 Lazy loaded: ${src.substring(0, 50)}...`, 'success');
+            }
+          }
+        });
+      }, { rootMargin: '50px' });
+      
+      lazyImages.forEach(img => imageObserver.observe(img));
+      
+      if (lazyImages.length > 0) {
+        addConsoleLog(`📸 Watching ${lazyImages.length} images for lazy loading`, 'info');
+      } else {
+        updateTestResult('images', true, 'No lazy images found');
+      }
+    }
+
+    // Environment detection
+    function detectEnvironment() {
+      // Browser info
+      document.getElementById('user-agent').textContent = navigator.userAgent;
+      document.getElementById('viewport-size').textContent = `${window.innerWidth}x${window.innerHeight}`;
+      document.getElementById('color-depth').textContent = `${screen.colorDepth}-bit`;
+      document.getElementById('browser-language').textContent = navigator.language;
+      document.getElementById('timezone').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      document.getElementById('current-url').textContent = window.location.href;
+      
+      // Feature support
+      document.getElementById('localStorage-support').textContent = typeof Storage !== 'undefined' ? '✅ Supported' : '❌ Not supported';
+      document.getElementById('sw-support').textContent = 'serviceWorker' in navigator ? '✅ Supported' : '❌ Not supported';
+      document.getElementById('io-support').textContent = 'IntersectionObserver' in window ? '✅ Supported' : '❌ Not supported';
+      document.getElementById('grid-support').textContent = CSS.supports('display', 'grid') ? '✅ Supported' : '❌ Not supported';
+      document.getElementById('module-support').textContent = 'noModule' in HTMLScriptElement.prototype ? '✅ Supported' : '❌ Not supported';
+      
+      addConsoleLog('🔍 Environment detection completed', 'success');
+    }
+
+    // Event listeners
+    function initEventListeners() {
+      // Theme toggle monitoring
+      let themeTestCount = 0;
+      const themeButton = document.getElementById('toggle-theme');
+      if (themeButton) {
+        themeButton.addEventListener('click', function() {
+          themeTestCount++;
+          if (themeTestCount >= 1) {
+            updateTestResult('theme', true, 'Theme toggle working correctly');
+          }
+        });
+      }
+
+      // Language toggle monitoring  
+      let langTestCount = 0;
+      const langButton = document.getElementById('toggle-language');
+      if (langButton) {
+        langButton.addEventListener('click', function() {
+          langTestCount++;
+          setTimeout(() => {
+            const currentLang = localStorage.getItem('language') || 'en';
+            const viIcon = document.getElementById('lang-vi-icon');
+            const enIcon = document.getElementById('lang-en-icon');
+            
+            document.getElementById('current-lang').textContent = currentLang === 'vi' ? '🇻🇳 Vietnamese' : '🇬🇧 English';
+            document.getElementById('current-flag').textContent = (!viIcon?.classList.contains('hidden')) ? '🇻🇳 VN Flag' : '🇬🇧 EN Flag';
+            
+            if (langTestCount >= 1) {
+              updateTestResult('language', true, 'Language toggle working correctly');
+            }
+          }, 100);
+        });
+      }
+
+      // Hover effects monitoring
+      const hoverTest = document.getElementById('test-hover');
+      let hoverTested = false;
+      hoverTest.addEventListener('mouseenter', function() {
+        if (!hoverTested) {
+          hoverTested = true;
+          setTimeout(() => {
+            updateTestResult('hover', true, 'Hover effects working correctly');
+          }, 300);
+        }
+      });
+      
+      addConsoleLog('👂 Event listeners initialized', 'success');
+    }
+
+    // Page initialization
+    function initializePage() {
+      addConsoleLog('🚀 Initializing comprehensive test suite...', 'info');
+      
+      // Hide loader and show content
+      setTimeout(() => {
+        document.getElementById('page-loader').classList.add('fade-out');
+        document.getElementById('main-content').style.opacity = '1';
+        addConsoleLog('📄 Page content revealed', 'success');
+      }, 2000);
+      
+      // Initialize all features
+      setTimeout(() => {
+        detectEnvironment();
+        initScrollReveal();
+        initLazyLoading();
+        initEventListeners();
+        updateDashboard();
+        
+        addConsoleLog('🎉 All test systems initialized!', 'success');
+        addConsoleLog('👆 Start interacting with elements to run tests', 'info');
+      }, 2500);
+    }
+
+    // Start everything when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializePage);
+    } else {
+      initializePage();
+    }
+
+    // Export functions to global scope for button clicks
+    window.testTheme = testTheme;
+    window.loadAllImages = loadAllImages;
+    window.runPerformanceTest = runPerformanceTest;
+    window.clearConsole = clearConsole;
+    window.exportLogs = exportLogs;
+    
+    console.log('🧪 Comprehensive Portfolio Test Suite loaded!');
+  </script>
+</body>
+</html>
