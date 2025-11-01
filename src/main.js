@@ -4,11 +4,18 @@
  */
 
 import './style.css'
+import { DOMUtils, PerformanceUtils } from './utils.js'
 
 console.log('🚀 Main.js loaded');
 
 // Initialize loading screen management
 initLoadingScreen();
+
+// Initialize performance optimizations
+PerformanceUtils.optimizeImages();
+
+// Initialize lazy loading
+DOMUtils.lazyLoad('img[data-src], [data-lazy]');
 
 // Wait for DOM to be ready
 document.addEventListener('DOMContentLoaded', () => {
