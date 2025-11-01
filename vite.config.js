@@ -1,4 +1,6 @@
 import { defineConfig } from 'vite'
+import { copyFileSync, existsSync, mkdirSync, readdirSync, statSync } from 'fs'
+import { join } from 'path'
 
 export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/thanghoang07/' : '/',
@@ -35,6 +37,42 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 1000
   },
+  plugins: [
+    {
+      name: 'copy-tests',
+      closeBundle() {
+        // Copy tests folder to dist after build
+        const testsDir = 'tests'
+        const distTestsDir = 'dist/tests'
+        
+        if (existsSync(testsDir)) {
+          if (!existsSync(distTestsDir)) {
+            mkdirSync(distTestsDir, { recursive: true })
+          }
+          
+          const copyDir = (src, dest) => {
+            const files = readdirSync(src)
+            files.forEach(file => {
+              const srcPath = join(src, file)
+              const destPath = join(dest, file)
+              
+              if (statSync(srcPath).isDirectory()) {
+                if (!existsSync(destPath)) {
+                  mkdirSync(destPath, { recursive: true })
+                }
+                copyDir(srcPath, destPath)
+              } else {
+                copyFileSync(srcPath, destPath)
+              }
+            })
+          }
+          
+          copyDir(testsDir, distTestsDir)
+          console.log('✅ Tests folder copied to dist/')
+        }
+      }
+    }
+  ],
   server: {
     open: true
   },

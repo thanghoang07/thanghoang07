@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Pages Directory - Thang Hoang Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    
+    .category-icon {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-5xl font-bold text-white mb-4">
+          🧪 Test Pages Directory
+        </h1>
+        <p class="text-xl text-white/80 mb-6">
+          Portfolio Development & Testing Suite
+        </p>
+        <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 text-white">
+          <i class="fas fa-home mr-2"></i>
+          <a href="../index.html" class="hover:text-blue-200 transition-colors">
+            ← Back to Main Portfolio
+          </a>
+        </div>
+      </div>
+
+      <!-- Test Categories -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Core Functionality Tests -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-cogs text-3xl category-icon mr-3"></i>
+            <h2 class="text-2xl font-bold text-white">Core Features</h2>
+          </div>
+          <div class="space-y-3">
+            <a href="./github-pages-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-globe mr-2"></i>GitHub Pages Test
+            </a>
+            <a href="./feature-check.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-check-circle mr-2"></i>Feature Check
+            </a>
+            <a href="./debug-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-bug mr-2"></i>Debug Test
+            </a>
+            <a href="./module-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-cubes mr-2"></i>Module Test
+            </a>
+          </div>
+        </div>
+
+        <!-- Language & Navigation -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-language text-3xl category-icon mr-3"></i>
+            <h2 class="text-2xl font-bold text-white">Language & Nav</h2>
+          </div>
+          <div class="space-y-3">
+            <a href="./language-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-globe-americas mr-2"></i>Language Test
+            </a>
+            <a href="./language-logic-fix-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-flag mr-2"></i>Language Logic Fix
+            </a>
+            <a href="./nav-translation-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-bars mr-2"></i>Navigation Translation
+            </a>
+          </div>
+        </div>
+
+        <!-- UI/UX Components -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-palette text-3xl category-icon mr-3"></i>
+            <h2 class="text-2xl font-bold text-white">UI/UX</h2>
+          </div>
+          <div class="space-y-3">
+            <a href="./font-awesome-icons-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-icons mr-2"></i>Font Awesome Icons
+            </a>
+            <a href="./color-demo.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-paint-brush mr-2"></i>Color Demo
+            </a>
+            <a href="./animation-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-magic mr-2"></i>Animation Test
+            </a>
+            <a href="./image-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-images mr-2"></i>Image Test
+            </a>
+          </div>
+        </div>
+
+        <!-- Architecture & Performance -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-sitemap text-3xl category-icon mr-3"></i>
+            <h2 class="text-2xl font-bold text-white">Architecture</h2>
+          </div>
+          <div class="space-y-3">
+            <a href="./architecture-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-project-diagram mr-2"></i>Architecture Test
+            </a>
+            <a href="./pwa-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-mobile-alt mr-2"></i>PWA Test
+            </a>
+            <a href="./debug-loading.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-spinner mr-2"></i>Loading Debug
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Tests -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-bolt text-3xl category-icon mr-3"></i>
+            <h2 class="text-2xl font-bold text-white">Quick Tests</h2>
+          </div>
+          <div class="space-y-3">
+            <a href="./quick-test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-zap mr-2"></i>Quick Test
+            </a>
+            <a href="./test.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-flask mr-2"></i>Basic Test
+            </a>
+            <a href="./working-version.html" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-check-double mr-2"></i>Working Version
+            </a>
+          </div>
+        </div>
+
+        <!-- Documentation -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-book text-3xl category-icon mr-3"></i>
+            <h2 class="text-2xl font-bold text-white">Documentation</h2>
+          </div>
+          <div class="space-y-3">
+            <a href="./README.md" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-readme mr-2"></i>README
+            </a>
+            <a href="../README.md" class="block bg-white/20 hover:bg-white/30 rounded-lg p-3 text-white transition-colors">
+              <i class="fas fa-file-alt mr-2"></i>Project README
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-12 text-center">
+        <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-8 py-4">
+          <div class="text-white mr-6">
+            <i class="fas fa-file-code text-2xl mb-2 block"></i>
+            <div class="text-sm">Test Files</div>
+            <div class="text-xl font-bold" id="test-count">19</div>
+          </div>
+          <div class="border-l border-white/20 h-12 mx-6"></div>
+          <div class="text-white mr-6">
+            <i class="fas fa-check-circle text-2xl mb-2 block"></i>
+            <div class="text-sm">Categories</div>
+            <div class="text-xl font-bold">6</div>
+          </div>
+          <div class="border-l border-white/20 h-12 mx-6"></div>
+          <div class="text-white">
+            <i class="fas fa-rocket text-2xl mb-2 block"></i>
+            <div class="text-sm">Status</div>
+            <div class="text-xl font-bold text-green-400">Live</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="mt-12 text-center">
+        <p class="text-white/60">
+          🚀 Portfolio Test Suite | Built with Vite + Tailwind CSS
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Count test files dynamically
+    const testLinks = document.querySelectorAll('a[href$=".html"]');
+    document.getElementById('test-count').textContent = testLinks.length;
+
+    // Add click tracking
+    testLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        console.log('🧪 Navigating to test:', e.target.textContent.trim());
+      });
+    });
+  </script>
+</body>
+</html>
