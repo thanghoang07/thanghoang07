@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Toggle Fix Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .test-card {
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 10px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .test-card.correct {
+      border-color: #10b981;
+      background-color: #f0fdf4;
+    }
+    
+    .test-card.incorrect {
+      border-color: #ef4444;
+      background-color: #fef2f2;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300 p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+      🔧 Language Toggle Logic Fix Test
+    </h1>
+
+    <!-- Current Issue Description -->
+    <div class="test-card mb-8 bg-red-50 border-red-200">
+      <h2 class="text-xl font-bold text-red-800 mb-4">🚨 Issue Reported:</h2>
+      <ul class="text-red-700 space-y-2">
+        <li>❌ Chọn VN flag → text hiển thị tiếng Anh</li>
+        <li>❌ Chọn EN flag → text hiển thị tiếng Việt</li>
+        <li>❌ Logic bị ngược hoàn toàn</li>
+      </ul>
+    </div>
+
+    <!-- Fix Applied -->
+    <div class="test-card mb-8 bg-green-50 border-green-200">
+      <h2 class="text-xl font-bold text-green-800 mb-4">✅ Fix Applied:</h2>
+      <ul class="text-green-700 space-y-2">
+        <li>✅ Icon hiển thị ngôn ngữ hiện tại (không phải ngôn ngữ sẽ chuyển sang)</li>
+        <li>✅ VN flag → đang dùng tiếng Việt</li>
+        <li>✅ EN flag → đang dùng tiếng Anh</li>
+      </ul>
+    </div>
+
+    <!-- Language Toggle Control -->
+    <div class="flex justify-center mb-8">
+      <button id="toggle-language"
+        class="language-toggle text-xl px-6 py-3 rounded-full bg-blue-100 hover:bg-blue-200 dark:bg-blue-900 dark:hover:bg-blue-800 transition magnetic flex items-center space-x-3"
+        data-magnetic data-ripple>
+        <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese" class="w-8 h-5">
+        <img id="lang-en-icon" src="https://flagcdn.com/w40/gb.png" alt="English" class="w-8 h-5 hidden">
+        <span id="lang-text">Toggle Language</span>
+      </button>
+    </div>
+
+    <!-- Test Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- English Content -->
+      <div class="test-card">
+        <h3 class="text-lg font-bold mb-4 text-blue-600">English Content Test:</h3>
+        <div class="space-y-3 text-gray-700">
+          <p><strong id="hero-mynameis">My name is</strong></p>
+          <p><strong id="hero-name">Thang Hoang Duc.</strong></p>
+          <p id="hero-intro">Front-end developer with 5+ years of experience in UI development, passionate about creating modern web products and optimizing user experience.</p>
+          <p><strong id="specialized-title">Specialized in</strong></p>
+          <p><strong id="skill-ibm-title">IBM BPM Development</strong></p>
+          <p id="ux-desc">Developing IBM BPM applications with JavaScript and Java, designing interfaces according to gui-spec.</p>
+        </div>
+      </div>
+
+      <!-- Vietnamese Content -->
+      <div class="test-card">
+        <h3 class="text-lg font-bold mb-4 text-red-600">Vietnamese Content Test:</h3>
+        <div class="space-y-3 text-gray-700">
+          <p><strong>Expected VI:</strong> "Tôi là"</p>
+          <p><strong>Expected VI:</strong> "Thắng Hoàng Đức."</p>
+          <p><strong>Expected VI:</strong> "Lập trình viên front-end với hơn 5 năm kinh nghiệm..."</p>
+          <p><strong>Expected VI:</strong> "Chuyên môn của tôi"</p>
+          <p><strong>Expected VI:</strong> "Phát triển IBM BPM"</p>
+          <p><strong>Expected VI:</strong> "Phát triển ứng dụng IBM BPM với JavaScript và Java..."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Current Status Display -->
+    <div class="test-card mt-8 bg-blue-50 border-blue-200">
+      <h3 class="text-lg font-bold text-blue-800 mb-4">📊 Current Status:</h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white p-4 rounded-lg">
+          <h4 class="font-semibold text-gray-800">Current Language:</h4>
+          <p id="current-lang-display" class="text-lg font-bold text-blue-600">Loading...</p>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg">
+          <h4 class="font-semibold text-gray-800">Visible Flag:</h4>
+          <p id="visible-flag-display" class="text-lg font-bold text-green-600">Loading...</p>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg">
+          <h4 class="font-semibold text-gray-800">Logic Status:</h4>
+          <p id="logic-status-display" class="text-lg font-bold">Loading...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Test Instructions -->
+    <div class="test-card mt-8 bg-yellow-50 border-yellow-200">
+      <h3 class="text-lg font-bold text-yellow-800 mb-4">🧪 Test Instructions:</h3>
+      <ol class="text-yellow-700 space-y-2 list-decimal list-inside">
+        <li><strong>Click language toggle button</strong></li>
+        <li><strong>Check if flag matches current language:</strong>
+          <ul class="ml-6 mt-2 space-y-1 list-disc list-inside">
+            <li>VN flag visible → Content should be in Vietnamese</li>
+            <li>EN flag visible → Content should be in English</li>
+          </ul>
+        </li>
+        <li><strong>Click again to verify toggle works both ways</strong></li>
+        <li><strong>Refresh page to test persistence</strong></li>
+      </ol>
+    </div>
+
+  </div>
+
+  <script type="module" src="/src/main-github-pages.js"></script>
+  <script>
+    // Monitor language changes and update status
+    function updateStatus() {
+      const currentLang = localStorage.getItem('language') || 'en';
+      const viIcon = document.getElementById('lang-vi-icon');
+      const enIcon = document.getElementById('lang-en-icon');
+      
+      const viVisible = viIcon && !viIcon.classList.contains('hidden');
+      const enVisible = enIcon && !enIcon.classList.contains('hidden');
+      
+      // Update displays
+      document.getElementById('current-lang-display').textContent = 
+        currentLang === 'vi' ? '🇻🇳 Vietnamese' : '🇬🇧 English';
+      
+      document.getElementById('visible-flag-display').textContent = 
+        viVisible ? '🇻🇳 VN Flag' : '🇬🇧 EN Flag';
+      
+      // Check logic correctness
+      const isCorrect = (currentLang === 'vi' && viVisible) || (currentLang === 'en' && enVisible);
+      const logicDisplay = document.getElementById('logic-status-display');
+      
+      if (isCorrect) {
+        logicDisplay.textContent = '✅ CORRECT';
+        logicDisplay.className = 'text-lg font-bold text-green-600';
+      } else {
+        logicDisplay.textContent = '❌ INCORRECT';
+        logicDisplay.className = 'text-lg font-bold text-red-600';
+      }
+    }
+
+    // Update status every 500ms
+    setInterval(updateStatus, 500);
+
+    // Initial update
+    setTimeout(updateStatus, 1000);
+
+    // Monitor clicks
+    const langToggle = document.getElementById('toggle-language');
+    if (langToggle) {
+      langToggle.addEventListener('click', () => {
+        setTimeout(updateStatus, 100);
+      });
+    }
+  </script>
+</body>
+</html>

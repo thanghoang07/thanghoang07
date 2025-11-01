@@ -340,16 +340,18 @@ class GitHubPagesApplication {
           }
         });
 
-        // Update language toggle icons
+        // Update language toggle icons - hiển thị ngôn ngữ hiện tại
         const viIcon = document.getElementById('lang-vi-icon');
         const enIcon = document.getElementById('lang-en-icon');
         
         if (lang === 'vi') {
-          if (viIcon) viIcon.classList.add('hidden');
-          if (enIcon) enIcon.classList.remove('hidden');
-        } else {
+          // Đang dùng tiếng Việt -> hiện flag Việt Nam
           if (viIcon) viIcon.classList.remove('hidden');
           if (enIcon) enIcon.classList.add('hidden');
+        } else {
+          // Đang dùng tiếng Anh -> hiện flag Anh
+          if (viIcon) viIcon.classList.add('hidden');
+          if (enIcon) enIcon.classList.remove('hidden');
         }
       };
 
