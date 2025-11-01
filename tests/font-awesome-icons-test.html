@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Awesome Icons Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .icon-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .icon-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .icon-container {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    
+    .icon-container i {
+      color: white;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 p-8">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-8 text-gray-900">
+      🎨 Font Awesome Icons Implementation
+    </h1>
+
+    <div class="bg-green-50 border-l-4 border-green-400 p-6 mb-8">
+      <h2 class="text-lg font-bold text-green-800 mb-2">✅ SVG Icons Replaced with Font Awesome</h2>
+      <p class="text-green-700">
+        Tất cả SVG icons đã được thay thế bằng Font Awesome icons cho tính nhất quán và hiệu suất tốt hơn.
+      </p>
+    </div>
+
+    <!-- Skills Section Icons -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-center">🛠️ Skills Section Icons</h2>
+      <div class="icon-comparison">
+        <div class="icon-card">
+          <div class="icon-container">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3 class="font-bold text-gray-800">IBM BPM Development</h3>
+          <p class="text-gray-600">fa-cogs</p>
+        </div>
+        
+        <div class="icon-card">
+          <div class="icon-container">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="font-bold text-gray-800">Mobile Development</h3>
+          <p class="text-gray-600">fa-mobile-alt</p>
+        </div>
+        
+        <div class="icon-card">
+          <div class="icon-container">
+            <i class="fas fa-microchip"></i>
+          </div>
+          <h3 class="font-bold text-gray-800">IoT Development</h3>
+          <p class="text-gray-600">fa-microchip</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certification Icons -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-center">🏆 Certification Icons</h2>
+      <div class="icon-comparison">
+        <div class="icon-card">
+          <div class="icon-container">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <h3 class="font-bold text-gray-800">Xamarin Development</h3>
+          <p class="text-gray-600">fa-certificate</p>
+        </div>
+        
+        <div class="icon-card">
+          <div class="icon-container">
+            <i class="fas fa-award"></i>
+          </div>
+          <h3 class="font-bold text-gray-800">Flutter Development</h3>
+          <p class="text-gray-600">fa-award</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Icons -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-center">📞 Contact Icons</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="icon-card">
+          <div class="icon-container">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3 class="font-bold text-gray-800">Address</h3>
+          <p class="text-gray-600">fa-map-marker-alt</p>
+        </div>
+        
+        <div class="icon-card">
+          <div class="icon-container">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3 class="font-bold text-gray-800">Email</h3>
+          <p class="text-gray-600">fa-envelope</p>
+        </div>
+        
+        <div class="icon-card">
+          <div class="icon-container">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3 class="font-bold text-gray-800">Phone</h3>
+          <p class="text-gray-600">fa-phone</p>
+        </div>
+        
+        <div class="icon-card">
+          <div class="icon-container">
+            <i class="fab fa-linkedin"></i>
+          </div>
+          <h3 class="font-bold text-gray-800">LinkedIn</h3>
+          <p class="text-gray-600">fab fa-linkedin</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefits -->
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-6 mb-8">
+      <h2 class="text-lg font-bold text-blue-800 mb-4">🚀 Benefits of Font Awesome Icons:</h2>
+      <ul class="text-blue-700 space-y-2">
+        <li>✅ <strong>Consistent Design:</strong> Tất cả icons có style thống nhất</li>
+        <li>✅ <strong>Better Performance:</strong> Font icons load nhanh hơn SVG</li>
+        <li>✅ <strong>Easy Maintenance:</strong> Dễ thay đổi và customize</li>
+        <li>✅ <strong>Scalable:</strong> Icons tự động scale theo font-size</li>
+        <li>✅ <strong>Color Control:</strong> Dễ dàng thay đổi màu với CSS</li>
+        <li>✅ <strong>Wide Selection:</strong> Hàng nghìn icons có sẵn</li>
+      </ul>
+    </div>
+
+    <!-- Icon Mapping -->
+    <div class="bg-white p-6 rounded-xl shadow-lg">
+      <h2 class="text-lg font-bold text-gray-800 mb-4">🔄 Icon Mapping Table:</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b">
+              <th class="text-left p-2">Section</th>
+              <th class="text-left p-2">Old (SVG)</th>
+              <th class="text-left p-2">New (Font Awesome)</th>
+              <th class="text-left p-2">Icon</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b">
+              <td class="p-2">IBM BPM Skill</td>
+              <td class="p-2">Check circle SVG</td>
+              <td class="p-2">fa-cogs</td>
+              <td class="p-2"><i class="fas fa-cogs text-purple-600"></i></td>
+            </tr>
+            <tr class="border-b">
+              <td class="p-2">Mobile Skill</td>
+              <td class="p-2">Mobile device SVG</td>
+              <td class="p-2">fa-mobile-alt</td>
+              <td class="p-2"><i class="fas fa-mobile-alt text-purple-600"></i></td>
+            </tr>
+            <tr class="border-b">
+              <td class="p-2">IoT Skill</td>
+              <td class="p-2">Lightning bolt SVG</td>
+              <td class="p-2">fa-microchip</td>
+              <td class="p-2"><i class="fas fa-microchip text-purple-600"></i></td>
+            </tr>
+            <tr class="border-b">
+              <td class="p-2">Xamarin Cert</td>
+              <td class="p-2">Star SVG</td>
+              <td class="p-2">fa-certificate</td>
+              <td class="p-2"><i class="fas fa-certificate text-purple-600"></i></td>
+            </tr>
+            <tr class="border-b">
+              <td class="p-2">Flutter Cert</td>
+              <td class="p-2">Star SVG</td>
+              <td class="p-2">fa-award</td>
+              <td class="p-2"><i class="fas fa-award text-purple-600"></i></td>
+            </tr>
+            <tr class="border-b">
+              <td class="p-2">Address</td>
+              <td class="p-2">Location SVG</td>
+              <td class="p-2">fa-map-marker-alt</td>
+              <td class="p-2"><i class="fas fa-map-marker-alt text-purple-600"></i></td>
+            </tr>
+            <tr class="border-b">
+              <td class="p-2">Email</td>
+              <td class="p-2">Mail SVG</td>
+              <td class="p-2">fa-envelope</td>
+              <td class="p-2"><i class="fas fa-envelope text-purple-600"></i></td>
+            </tr>
+            <tr class="border-b">
+              <td class="p-2">Phone</td>
+              <td class="p-2">Phone SVG</td>
+              <td class="p-2">fa-phone</td>
+              <td class="p-2"><i class="fas fa-phone text-purple-600"></i></td>
+            </tr>
+            <tr>
+              <td class="p-2">LinkedIn</td>
+              <td class="p-2">LinkedIn SVG</td>
+              <td class="p-2">fab fa-linkedin</td>
+              <td class="p-2"><i class="fab fa-linkedin text-purple-600"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Test Instructions -->
+    <div class="mt-8 p-6 bg-yellow-50 border-l-4 border-yellow-400">
+      <h3 class="text-lg font-bold text-yellow-800 mb-2">📝 Test Instructions:</h3>
+      <ol class="text-yellow-700 space-y-1 list-decimal list-inside">
+        <li>Open main website to see Font Awesome icons in action</li>
+        <li>Compare icons với original SVG design</li>
+        <li>Test responsive scaling</li>
+        <li>Verify color changes with dark mode</li>
+        <li>Check performance improvement</li>
+      </ol>
+    </div>
+  </div>
+</body>
+</html>
