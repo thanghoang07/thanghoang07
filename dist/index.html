@@ -60,42 +60,161 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6366f1 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 9999;
       opacity: 1;
-      transition: opacity .5s ease-out
+      transition: opacity 0.8s ease-out;
     }
 
     .page-loader.fade-out {
       opacity: 0;
-      pointer-events: none
+      pointer-events: none;
     }
 
     .loader-content {
       text-align: center;
-      color: white
+      color: white;
+      max-width: 300px;
+    }
+
+    .loader-logo {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ffffff, #e0e7ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: logoGlow 2s ease-in-out infinite alternate;
     }
 
     .loader-spinner {
-      width: 50px;
-      height: 50px;
-      border: 3px solid rgba(255, 255, 255, .3);
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(255, 255, 255, 0.2);
       border-radius: 50%;
-      border-top: 3px solid white;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 20px
+      border-top: 3px solid #ffffff;
+      border-right: 3px solid #e0e7ff;
+      animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+      margin: 0 auto 1.5rem;
+      position: relative;
     }
 
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg)
-      }
+    .loader-spinner::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 2px solid #ffffff;
+      animation: spinReverse 1s linear infinite;
+    }
 
-      100% {
-        transform: rotate(360deg)
+    .loader-text {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+      animation: textPulse 2s ease-in-out infinite;
+    }
+
+    .loader-progress {
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .loader-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #ffffff, #e0e7ff, #ffffff);
+      border-radius: 2px;
+      width: 0%;
+      animation: progressFill 3s ease-out forwards;
+      position: relative;
+    }
+
+    .loader-progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+      animation: shimmer 1.5s infinite;
+    }
+
+    .loader-dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 0.5rem;
+    }
+
+    .loader-dot {
+      width: 8px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      animation: dotBounce 1.5s ease-in-out infinite;
+    }
+
+    .loader-dot:nth-child(2) { animation-delay: 0.2s; }
+    .loader-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes spinReverse {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(-360deg); }
+    }
+
+    @keyframes logoGlow {
+      0% { opacity: 0.8; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.05); }
+    }
+
+    @keyframes textPulse {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.6; }
+    }
+
+    @keyframes progressFill {
+      0% { width: 0%; }
+      30% { width: 30%; }
+      60% { width: 65%; }
+      90% { width: 90%; }
+      100% { width: 100%; }
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes dotBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+      30% { transform: translateY(-10px); opacity: 1; }
+    }
+
+    /* Dark mode support for loader */
+    @media (prefers-color-scheme: dark) {
+      .page-loader {
+        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #3730a3 100%);
       }
     }
 
@@ -288,8 +407,8 @@
   </script>
 
   <!-- Preload critical resources -->
-  <link rel="modulepreload" href="/thanghoang07/assets/main-BmVdI15B.js">
-  <script type="module" crossorigin src="/thanghoang07/js/index-BnOm75gN.js"></script>
+  <link rel="modulepreload" href="/thanghoang07/assets/main-rEWU3Amg.js">
+  <script type="module" crossorigin src="/thanghoang07/js/index-dhdNVLKs.js"></script>
   <link rel="stylesheet" crossorigin href="/thanghoang07/css/index-D6nDtgJn.css">
 </head>
 
@@ -297,8 +416,17 @@
   <!-- Loading Screen -->
   <div class="page-loader" id="page-loader">
     <div class="loader-content">
+      <div class="loader-logo">Thang.</div>
       <div class="loader-spinner"></div>
       <div class="loader-text">Loading Portfolio...</div>
+      <div class="loader-progress">
+        <div class="loader-progress-bar"></div>
+      </div>
+      <div class="loader-dots">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+      </div>
     </div>
   </div>
 

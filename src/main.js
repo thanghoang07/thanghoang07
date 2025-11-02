@@ -834,8 +834,11 @@ class UnifiedApplication {
     const loadingTime = Date.now() - this.loadingStartTime;
     console.log(`🎯 Loading completed in ${loadingTime}ms`);
 
-    const minLoadingTime = 500;
+    const minLoadingTime = 1200; // Increased for better UX
     const remainingTime = Math.max(0, minLoadingTime - loadingTime);
+
+    // Update loading text during process
+    this.updateLoadingProgress();
 
     setTimeout(() => {
       const loader = document.getElementById('page-loader');
@@ -843,33 +846,98 @@ class UnifiedApplication {
 
       console.log('🎭 Starting loading transition...');
 
-      if (loader) {
-        loader.classList.add('fade-out');
+      // Final loading message
+      const loaderText = document.querySelector('.loader-text');
+      if (loaderText) {
+        loaderText.textContent = 'Welcome! 🎉';
+        loaderText.style.transform = 'scale(1.1)';
+        loaderText.style.color = '#ffffff';
+      }
+
+      // Wait a bit for the welcome message
+      setTimeout(() => {
+        if (loader) {
+          loader.classList.add('fade-out');
+          setTimeout(() => {
+            loader.style.display = 'none';
+          }, 800);
+        }
+
+        if (mainContent) {
+          mainContent.style.opacity = '0';
+          mainContent.style.transform = 'translateY(20px)';
+          mainContent.style.transition = 'all 0.8s ease-out';
+          
+          setTimeout(() => {
+            mainContent.style.opacity = '1';
+            mainContent.style.transform = 'translateY(0)';
+          }, 100);
+        }
+
+        document.body.classList.add('loaded');
+        this.isInitialized = true;
+
+        // Trigger entrance animations after loading
         setTimeout(() => {
-          loader.style.display = 'none';
-        }, 500);
-      }
-
-      if (mainContent) {
-        mainContent.classList.add('fade-in');
-      }
-
-      document.body.classList.add('loaded');
-      this.isInitialized = true;
-
-      // Log final status
-      const workingFeatures = Array.from(this.features.entries()).filter(([name, status]) => status).length;
-      const totalModules = this.loadedModules.size;
-      
-      console.log(`🎉 Application ready!`);
-      console.log(`📊 Status: ${workingFeatures} features active, ${totalModules} external modules loaded`);
-      console.log(`🌐 Environment: ${this.isGitHubPages ? 'GitHub Pages' : 'Development'}`);
-      
-      if (totalModules === 0 && !this.isGitHubPages) {
-        console.log('💡 Running with built-in implementations only');
-      }
-      
+          this.triggerEntranceAnimations();
+        }, 300);
+      }, 600); // Wait for welcome message
     }, remainingTime);
+  }
+
+  /**
+   * Update loading progress with messages
+   */
+  updateLoadingProgress() {
+    const messages = [
+      'Initializing components...',
+      'Loading animations...',
+      'Setting up interactions...',
+      'Almost ready...',
+    ];
+
+    const loaderText = document.querySelector('.loader-text');
+    if (!loaderText) return;
+
+    let messageIndex = 0;
+    const updateMessage = () => {
+      if (messageIndex < messages.length) {
+        loaderText.textContent = messages[messageIndex];
+        loaderText.style.transform = 'translateY(-5px)';
+        loaderText.style.transition = 'all 0.3s ease';
+        
+        setTimeout(() => {
+          loaderText.style.transform = 'translateY(0)';
+        }, 150);
+        
+        messageIndex++;
+        setTimeout(updateMessage, 300);
+      }
+    };
+
+    setTimeout(updateMessage, 200);
+  }
+
+  /**
+   * Trigger entrance animations after loading
+   */
+  triggerEntranceAnimations() {
+    // Trigger hero animations
+    const heroElements = document.querySelectorAll('.hero-fade-up, .hero-fade-up-delay');
+    heroElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+      }, index * 200);
+    });
+
+    // Trigger any other entrance animations
+    const entranceElements = document.querySelectorAll('[data-entrance]');
+    entranceElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add('animate-in');
+      }, index * 100);
+    });
   }
 
   /**
@@ -911,4 +979,4 @@ setTimeout(() => {
 // Export for debugging
 window.unifiedApp = app;
 
-console.log('🎉 Unified main script ready!');
+console.log('Portfolio ready!');
