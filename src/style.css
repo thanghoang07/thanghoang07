@@ -705,6 +705,8 @@ html.dark .analytics-consent-banner .btn-decline:hover {
 
 .company-tab {
   @apply text-left cursor-pointer transition-all duration-200;
+  display: inline-block !important;
+  visibility: visible !important;
 }
 
 .company-tab.active {

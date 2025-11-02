@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TABS TEST</title>
+</head>
+<body style="font-family: Arial; padding: 20px;">
+    <h1>🔴 TEST PAGE - TABS SẼ HIỂN THỊ Ở ĐÂY</h1>
+    
+    <div style="background: red; padding: 20px; margin: 20px 0; color: white;">
+        <h2>COMPANY TABS TEST:</h2>
+        <div style="display: flex; gap: 15px; margin-top: 15px;">
+            <button style="background: purple; color: white; padding: 15px; border: none; border-radius: 5px; cursor: pointer;" onclick="showCompany('hpt')">HPT Vietnam</button>
+            <button style="background: gray; color: white; padding: 15px; border: none; border-radius: 5px; cursor: pointer;" onclick="showCompany('tk25')">TK25 Tech</button>
+            <button style="background: gray; color: white; padding: 15px; border: none; border-radius: 5px; cursor: pointer;" onclick="showCompany('nbn')">NBN Media</button>
+            <button style="background: gray; color: white; padding: 15px; border: none; border-radius: 5px; cursor: pointer;" onclick="showCompany('devup')">DevUp</button>
+        </div>
+    </div>
+
+    <div id="content">
+        <div id="hpt" style="background: lightblue; padding: 20px; margin: 10px 0;">
+            <h3>HPT Vietnam Corporation</h3>
+            <p>IBM BPM Developer - Oct 2022 - Present</p>
+        </div>
+        <div id="tk25" style="background: lightgreen; padding: 20px; margin: 10px 0; display: none;">
+            <h3>TK25 Technology</h3>
+            <p>Xamarin Developer - Jul 2019 – Oct 2022</p>
+        </div>
+        <div id="nbn" style="background: lightyellow; padding: 20px; margin: 10px 0; display: none;">
+            <h3>NBN Media</h3>
+            <p>Xamarin Developer Intern - Feb 2019 – Jul 2019</p>
+        </div>
+        <div id="devup" style="background: lightcoral; padding: 20px; margin: 10px 0; display: none;">
+            <h3>DevUp</h3>
+            <p>Xamarin Developer (Part-time) - Aug 2018 – Jan 2019</p>
+        </div>
+    </div>
+
+    <script>
+        function showCompany(company) {
+            // Hide all
+            const divs = ['hpt', 'tk25', 'nbn', 'devup'];
+            divs.forEach(id => {
+                document.getElementById(id).style.display = 'none';
+            });
+            
+            // Show selected
+            document.getElementById(company).style.display = 'block';
+            
+            alert('Switched to: ' + company);
+        }
+    </script>
+</body>
+</html>
