@@ -41,7 +41,7 @@ export default defineConfig({
   },
   plugins: [
     {
-      name: 'copy-tests',
+      name: 'copy-assets',
       closeBundle() {
         // Copy tests folder to dist after build
         const testsDir = 'tests'
@@ -71,6 +71,19 @@ export default defineConfig({
           
           copyDir(testsDir, distTestsDir)
           console.log('✅ Tests folder copied to dist/')
+        }
+
+        // Copy translations.json to dist/src/
+        const translationsFile = 'src/translations.json'
+        const distSrcDir = 'dist/src'
+        const distTranslationsFile = 'dist/src/translations.json'
+        
+        if (existsSync(translationsFile)) {
+          if (!existsSync(distSrcDir)) {
+            mkdirSync(distSrcDir, { recursive: true })
+          }
+          copyFileSync(translationsFile, distTranslationsFile)
+          console.log('✅ translations.json copied to dist/src/')
         }
       }
     }

@@ -422,7 +422,7 @@ class UnifiedApplication {
         
         console.log(`🌍 Language switched to: ${newLang}`);
         
-        // Could implement actual translation logic here
+        // Apply translations asynchronously
         this.applyTranslations(newLang);
       });
       
@@ -433,6 +433,9 @@ class UnifiedApplication {
       }
     }
 
+    // Apply initial translations
+    this.applyTranslations(savedLanguage);
+
     this.features.set('languageBuiltIn', true);
     console.log('✅ Built-in language system initialized');
   }
@@ -440,110 +443,105 @@ class UnifiedApplication {
   /**
    * Apply translations (built-in)
    */
-  applyTranslations(language) {
-    // Basic translation implementation
-    const translations = {
+  async applyTranslations(language) {
+    try {
+      // Load translations from JSON file
+      const translations = await this.loadTranslations();
+      
+      if (!translations) {
+        console.warn('⚠️ No translations loaded, using fallback');
+        return;
+      }
+
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        const translation = this.getNestedTranslation(translations[language], key);
+        
+        if (translation) {
+          element.textContent = translation;
+        }
+      });
+      
+      console.log(`🌍 Applied ${language} translations to ${elements.length} elements`);
+    } catch (error) {
+      console.error('❌ Translation error:', error);
+    }
+  }
+
+  /**
+   * Load translations from JSON file
+   */
+  async loadTranslations() {
+    if (this.cachedTranslations) {
+      return this.cachedTranslations;
+    }
+
+    try {
+      const response = await fetch(`${this.basePath}src/translations.json`);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      this.cachedTranslations = await response.json();
+      console.log('✅ Translations loaded from JSON file');
+      return this.cachedTranslations;
+    } catch (error) {
+      console.warn('⚠️ Failed to load translations.json:', error.message);
+      
+      // Fallback to inline translations
+      this.cachedTranslations = this.getFallbackTranslations();
+      return this.cachedTranslations;
+    }
+  }
+
+  /**
+   * Get nested translation by key (supports dot notation)
+   */
+  getNestedTranslation(translations, key) {
+    // First try direct key lookup
+    if (translations[key]) {
+      return translations[key];
+    }
+
+    // Then try nested lookup through all categories
+    for (const category of Object.values(translations)) {
+      if (category && typeof category === 'object' && category[key]) {
+        return category[key];
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Fallback translations (in case JSON fails to load)
+   */
+  getFallbackTranslations() {
+    return {
       vi: {
-        // Navigation
         'nav-services': 'Dịch vụ',
         'nav-portfolio': 'Dự án',
         'nav-experience': 'Kinh nghiệm',
         'nav-blog': 'Blog',
         'nav-resume': 'Hồ sơ',
-        'nav-about': 'Giới thiệu',
-        'nav-skills': 'Kỹ năng',
-        'nav-contact': 'Liên hệ',
-        
-        // Hero Section
         'hero-mynameis': 'Tôi là',
-        'hero-intro': 'Front-end developer với hơn 5 năm kinh nghiệm phát triển UI, đam mê tạo ra các sản phẩm web hiện đại và tối ưu trải nghiệm người dùng.',
-        
-        // Services Section
-        'specialized-subtitle': 'Chuyên môn',
+        'hero-intro': 'Front-end developer với hơn 5 năm kinh nghiệm phát triển UI.',
         'specialized-title': 'Chuyên về',
-        'skill-ibm-title': 'Phát triển IBM BPM',
-        'ux-desc': 'Phát triển ứng dụng IBM BPM với JavaScript và Java, thiết kế giao diện theo gui-spec.',
-        'skill-mobile-title': 'Phát triển Mobile',
-        'webdev-desc': 'Phát triển ứng dụng mobile cross-platform bằng Xamarin.Forms cho iOS/Android.',
-        'skill-iot-title': 'Phát triển IoT',
-        'webdesign-desc': 'Phát triển ứng dụng IoT và kết nối Azure IoT hub cho thiết bị tùy biến.',
-        
-        // Experience Section
-        'experience-title': 'Kinh nghiệm làm việc',
-        'experience-subtitle': 'Hành trình nghề nghiệp',
-        
-        // Contact Section
-        'contact-title': 'Liên hệ',
-        'contact-subtitle': 'Liên hệ',
-        'contact-desc': 'Sẵn sàng thảo luận về dự án tiếp theo của bạn',
-        'contact-name': 'Họ và tên',
-        'contact-email': 'Email',
-        'contact-message': 'Tin nhắn',
-        'contact-send': 'Gửi tin nhắn',
-        
-        // Skills & Education
-        'skills-title': 'Kỹ năng & Học vấn',
-        'skills-subtitle': 'Chuyên môn kỹ thuật',
-        
-        // Certifications
-        'cert-title': 'Chứng chỉ',
-        'cert-subtitle': 'Thành tựu nghề nghiệp'
+        'contact-title': 'Liên hệ'
       },
       en: {
-        // Navigation
         'nav-services': 'Services',
         'nav-portfolio': 'Portfolio',
         'nav-experience': 'Experience',
         'nav-blog': 'Blog',
         'nav-resume': 'Resume',
-        'nav-about': 'About',
-        'nav-skills': 'Skills',
-        'nav-contact': 'Contact',
-        
-        // Hero Section
         'hero-mynameis': 'My name is',
-        'hero-intro': 'Front-end developer with 5+ years of experience in UI development, passionate about creating modern web products and optimizing user experience.',
-        
-        // Services Section
-        'specialized-subtitle': 'Specialized',
+        'hero-intro': 'Front-end developer with 5+ years of experience in UI development.',
         'specialized-title': 'Specialized in',
-        'skill-ibm-title': 'IBM BPM Development',
-        'ux-desc': 'Developing IBM BPM applications with JavaScript and Java, designing interfaces according to gui-spec.',
-        'skill-mobile-title': 'Mobile Development',
-        'webdev-desc': 'Developing cross-platform mobile applications using Xamarin.Forms for iOS/Android.',
-        'skill-iot-title': 'IoT Development',
-        'webdesign-desc': 'Developing IoT applications and connecting Azure IoT hub for custom devices.',
-        
-        // Experience Section
-        'experience-title': 'Work Experience',
-        'experience-subtitle': 'Career Path',
-        
-        // Contact Section
-        'contact-title': 'Contact',
-        'contact-subtitle': 'Contact',
-        'contact-desc': 'Ready to discuss your next project',
-        'contact-name': 'Full Name',
-        'contact-email': 'Email',
-        'contact-message': 'Message',
-        'contact-send': 'Send Message',
-        
-        // Skills & Education
-        'skills-title': 'Skills & Education',
-        'skills-subtitle': 'Technical Expertise',
-        
-        // Certifications
-        'cert-title': 'Certifications',
-        'cert-subtitle': 'Professional Achievements'
+        'contact-title': 'Contact'
       }
     };
-
-    const elements = document.querySelectorAll('[data-i18n]');
-    elements.forEach(element => {
-      const key = element.getAttribute('data-i18n');
-      if (translations[language] && translations[language][key]) {
-        element.textContent = translations[language][key];
-      }
-    });
   }
 
   /**
