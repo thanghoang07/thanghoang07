@@ -1,6 +1,6 @@
 /**
- * 🎨 Color System Module
- * Centralized color palette management for the entire project
+ * 🎨 Unified Color System
+ * Complete color management with demo and customization tools
  */
 
 /**
@@ -134,6 +134,42 @@ export const themeColors = {
     border: colorPalettes.secondary[700],
     accent: colorPalettes.primary[400],
     metaTheme: colorPalettes.secondary[800],
+  }
+};
+
+/**
+ * Preset Color Themes (Các theme màu có sẵn)
+ */
+export const presetThemes = {
+  default: {
+    name: 'Purple Dreams',
+    primary: colorPalettes.primary[600],
+    secondary: colorPalettes.primary[500],
+    accent: colorPalettes.primary[400],
+  },
+  ocean: {
+    name: 'Ocean Blue',
+    primary: '#0ea5e9', // Sky 500
+    secondary: '#0284c7', // Sky 600
+    accent: '#7dd3fc', // Sky 300
+  },
+  forest: {
+    name: 'Forest Green',
+    primary: '#059669', // Emerald 600
+    secondary: '#047857', // Emerald 700
+    accent: '#6ee7b7', // Emerald 300
+  },
+  sunset: {
+    name: 'Sunset Orange',
+    primary: '#ea580c', // Orange 600
+    secondary: '#c2410c', // Orange 700
+    accent: '#fdba74', // Orange 300
+  },
+  rose: {
+    name: 'Rose Pink',
+    primary: '#e11d48', // Rose 600
+    secondary: '#be185d', // Rose 700
+    accent: '#fda4af', // Rose 300
   }
 };
 
@@ -323,43 +359,180 @@ export class ColorSystem {
       }, 0)
     };
   }
-}
 
-/**
- * Preset Color Themes (Các theme màu có sẵn)
- */
-export const presetThemes = {
-  default: {
-    name: 'Purple Dreams',
-    primary: colorPalettes.primary[600],
-    secondary: colorPalettes.primary[500],
-    accent: colorPalettes.primary[400],
-  },
-  ocean: {
-    name: 'Ocean Blue',
-    primary: '#0ea5e9', // Sky 500
-    secondary: '#0284c7', // Sky 600
-    accent: '#7dd3fc', // Sky 300
-  },
-  forest: {
-    name: 'Forest Green',
-    primary: '#059669', // Emerald 600
-    secondary: '#047857', // Emerald 700
-    accent: '#6ee7b7', // Emerald 300
-  },
-  sunset: {
-    name: 'Sunset Orange',
-    primary: '#ea580c', // Orange 600
-    secondary: '#c2410c', // Orange 700
-    accent: '#fdba74', // Orange 300
-  },
-  rose: {
-    name: 'Rose Pink',
-    primary: '#e11d48', // Rose 600
-    secondary: '#be185d', // Rose 700
-    accent: '#fda4af', // Rose 300
+  // === DEMO & CUSTOMIZATION METHODS ===
+
+  /**
+   * Show color demo in console
+   */
+  showColorDemo() {
+    console.log('🎨 Color System Demo');
+    console.log('===================');
+    
+    // Hiển thị màu chính
+    console.log('\n📍 Primary Colors:');
+    Object.entries(colorPalettes.primary).forEach(([shade, color]) => {
+      console.log(`  ${shade}: ${color}`);
+    });
+    
+    // Hiển thị gradients
+    console.log('\n🌈 Gradients:');
+    Object.entries(colorPalettes.gradients).forEach(([name, gradient]) => {
+      console.log(`  ${name}: ${gradient}`);
+    });
+    
+    // Hiển thị preset themes
+    console.log('\n🎭 Preset Themes:');
+    Object.entries(presetThemes).forEach(([key, theme]) => {
+      console.log(`  ${key}: ${theme.name} - ${theme.primary}`);
+    });
+    
+    return this.getColorInfo();
   }
-};
+
+  /**
+   * Change main colors of website
+   * @param {string} newPrimaryColor - New primary color (hex)
+   * @param {string} newSecondaryColor - New secondary color (hex, optional)
+   */
+  changeMainColors(newPrimaryColor, newSecondaryColor = null) {
+    console.log(`🎨 Changing main colors to: ${newPrimaryColor}`);
+    
+    // Apply new colors
+    document.documentElement.style.setProperty('--color-primary-600', newPrimaryColor);
+    if (newSecondaryColor) {
+      document.documentElement.style.setProperty('--color-primary-500', newSecondaryColor);
+    }
+    
+    // Update meta theme color
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute('content', newPrimaryColor);
+    }
+    
+    console.log('✅ Colors updated!');
+    return { primary: newPrimaryColor, secondary: newSecondaryColor || newPrimaryColor };
+  }
+
+  /**
+   * Apply preset theme
+   * @param {string} themeName - Theme name from presetThemes
+   */
+  applyPresetTheme(themeName) {
+    if (!presetThemes[themeName]) {
+      console.error(`❌ Theme "${themeName}" not found. Available themes:`, Object.keys(presetThemes));
+      return;
+    }
+    
+    const theme = presetThemes[themeName];
+    console.log(`🎨 Applying preset theme: ${theme.name}`);
+    
+    return this.changeMainColors(theme.primary, theme.secondary);
+  }
+
+  /**
+   * Create custom palette from base color
+   * @param {string} baseColor - Base color (hex)
+   * @param {string} paletteName - New palette name
+   */
+  createCustomPalette(baseColor, paletteName = 'custom') {
+    console.log(`🎨 Creating custom palette "${paletteName}" from ${baseColor}`);
+    
+    const variations = this.generateColorVariations(baseColor, 9);
+    const newPalette = {};
+    
+    const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+    variations.forEach((color, index) => {
+      newPalette[shades[index]] = color;
+    });
+    
+    // Add to color system
+    colorPalettes[paletteName] = newPalette;
+    
+    console.log(`✅ Created palette "${paletteName}":`, newPalette);
+    return newPalette;
+  }
+
+  /**
+   * Create custom gradient
+   * @param {string} color1 - First color
+   * @param {string} color2 - Second color
+   * @param {number} angle - Gradient angle (degrees)
+   */
+  createCustomGradient(color1, color2, angle = 135) {
+    const gradient = `linear-gradient(${angle}deg, ${color1}, ${color2})`;
+    console.log(`🌈 Created custom gradient: ${gradient}`);
+    
+    // Add to system
+    colorPalettes.gradients.custom = gradient;
+    
+    return gradient;
+  }
+
+  /**
+   * Test current colors with visual preview
+   */
+  testCurrentColors() {
+    const testDiv = document.createElement('div');
+    testDiv.innerHTML = `
+      <div style="position: fixed; top: 20px; left: 20px; z-index: 10000; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 300px;">
+        <h3 style="margin: 0 0 15px 0; color: ${this.getColor('primary', 600)};">🎨 Current Colors</h3>
+        
+        <div style="margin-bottom: 10px;">
+          <strong>Primary:</strong>
+          <div style="width: 100%; height: 30px; background: ${this.getColor('primary', 600)}; border-radius: 5px; margin-top: 5px;"></div>
+          <small>${this.getColor('primary', 600)}</small>
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+          <strong>Secondary:</strong>
+          <div style="width: 100%; height: 30px; background: ${this.getColor('primary', 500)}; border-radius: 5px; margin-top: 5px;"></div>
+          <small>${this.getColor('primary', 500)}</small>
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+          <strong>Gradient:</strong>
+          <div style="width: 100%; height: 30px; background: ${this.getGradient('primary')}; border-radius: 5px; margin-top: 5px;"></div>
+        </div>
+        
+        <button onclick="this.parentElement.remove()" style="background: ${this.getColor('error', 500)}; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-top: 10px;">Close</button>
+      </div>
+    `;
+    
+    document.body.appendChild(testDiv);
+    
+    // Auto remove after 10 seconds
+    setTimeout(() => {
+      if (testDiv.parentElement) {
+        testDiv.remove();
+      }
+    }, 10000);
+  }
+
+  /**
+   * Export color configuration
+   */
+  exportColorConfig() {
+    const config = {
+      timestamp: new Date().toISOString(),
+      palettes: colorPalettes,
+      customColors: Array.from(this.customColors.entries()),
+      currentPalette: this.currentPalette,
+      cssProperties: {}
+    };
+    
+    console.log('📋 Color configuration exported:', config);
+    
+    // Copy to clipboard if available
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(JSON.stringify(config, null, 2))
+        .then(() => console.log('✅ Configuration copied to clipboard!'))
+        .catch(() => console.log('ℹ️ Could not copy to clipboard'));
+    }
+    
+    return config;
+  }
+}
 
 // Create and export singleton instance
 export const colorSystem = new ColorSystem();
@@ -373,8 +546,64 @@ export const getGradient = (type) => colorSystem.getGradient(type);
 export const getThemeColor = (theme, colorKey) => colorSystem.getThemeColor(theme, colorKey);
 export const getRandomAnimationColor = () => colorSystem.getRandomAnimationColor();
 
+/**
+ * Quick color change presets
+ */
+export const quickPresets = {
+  blue: () => colorSystem.changeMainColors('#3b82f6', '#2563eb'),
+  green: () => colorSystem.changeMainColors('#059669', '#047857'),
+  orange: () => colorSystem.changeMainColors('#ea580c', '#c2410c'),
+  pink: () => colorSystem.changeMainColors('#e11d48', '#be185d'),
+  purple: () => colorSystem.changeMainColors('#9333ea', '#7c3aed'),
+  red: () => colorSystem.changeMainColors('#dc2626', '#b91c1c'),
+  yellow: () => colorSystem.changeMainColors('#eab308', '#ca8a04'),
+  cyan: () => colorSystem.changeMainColors('#0891b2', '#0e7490'),
+};
+
+// Export demo interface
+export const colorDemo = {
+  show: () => colorSystem.showColorDemo(),
+  change: (primary, secondary) => colorSystem.changeMainColors(primary, secondary),
+  preset: (themeName) => colorSystem.applyPresetTheme(themeName),
+  create: (baseColor, name) => colorSystem.createCustomPalette(baseColor, name),
+  gradient: (color1, color2, angle) => colorSystem.createCustomGradient(color1, color2, angle),
+  test: () => colorSystem.testCurrentColors(),
+  export: () => colorSystem.exportColorConfig(),
+  quick: quickPresets,
+  
+  showPresets() {
+    console.log('🎭 Available Preset Themes:');
+    Object.entries(presetThemes).forEach(([key, theme]) => {
+      console.log(`  colorDemo.preset('${key}') - ${theme.name}`);
+    });
+    
+    console.log('\n⚡ Quick Presets:');
+    Object.keys(quickPresets).forEach(key => {
+      console.log(`  colorDemo.quick.${key}() - ${key.charAt(0).toUpperCase() + key.slice(1)} theme`);
+    });
+  }
+};
+
 // Export for debugging in development
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+if (typeof window !== 'undefined') {
   window.colorSystem = colorSystem;
+  window.colorDemo = colorDemo;
   window.colorPalettes = colorPalettes;
+  
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`
+🎨 Color System loaded successfully!
+
+Try these commands in browser console:
+┌─────────────────────────────────────────────┐
+│  colorDemo.show()           - Show all colors │
+│  colorDemo.test()           - Test current colors │
+│  colorDemo.showPresets()    - Show all presets │
+│  colorDemo.quick.blue()     - Quick blue theme │
+│  colorDemo.quick.green()    - Quick green theme │
+│  colorDemo.preset('ocean')  - Apply ocean theme │
+│  colorDemo.change('#ff6b6b') - Custom color │
+└─────────────────────────────────────────────┘
+    `);
+  }
 }

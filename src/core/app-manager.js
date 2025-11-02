@@ -4,7 +4,7 @@
  */
 
 import { BaseManager } from '../core/base-manager.js';
-import { FEATURE_FLAGS } from '../core/config.js';
+import { FEATURE_FLAGS } from '../unified-config.js';
 import { Logger, PerformanceUtils } from '../utils/index.js';
 
 class ApplicationManager extends BaseManager {
@@ -17,20 +17,14 @@ class ApplicationManager extends BaseManager {
     this.features = new Map();
     this.initializationOrder = [
       'error-handler',
-      'resource-optimization',
-      'advanced-performance',
-      'performance-monitor', 
+      'unified-performance',
       'app-core',
       'navigation',
       'animation-optimizer',
       'animations',
-      'image-loader',
-      'section-lazy-loader',
-      'micro-interactions',
-      'advanced-themes',
-      'pwa-manager',
-      'work-exp-tabs',
-      'analytics'
+      'unified-interactions',
+      'unified-system',
+      'work-exp-tabs'
     ];
     
     this.isReady = false;
@@ -104,27 +98,11 @@ class ApplicationManager extends BaseManager {
         }
         break;
 
-      case 'resource-optimization':
+      case 'unified-performance':
         if (FEATURE_FLAGS.PERFORMANCE_MONITORING) {
-          const { initResourceOptimization } = await import('../features/resource-optimization.js');
-          const resourceOptimizer = initResourceOptimization();
-          this.features.set(featureName, resourceOptimizer);
-        }
-        break;
-
-      case 'advanced-performance':
-        if (FEATURE_FLAGS.PERFORMANCE_MONITORING) {
-          const { initAdvancedPerformance } = await import('../features/advanced-performance.js');
-          const performanceManager = initAdvancedPerformance();
+          const { UnifiedPerformanceManager } = await import('../features/unified-performance.js');
+          const performanceManager = new UnifiedPerformanceManager();
           this.features.set(featureName, performanceManager);
-        }
-        break;
-
-      case 'performance-monitor':
-        if (FEATURE_FLAGS.PERFORMANCE_MONITORING) {
-          const PerformanceMonitor = (await import('../features/performance-monitor.js')).default;
-          const monitor = new PerformanceMonitor();
-          this.features.set(featureName, monitor);
         }
         break;
 
@@ -152,46 +130,26 @@ class ApplicationManager extends BaseManager {
         this.features.set(featureName, animations);
         break;
 
-      case 'image-loader':
-        if (FEATURE_FLAGS.LAZY_LOADING) {
-          const { initImageLoader } = await import('../features/image-loader.js');
-          const imageLoader = initImageLoader();
-          this.features.set(featureName, imageLoader);
-        }
-        break;
-
-      case 'section-lazy-loader':
-        if (FEATURE_FLAGS.SECTION_LAZY_LOADING) {
-          const { initSectionLazyLoader } = await import('../features/section-lazy-loader.js');
-          const sectionLoader = initSectionLazyLoader({
-            rootMargin: '50px 0px',
-            threshold: 0.1
+      case 'unified-interactions':
+        if (FEATURE_FLAGS.LAZY_LOADING || FEATURE_FLAGS.SECTION_LAZY_LOADING || FEATURE_FLAGS.MICRO_INTERACTIONS) {
+          const { UnifiedInteractionsManager } = await import('../features/unified-interactions.js');
+          const interactions = new UnifiedInteractionsManager({
+            sectionLoader: {
+              rootMargin: '50px 0px',
+              threshold: 0.1
+            }
           });
-          this.features.set(featureName, sectionLoader);
-        }
-        break;
-
-      case 'micro-interactions':
-        if (FEATURE_FLAGS.MICRO_INTERACTIONS) {
-          const { initAdvancedInteractions } = await import('../features/micro-interactions.js');
-          const interactions = initAdvancedInteractions();
           this.features.set(featureName, interactions);
         }
         break;
 
-      case 'advanced-themes':
-        if (FEATURE_FLAGS.ADVANCED_THEMES) {
-          const { initAdvancedThemes } = await import('../features/advanced-themes.js');
-          const themes = initAdvancedThemes();
-          this.features.set(featureName, themes);
-        }
-        break;
-
-      case 'pwa-manager':
-        if (FEATURE_FLAGS.PWA) {
-          const { initPWAOptimization } = await import('../features/pwa-optimization.js');
-          const pwa = initPWAOptimization();
-          this.features.set(featureName, pwa);
+      case 'unified-system':
+        if (FEATURE_FLAGS.ADVANCED_THEMES || FEATURE_FLAGS.PWA || FEATURE_FLAGS.ANALYTICS) {
+          const { UnifiedSystemManager } = await import('../features/unified-system.js');
+          const system = new UnifiedSystemManager({
+            measurementId: 'G-XXXXXXXXXX' // Replace with actual GA4 ID
+          });
+          this.features.set(featureName, system);
         }
         break;
 
@@ -201,13 +159,7 @@ class ApplicationManager extends BaseManager {
         this.features.set(featureName, tabs);
         break;
 
-      case 'analytics':
-        if (FEATURE_FLAGS.ANALYTICS) {
-          const { initAnalytics } = await import('../features/analytics.js');
-          const analytics = initAnalytics();
-          this.features.set(featureName, analytics);
-        }
-        break;
+
 
       default:
         Logger.warning(`Unknown feature: ${featureName}`);

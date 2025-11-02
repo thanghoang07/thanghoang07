@@ -1,5 +1,5 @@
 import { initTranslations } from './utils/translations.js';
-import { initScrollEffects } from './features/scroll-effects.js';
+import { UnifiedInteractionsManager } from './features/unified-interactions.js';
 import { initParallaxEffect, addTypingEffect, addCounterEffect } from './animations.js';
 import { initWorkExpTabs } from './ui/work-exp-tabs.js';
 import { initContactForm } from './ui/contact-form.js';
@@ -11,8 +11,9 @@ export function initApp() {
     initTranslations();
     console.log('✅ Translations initialized');
     
-    initScrollEffects();
-    console.log('✅ Scroll effects initialized');
+    // Initialize unified interactions (includes scroll effects)
+    new UnifiedInteractionsManager();
+    console.log('✅ Unified interactions initialized');
     
     initParallaxEffect();
     console.log('✅ Parallax effects initialized');

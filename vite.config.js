@@ -15,10 +15,12 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        manualChunks: {
-          utils: ['src/utils.js'],
-          templates: ['src/templates.js'], 
-          config: ['src/config.js']
+        manualChunks: (id) => {
+          // Only create chunks for actually used modules
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+          // Let Vite handle the rest automatically
         },
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name.split('.');

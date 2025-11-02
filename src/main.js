@@ -1,226 +1,537 @@
 /**
- * 🚀 Main Application Entry Point
- * Optimized modular initialization system
+ * 🚀 Unified Main Entry Point
+ * Compatible with both development and GitHub Pages deployment
  */
 
 import './style.css';
 
-// Import color system first
-import { colorSystem } from './colors.js';
-import { colorDemo } from './color-demo.js';
-
-// Import feature modules
-import { themeManager } from './theme.js';
-import { languageManager } from './translations.js';
-import { 
-  scrollEffects, 
-  floatingShapes, 
-  microInteractions, 
-  parallaxEffects 
-} from './animation-effects.js';
-import { contactFormManager, initWorkExperienceTabs } from './contact-form.js';
-import { DOMUtils, PerformanceUtils } from './utils.js';
+console.log('🎯 Unified main.js loaded!');
 
 /**
- * Application Class - Central coordinator
+ * Unified Application Class
+ * Handles both local development and GitHub Pages deployment
  */
-class Application {
+class UnifiedApplication {
   constructor() {
     this.isInitialized = false;
     this.loadingStartTime = Date.now();
+    this.features = new Map();
+    this.isGitHubPages = window.location.hostname === 'thanghoang07.github.io';
+    this.basePath = this.isGitHubPages ? '/thanghoang07/' : '/';
+    this.loadedModules = new Set();
   }
 
   /**
-   * Initialize the entire application
+   * Initialize the application
    */
   async init() {
-    console.log('🚀 Starting application initialization...');
+    console.log(`🚀 Starting ${this.isGitHubPages ? 'GitHub Pages' : 'development'} initialization...`);
 
-    // Initialize loading screen management
-    this.initLoadingScreen();
-
-    // Early performance optimizations
-    PerformanceUtils.optimizeImages();
-    DOMUtils.lazyLoad('img[data-src], [data-lazy]');
-
-    // Wait for DOM to be ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => this.initializeFeatures());
-    } else {
-      this.initializeFeatures();
+    try {
+      // Step 1: Wait for DOM
+      await this.waitForDOM();
+      
+      // Step 2: Try to load external modules (development mode)
+      if (!this.isGitHubPages) {
+        await this.loadExternalModules();
+      }
+      
+      // Step 3: Initialize core features (always available)
+      this.initializeCoreAnimations();
+      this.initializeTheme();
+      this.initializeLanguage();
+      
+      // Step 4: Initialize loaded features
+      this.initializeLoadedFeatures();
+      
+      // Step 5: Finish loading
+      this.finishLoading();
+      
+    } catch (error) {
+      console.error('❌ Initialization error:', error);
+      this.finishLoading();
     }
   }
 
   /**
-   * Initialize loading screen
+   * Wait for DOM to be ready
    */
-  initLoadingScreen() {
-    console.log('⏳ Initializing loading screen...');
+  waitForDOM() {
+    return new Promise((resolve) => {
+      if (document.readyState === 'loading') {
+        console.log('⏳ Waiting for DOM...');
+        document.addEventListener('DOMContentLoaded', () => {
+          console.log('✅ DOM ready!');
+          resolve();
+        });
+      } else {
+        console.log('✅ DOM already ready!');
+        resolve();
+      }
+    });
+  }
 
-    // Apply saved theme immediately to prevent flash
+  /**
+   * Load external modules (development mode only)
+   */
+  async loadExternalModules() {
+    console.log('📦 Loading external modules...');
+
+    const modules = [
+      { name: 'colorSystem', path: './color-system.js', exports: ['colorSystem', 'colorDemo'] },
+      { name: 'theme', path: './theme.js', exports: ['themeManager'] },
+      { name: 'translations', path: './translations.js', exports: ['languageManager'] },
+      { name: 'animation', path: './animation-system.js', exports: ['scrollEffects', 'floatingShapes', 'microInteractions', 'parallaxEffects'] },
+      { name: 'contact', path: './contact-form.js', exports: ['contactFormManager', 'initWorkExperienceTabs'] },
+      { name: 'utilities', path: './utilities.js', exports: ['DOMUtils', 'PerformanceUtils'] }
+    ];
+
+    for (const moduleInfo of modules) {
+      try {
+        console.log(`🔄 Loading ${moduleInfo.name}...`);
+        const module = await import(moduleInfo.path);
+        
+        // Check if exports exist
+        const availableExports = moduleInfo.exports.filter(exp => module[exp]);
+        
+        if (availableExports.length > 0) {
+          this.features.set(moduleInfo.name, module);
+          this.loadedModules.add(moduleInfo.name);
+          console.log(`✅ ${moduleInfo.name} loaded (${availableExports.length}/${moduleInfo.exports.length} exports)`);
+        } else {
+          throw new Error(`No valid exports found in ${moduleInfo.name}`);
+        }
+        
+      } catch (error) {
+        console.warn(`⚠️ Failed to load ${moduleInfo.name}:`, error.message);
+        // Continue with built-in implementations
+      }
+    }
+
+    console.log(`📊 Module loading complete: ${this.loadedModules.size} modules loaded`);
+  }
+
+  /**
+   * Initialize core animations (self-contained, no dependencies)
+   */
+  initializeCoreAnimations() {
+    console.log('🎨 Initializing core animations...');
+
+    // Initialize scroll reveal animations
+    this.initScrollReveal();
+    
+    // Initialize hover effects
+    this.initHoverEffects();
+    
+    // Initialize progress bars
+    this.initProgressBars();
+    
+    // Initialize basic image loading
+    this.initImageLoading();
+    
+    console.log('✅ Core animations ready');
+  }
+
+  /**
+   * Initialize scroll reveal (self-contained)
+   */
+  initScrollReveal() {
+    const revealElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale');
+    console.log(`📜 Found ${revealElements.length} scroll reveal elements`);
+
+    if (revealElements.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          element.classList.add('revealed');
+          
+          // Add staggered animation delay if specified
+          const staggerClass = element.className.match(/stagger-(\d+)/);
+          if (staggerClass) {
+            const delay = parseInt(staggerClass[1]) * 100;
+            setTimeout(() => {
+              element.style.animationDelay = `${delay}ms`;
+            }, delay);
+          }
+          
+          observer.unobserve(element);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+    this.features.set('scrollReveal', true);
+  }
+
+  /**
+   * Initialize hover effects (self-contained)
+   */
+  initHoverEffects() {
+    const hoverElements = document.querySelectorAll('.enhanced-hover, .magnetic, .card');
+    console.log(`✨ Found ${hoverElements.length} hover elements`);
+
+    hoverElements.forEach(element => {
+      // Add magnetic effect for magnetic elements
+      if (element.classList.contains('magnetic')) {
+        element.addEventListener('mousemove', (e) => {
+          const rect = element.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          
+          element.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+        });
+        
+        element.addEventListener('mouseleave', () => {
+          element.style.transform = 'translate(0px, 0px)';
+        });
+      }
+
+      // Add ripple effect for elements with data-ripple
+      if (element.hasAttribute('data-ripple')) {
+        element.addEventListener('click', (e) => {
+          this.createRipple(e, element);
+        });
+      }
+    });
+
+    this.features.set('hoverEffects', true);
+  }
+
+  /**
+   * Create ripple effect (self-contained)
+   */
+  createRipple(event, element) {
+    const ripple = document.createElement('div');
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    ripple.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      left: ${x}px;
+      top: ${y}px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 600ms linear;
+      pointer-events: none;
+    `;
+
+    // Add keyframes if not exists
+    if (!document.querySelector('#ripple-keyframes')) {
+      const style = document.createElement('style');
+      style.id = 'ripple-keyframes';
+      style.textContent = `
+        @keyframes ripple {
+          to {
+            transform: scale(2);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    const container = element.style.position === 'relative' ? element : element.parentElement;
+    if (container.style.position !== 'relative') {
+      container.style.position = 'relative';
+    }
+    
+    container.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  }
+
+  /**
+   * Initialize progress bars (self-contained)
+   */
+  initProgressBars() {
+    const progressBars = document.querySelectorAll('.progress-bar');
+    console.log(`📊 Found ${progressBars.length} progress bars`);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const progressBar = entry.target;
+          const fill = progressBar.querySelector('.progress-fill, [style*="width"]');
+          
+          if (fill) {
+            // Animate progress bar
+            setTimeout(() => {
+              fill.style.transition = 'width 2s ease-out';
+              // Use existing width or set to default
+              if (!fill.style.width || fill.style.width === '0%') {
+                fill.style.width = '85%';
+              }
+            }, 200);
+          }
+          
+          observer.unobserve(progressBar);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    progressBars.forEach(bar => observer.observe(bar));
+    this.features.set('progressBars', true);
+  }
+
+  /**
+   * Initialize image loading (self-contained)
+   */
+  initImageLoading() {
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    console.log(`📸 Found ${lazyImages.length} lazy images`);
+
+    if (lazyImages.length === 0) {
+      this.features.set('imageLoading', true);
+      return;
+    }
+
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          const src = img.getAttribute('data-src');
+          
+          if (src) {
+            img.src = src;
+            img.removeAttribute('data-src');
+            img.onload = () => {
+              img.style.opacity = '1';
+            };
+          }
+          
+          imageObserver.unobserve(img);
+        }
+      });
+    }, { rootMargin: '50px' });
+
+    lazyImages.forEach(img => imageObserver.observe(img));
+    this.features.set('imageLoading', true);
+  }
+
+  /**
+   * Initialize theme (built-in implementation)
+   */
+  initializeTheme() {
+    console.log('🎨 Initializing theme system...');
+
+    // Use external module if available
+    const themeModule = this.features.get('theme');
+    if (themeModule && themeModule.themeManager) {
+      try {
+        themeModule.themeManager.init();
+        console.log('✅ External theme manager initialized');
+        return;
+      } catch (error) {
+        console.warn('⚠️ External theme initialization failed:', error);
+      }
+    }
+
+    // Fallback to built-in theme implementation
+    this.initBuiltInTheme();
+  }
+
+  /**
+   * Built-in theme implementation
+   */
+  initBuiltInTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light';
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
+    
+    // Apply saved theme immediately
+    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    
+    // Update meta theme color
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute('content', savedTheme === 'dark' ? '#1e293b' : '#9333ea');
     }
+
+    // Setup theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        const newTheme = isDark ? 'light' : 'dark';
+        
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', newTheme);
+        
+        // Update meta theme color
+        if (metaTheme) {
+          metaTheme.setAttribute('content', newTheme === 'dark' ? '#1e293b' : '#9333ea');
+        }
+        
+        console.log(`🎨 Theme switched to: ${newTheme}`);
+      });
+    }
+
+    this.features.set('themeBuiltIn', true);
+    console.log('✅ Built-in theme system initialized');
   }
 
   /**
-   * Initialize all application features
+   * Initialize language system
    */
-  async initializeFeatures() {
-    console.log('🚀 DOM ready, initializing features...');
+  initializeLanguage() {
+    console.log('🌍 Initializing language system...');
 
-    try {
-      // Initialize core systems first (order matters for UX)
-      await this.initializeCoreFeatures();
-      
-      // Initialize UI enhancements
-      await this.initializeUIFeatures();
-      
-      // Initialize interactive features
-      await this.initializeInteractiveFeatures();
-
-      console.log('✅ All features initialized successfully');
-      
-      // Mark as initialized and finish loading
-      this.isInitialized = true;
-      
-    } catch (error) {
-      console.error('❌ Error during feature initialization:', error);
-      console.error('Full error details:', error.stack);
-      // Mark as initialized anyway to prevent hanging
-      this.isInitialized = true;
+    // Use external module if available
+    const translationModule = this.features.get('translations');
+    if (translationModule && translationModule.languageManager) {
+      try {
+        translationModule.languageManager.init();
+        console.log('✅ External language manager initialized');
+        return;
+      } catch (error) {
+        console.warn('⚠️ External language initialization failed:', error);
+      }
     }
 
-    // Always finish loading regardless of errors
-    this.finishLoading();
+    // Fallback to built-in language implementation
+    this.initBuiltInLanguage();
   }
 
   /**
-   * Initialize core features (theme, language, etc.)
+   * Built-in language implementation
    */
-  async initializeCoreFeatures() {
-    console.log('🔧 Initializing core features...');
-
-    try {
-      // Initialize theme system first (prevents flash)
-      if (themeManager && typeof themeManager.init === 'function') {
-        themeManager.init();
-        console.log('✅ Theme manager initialized');
-      } else {
-        console.warn('⚠️ Theme manager not available');
+  initBuiltInLanguage() {
+    const savedLanguage = localStorage.getItem('language') || 'vi';
+    
+    // Setup language toggle functionality
+    const languageToggle = document.getElementById('language-toggle');
+    if (languageToggle) {
+      languageToggle.addEventListener('click', () => {
+        const currentLang = localStorage.getItem('language') || 'vi';
+        const newLang = currentLang === 'vi' ? 'en' : 'vi';
+        
+        localStorage.setItem('language', newLang);
+        
+        // Update toggle text/icon
+        const toggleText = languageToggle.querySelector('.toggle-text');
+        if (toggleText) {
+          toggleText.textContent = newLang === 'vi' ? 'EN' : 'VI';
+        }
+        
+        console.log(`🌍 Language switched to: ${newLang}`);
+        
+        // Could implement actual translation logic here
+        this.applyTranslations(newLang);
+      });
+      
+      // Set initial state
+      const toggleText = languageToggle.querySelector('.toggle-text');
+      if (toggleText) {
+        toggleText.textContent = savedLanguage === 'vi' ? 'EN' : 'VI';
       }
-
-      // Initialize language system
-      if (languageManager && typeof languageManager.init === 'function') {
-        languageManager.init();
-        console.log('✅ Language manager initialized');
-      } else {
-        console.warn('⚠️ Language manager not available');
-      }
-
-      // Initialize contact form
-      if (contactFormManager && typeof contactFormManager.init === 'function') {
-        contactFormManager.init();
-        console.log('✅ Contact form manager initialized');
-      } else {
-        console.warn('⚠️ Contact form manager not available');
-      }
-
-      // Initialize work experience tabs
-      if (typeof initWorkExperienceTabs === 'function') {
-        initWorkExperienceTabs();
-        console.log('✅ Work experience tabs initialized');
-      } else {
-        console.warn('⚠️ Work experience tabs function not available');
-      }
-
-      console.log('✅ Core features ready');
-    } catch (error) {
-      console.error('❌ Error in core features:', error);
-      throw error;
     }
+
+    this.features.set('languageBuiltIn', true);
+    console.log('✅ Built-in language system initialized');
   }
 
   /**
-   * Initialize UI features (animations, effects)
+   * Apply translations (built-in)
    */
-  async initializeUIFeatures() {
-    console.log('🎨 Initializing UI features...');
-
-    try {
-      // Initialize scroll-based features
-      if (scrollEffects && typeof scrollEffects.init === 'function') {
-        scrollEffects.init();
-        console.log('✅ Scroll effects initialized');
-      } else {
-        console.warn('⚠️ Scroll effects not available');
+  applyTranslations(language) {
+    // Basic translation implementation
+    const translations = {
+      vi: {
+        'nav-about': 'Giới thiệu',
+        'nav-experience': 'Kinh nghiệm',
+        'nav-skills': 'Kỹ năng',
+        'nav-contact': 'Liên hệ'
+      },
+      en: {
+        'nav-about': 'About',
+        'nav-experience': 'Experience', 
+        'nav-skills': 'Skills',
+        'nav-contact': 'Contact'
       }
+    };
 
-      // Initialize floating background shapes
-      if (floatingShapes && typeof floatingShapes.init === 'function') {
-        floatingShapes.init();
-        console.log('✅ Floating shapes initialized');
-      } else {
-        console.warn('⚠️ Floating shapes not available');
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      if (translations[language] && translations[language][key]) {
+        element.textContent = translations[language][key];
       }
-
-      // Initialize parallax effects
-      if (parallaxEffects && typeof parallaxEffects.init === 'function') {
-        parallaxEffects.init();
-        console.log('✅ Parallax effects initialized');
-      } else {
-        console.warn('⚠️ Parallax effects not available');
-      }
-
-      console.log('✅ UI features ready');
-    } catch (error) {
-      console.error('❌ Error in UI features:', error);
-      throw error;
-    }
+    });
   }
 
   /**
-   * Initialize interactive features
+   * Initialize loaded features from external modules
    */
-  async initializeInteractiveFeatures() {
-    console.log('⚡ Initializing interactive features...');
+  initializeLoadedFeatures() {
+    console.log('🔧 Initializing loaded features...');
 
-    try {
-      // Initialize micro interactions
-      if (microInteractions && typeof microInteractions.init === 'function') {
-        microInteractions.init();
-        console.log('✅ Micro interactions initialized');
-      } else {
-        console.warn('⚠️ Micro interactions not available');
+    // Initialize contact form if available
+    const contactModule = this.features.get('contact');
+    if (contactModule) {
+      try {
+        if (contactModule.contactFormManager?.init) {
+          contactModule.contactFormManager.init();
+          console.log('✅ Contact form initialized');
+        }
+        if (contactModule.initWorkExperienceTabs) {
+          contactModule.initWorkExperienceTabs();
+          console.log('✅ Work experience tabs initialized');
+        }
+      } catch (error) {
+        console.warn('⚠️ Contact form initialization failed:', error);
       }
-
-      // Debug images in development
-      if (process.env.NODE_ENV === 'development') {
-        this.debugImages();
-      }
-
-      console.log('✅ Interactive features ready');
-    } catch (error) {
-      console.error('❌ Error in interactive features:', error);
-      throw error;
     }
+
+    // Initialize advanced animations if available
+    const animationModule = this.features.get('animation');
+    if (animationModule) {
+      try {
+        if (animationModule.scrollEffects?.init) {
+          animationModule.scrollEffects.init();
+          console.log('✅ Advanced scroll effects initialized');
+        }
+        if (animationModule.floatingShapes?.init) {
+          animationModule.floatingShapes.init();
+          console.log('✅ Floating shapes initialized');
+        }
+        if (animationModule.microInteractions?.init) {
+          animationModule.microInteractions.init();
+          console.log('✅ Micro interactions initialized');
+        }
+        if (animationModule.parallaxEffects?.init) {
+          animationModule.parallaxEffects.init();
+          console.log('✅ Parallax effects initialized');
+        }
+      } catch (error) {
+        console.warn('⚠️ Advanced animation initialization failed:', error);
+      }
+    }
+
+    console.log('✅ Feature initialization complete');
   }
 
   /**
-   * Finish loading process with smooth transition
+   * Finish loading with smooth transition
    */
   finishLoading() {
     const loadingTime = Date.now() - this.loadingStartTime;
     console.log(`🎯 Loading completed in ${loadingTime}ms`);
 
-    // Ensure minimum loading time for smooth UX
-    const minLoadingTime = 300;
+    const minLoadingTime = 500;
     const remainingTime = Math.max(0, minLoadingTime - loadingTime);
 
     setTimeout(() => {
       const loader = document.getElementById('page-loader');
       const mainContent = document.getElementById('main-content');
+
+      console.log('🎭 Starting loading transition...');
 
       if (loader) {
         loader.classList.add('fade-out');
@@ -233,32 +544,22 @@ class Application {
         mainContent.classList.add('fade-in');
       }
 
-      // Mark body as loaded
       document.body.classList.add('loaded');
+      this.isInitialized = true;
 
-      console.log('✅ Application fully loaded and ready!');
+      // Log final status
+      const workingFeatures = Array.from(this.features.entries()).filter(([name, status]) => status).length;
+      const totalModules = this.loadedModules.size;
+      
+      console.log(`🎉 Application ready!`);
+      console.log(`📊 Status: ${workingFeatures} features active, ${totalModules} external modules loaded`);
+      console.log(`🌐 Environment: ${this.isGitHubPages ? 'GitHub Pages' : 'Development'}`);
+      
+      if (totalModules === 0 && !this.isGitHubPages) {
+        console.log('💡 Running with built-in implementations only');
+      }
+      
     }, remainingTime);
-  }
-
-  /**
-   * Debug helper for development
-   */
-  debugImages() {
-    console.log('🖼️ Debugging images...');
-
-    const allImages = document.querySelectorAll('img');
-    console.log(`🖼️ Found ${allImages.length} total images`);
-
-    allImages.forEach((img, index) => {
-      // Add error handler
-      img.onerror = () => {
-        console.error(`❌ Image failed to load:`, img.src || img.getAttribute('data-src'));
-      };
-
-      img.onload = () => {
-        console.log(`✅ Image loaded successfully:`, img.src);
-      };
-    });
   }
 
   /**
@@ -268,8 +569,10 @@ class Application {
     return {
       isInitialized: this.isInitialized,
       loadingTime: Date.now() - this.loadingStartTime,
-      theme: themeManager.getCurrentTheme(),
-      language: languageManager.getCurrentLanguage()
+      features: Object.fromEntries(this.features),
+      loadedModules: Array.from(this.loadedModules),
+      environment: this.isGitHubPages ? 'GitHub Pages' : 'Development',
+      basePath: this.basePath
     };
   }
 }
@@ -277,45 +580,25 @@ class Application {
 // Global error handlers
 window.addEventListener('error', (e) => {
   console.error('💥 Global error:', e.error?.message || e.message);
-  console.error('Error details:', e);
 });
 
 window.addEventListener('unhandledrejection', (e) => {
   console.error('💥 Unhandled promise rejection:', e.reason);
-  console.error('Promise rejection details:', e);
 });
 
-// Create application instance
-const app = new Application();
-
-// Initialize application with timeout backup
+// Initialize application
+const app = new UnifiedApplication();
 app.init();
 
-// Backup timeout - force finish loading after 5 seconds if something goes wrong
+// Backup timeout
 setTimeout(() => {
   if (!app.isInitialized) {
-    console.warn('⚠️ Loading timeout reached, forcing finish loading...');
+    console.warn('⚠️ Backup timeout triggered');
     app.finishLoading();
   }
-}, 5000);
+}, 4000);
 
-// Handle window load event for additional resources
-window.addEventListener('load', () => {
-  console.log('🌟 Window fully loaded, all resources ready');
-  
-  // Additional optimizations can be added here
-  if (app.isInitialized) {
-    console.log('📊 Application Status:', app.getStatus());
-  }
-});
+// Export for debugging
+window.unifiedApp = app;
 
-// Export for debugging/testing
-if (process.env.NODE_ENV === 'development') {
-  window.app = app;
-}
-
-console.log('🎉 Main application script loaded!');
-
-
-
-console.log('🎉 Main application script loaded!');
+console.log('🎉 Unified main script ready!');

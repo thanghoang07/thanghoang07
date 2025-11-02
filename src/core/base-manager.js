@@ -4,7 +4,7 @@
  */
 
 import { Logger, EventUtils, StorageUtils } from '../utils/index.js';
-import { FEATURE_FLAGS } from '../core/config.js';
+import { FEATURE_FLAGS } from '../unified-config.js';
 
 export class BaseManager {
   constructor(name, options = {}) {
