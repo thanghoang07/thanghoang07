@@ -38,6 +38,7 @@ class UnifiedApplication {
       
       // Step 3: Initialize core features (always available)
       this.initializeCoreAnimations();
+      this.initializeEnhancedAnimations();
       this.initializeTheme();
       this.initializeLanguage();
       
@@ -130,6 +131,237 @@ class UnifiedApplication {
     this.initImageLoading();
     
     console.log('✅ Core animations ready');
+  }
+
+  /**
+   * Initialize enhanced animations (self-contained)
+   */
+  initializeEnhancedAnimations() {
+    console.log('🎭 Initializing enhanced animations...');
+    
+    try {
+      // Initialize typing animation for hero
+      this.initTypingAnimation();
+      
+      // Initialize project cards animations
+      this.initProjectAnimations();
+      
+      // Initialize floating background
+      this.initFloatingShapes();
+      
+      // Initialize skills animations
+      this.initSkillsAnimations();
+      
+      // Initialize navigation animations
+      this.initNavigationAnimations();
+      
+      console.log('✅ Enhanced animations ready');
+    } catch (error) {
+      console.error('❌ Enhanced animations error:', error);
+    }
+  }
+
+  /**
+   * Initialize typing animation
+   */
+  initTypingAnimation() {
+    const heroName = document.querySelector('#hero-name .typing-text');
+    if (!heroName) return;
+
+    const text = heroName.textContent;
+    heroName.textContent = '';
+    heroName.style.opacity = '1';
+
+    let i = 0;
+    const typeEffect = () => {
+      if (i < text.length) {
+        heroName.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 100);
+      } else {
+        // Hide cursor after typing
+        const cursor = document.querySelector('#hero-name .typing-cursor');
+        if (cursor) {
+          setTimeout(() => cursor.style.opacity = '0', 1000);
+        }
+      }
+    };
+
+    setTimeout(typeEffect, 1000);
+  }
+
+  /**
+   * Initialize project animations
+   */
+  initProjectAnimations() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    if (projectCards.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
+            entry.target.style.transition = 'all 0.6s ease-out';
+          }, index * 150);
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    // Initially hide cards
+    projectCards.forEach((card) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px) scale(0.95)';
+      observer.observe(card);
+    });
+  }
+
+  /**
+   * Initialize floating shapes
+   */
+  initFloatingShapes() {
+    const container = document.getElementById('floating-shapes-container');
+    if (!container) return;
+
+    const shapes = [
+      { size: 60, color: 'rgba(147, 51, 234, 0.1)', delay: 0 },
+      { size: 40, color: 'rgba(79, 70, 229, 0.1)', delay: 2 },
+      { size: 50, color: 'rgba(236, 72, 153, 0.1)', delay: 4 },
+    ];
+
+    shapes.forEach((shape, index) => {
+      const element = document.createElement('div');
+      element.style.cssText = `
+        position: absolute;
+        width: ${shape.size}px;
+        height: ${shape.size}px;
+        background: ${shape.color};
+        border-radius: 50%;
+        top: ${Math.random() * 80 + 10}%;
+        left: ${Math.random() * 80 + 10}%;
+        animation: float 6s ease-in-out infinite;
+        animation-delay: ${shape.delay}s;
+        opacity: 0.7;
+        pointer-events: none;
+      `;
+      
+      container.appendChild(element);
+    });
+
+    // Add floating animation CSS
+    const floatCSS = `
+      @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        33% { transform: translateY(-20px) rotate(5deg); }
+        66% { transform: translateY(10px) rotate(-5deg); }
+      }
+    `;
+    
+    if (!document.querySelector('#floating-css')) {
+      const style = document.createElement('style');
+      style.id = 'floating-css';
+      style.textContent = floatCSS;
+      document.head.appendChild(style);
+    }
+  }
+
+  /**
+   * Initialize skills section animations
+   */
+  initSkillsAnimations() {
+    const skillsSection = document.querySelector('#skills-tools');
+    if (!skillsSection) return;
+
+    const skillBadges = skillsSection.querySelectorAll('.skill-badge');
+    if (skillBadges.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const badges = entry.target.querySelectorAll('.skill-badge');
+          badges.forEach((badge, index) => {
+            badge.style.opacity = '0';
+            badge.style.transform = 'translateY(20px) scale(0.8)';
+            
+            setTimeout(() => {
+              badge.style.opacity = '1';
+              badge.style.transform = 'translateY(0) scale(1)';
+              badge.style.transition = 'all 0.4s ease-out';
+              
+              // Add bounce effect
+              setTimeout(() => {
+                badge.style.transform = 'translateY(-5px) scale(1.05)';
+                setTimeout(() => {
+                  badge.style.transform = 'translateY(0) scale(1)';
+                }, 150);
+              }, 400);
+            }, index * 100);
+          });
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(skillsSection);
+  }
+
+  /**
+   * Initialize navigation animations
+   */
+  initNavigationAnimations() {
+    const navbar = document.querySelector('header');
+    if (!navbar) return;
+
+    let lastScroll = 0;
+    let isScrolling = false;
+
+    window.addEventListener('scroll', () => {
+      if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+          const currentScroll = window.pageYOffset;
+          
+          // Add/remove shadow based on scroll
+          if (currentScroll > 10) {
+            navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            navbar.style.backdropFilter = 'blur(10px)';
+          } else {
+            navbar.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+            navbar.style.backdropFilter = 'none';
+          }
+          
+          // Hide/show navbar on scroll
+          if (currentScroll > lastScroll && currentScroll > 100) {
+            navbar.style.transform = 'translateY(-100%)';
+          } else {
+            navbar.style.transform = 'translateY(0)';
+          }
+          
+          navbar.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+          lastScroll = currentScroll;
+          isScrolling = false;
+        });
+        
+        isScrolling = true;
+      }
+    });
+
+    // Active link animation
+    const navLinks = document.querySelectorAll('header nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        link.style.transform = 'translateY(-2px)';
+        link.style.transition = 'transform 0.2s ease';
+      });
+      
+      link.addEventListener('mouseleave', () => {
+        link.style.transform = 'translateY(0)';
+      });
+    });
   }
 
   /**
