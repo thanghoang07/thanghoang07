@@ -479,12 +479,14 @@ export function initWorkExperienceTabs() {
       const company = tab.dataset.company;
 
       // Remove active class from all tabs
-      tabs.forEach(t => t.classList.remove('active', 'bg-purple-50', 'text-purple-600'));
-      tabs.forEach(t => t.classList.add('bg-white', 'text-gray-700'));
+      tabs.forEach(t => {
+        t.classList.remove('active', 'bg-purple-50', 'text-purple-600', 'dark:bg-purple-900', 'dark:text-purple-300');
+        t.classList.add('bg-white', 'text-gray-700', 'dark:bg-gray-800', 'dark:text-gray-200');
+      });
 
       // Add active class to clicked tab
-      tab.classList.add('active', 'bg-purple-50', 'text-purple-600');
-      tab.classList.remove('bg-white', 'text-gray-700');
+      tab.classList.add('active', 'bg-purple-50', 'text-purple-600', 'dark:bg-purple-900', 'dark:text-purple-300');
+      tab.classList.remove('bg-white', 'text-gray-700', 'dark:bg-gray-800', 'dark:text-gray-200');
 
       // Hide all details
       details.forEach(d => d.classList.add('hidden'));
