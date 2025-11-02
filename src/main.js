@@ -355,7 +355,7 @@ class UnifiedApplication {
     }
 
     // Setup theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
+      const themeToggle = document.getElementById('toggle-theme');
     if (themeToggle) {
       themeToggle.addEventListener('click', () => {
         const isDark = document.documentElement.classList.contains('dark');
@@ -406,7 +406,7 @@ class UnifiedApplication {
     const savedLanguage = localStorage.getItem('language') || 'vi';
     
     // Setup language toggle functionality
-    const languageToggle = document.getElementById('language-toggle');
+      const languageToggle = document.getElementById('toggle-language');
     if (languageToggle) {
       languageToggle.addEventListener('click', () => {
         const currentLang = localStorage.getItem('language') || 'vi';
@@ -444,14 +444,22 @@ class UnifiedApplication {
     // Basic translation implementation
     const translations = {
       vi: {
-        'nav-about': 'Giới thiệu',
+        'nav-services': 'Dịch vụ',
+        'nav-portfolio': 'Dự án',
         'nav-experience': 'Kinh nghiệm',
+        'nav-blog': 'Blog',
+        'nav-resume': 'Hồ sơ',
+        'nav-about': 'Giới thiệu',
         'nav-skills': 'Kỹ năng',
         'nav-contact': 'Liên hệ'
       },
       en: {
+        'nav-services': 'Services',
+        'nav-portfolio': 'Portfolio',
+        'nav-experience': 'Experience',
+        'nav-blog': 'Blog',
+        'nav-resume': 'Resume',
         'nav-about': 'About',
-        'nav-experience': 'Experience', 
         'nav-skills': 'Skills',
         'nav-contact': 'Contact'
       }
