@@ -31,12 +31,15 @@ export const translations = {
     // Portfolio section
     'portfolio-subtitle': 'Dự án của tôi',
     'portfolio-title': 'Dự án nổi bật',
-    'project-agency-title': 'Website Agency',
-    'project-agency-category': 'Thiết kế Web',
-    'project-dashboard-title': 'Nền tảng Dashboard',
-    'project-dashboard-category': 'Phát triển Web',
-    'project-ecommerce-title': 'Website Thương mại điện tử',
-    'project-ecommerce-category': 'Thiết kế UX',
+    'project-flutter-title': 'Ứng dụng Mobile Cá nhân',
+    'project-flutter-category': 'Phát triển Mobile',
+    'project-flutter-desc': 'Ứng dụng mobile đa nền tảng được xây dựng bằng Flutter',
+    'project-go-title': 'Ứng dụng Backend Go',
+    'project-go-category': 'Phát triển Backend',
+    'project-go-desc': 'API backend hiệu suất cao được xây dựng bằng ngôn ngữ Go',
+    'project-saalem-title': 'SAALEM HPT',
+    'project-saalem-category': 'Phát triển Web Doanh nghiệp',
+    'project-saalem-desc': 'Ứng dụng web cho LOS (Loan Origination System) SAALEM (BIDV - EXIMBANK)',
     
     // Work experience
     'workexp-subtitle': 'Con đường sự nghiệp',
@@ -101,12 +104,15 @@ export const translations = {
     // Portfolio section
     'portfolio-subtitle': 'My Works',
     'portfolio-title': 'Featured Portfolios',
-    'project-agency-title': 'Agency Website',
-    'project-agency-category': 'Web Design',
-    'project-dashboard-title': 'Dashboard Platform',
-    'project-dashboard-category': 'Web Development',
-    'project-ecommerce-title': 'E-commerce Website',
-    'project-ecommerce-category': 'UX Design',
+    'project-flutter-title': 'Personal Mobile App',
+    'project-flutter-category': 'Mobile Development',
+    'project-flutter-desc': 'Cross-platform mobile application built with Flutter',
+    'project-go-title': 'Go Backend Application',
+    'project-go-category': 'Backend Development',
+    'project-go-desc': 'High-performance backend API built with Go language',
+    'project-saalem-title': 'SAALEM HPT',
+    'project-saalem-category': 'Enterprise Web Development',
+    'project-saalem-desc': 'LOS (Loan Origination System) web application for BIDV - EXIMBANK',
     
     // Work experience
     'workexp-subtitle': 'Career Path',

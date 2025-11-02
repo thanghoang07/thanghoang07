@@ -236,8 +236,8 @@
 
   <!-- Preload critical resources -->
   <link rel="modulepreload" href="/thanghoang07/assets/main-C4kzNv8N.js">
-  <script type="module" crossorigin src="/thanghoang07/js/index-CfwF8H9Z.js"></script>
-  <link rel="stylesheet" crossorigin href="/thanghoang07/css/index-CtirpUoE.css">
+  <script type="module" crossorigin src="/thanghoang07/js/index-CQjIb9l5.js"></script>
+  <link rel="stylesheet" crossorigin href="/thanghoang07/css/index-XEtvTJcl.css">
 </head>
 
 <body class="bg-white dark:bg-gray-900 transition-colors duration-300">
@@ -374,39 +374,81 @@
           data-animation="fade-in-up">Featured Portfolios</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Flutter Mobile App Project -->
         <div
           class="card project-card flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale border border-gray-100 dark:border-gray-700 enhanced-hover"
           data-animation="fade-in-scale" data-stagger="stagger-1" data-ripple data-longpress data-zoomable>
-          <img src="https://via.placeholder.com/400x300/9333ea/ffffff?text=Agency+Website"
-            alt="Agency Website project" class="w-full h-56 object-cover project-image" loading="lazy">
+          <div class="w-full h-56 bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center relative">
+            <!-- Mobile App Icons -->
+            <div class="text-center">
+              <i class="fas fa-mobile-alt text-6xl text-white opacity-90 mb-2"></i>
+              <div class="text-white text-sm font-semibold tracking-wider">FLUTTER</div>
+            </div>
+            <div class="absolute top-3 right-3 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+              In Development
+            </div>
+          </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
-            <h3 class="text-lg font-semibold mb-2 project-title text-center text-gray-900 dark:text-gray-100"
-              id="project-agency-title">Agency Website</h3>
-            <p class="text-gray-500 dark:text-gray-400 text-sm text-center" id="project-agency-category">Web Design</p>
+            <div>
+              <h3 class="text-lg font-semibold mb-2 project-title text-center text-gray-900 dark:text-gray-100"
+                id="project-flutter-title">Personal Mobile App</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm text-center mb-3" id="project-flutter-category">Mobile Development</p>
+              <div class="flex justify-center flex-wrap gap-1 mb-3">
+                <span class="bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 px-2 py-1 rounded text-xs">Flutter</span>
+                <span class="bg-cyan-100 text-cyan-600 dark:bg-cyan-900 dark:text-cyan-300 px-2 py-1 rounded text-xs">Dart</span>
+              </div>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-xs text-center" id="project-flutter-desc">Cross-platform mobile application built with Flutter</p>
           </div>
         </div>
+
+        <!-- Go Backend App Project -->
         <div
           class="card project-card flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale border border-gray-100 dark:border-gray-700"
           data-animation="fade-in-scale" data-stagger="stagger-2">
-          <img src="https://via.placeholder.com/400x300/7c3aed/ffffff?text=Dashboard+Platform"
-            alt="Dashboard Platform project" class="w-full h-56 object-cover project-image" loading="lazy">
+          <div class="w-full h-56 bg-gradient-to-br from-cyan-500 to-teal-400 flex items-center justify-center relative">
+            <i class="fab fa-golang text-6xl text-white opacity-90"></i>
+            <div class="absolute top-3 right-3 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+              In Development
+            </div>
+          </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
-            <h3 class="text-lg font-semibold mb-2 project-title text-center text-gray-900 dark:text-gray-100"
-              id="project-dashboard-title">Dashboard Platform</h3>
-            <p class="text-gray-500 dark:text-gray-400 text-sm text-center" id="project-dashboard-category">Web
-              Development</p>
+            <div>
+              <h3 class="text-lg font-semibold mb-2 project-title text-center text-gray-900 dark:text-gray-100"
+                id="project-go-title">Go Backend Application</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm text-center mb-3" id="project-go-category">Backend Development</p>
+              <div class="flex justify-center flex-wrap gap-1 mb-3">
+                <span class="bg-cyan-100 text-cyan-600 dark:bg-cyan-900 dark:text-cyan-300 px-2 py-1 rounded text-xs">Go</span>
+                <span class="bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300 px-2 py-1 rounded text-xs">REST API</span>
+              </div>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-xs text-center" id="project-go-desc">High-performance backend API built with Go language</p>
           </div>
         </div>
+
+        <!-- SAALEM HPT Project -->
         <div
           class="card project-card flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale border border-gray-100 dark:border-gray-700"
           data-animation="fade-in-scale" data-stagger="stagger-3">
-          <img src="https://via.placeholder.com/400x300/a855f7/ffffff?text=E-commerce+Website"
-            alt="E-commerce Website project" class="w-full h-56 object-cover project-image" loading="lazy">
+          <div class="w-full h-56 bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center relative">
+            <i class="fas fa-university text-4xl text-white opacity-90 mr-2"></i>
+            <i class="fas fa-chart-line text-3xl text-white opacity-75"></i>
+            <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+              Production
+            </div>
+          </div>
           <div class="p-6 flex-1 flex flex-col justify-between">
-            <h3 class="text-lg font-semibold mb-2 project-title text-center text-gray-900 dark:text-gray-100"
-              id="project-ecommerce-title">E-commerce Website</h3>
-            <p class="text-gray-500 dark:text-gray-400 text-sm text-center" id="project-ecommerce-category">UX Design
-            </p>
+            <div>
+              <h3 class="text-lg font-semibold mb-2 project-title text-center text-gray-900 dark:text-gray-100"
+                id="project-saalem-title">SAALEM HPT</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm text-center mb-3" id="project-saalem-category">Enterprise Web Development</p>
+              <div class="flex justify-center flex-wrap gap-1 mb-3">
+                <span class="bg-yellow-100 text-yellow-600 dark:bg-yellow-900 dark:text-yellow-300 px-2 py-1 rounded text-xs">JavaScript</span>
+                <span class="bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 px-2 py-1 rounded text-xs">IBM BPM</span>
+                <span class="bg-orange-100 text-orange-600 dark:bg-orange-900 dark:text-orange-300 px-2 py-1 rounded text-xs">HTML</span>
+              </div>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-xs text-center" id="project-saalem-desc">LOS (Loan Origination System) web application for BIDV - EXIMBANK</p>
           </div>
         </div>
       </div>
