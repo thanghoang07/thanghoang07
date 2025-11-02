@@ -41,9 +41,13 @@
       "skills-title": "Bộ kỹ năng chuyên nghiệp",
       "skills-subtitle": "Chuyên môn kỹ thuật"
     },
+    "tools": {
+      "tools-title": "Công cụ tôi sử dụng",
+      "tools-subtitle": "Môi trường phát triển"
+    },
     "certifications": {
       "cert-title": "Chứng chỉ",
-      "cert-subtitle": "Thành tựu nghề nghiệp"
+      "cert-subtitle": "Thành tựu chuyên môn"
     }
   },
   "en": {
@@ -87,6 +91,10 @@
     "skills": {
       "skills-title": "Professional Skillset",
       "skills-subtitle": "Technical Expertise"
+    },
+    "tools": {
+      "tools-title": "Tools I Use",
+      "tools-subtitle": "Development Environment"
     },
     "certifications": {
       "cert-title": "Certifications",
