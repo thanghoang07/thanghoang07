@@ -159,7 +159,7 @@ class PerformanceUtils {
 
   static loadModuleWhenNeeded(modulePath, condition) {
     if (condition()) {
-      return import(modulePath);
+      return import(/* @vite-ignore */ modulePath);
     }
     return Promise.resolve();
   }

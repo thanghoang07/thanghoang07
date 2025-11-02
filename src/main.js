@@ -41,6 +41,7 @@ class UnifiedApplication {
       this.initializeEnhancedAnimations();
       this.initializeTheme();
       this.initializeLanguage();
+      this.initializeBackToTop();
       
       // Step 4: Initialize loaded features
       this.initializeLoadedFeatures();
@@ -90,7 +91,7 @@ class UnifiedApplication {
     for (const moduleInfo of modules) {
       try {
         console.log(`🔄 Loading ${moduleInfo.name}...`);
-        const module = await import(moduleInfo.path);
+        const module = await import(/* @vite-ignore */ moduleInfo.path);
         
         // Check if exports exist
         const availableExports = moduleInfo.exports.filter(exp => module[exp]);
@@ -774,6 +775,47 @@ class UnifiedApplication {
         'contact-title': 'Contact'
       }
     };
+  }
+
+  /**
+   * Initialize back to top button functionality
+   */
+  initializeBackToTop() {
+    console.log('⬆️ Initializing back to top button...');
+
+    const backToTopButton = document.getElementById('back-to-top');
+    if (!backToTopButton) {
+      console.warn('⚠️ Back to top button not found');
+      return;
+    }
+
+    // Show/hide button based on scroll position
+    const toggleButton = () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('show');
+        backToTopButton.classList.remove('hide');
+      } else {
+        backToTopButton.classList.add('hide');
+        backToTopButton.classList.remove('show');
+      }
+    };
+
+    // Smooth scroll to top
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    };
+
+    // Event listeners
+    window.addEventListener('scroll', toggleButton);
+    backToTopButton.addEventListener('click', scrollToTop);
+
+    // Initial check
+    toggleButton();
+
+    console.log('✅ Back to top button initialized');
   }
 
   /**
