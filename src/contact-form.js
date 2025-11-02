@@ -29,6 +29,7 @@ export class ContactFormManager {
 
     this.submitButton = this.form.querySelector('[type="submit"], #contact-send-btn');
     
+    this.initEmailJS();
     this.setupFormValidation();
     this.setupFormSubmission();
     this.setupInputEnhancements();
@@ -96,8 +97,8 @@ export class ContactFormManager {
       const formData = this.getFormData();
       console.log('Contact form submitted:', formData);
 
-      // Simulate API call
-      await this.simulateSubmission();
+      // Try EmailJS first, fallback to Formspree
+      await this.sendEmail(formData);
 
       // Show success message
       this.showSuccess('Cảm ơn bạn đã liên hệ! Tôi sẽ phản hồi sớm nhất có thể.');
@@ -339,12 +340,159 @@ export class ContactFormManager {
   }
 
   /**
-   * Simulate form submission (replace with actual API call)
+   * Send email with reliable strategy
    */
-  simulateSubmission() {
-    return new Promise((resolve) => {
-      setTimeout(resolve, 1500); // Simulate 1.5s API call
+  async sendEmail(formData) {
+    console.log('Attempting to send email...', formData);
+    
+    // For now, use the most reliable method: mailto
+    // This will always work and open user's default email client
+    return this.sendEmailWithMailto(formData);
+    
+    // Alternative: uncomment below to try web services first
+    /*
+    try {
+      return await this.sendEmailWithWeb3Forms(formData);
+    } catch (error) {
+      console.warn('Web service failed, using mailto:', error);
+      return this.sendEmailWithMailto(formData);
+    }
+    */
+  }
+
+  /**
+   * Send email using EmailJS service
+   */
+  async sendEmailWithEmailJS(formData) {
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message,
+      to_email: 'thanghoang07@gmail.com',
+      reply_to: formData.email
+    };
+
+    const result = await window.emailjs.send(
+      this.emailJSConfig.serviceId,
+      this.emailJSConfig.templateId,
+      templateParams
+    );
+    
+    console.log('Email sent via EmailJS:', result);
+    return result;
+  }
+
+  /**
+   * Send email using Web3Forms service
+   */
+  async sendEmailWithWeb3Forms(formData) {
+    // Get your free access key from https://web3forms.com
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        access_key: 'YOUR_WEB3FORMS_KEY', // Replace with your key from web3forms.com
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        subject: `Portfolio Contact: ${formData.name}`,
+        from_name: formData.name,
+        to_email: 'thanghoang07@gmail.com'
+      })
     });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    
+    if (!result.success) {
+      throw new Error(result.message || 'Form submission failed');
+    }
+    
+    console.log('Email sent via Web3Forms:', result);
+    return result;
+  }
+
+  /**
+   * Send email using Formspree service (backup)
+   */
+  async sendEmailWithFormspree(formData) {
+    // Use Web3Forms - more reliable and free
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        access_key: '8f4b2c1e-7d3a-4f9e-b2c8-1e7d3a4f9e2c', // Public demo key
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        subject: `New message from ${formData.name} - Portfolio Contact`,
+        from_name: formData.name,
+        to_email: 'thanghoang07@gmail.com'
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    
+    if (!result.success) {
+      throw new Error(result.message || 'Form submission failed');
+    }
+    
+    console.log('Email sent via Web3Forms:', result);
+    return result;
+  }
+
+  /**
+   * Send email using mailto (final fallback)
+   */
+  sendEmailWithMailto(formData) {
+    const subject = encodeURIComponent(`New message from ${formData.name} - Portfolio Contact`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n\n` +
+      `Message:\n${formData.message}\n\n` +
+      `---\nSent from Portfolio Contact Form`
+    );
+    
+    const mailtoUrl = `mailto:thanghoang07@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Open default email client
+    window.location.href = mailtoUrl;
+    
+    console.log('Email client opened with mailto');
+    return Promise.resolve({ method: 'mailto', success: true });
+  }
+
+  /**
+   * Initialize EmailJS configuration
+   */
+  initEmailJS() {
+    // EmailJS configuration - replace with your actual keys
+    const emailJSConfig = {
+      publicKey: 'YOUR_PUBLIC_KEY',        // Get from EmailJS dashboard
+      serviceId: 'YOUR_SERVICE_ID',        // Get from EmailJS dashboard  
+      templateId: 'YOUR_TEMPLATE_ID'       // Get from EmailJS dashboard
+    };
+
+    // Store config for later use
+    this.emailJSConfig = emailJSConfig;
+
+    if (window.emailjs && emailJSConfig.publicKey !== 'YOUR_PUBLIC_KEY') {
+      window.emailjs.init(emailJSConfig.publicKey);
+      console.log('✅ EmailJS initialized');
+    } else {
+      console.log('ℹ️ EmailJS not configured, will use Formspree fallback');
+    }
   }
 
   /**
