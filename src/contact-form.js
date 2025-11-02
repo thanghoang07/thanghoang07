@@ -3,7 +3,7 @@
  * Enhanced contact form with validation and better UX
  */
 
-import { colorSystem, getColor } from './colors.js';
+import { colorSystem, getColor } from './color-system.js';
 
 /**
  * Contact Form Manager Class

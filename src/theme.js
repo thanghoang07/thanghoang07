@@ -3,7 +3,7 @@
  * Enhanced theme system with better UX and performance
  */
 
-import { colorSystem, getThemeColor } from './colors.js';
+import { colorSystem, getThemeColor } from './color-system.js';
 
 /**
  * Theme Manager Class
