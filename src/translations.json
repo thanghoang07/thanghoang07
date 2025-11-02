@@ -20,7 +20,7 @@
       "skill-ibm-title": "Phát triển IBM BPM",
       "ux-desc": "Phát triển ứng dụng IBM BPM với JavaScript và Java, thiết kế giao diện theo gui-spec.",
       "skill-mobile-title": "Phát triển Mobile",
-      "webdev-desc": "Phát triển ứng dụng mobile cross-platform bằng Xamarin.Forms cho iOS/Android.",
+      "webdev-desc": "Phát triển ứng dụng mobile cross-platform bằng .NET MAUI (Xamarin.Forms) hoặc Flutter cho iOS/Android.",
       "skill-iot-title": "Phát triển IoT",
       "webdesign-desc": "Phát triển ứng dụng IoT và kết nối Azure IoT hub cho thiết bị tùy biến."
     },
@@ -67,7 +67,7 @@
       "skill-ibm-title": "IBM BPM Development",
       "ux-desc": "Developing IBM BPM applications with JavaScript and Java, designing interfaces according to gui-spec.",
       "skill-mobile-title": "Mobile Development",
-      "webdev-desc": "Developing cross-platform mobile applications using Xamarin.Forms for iOS/Android.",
+      "webdev-desc": "Developing cross-platform mobile applications using .NET MAUI (Xamarin.Forms) or Flutter for iOS/Android.",
       "skill-iot-title": "IoT Development",
       "webdesign-desc": "Developing IoT applications and connecting Azure IoT hub for custom devices."
     },
