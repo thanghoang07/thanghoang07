@@ -47,8 +47,8 @@ export const translations = {
     'period-hpt': 'Tháng 10/2022 - Hiện tại · Toàn thời gian',
     
     // Education
-    'education-subtitle': 'Học vấn & Kỹ năng',
-    'education-title': 'Học vấn & Kỹ năng',
+    'education-subtitle': 'Kỹ năng',
+    'education-title': 'Kỹ năng',
     'university-name': 'TRƯỜNG ĐẠI HỌC NÔNG LÂM TP.HCM',
     'faculty-name': 'Khoa công nghệ thông tin',
     'education-period': '09/2014 – 2018',
@@ -117,8 +117,8 @@ export const translations = {
     'period-hpt': 'Oct 2022 - Present · Full-time',
     
     // Education
-    'education-subtitle': 'Education & Skills',
-    'education-title': 'Education & Skills',
+    'education-subtitle': 'Professional Skillset',
+    'education-title': 'Professional Skillset',
     'university-name': 'NONG LAM UNIVERSITY – HO CHI MINH CITY',
     'faculty-name': 'Faculty of information technology',
     'education-period': '09/2014 – 2018',
