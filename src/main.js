@@ -11,6 +11,7 @@
  * 6. All observers are passive where possible.
  */
 
+import './design-system.css';  // ← thêm dòng này
 import './style.css';
 import { initDesignSystemEnhancements } from './design-system-enhancements.js';
 
@@ -35,7 +36,7 @@ class UnifiedApplication {
     console.log(`🚀 Starting (${this.isGitHubPages ? 'GitHub Pages' : 'dev'}) init…`);
     try {
       await this._waitForDOM();
-
+      initDesignSystemEnhancements();
       // Apply saved theme BEFORE anything else to prevent FOUC
       this._applyThemeEarly();
 
@@ -57,7 +58,7 @@ class UnifiedApplication {
       // Module-based features
       this._initLoadedFeatures();
       // Khởi tạo design system enhancements
-      initDesignSystemEnhancements();
+
       this._finishLoading();
     } catch (err) {
       console.error('❌ Init error:', err);
@@ -442,3 +443,11 @@ setTimeout(() => {
 }, 5000);
 
 window.unifiedApp = app;
+
+// Thêm vào cuối main.js (ngoài class)
+window.switchTab = function (company) {
+  ['hpt', 'tk25', 'nbn', 'devup'].forEach(c => {
+    document.getElementById('tab-' + c)?.classList.toggle('active', c === company);
+    document.getElementById('content-' + c)?.classList.toggle('hidden', c !== company);
+  });
+};
