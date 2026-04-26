@@ -14,9 +14,6 @@
 import './style.css';
 import { initDesignSystemEnhancements } from './design-system-enhancements.js';
 
-// Gọi trong init(), sau khi DOM ready:
-initDesignSystemEnhancements();
-
 console.log('🎯 main.js loaded (fixed)');
 
 /* ─────────────────────────────────────────────
@@ -59,7 +56,8 @@ class UnifiedApplication {
 
       // Module-based features
       this._initLoadedFeatures();
-
+      // Khởi tạo design system enhancements
+      initDesignSystemEnhancements();
       this._finishLoading();
     } catch (err) {
       console.error('❌ Init error:', err);
