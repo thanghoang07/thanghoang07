@@ -1,0 +1,1092 @@
+/* ═══════════════════════════════════════════════════════════
+   DESIGN SYSTEM — Modern Tech / Glassmorphism
+   Portfolio: Thang Hoang Duc
+   Fonts: Oxanium (display) + DM Sans (body)
+   Theme: Deep space dark, electric violet accent, glass layers
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+/* ───────────────────────────────────────────────
+   1. TOKENS
+   ─────────────────────────────────────────────── */
+:root {
+    /* Core palette */
+    --c-bg: #080b14;
+    --c-bg-2: #0d1120;
+    --c-surface: rgba(255, 255, 255, 0.04);
+    --c-surface-md: rgba(255, 255, 255, 0.07);
+    --c-surface-hi: rgba(255, 255, 255, 0.11);
+
+    /* Accent — electric violet → cyan */
+    --c-violet: #7c3aed;
+    --c-violet-hi: #a78bfa;
+    --c-cyan: #22d3ee;
+    --c-cyan-lo: rgba(34, 211, 238, 0.15);
+
+    /* Gradient stops */
+    --g-accent: linear-gradient(135deg, #7c3aed 0%, #22d3ee 100%);
+    --g-card: linear-gradient(145deg, rgba(124, 58, 237, 0.12) 0%, rgba(34, 211, 238, 0.06) 100%);
+    --g-mesh: radial-gradient(ellipse 80% 50% at 20% 20%, rgba(124, 58, 237, 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 70% at 80% 80%, rgba(34, 211, 238, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 60% 10%, rgba(167, 139, 250, 0.08) 0%, transparent 50%);
+
+    /* Border */
+    --b-subtle: 1px solid rgba(255, 255, 255, 0.07);
+    --b-accent: 1px solid rgba(124, 58, 237, 0.35);
+    --b-glow: 1px solid rgba(124, 58, 237, 0.6);
+
+    /* Shadows */
+    --sh-card: 0 4px 24px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    --sh-hover: 0 8px 40px rgba(124, 58, 237, 0.25), 0 2px 0 rgba(255, 255, 255, 0.08) inset;
+    --sh-glow: 0 0 40px rgba(124, 58, 237, 0.3);
+
+    /* Typography */
+    --f-display: 'Oxanium', monospace;
+    --f-body: 'DM Sans', sans-serif;
+
+    /* Spacing scale */
+    --sp-xs: 0.5rem;
+    --sp-sm: 1rem;
+    --sp-md: 1.75rem;
+    --sp-lg: 3rem;
+    --sp-xl: 5rem;
+    --sp-2xl: 8rem;
+
+    /* Radius */
+    --r-sm: 8px;
+    --r-md: 16px;
+    --r-lg: 24px;
+    --r-xl: 32px;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --dur-fast: 0.18s;
+    --dur-base: 0.28s;
+    --dur-slow: 0.5s;
+}
+
+/* Light mode overrides (keeping dark as primary) */
+html:not(.dark) {
+    --c-bg: #f0f2ff;
+    --c-bg-2: #e8ebff;
+    --c-surface: rgba(124, 58, 237, 0.05);
+    --c-surface-md: rgba(124, 58, 237, 0.08);
+    --c-surface-hi: rgba(124, 58, 237, 0.12);
+    --b-subtle: 1px solid rgba(124, 58, 237, 0.12);
+    --sh-card: 0 4px 24px rgba(124, 58, 237, 0.08), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+    --sh-hover: 0 8px 40px rgba(124, 58, 237, 0.18), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+    --g-mesh: radial-gradient(ellipse 80% 50% at 20% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 70% at 80% 80%, rgba(34, 211, 238, 0.06) 0%, transparent 55%);
+}
+
+/* ───────────────────────────────────────────────
+   2. BASE
+   ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--f-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    background-color: var(--c-bg);
+    color: rgba(255, 255, 255, 0.82);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+html:not(.dark) body {
+    color: rgba(15, 15, 30, 0.85);
+}
+
+/* Global mesh gradient background */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: var(--g-mesh);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Subtle noise grain overlay */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+}
+
+main,
+section,
+header,
+footer,
+nav,
+div {
+    position: relative;
+    z-index: 1;
+}
+
+/* ───────────────────────────────────────────────
+   3. TYPOGRAPHY
+   ─────────────────────────────────────────────── */
+.ds-h1,
+.ds-h2,
+.ds-h3,
+.ds-h4 {
+    font-family: var(--f-display);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.ds-h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800;
+}
+
+.ds-h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+}
+
+.ds-h3 {
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 600;
+}
+
+.ds-h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Gradient text */
+.ds-text-gradient {
+    background: var(--g-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Eyebrow label */
+.ds-eyebrow {
+    font-family: var(--f-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--c-cyan);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ds-eyebrow::before {
+    content: '';
+    width: 20px;
+    height: 2px;
+    background: var(--g-accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.ds-body-lg {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+.ds-body {
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.ds-caption {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    opacity: 0.55;
+}
+
+/* ───────────────────────────────────────────────
+   4. GLASS CARD  (core component)
+   ─────────────────────────────────────────────── */
+.glass-card {
+    background: var(--g-card);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border: var(--b-subtle);
+    border-radius: var(--r-lg);
+    box-shadow: var(--sh-card);
+    transition:
+        transform var(--dur-base) var(--ease-out),
+        box-shadow var(--dur-base) var(--ease-out),
+        border-color var(--dur-base) var(--ease-out);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Top highlight line */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    pointer-events: none;
+}
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(124, 58, 237, 0.4);
+    box-shadow: var(--sh-hover);
+}
+
+/* Accent border variant */
+.glass-card--accent {
+    border: var(--b-accent);
+}
+
+.glass-card--accent::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: var(--g-accent);
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-out);
+    z-index: -1;
+    filter: blur(12px);
+}
+
+.glass-card--accent:hover::after {
+    opacity: 0.3;
+}
+
+/* ───────────────────────────────────────────────
+   5. PROJECT CARDS  (enhanced)
+   ─────────────────────────────────────────────── */
+.project-card-v2 {
+    @extend .glass-card;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.project-card-v2 .pc-image-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(34, 211, 238, 0.1));
+}
+
+.project-card-v2 .pc-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out), filter 0.5s var(--ease-out);
+    filter: brightness(0.85) saturate(1.1);
+}
+
+.project-card-v2:hover .pc-image-wrap img {
+    transform: scale(1.06);
+    filter: brightness(0.95) saturate(1.3);
+}
+
+/* Gradient overlay on image */
+.project-card-v2 .pc-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            transparent 40%,
+            rgba(8, 11, 20, 0.8) 100%);
+    pointer-events: none;
+}
+
+/* Live badge */
+.project-card-v2 .pc-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    font-family: var(--f-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(34, 211, 238, 0.15);
+    border: 1px solid rgba(34, 211, 238, 0.4);
+    color: var(--c-cyan);
+    backdrop-filter: blur(8px);
+}
+
+.project-card-v2 .pc-body {
+    padding: var(--sp-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-xs);
+    flex: 1;
+}
+
+.project-card-v2 .pc-category {
+    font-family: var(--f-display);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c-cyan);
+}
+
+.project-card-v2 .pc-title {
+    font-family: var(--f-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+    transition: color var(--dur-fast) var(--ease-out);
+}
+
+html:not(.dark) .project-card-v2 .pc-title {
+    color: rgba(15, 15, 30, 0.92);
+}
+
+.project-card-v2:hover .pc-title {
+    color: var(--c-violet-hi);
+}
+
+.project-card-v2 .pc-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+html:not(.dark) .project-card-v2 .pc-desc {
+    color: rgba(15, 15, 30, 0.55);
+}
+
+/* Tech stack tags */
+.project-card-v2 .pc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: var(--sp-xs);
+}
+
+.project-card-v2 .pc-tag {
+    font-family: var(--f-display);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(124, 58, 237, 0.12);
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    color: var(--c-violet-hi);
+}
+
+/* Action row */
+.project-card-v2 .pc-actions {
+    display: flex;
+    gap: 8px;
+    padding: 0 var(--sp-md) var(--sp-md);
+}
+
+/* ───────────────────────────────────────────────
+   6. BUTTONS
+   ─────────────────────────────────────────────── */
+.ds-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--f-display);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+        transform var(--dur-fast) var(--ease-spring),
+        box-shadow var(--dur-fast) var(--ease-out),
+        background var(--dur-fast) var(--ease-out),
+        opacity var(--dur-fast) var(--ease-out);
+    position: relative;
+    overflow: hidden;
+}
+
+.ds-btn:hover {
+    transform: translateY(-2px);
+}
+
+.ds-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Primary */
+.ds-btn--primary {
+    background: var(--g-accent);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35);
+}
+
+.ds-btn--primary:hover {
+    box-shadow: 0 8px 30px rgba(124, 58, 237, 0.55);
+}
+
+/* Ghost */
+.ds-btn--ghost {
+    background: var(--c-surface);
+    border: var(--b-subtle);
+    color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+}
+
+.ds-btn--ghost:hover {
+    background: var(--c-surface-md);
+    border-color: rgba(124, 58, 237, 0.4);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+html:not(.dark) .ds-btn--ghost {
+    color: rgba(15, 15, 30, 0.75);
+}
+
+html:not(.dark) .ds-btn--ghost:hover {
+    color: rgba(15, 15, 30, 0.95);
+}
+
+/* Icon only */
+.ds-btn--icon {
+    padding: 10px;
+    border-radius: var(--r-sm);
+    background: var(--c-surface);
+    border: var(--b-subtle);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ds-btn--icon:hover {
+    background: var(--c-surface-md);
+    color: var(--c-violet-hi);
+    border-color: rgba(124, 58, 237, 0.4);
+}
+
+/* Shimmer sweep on hover */
+.ds-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 0.4s ease;
+}
+
+.ds-btn:hover::before {
+    left: 100%;
+}
+
+/* ───────────────────────────────────────────────
+   7. SECTION LAYOUT
+   ─────────────────────────────────────────────── */
+.ds-section {
+    padding: var(--sp-2xl) 0;
+}
+
+.ds-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--sp-lg);
+}
+
+@media (max-width: 768px) {
+    .ds-container {
+        padding: 0 var(--sp-md);
+    }
+
+    .ds-section {
+        padding: var(--sp-xl) 0;
+    }
+}
+
+/* Section header */
+.ds-section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-xs);
+    margin-bottom: var(--sp-xl);
+}
+
+.ds-section-header--center {
+    align-items: center;
+    text-align: center;
+}
+
+/* Divider line */
+.ds-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.3), rgba(34, 211, 238, 0.2), transparent);
+    margin: var(--sp-xl) 0;
+}
+
+/* ───────────────────────────────────────────────
+   8. SKILL BADGES  (redesigned)
+   ─────────────────────────────────────────────── */
+.ds-skill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--f-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: var(--c-surface);
+    border: var(--b-subtle);
+    color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    transition:
+        transform var(--dur-base) var(--ease-spring),
+        background var(--dur-base) var(--ease-out),
+        border-color var(--dur-base) var(--ease-out),
+        color var(--dur-base) var(--ease-out),
+        box-shadow var(--dur-base) var(--ease-out);
+    cursor: default;
+}
+
+html:not(.dark) .ds-skill-badge {
+    color: rgba(15, 15, 30, 0.7);
+}
+
+.ds-skill-badge:hover {
+    background: rgba(124, 58, 237, 0.15);
+    border-color: rgba(124, 58, 237, 0.5);
+    color: var(--c-violet-hi);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.2);
+}
+
+.ds-skill-badge i,
+.ds-skill-badge svg {
+    font-size: 1rem;
+    transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.ds-skill-badge:hover i,
+.ds-skill-badge:hover svg {
+    transform: scale(1.25) rotate(5deg);
+}
+
+/* ───────────────────────────────────────────────
+   9. STAT CHIPS  (numbers in hero / about)
+   ─────────────────────────────────────────────── */
+.ds-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ds-stat__number {
+    font-family: var(--f-display);
+    font-size: 2rem;
+    font-weight: 800;
+    background: var(--g-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.ds-stat__label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    opacity: 0.5;
+    letter-spacing: 0.04em;
+}
+
+/* ───────────────────────────────────────────────
+   10. ANIMATED GRADIENT BORDER  (hero / featured card)
+   ─────────────────────────────────────────────── */
+.ds-glow-border {
+    position: relative;
+    border-radius: var(--r-lg);
+}
+
+.ds-glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--c-violet), var(--c-cyan), var(--c-violet));
+    background-size: 200% 200%;
+    animation: _gradBorder 4s ease infinite;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+@keyframes _gradBorder {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ───────────────────────────────────────────────
+   11. SCROLL REVEAL  (design system scoped)
+   ─────────────────────────────────────────────── */
+.ds-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity var(--dur-slow) var(--ease-out),
+        transform var(--dur-slow) var(--ease-out);
+}
+
+.ds-reveal.revealed {
+    opacity: 1;
+    transform: none;
+}
+
+.ds-reveal--left {
+    transform: translateX(-30px);
+}
+
+.ds-reveal--right {
+    transform: translateX(30px);
+}
+
+.ds-reveal--scale {
+    transform: scale(0.9);
+}
+
+.ds-reveal--left.revealed,
+.ds-reveal--right.revealed,
+.ds-reveal--scale.revealed {
+    transform: none;
+}
+
+/* Stagger delays */
+.ds-stagger-1 {
+    transition-delay: 0.07s;
+}
+
+.ds-stagger-2 {
+    transition-delay: 0.14s;
+}
+
+.ds-stagger-3 {
+    transition-delay: 0.21s;
+}
+
+.ds-stagger-4 {
+    transition-delay: 0.28s;
+}
+
+.ds-stagger-5 {
+    transition-delay: 0.35s;
+}
+
+/* ───────────────────────────────────────────────
+   12. FLOATING AVATAR RING  (hero visual)
+   ─────────────────────────────────────────────── */
+.ds-avatar-ring {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ds-avatar-ring::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: var(--g-accent);
+    background-size: 200% 200%;
+    animation: _gradBorder 4s ease infinite;
+    z-index: 0;
+}
+
+.ds-avatar-ring img,
+.ds-avatar-ring .ds-avatar-inner {
+    position: relative;
+    z-index: 1;
+    border-radius: 50%;
+    border: 4px solid var(--c-bg);
+}
+
+/* Orbiting dot */
+.ds-avatar-ring::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--c-cyan);
+    box-shadow: 0 0 12px var(--c-cyan);
+    animation: _orbit 5s linear infinite;
+    z-index: 2;
+}
+
+@keyframes _orbit {
+    from {
+        transform: rotate(0deg) translateX(calc(50% + 20px)) rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg) translateX(calc(50% + 20px)) rotate(-360deg);
+    }
+}
+
+/* ───────────────────────────────────────────────
+   13. NAVIGATION  (redesigned)
+   ─────────────────────────────────────────────── */
+.ds-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0;
+    transition: background var(--dur-base) var(--ease-out),
+        box-shadow var(--dur-base) var(--ease-out),
+        transform var(--dur-base) var(--ease-out);
+}
+
+.ds-nav.scrolled {
+    background: rgba(8, 11, 20, 0.8);
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    border-bottom: var(--b-subtle);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+html:not(.dark) .ds-nav.scrolled {
+    background: rgba(240, 242, 255, 0.85);
+}
+
+.ds-nav__link {
+    font-family: var(--f-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: var(--r-sm);
+    transition: color var(--dur-fast) var(--ease-out),
+        background var(--dur-fast) var(--ease-out);
+}
+
+.ds-nav__link:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: var(--c-surface);
+}
+
+.ds-nav__link.active {
+    color: var(--c-violet-hi);
+    background: rgba(124, 58, 237, 0.1);
+}
+
+html:not(.dark) .ds-nav__link {
+    color: rgba(15, 15, 30, 0.55);
+}
+
+html:not(.dark) .ds-nav__link:hover {
+    color: rgba(15, 15, 30, 0.9);
+}
+
+/* ───────────────────────────────────────────────
+   14. SCROLL PROGRESS BAR
+   ─────────────────────────────────────────────── */
+.ds-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--g-accent);
+    box-shadow: 0 0 12px rgba(124, 58, 237, 0.6), 0 0 4px rgba(34, 211, 238, 0.4);
+    z-index: 9999;
+    transition: width 0.08s linear;
+}
+
+/* ───────────────────────────────────────────────
+   15. CONTACT CARD
+   ─────────────────────────────────────────────── */
+.ds-contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-sm);
+    padding: var(--sp-sm) var(--sp-md);
+    border-radius: var(--r-md);
+    background: var(--c-surface);
+    border: var(--b-subtle);
+    text-decoration: none;
+    color: inherit;
+    transition:
+        background var(--dur-base) var(--ease-out),
+        border-color var(--dur-base) var(--ease-out),
+        transform var(--dur-base) var(--ease-out);
+}
+
+.ds-contact-item:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.35);
+    transform: translateX(4px);
+}
+
+.ds-contact-item__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--r-sm);
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(34, 211, 238, 0.1));
+    border: var(--b-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--c-violet-hi);
+    flex-shrink: 0;
+}
+
+/* ───────────────────────────────────────────────
+   16. BACK TO TOP
+   ─────────────────────────────────────────────── */
+.ds-back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--g-accent);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition:
+        opacity var(--dur-base) var(--ease-out),
+        visibility var(--dur-base) var(--ease-out),
+        transform var(--dur-base) var(--ease-out),
+        box-shadow var(--dur-base) var(--ease-out);
+    z-index: 50;
+}
+
+.ds-back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.ds-back-to-top:hover {
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.6), var(--sh-glow);
+    transform: translateY(-3px);
+}
+
+/* ───────────────────────────────────────────────
+   17. WORK EXPERIENCE TABS  (redesigned)
+   ─────────────────────────────────────────────── */
+.ds-tab {
+    font-family: var(--f-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 10px 20px;
+    border-radius: var(--r-sm);
+    border: var(--b-subtle);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition:
+        background var(--dur-fast) var(--ease-out),
+        color var(--dur-fast) var(--ease-out),
+        border-color var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.ds-tab:hover {
+    background: var(--c-surface);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.ds-tab.active {
+    background: rgba(124, 58, 237, 0.12);
+    border-color: rgba(124, 58, 237, 0.5);
+    color: var(--c-violet-hi);
+    box-shadow: inset 3px 0 0 var(--c-violet);
+}
+
+html:not(.dark) .ds-tab {
+    color: rgba(15, 15, 30, 0.45);
+}
+
+html:not(.dark) .ds-tab.active {
+    color: var(--c-violet);
+}
+
+.ds-exp-panel {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity var(--dur-base) var(--ease-out),
+        transform var(--dur-base) var(--ease-out);
+}
+
+.ds-exp-panel:not(.hidden) {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+
+/* ───────────────────────────────────────────────
+   18. RESPONSIVE UTILITIES
+   ─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+    :root {
+        --sp-lg: 1.5rem;
+        --sp-xl: 3rem;
+        --sp-2xl: 5rem;
+    }
+
+    .ds-h1 {
+        font-size: clamp(2rem, 10vw, 2.8rem);
+    }
+}
+
+/* ───────────────────────────────────────────────
+   19. CURSOR GLOW  (desktop only)
+   ─────────────────────────────────────────────── */
+@media (pointer: fine) {
+    .ds-cursor-glow {
+        position: fixed;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease;
+        z-index: 0;
+        mix-blend-mode: screen;
+    }
+}
+
+/* ───────────────────────────────────────────────
+   20. LOADING SCREEN
+   ─────────────────────────────────────────────── */
+.ds-loader {
+    position: fixed;
+    inset: 0;
+    background: var(--c-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--sp-md);
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.ds-loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.ds-loader__ring {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 3px solid rgba(124, 58, 237, 0.15);
+    border-top-color: var(--c-violet);
+    border-right-color: var(--c-cyan);
+    animation: _spin 0.9s linear infinite;
+}
+
+@keyframes _spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ds-loader__text {
+    font-family: var(--f-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    animation: _pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes _pulse {
+
+    0%,
+    100% {
+        opacity: 0.35;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* ───────────────────────────────────────────────
+   21. ACCESSIBILITY
+   ─────────────────────────────────────────────── */
+:focus-visible {
+    outline: 2px solid var(--c-violet-hi);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .ds-cursor-glow {
+        display: none;
+    }
+}

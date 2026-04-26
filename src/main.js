@@ -12,6 +12,10 @@
  */
 
 import './style.css';
+import { initDesignSystemEnhancements } from './design-system-enhancements.js';
+
+// Gọi trong init(), sau khi DOM ready:
+initDesignSystemEnhancements();
 
 console.log('🎯 main.js loaded (fixed)');
 
