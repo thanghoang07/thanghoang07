@@ -1,0 +1,127 @@
+<!-- ─────────────────────────────────────
+         HERO
+         ───────────────────────────────────── -->
+<section style="min-height:88vh;display:flex;align-items:center;padding:var(--sp-2xl) 0;">
+  <div class="ds-container" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+
+    <!-- Left: text -->
+    <div>
+      <span class="ds-eyebrow hero-fade-up" id="hero-mynameis" data-i18n="hero-mynameis">My name is</span>
+
+      <h1 class="ds-h1" style="margin:1rem 0 1.5rem;color:rgba(255,255,255,.95);">
+        <span id="hero-name" class="ds-text-gradient" style="font-family:var(--f-display);">
+          <span class="typing-text" data-text="Thang Hoang Duc.">Thang Hoang Duc.</span><span
+            class="typing-cursor">|</span>
+        </span>
+      </h1>
+
+      <p id="hero-intro" class="ds-body-lg hero-fade-up-delay"
+        style="max-width:500px;color:rgba(255,255,255,.55);margin-bottom:2rem;" data-i18n="hero-intro">
+        Front-end developer with 5+ years of experience in UI development, passionate about creating modern web
+        products and optimizing user experience.
+      </p>
+
+      <!-- Stats row -->
+      <div style="display:flex;gap:2.5rem;margin-bottom:2.5rem;" class="hero-fade-up-delay">
+        <div class="ds-stat">
+          <span class="ds-stat__number" data-count="5" data-suffix="+">5+</span>
+          <span class="ds-stat__label">Years Exp.</span>
+        </div>
+        <div style="width:1px;background:var(--b-subtle);"></div>
+        <div class="ds-stat">
+          <span class="ds-stat__number" data-count="10" data-suffix="+">10+</span>
+          <span class="ds-stat__label">Projects</span>
+        </div>
+        <div style="width:1px;background:var(--b-subtle);"></div>
+        <div class="ds-stat">
+          <span class="ds-stat__number" data-count="3" data-suffix="">3</span>
+          <span class="ds-stat__label">Companies</span>
+        </div>
+      </div>
+
+      <!-- CTA + socials -->
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;" class="hero-fade-up-delay">
+        <a href="#contact" class="ds-btn ds-btn--primary">
+          <i class="fas fa-paper-plane"></i> Get in touch
+        </a>
+        <a href="#portfolio" class="ds-btn ds-btn--ghost">View work <i class="fas fa-arrow-right"
+            style="font-size:.75rem;"></i></a>
+      </div>
+
+      <div style="display:flex;gap:1rem;margin-top:1.5rem;" class="hero-fade-up-delay">
+        <a href="#" class="ds-btn ds-btn--icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
+          aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
+          aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+
+    <!-- Right: avatar -->
+    <div style="display:flex;justify-content:center;align-items:center;position:relative;" class="hidden md:flex">
+      <!-- Glow rings -->
+      <div
+        style="position:absolute;width:320px;height:320px;border-radius:50%;border:1px solid rgba(124,58,237,.2);animation:_orbit2 8s linear infinite;">
+      </div>
+      <div
+        style="position:absolute;width:260px;height:260px;border-radius:50%;border:1px solid rgba(34,211,238,.15);animation:_orbit2 6s linear infinite reverse;">
+      </div>
+
+      <div class="ds-glow-border" style="padding:4px;border-radius:50%;">
+        <img src="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=7c3aed&color=fff&size=256"
+          alt="Thang Hoang Duc avatar"
+          style="width:200px;height:200px;border-radius:50%;border:4px solid var(--c-bg);display:block;object-fit:cover;"
+          loading="lazy">
+      </div>
+
+      <!-- Floating chips around avatar -->
+      <div class="glass-card"
+        style="position:absolute;top:10%;left:0;padding:.6rem 1rem;font-family:var(--f-display);font-size:.7rem;font-weight:700;color:var(--c-cyan);white-space:nowrap;animation:_fc 4s ease-in-out infinite;">
+        <i class="fas fa-code" style="margin-right:.4rem;"></i>IBM BPM Dev
+      </div>
+      <div class="glass-card"
+        style="position:absolute;bottom:15%;right:-1rem;padding:.6rem 1rem;font-family:var(--f-display);font-size:.7rem;font-weight:700;color:var(--c-violet-hi);white-space:nowrap;animation:_fc 4s ease-in-out 1s infinite;">
+        <i class="fas fa-mobile-alt" style="margin-right:.4rem;"></i>Mobile Dev
+      </div>
+      <div class="glass-card"
+        style="position:absolute;top:55%;left:-2rem;padding:.6rem 1rem;font-family:var(--f-display);font-size:.7rem;font-weight:700;color:rgba(255,255,255,.7);white-space:nowrap;animation:_fc 4s ease-in-out 2s infinite;">
+        <i class="fas fa-microchip" style="margin-right:.4rem;"></i>IoT Dev
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes _orbit2 {
+      from {
+        transform: rotate(0deg)
+      }
+
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    @keyframes _fc {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-8px)
+      }
+    }
+
+    @media(max-width:768px) {
+      section:first-of-type .ds-container {
+        grid-template-columns: 1fr !important;
+        text-align: center
+      }
+
+      section:first-of-type .ds-eyebrow {
+        justify-content: center
+      }
+    }
+  </style>
+</section>

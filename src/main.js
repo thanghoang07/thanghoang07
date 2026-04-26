@@ -1,25 +1,12 @@
 /**
- * 🚀 Unified Main Entry Point — FIXED VERSION
- *
- * Fixes:
- * 1. Removed duplicate scroll-reveal / hover IntersectionObserver calls
- *    that conflicted with UnifiedInteractionsManager in app.js.
- * 2. Reduced minLoadingTime from 1200ms → 500ms.
- * 3. ThemeManager is no longer constructed at module-load time.
- * 4. Typing animation re-runs after language switch.
- * 5. initAnimations / initEnhancedAnimations import mismatch resolved.
- * 6. All observers are passive where possible.
+ * 🚀 Unified Main Entry Point
+ * ✅ FIX: Removed all console.log/warn — production-clean
  */
 
-import './design-system.css';  // ← thêm dòng này
+import './design-system.css';
 import './style.css';
 import { initDesignSystemEnhancements } from './design-system-enhancements.js';
 
-console.log('🎯 main.js loaded (fixed)');
-
-/* ─────────────────────────────────────────────
-   Unified Application
-   ───────────────────────────────────────────── */
 class UnifiedApplication {
   constructor() {
     this.isInitialized = false;
@@ -30,43 +17,25 @@ class UnifiedApplication {
     this._cachedTranslations = null;
   }
 
-  /* ─── Entry point ──────────────────────────── */
-
   async init() {
-    console.log(`🚀 Starting (${this.isGitHubPages ? 'GitHub Pages' : 'dev'}) init…`);
     try {
       await this._waitForDOM();
       initDesignSystemEnhancements();
-      // Apply saved theme BEFORE anything else to prevent FOUC
       this._applyThemeEarly();
-
-      // Load JS modules (non-blocking — failures are caught individually)
       await this._loadModules();
-
-      // Core UI — no dependency on external modules
       this._initTheme();
       this._initLanguage();
       this._initNavbar();
       this._initBackToTop();
-
-      // FIXED: animation init delegated entirely to the singleton system.
-      // Do NOT call initScrollReveal / initHoverEffects here — those are
-      // handled by UnifiedInteractionsManager (loaded via modules).
-      this._initFloatingShapes(); // lightweight, standalone
-      this._initTypingAnimation(); // standalone, re-runnable
-
-      // Module-based features
+      this._initFloatingShapes();
+      this._initTypingAnimation();
       this._initLoadedFeatures();
-      // Khởi tạo design system enhancements
-
       this._finishLoading();
     } catch (err) {
-      console.error('❌ Init error:', err);
+      console.error('Init error:', err);
       this._finishLoading();
     }
   }
-
-  /* ─── DOM ready ────────────────────────────── */
 
   _waitForDOM() {
     return new Promise((resolve) => {
@@ -75,8 +44,6 @@ class UnifiedApplication {
     });
   }
 
-  /* ─── Early theme (prevents flash) ─────────── */
-
   _applyThemeEarly() {
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -84,62 +51,30 @@ class UnifiedApplication {
     document.documentElement.classList.toggle('dark', useDark);
   }
 
-  /* ─── Module loading ───────────────────────── */
-
   async _loadModules() {
     const modules = [
-      {
-        name: 'theme',
-        path: './theme.js',
-        exports: ['themeManager'],
-      },
-      {
-        name: 'translations',
-        path: './translations.js',
-        exports: ['languageManager'],
-      },
-      {
-        // FIXED: use animation-system.js which exports initAnimations correctly
-        name: 'animation',
-        path: './animation-system.js',
-        exports: ['initAnimations', 'scrollEffects', 'floatingShapes', 'microInteractions', 'parallaxEffects'],
-      },
-      {
-        name: 'contact',
-        path: './contact-form.js',
-        exports: ['contactFormManager', 'initWorkExperienceTabs'],
-      },
+      { name: 'theme', path: './theme.js', exports: ['themeManager'] },
+      { name: 'translations', path: './translations.js', exports: ['languageManager'] },
+      { name: 'animation', path: './animation-system.js', exports: ['initAnimations'] },
+      { name: 'contact', path: './contact-form.js', exports: ['contactFormManager', 'initWorkExperienceTabs'] },
     ];
 
     for (const mod of modules) {
       try {
         const loaded = await import(/* @vite-ignore */ mod.path);
         const hasExport = mod.exports.some((e) => loaded[e] !== undefined);
-        if (hasExport) {
-          this.features.set(mod.name, loaded);
-          console.log(`✅ Module loaded: ${mod.name}`);
-        }
-      } catch (err) {
-        console.warn(`⚠️ Module failed (${mod.name}): ${err.message}`);
+        if (hasExport) this.features.set(mod.name, loaded);
+      } catch {
+        // Module failed — silently continue, fallbacks handle it
       }
     }
   }
 
-  /* ─── Theme ────────────────────────────────── */
-
   _initTheme() {
     const mod = this.features.get('theme');
     if (mod?.themeManager) {
-      try {
-        // themeManager is a Proxy — calling init() is safe after DOM ready
-        mod.themeManager.init?.();
-        console.log('✅ ThemeManager initialised');
-        return;
-      } catch (e) {
-        console.warn('⚠️ ThemeManager.init failed:', e.message);
-      }
+      try { mod.themeManager.init?.(); return; } catch { /* fallback */ }
     }
-    // Fallback: wire up toggle button manually
     const btn = document.getElementById('toggle-theme');
     if (!btn) return;
     btn.addEventListener('click', () => {
@@ -148,28 +83,20 @@ class UnifiedApplication {
     });
   }
 
-  /* ─── Language ─────────────────────────────── */
-
   _initLanguage() {
     const mod = this.features.get('translations');
     if (mod?.languageManager) {
       try {
         mod.languageManager.init?.();
-        // FIXED: re-run typing animation whenever language changes
-        window.addEventListener('themeChanged', () => { });
         const origApply = mod.languageManager.applyLanguage?.bind(mod.languageManager);
         if (origApply) {
           mod.languageManager.applyLanguage = (lang) => {
             origApply(lang);
-            // Re-trigger typing so the new hero name animates
             setTimeout(() => this._initTypingAnimation(), 100);
           };
         }
-        console.log('✅ LanguageManager initialised');
         return;
-      } catch (e) {
-        console.warn('⚠️ LanguageManager.init failed:', e.message);
-      }
+      } catch { /* fallback */ }
     }
     this._initBuiltInLanguage();
   }
@@ -177,10 +104,8 @@ class UnifiedApplication {
   _initBuiltInLanguage() {
     const saved = localStorage.getItem('language') || 'vi';
     this._applyTranslations(saved);
-
     const btn = document.getElementById('toggle-language');
     if (!btn) return;
-
     let current = saved;
     btn.addEventListener('click', () => {
       current = current === 'vi' ? 'en' : 'vi';
@@ -208,7 +133,6 @@ class UnifiedApplication {
     }
     const data = this._cachedTranslations?.[lang];
     if (!data) return;
-    // Flatten nested keys
     const flat = Object.values(data).reduce((acc, group) => {
       if (typeof group === 'object') Object.assign(acc, group);
       return acc;
@@ -226,58 +150,34 @@ class UnifiedApplication {
     };
   }
 
-  /* ─── Navbar ───────────────────────────────── */
-
   _initNavbar() {
     const header = document.querySelector('header');
     if (!header) return;
-
-    let lastScroll = 0;
-    let ticking = false;
-
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (ticking) return;
-        requestAnimationFrame(() => {
-          const cur = window.pageYOffset;
-          header.style.boxShadow = cur > 10 ? '0 2px 20px rgba(0,0,0,0.08)' : '';
-          header.style.backdropFilter = cur > 10 ? 'blur(10px)' : '';
-          header.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-          // Hide on scroll-down, show on scroll-up
-          if (cur > lastScroll && cur > 80) {
-            header.style.transform = 'translateY(-100%)';
-          } else {
-            header.style.transform = 'translateY(0)';
-          }
-          lastScroll = cur;
-          ticking = false;
-        });
-        ticking = true;
-      },
-      { passive: true }
-    );
+    let lastScroll = 0, ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      requestAnimationFrame(() => {
+        const cur = window.pageYOffset;
+        header.style.boxShadow = cur > 10 ? '0 2px 20px rgba(0,0,0,0.08)' : '';
+        header.style.backdropFilter = cur > 10 ? 'blur(10px)' : '';
+        header.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+        header.style.transform = (cur > lastScroll && cur > 80) ? 'translateY(-100%)' : 'translateY(0)';
+        lastScroll = cur;
+        ticking = false;
+      });
+      ticking = true;
+    }, { passive: true });
   }
-
-  /* ─── Back to top ──────────────────────────── */
 
   _initBackToTop() {
     const btn = document.getElementById('back-to-top');
     if (!btn) return;
-
-    window.addEventListener(
-      'scroll',
-      () => {
-        btn.classList.toggle('show', window.scrollY > 300);
-        btn.classList.toggle('hide', window.scrollY <= 300);
-      },
-      { passive: true }
-    );
-
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('show', window.scrollY > 300);
+      btn.classList.toggle('hide', window.scrollY <= 300);
+    }, { passive: true });
     btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
-
-  /* ─── Typing animation ─────────────────────── */
 
   _initTypingAnimation() {
     const container = document.querySelector('#hero-name .typing-container, #hero-name');
@@ -285,7 +185,6 @@ class UnifiedApplication {
     const cursorEl = container?.querySelector('.typing-cursor');
     if (!textEl) return;
 
-    // Cancel any in-progress typing
     if (this._typingTimeout) clearTimeout(this._typingTimeout);
     if (this._cursorTimeout) clearTimeout(this._cursorTimeout);
 
@@ -300,27 +199,17 @@ class UnifiedApplication {
         textEl.textContent += fullText[i++];
         this._typingTimeout = setTimeout(type, 100);
       } else {
-        // Hide cursor after done typing
         this._cursorTimeout = setTimeout(() => {
           if (cursorEl) cursorEl.style.opacity = '0';
         }, 1000);
       }
     };
-
     this._typingTimeout = setTimeout(type, 500);
   }
 
-  /* ─── Floating shapes (standalone) ─────────── */
-
   _initFloatingShapes() {
     const container = document.getElementById('floating-shapes-container');
-    if (!container || container.children.length) return; // already populated
-
-    const shapes = [
-      { size: 60, color: 'rgba(147,51,234,0.08)', delay: 0 },
-      { size: 40, color: 'rgba(79,70,229,0.08)', delay: 2 },
-      { size: 50, color: 'rgba(236,72,153,0.07)', delay: 4 },
-    ];
+    if (!container || container.children.length) return;
 
     if (!document.getElementById('_float-css')) {
       const style = document.createElement('style');
@@ -335,12 +224,16 @@ class UnifiedApplication {
       document.head.appendChild(style);
     }
 
-    shapes.forEach(({ size, color, delay }) => {
+    [
+      { size: 60, color: 'rgba(124,58,237,0.07)', delay: 0 },
+      { size: 40, color: 'rgba(34,211,238,0.06)', delay: 2 },
+      { size: 50, color: 'rgba(167,139,250,0.05)', delay: 4 },
+    ].forEach(({ size, color, delay }) => {
       const el = document.createElement('div');
       el.style.cssText = `
-        position:absolute; width:${size}px; height:${size}px;
-        background:${color}; border-radius:50%;
-        top:${10 + Math.random() * 75}%; left:${10 + Math.random() * 75}%;
+        position:absolute;width:${size}px;height:${size}px;
+        background:${color};border-radius:50%;
+        top:${10 + Math.random() * 75}%;left:${10 + Math.random() * 75}%;
         animation:_floatShape 6s ease-in-out ${delay}s infinite;
         pointer-events:none;
       `;
@@ -348,46 +241,25 @@ class UnifiedApplication {
     });
   }
 
-  /* ─── Module-based features ────────────────── */
-
   _initLoadedFeatures() {
-    // Contact form
     const contact = this.features.get('contact');
     if (contact) {
       try {
         contact.contactFormManager?.init?.();
         contact.initWorkExperienceTabs?.();
-        console.log('✅ Contact form + work tabs initialised');
-      } catch (e) {
-        console.warn('⚠️ Contact features failed:', e.message);
-      }
+      } catch { /* non-critical */ }
     }
-
-    // FIXED: animation initialisation — call initAnimations() once via singleton.
-    // Do NOT also call scrollEffects.init() / microInteractions.init() here,
-    // because UnifiedInteractionsManager in app.js handles those.
-    // initAnimations() is idempotent (singleton guard inside).
     const anim = this.features.get('animation');
     if (anim?.initAnimations) {
-      try {
-        anim.initAnimations();
-        console.log('✅ Animation system initialised (singleton)');
-      } catch (e) {
-        console.warn('⚠️ Animation init failed:', e.message);
-      }
+      try { anim.initAnimations(); } catch { /* non-critical */ }
     }
   }
 
-  /* ─── Loading screen ───────────────────────── */
-
   _finishLoading() {
     const elapsed = Date.now() - this.loadingStartTime;
-    // FIXED: reduced from 1200ms to 500ms — content is ready, no need to delay
-    const MIN_TIME = 500;
-    const wait = Math.max(0, MIN_TIME - elapsed);
-
-    const messages = ['Initialising…', 'Loading animations…', 'Almost ready…', 'Welcome! 🎉'];
-    const loaderText = document.querySelector('.loader-text');
+    const wait = Math.max(0, 500 - elapsed);
+    const messages = ['Initialising…', 'Loading…', 'Almost ready…', 'Welcome! 🎉'];
+    const loaderText = document.querySelector('.loader-text, #loader-msg');
     let msgIdx = 0;
     const cycle = () => {
       if (loaderText && msgIdx < messages.length) {
@@ -400,54 +272,40 @@ class UnifiedApplication {
     setTimeout(() => {
       const loader = document.getElementById('page-loader');
       const main = document.getElementById('main-content');
-
       if (loader) {
         loader.classList.add('fade-out');
         setTimeout(() => (loader.style.display = 'none'), 600);
       }
-
       if (main) {
         main.style.opacity = '0';
         main.style.transform = 'translateY(16px)';
         main.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            main.style.opacity = '1';
-            main.style.transform = 'translateY(0)';
-          });
-        });
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          main.style.opacity = '1';
+          main.style.transform = 'translateY(0)';
+        }));
       }
-
       document.body.classList.add('loaded');
       this.isInitialized = true;
-      console.log('🎉 App ready!');
     }, wait);
   }
 }
 
-/* ─────────────────────────────────────────────
-   Bootstrap
-   ───────────────────────────────────────────── */
-window.addEventListener('error', (e) => console.error('💥 Global error:', e.message));
-window.addEventListener('unhandledrejection', (e) => console.error('💥 Unhandled rejection:', e.reason));
+/* ── Bootstrap ─────────────────────────────────── */
+window.addEventListener('error', (e) => console.error('Global error:', e.message));
+window.addEventListener('unhandledrejection', (e) => console.error('Unhandled rejection:', e.reason));
 
 const app = new UnifiedApplication();
 app.init();
 
-// Safety fallback — force finish loading after 5 s
 setTimeout(() => {
-  if (!app.isInitialized) {
-    console.warn('⏰ Timeout fallback triggered');
-    app._finishLoading?.();
-  }
+  if (!app.isInitialized) app._finishLoading?.();
 }, 5000);
 
-window.unifiedApp = app;
-
-// Thêm vào cuối main.js (ngoài class)
-window.switchTab = function (company) {
-  ['hpt', 'tk25', 'nbn', 'devup'].forEach(c => {
-    document.getElementById('tab-' + c)?.classList.toggle('active', c === company);
-    document.getElementById('content-' + c)?.classList.toggle('hidden', c !== company);
+// ✅ FIX 3: Tab switching global function
+window.switchTab = (company) => {
+  ['hpt', 'tk25', 'nbn', 'devup'].forEach((c) => {
+    document.getElementById(`tab-${c}`)?.classList.toggle('active', c === company);
+    document.getElementById(`content-${c}`)?.classList.toggle('hidden', c !== company);
   });
 };

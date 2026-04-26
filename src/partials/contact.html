@@ -1,0 +1,76 @@
+<!-- ─────────────────────────────────────
+         CONTACT
+         ───────────────────────────────────── -->
+<section id="contact" class="ds-section">
+  <div class="ds-container">
+    <div class="ds-section-header ds-section-header--center ds-reveal">
+      <span class="ds-eyebrow" id="contact-subtitle" data-i18n="contact-subtitle">Contact</span>
+      <h2 class="ds-h2 ds-text-gradient" id="contact-title" data-i18n="contact-title">Get in Touch</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:900px;margin:0 auto;" class="ds-reveal">
+
+      <!-- Form -->
+      <form id="contact-form" class="glass-card" style="padding:2rem;display:flex;flex-direction:column;gap:1rem;">
+        <input type="text" id="contact-name-input" name="name" placeholder="Your Name"
+          style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;"
+          onfocus="this.style.borderColor='rgba(124,58,237,.5)'" onblur="this.style.borderColor=''" required>
+        <input type="email" id="contact-email-input" name="email" placeholder="Your Email"
+          style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;"
+          onfocus="this.style.borderColor='rgba(124,58,237,.5)'" onblur="this.style.borderColor=''" required>
+        <textarea id="contact-message-input" name="message" placeholder="Your Message" rows="5" maxlength="1000"
+          style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;resize:vertical;"
+          onfocus="this.style.borderColor='rgba(124,58,237,.5)'" onblur="this.style.borderColor=''" required></textarea>
+        <button type="submit" id="contact-send-btn" class="ds-btn ds-btn--primary"
+          style="width:100%;justify-content:center;padding:.9rem;font-size:.9rem;" data-ripple>
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+
+      <!-- Info -->
+      <div style="display:flex;flex-direction:column;gap:1rem;justify-content:center;">
+        <a href="https://maps.google.com" target="_blank" class="ds-contact-item" style="text-decoration:none;">
+          <div class="ds-contact-item__icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <div
+              style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"
+              id="contact-address-label">Address</div>
+            <div style="color:rgba(255,255,255,.75);font-size:.9rem;" id="contact-address-value">DaKao, District 1,
+              HCMC, VietNam</div>
+          </div>
+        </a>
+        <a href="mailto:thanghoang07@gmail.com" class="ds-contact-item" style="text-decoration:none;">
+          <div class="ds-contact-item__icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div
+              style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"
+              id="contact-emailinfo-label">Email</div>
+            <div style="color:rgba(255,255,255,.75);font-size:.9rem;" id="contact-email-value">
+              thanghoang07@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+84932431562" class="ds-contact-item" style="text-decoration:none;">
+          <div class="ds-contact-item__icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <div
+              style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"
+              id="contact-phone-label">Phone</div>
+            <div style="color:rgba(255,255,255,.75);font-size:.9rem;" id="contact-phone-value">(+84) 93 243 1562
+            </div>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="ds-contact-item"
+          style="text-decoration:none;">
+          <div class="ds-contact-item__icon"><i class="fab fa-linkedin"></i></div>
+          <div>
+            <div
+              style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"
+              id="contact-linkedin-label">LinkedIn</div>
+            <div style="color:rgba(255,255,255,.75);font-size:.9rem;" id="contact-linkedin-value">
+              linkedin.com/in/thanghoang07</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

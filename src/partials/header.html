@@ -1,0 +1,59 @@
+<!-- ─────────────────────────────────────
+         HEADER / NAV
+         ───────────────────────────────────── -->
+<header class="ds-nav sticky top-0 z-30 py-4">
+  <div class="ds-container" style="display:flex;align-items:center;justify-content:space-between;">
+
+    <!-- Logo -->
+    <a href="#"
+      style="font-family:var(--f-display);font-size:1.4rem;font-weight:800;background:var(--g-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;">
+      Thang.
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex" style="gap:0.25rem;">
+      <a href="#services" class="ds-nav__link" id="nav-services" data-i18n="nav-services">Services</a>
+      <a href="#portfolio" class="ds-nav__link" id="nav-portfolio" data-i18n="nav-portfolio">Portfolio</a>
+      <a href="#experience" class="ds-nav__link" id="nav-experience" data-i18n="nav-experience">Experience</a>
+      <a href="#skills-tools" class="ds-nav__link" id="nav-blog" data-i18n="nav-blog">Skills</a>
+      <a href="#contact" class="ds-nav__link" id="nav-resume" data-i18n="nav-resume">Contact</a>
+    </nav>
+
+    <!-- Controls -->
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <button id="toggle-theme" class="ds-btn ds-btn--icon" aria-label="Toggle dark mode" data-ripple>
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+      </button>
+      <button id="toggle-language" class="ds-btn ds-btn--icon" data-ripple>
+        <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese"
+          style="width:22px;height:15px;border-radius:2px;">
+        <img id="lang-en-icon" src="https://flagcdn.com/w40/gb.png" alt="English"
+          style="width:22px;height:15px;border-radius:2px;" class="hidden">
+      </button>
+
+      <!-- Mobile menu -->
+      <button id="mobile-menu-btn" class="ds-btn ds-btn--icon md:hidden" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden"
+    style="border-top:var(--b-subtle);background:rgba(8,11,20,.95);backdrop-filter:blur(20px);">
+    <div class="ds-container"
+      style="padding-top:1rem;padding-bottom:1rem;display:flex;flex-direction:column;gap:.5rem;">
+      <a href="#services" class="ds-nav__link"
+        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Services</a>
+      <a href="#portfolio" class="ds-nav__link"
+        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Portfolio</a>
+      <a href="#experience" class="ds-nav__link"
+        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Experience</a>
+      <a href="#skills-tools" class="ds-nav__link"
+        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Skills</a>
+      <a href="#contact" class="ds-nav__link"
+        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+    </div>
+  </div>
+</header>
