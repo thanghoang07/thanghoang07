@@ -1,198 +1,161 @@
 /**
- * 🎨 Theme Management System
- * Enhanced theme system with better UX and performance
+ * 🎨 Theme Management System — FIXED VERSION
+ *
+ * Fixes:
+ * 1. `new ThemeManager()` was called at module-load time (before DOM ready),
+ *    causing getElementById to return null and toggle button never wired up.
+ * 2. `document.body.style.display = 'none'` force-repaint trick caused layout flash.
+ * 3. Theme transition now scoped to html/body only (not every element via *).
  */
 
-import { colorSystem, getThemeColor } from './color-system.js';
+import { getThemeColor } from './color-system.js';
 
-/**
- * Theme Manager Class
- */
 export class ThemeManager {
   constructor() {
-    this.html = document.documentElement;
-    this.themeToggle = document.getElementById('toggle-theme');
-    this.currentTheme = this.getInitialTheme();
+    // DO NOT touch the DOM here — constructor runs at import time.
+    // DOM elements are resolved lazily in init().
+    this._themeToggle = null;
+    this.currentTheme = this._resolveInitialTheme();
   }
 
-  /**
-   * Get initial theme from localStorage or system preference
-   */
-  getInitialTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) return savedTheme;
+  /* ── Helpers ────────────────────────────────── */
 
-    // Detect system preference
+  _resolveInitialTheme() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') return saved;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
-  /**
-   * Initialize theme system
-   */
+  get _toggle() {
+    // Lazy DOM lookup — safe to call after DOMContentLoaded
+    if (!this._themeToggle) {
+      this._themeToggle = document.getElementById('toggle-theme');
+    }
+    return this._themeToggle;
+  }
+
+  /* ── Public API ─────────────────────────────── */
+
   init() {
-    console.log('🎨 Initializing theme system...');
+    console.log('🎨 Initialising theme system…');
 
-    // Apply initial theme immediately to prevent flash
-    this.applyTheme(this.currentTheme);
+    // Apply immediately to prevent FOUC
+    this._apply(this.currentTheme, false);
 
-    // Listen for system theme changes
-    this.watchSystemTheme();
+    // Wire up toggle button
+    if (this._toggle) {
+      this._updateButton(this.currentTheme);
+      this._toggle.addEventListener('click', () => {
+        const next = this.currentTheme === 'dark' ? 'light' : 'dark';
+        this.setTheme(next);
+      });
+    } else {
+      console.warn('⚠️ #toggle-theme not found — theme toggle disabled');
+    }
 
-    // Add theme toggle listener
-    this.initThemeToggle();
+    // React to OS-level changes (only when no manual preference saved)
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+          this._apply(e.matches ? 'dark' : 'light', true);
+        }
+      });
 
     console.log('✅ Theme system ready');
   }
 
-  /**
-   * Watch for system theme changes
-   */
-  watchSystemTheme() {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      // Only follow system theme if no manual theme is set
-      if (!localStorage.getItem('theme')) {
-        this.applyTheme(e.matches ? 'dark' : 'light');
-      }
-    });
+  setTheme(theme) {
+    if (theme !== 'dark' && theme !== 'light') return;
+    localStorage.setItem('theme', theme);
+    this.currentTheme = theme;
+    this._apply(theme, true);
+    console.log(`🎨 Theme → ${theme}`);
   }
 
-  /**
-   * Initialize theme toggle button
-   */
-  initThemeToggle() {
-    if (!this.themeToggle) {
-      console.warn('Theme toggle button not found');
-      return;
-    }
-
-    // Update button state
-    this.updateThemeButton(this.currentTheme);
-
-    // Add click handler with smooth transition
-    this.themeToggle.addEventListener('click', () => {
-      const newTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
-      
-      console.log(`🔄 Switching from ${this.currentTheme} to ${newTheme}`);
-      
-      this.toggleTheme(newTheme);
-      
-      console.log(`✅ Theme switched to: ${newTheme}`);
-    });
+  toggleTheme() {
+    this.setTheme(this.currentTheme === 'dark' ? 'light' : 'dark');
   }
 
-  /**
-   * Toggle theme with smooth transition
-   */
-  toggleTheme(newTheme) {
-    // Add smooth transition
-    document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-    
-    this.applyTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    this.currentTheme = newTheme;
-
-    // Remove transition after animation
-    setTimeout(() => {
-      document.body.style.transition = '';
-      
-      // Force repaint for better compatibility
-      document.body.style.display = 'none';
-      document.body.offsetHeight; // Trigger reflow
-      document.body.style.display = '';
-    }, 300);
-  }
-
-  /**
-   * Apply theme to DOM
-   */
-  applyTheme(theme) {
-    console.log(`🎨 Applying theme: ${theme}`);
-
-    try {
-      if (theme === 'dark') {
-        this.html.classList.add('dark');
-      } else {
-        this.html.classList.remove('dark');
-      }
-
-      // Update theme button
-      this.updateThemeButton(theme);
-
-      // Update meta theme-color for mobile browsers
-      this.updateMetaThemeColor(theme);
-
-      // Dispatch custom event for other components
-      window.dispatchEvent(new CustomEvent('themeChanged', { 
-        detail: { theme, timestamp: Date.now() } 
-      }));
-
-      // Debug verification
-      setTimeout(() => {
-        const isDark = this.html.classList.contains('dark');
-        console.log(`🔍 Theme applied successfully: ${theme}, DOM has dark class: ${isDark}`);
-      }, 100);
-
-    } catch (error) {
-      console.error('Error applying theme:', error);
-      // Fallback to light theme
-      this.html.classList.remove('dark');
-    }
-  }
-
-  /**
-   * Update theme toggle button state
-   */
-  updateThemeButton(theme) {
-    if (!this.themeToggle) return;
-
-    const moonIcon = this.themeToggle.querySelector('.fa-moon');
-    const sunIcon = this.themeToggle.querySelector('.fa-sun');
-
-    if (theme === 'dark') {
-      if (moonIcon) moonIcon.classList.add('hidden');
-      if (sunIcon) sunIcon.classList.remove('hidden');
-    } else {
-      if (moonIcon) moonIcon.classList.remove('hidden');
-      if (sunIcon) sunIcon.classList.add('hidden');
-    }
-  }
-
-  /**
-   * Update meta theme-color for mobile browsers
-   */
-  updateMetaThemeColor(theme) {
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
-      const themeColor = getThemeColor(theme, 'metaTheme');
-      metaThemeColor.setAttribute('content', themeColor);
-    }
-  }
-
-  /**
-   * Get current theme
-   */
   getCurrentTheme() {
-    return this.html.classList.contains('dark') ? 'dark' : 'light';
+    return this.currentTheme;
   }
 
-  /**
-   * Check if dark mode is active
-   */
   isDarkMode() {
-    return this.getCurrentTheme() === 'dark';
+    return this.currentTheme === 'dark';
+  }
+
+  /* ── Private ─────────────────────────────────── */
+
+  _apply(theme, animate) {
+    const html = document.documentElement;
+
+    if (animate) {
+      // Scoped transition on html/body only — NOT on every element via *
+      html.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+      document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+      setTimeout(() => {
+        html.style.transition = '';
+        document.body.style.transition = '';
+      }, 350);
+    }
+
+    html.classList.toggle('dark', theme === 'dark');
+
+    this._updateButton(theme);
+    this._updateMetaThemeColor(theme);
+
+    window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
+  }
+
+  _updateButton(theme) {
+    const toggle = this._toggle;
+    if (!toggle) return;
+    const moon = toggle.querySelector('.fa-moon');
+    const sun = toggle.querySelector('.fa-sun');
+    moon?.classList.toggle('hidden', theme === 'dark');
+    sun?.classList.toggle('hidden', theme === 'light');
+  }
+
+  _updateMetaThemeColor(theme) {
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) return;
+    try {
+      meta.setAttribute('content', getThemeColor(theme, 'metaTheme'));
+    } catch {
+      meta.setAttribute('content', theme === 'dark' ? '#1e293b' : '#9333ea');
+    }
   }
 }
 
-// Legacy function for backward compatibility
+/* ── Singleton ─────────────────────────────────
+   FIXED: do NOT call `new ThemeManager()` here.
+   The singleton is created lazily on first import of `themeManager`.
+   ─────────────────────────────────────────────── */
+let _instance = null;
+
+export function getThemeManager() {
+  if (!_instance) _instance = new ThemeManager();
+  return _instance;
+}
+
+// Named export kept for compatibility — but instance is lazy now
+export const themeManager = new Proxy(
+  {},
+  {
+    get(_, prop) {
+      return getThemeManager()[prop];
+    },
+  }
+);
+
+// Legacy helpers
 export function initTheme() {
-  const themeManager = new ThemeManager();
-  themeManager.init();
-  return themeManager;
+  const mgr = getThemeManager();
+  mgr.init();
+  return mgr;
 }
 
 export function getCurrentTheme() {
   return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
 }
-
-// Create and export singleton instance
-export const themeManager = new ThemeManager(); 

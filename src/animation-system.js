@@ -1,232 +1,210 @@
 /**
- * 🎭 Unified Animation System
- * Consolidated animation module with performance optimization
+ * 🎭 Unified Animation System - FIXED VERSION
+ *
+ * Fixes:
+ * 1. Double IntersectionObserver initialization (was called from both main.js and app.js)
+ * 2. ThemeManager DOM access before ready
+ * 3. CSS transition override causing slow hover effects
+ * 4. initAnimations export name mismatch
+ * 5. Memory leaks from untracked observers
  */
 
-/**
- * Animation Configuration
- */
 const ANIMATION_CONFIG = {
   PARALLAX_SPEED: 0.5,
   TYPING_SPEED: 100,
   CURSOR_DELAY: 1000,
   TYPING_DELAY: 500,
-  DURATION: 2000,
   SCROLL_THRESHOLD: 0.15,
-  STAGGER_DELAY: 200,
+  STAGGER_DELAY: 120,
   RIPPLE_DURATION: 600,
-  BOUNCE_DURATION: 150,
-  PROGRESS_DURATION: 2000,
-  MAX_FLOATING_SHAPES: 15,
-  PERFORMANCE_THRESHOLD: 16 // 60fps target
+  PROGRESS_DURATION: 1800,
+  MAX_FLOATING_SHAPES: 12,
+  PERFORMANCE_THRESHOLD: 16,
 };
 
-/**
- * Performance Optimizer
- */
+/* ─────────────────────────────────────────────
+   Singleton guard — prevents double-init
+   ───────────────────────────────────────────── */
+let _animationSystemInstance = null;
+
+/* ─────────────────────────────────────────────
+   Performance Optimizer
+   ───────────────────────────────────────────── */
 class PerformanceOptimizer {
   constructor() {
-    this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    this.performanceMode = this.detectPerformanceMode();
-    this.activeAnimations = new Set();
-    this.frameTime = 0;
-    this.lastFrameTime = 0;
+    this.isReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    this.performanceMode = this._detectMode();
   }
 
-  detectPerformanceMode() {
-    const capabilities = {
-      hardwareConcurrency: navigator.hardwareConcurrency || 2,
-      deviceMemory: navigator.deviceMemory || 2,
-      isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-    };
-
-    if (capabilities.isMobile || capabilities.deviceMemory < 4) {
-      return 'performance';
-    } else if (capabilities.hardwareConcurrency >= 8 && capabilities.deviceMemory >= 8) {
-      return 'quality';
-    }
+  _detectMode() {
+    const mem = navigator.deviceMemory || 4;
+    const cores = navigator.hardwareConcurrency || 4;
+    const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (mobile || mem < 2 || cores < 2) return 'performance';
+    if (cores >= 8 && mem >= 8) return 'quality';
     return 'auto';
   }
 
   shouldOptimize() {
-    return this.isReducedMotion || this.performanceMode === 'performance' || this.frameTime > ANIMATION_CONFIG.PERFORMANCE_THRESHOLD;
+    return this.isReducedMotion || this.performanceMode === 'performance';
   }
 
   optimizeAnimation(config) {
     if (this.shouldOptimize()) {
-      return {
-        ...config,
-        duration: config.duration * 0.7,
-        stagger: config.stagger * 0.5,
-        complexity: 'reduced'
-      };
+      return { ...config, duration: (config.duration || 600) * 0.6, stagger: (config.stagger || 120) * 0.4 };
     }
     return config;
   }
 }
 
-/**
- * Scroll Effects Manager
- */
+/* ─────────────────────────────────────────────
+   Scroll Effects  (FIXED: single observer, no duplicate)
+   ───────────────────────────────────────────── */
 class ScrollEffects {
   constructor(optimizer) {
     this.optimizer = optimizer;
     this.observers = new Map();
-    this.observerOptions = {
-      threshold: ANIMATION_CONFIG.SCROLL_THRESHOLD,
-      rootMargin: '0px 0px -50px 0px'
-    };
+    this._initialized = false;
   }
 
   init() {
-    console.log('📜 Initializing scroll effects...');
-    
-    this.initScrollReveal();
-    this.initProgressBars();
-    this.initScrollProgress();
-    
+    // Guard: only initialise once per page lifecycle
+    if (this._initialized) {
+      console.warn('⚠️ ScrollEffects already initialised — skipping duplicate call');
+      return;
+    }
+    this._initialized = true;
+
+    console.log('📜 Initialising scroll effects…');
+    this._initScrollReveal();
+    this._initProgressBars();
+    this._initScrollProgress();
     console.log('✅ Scroll effects ready');
   }
 
-  initScrollReveal() {
-    const revealElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale');
-    console.log(`📜 Found ${revealElements.length} elements with scroll animations`);
+  _initScrollReveal() {
+    const targets = document.querySelectorAll(
+      '.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, [data-animation]'
+    );
+    console.log(`📜 ${targets.length} scroll-reveal elements found`);
+    if (!targets.length) return;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const element = entry.target;
-          const animation = element.dataset.animation || 'fade-in-up';
-          const stagger = element.dataset.stagger || '';
-          
-          let delay = 0;
-          if (stagger.includes('stagger-')) {
-            const staggerNum = parseInt(stagger.split('-')[1]) || 1;
-            delay = staggerNum * ANIMATION_CONFIG.STAGGER_DELAY;
-          }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
 
-          // Apply performance optimization
-          const config = this.optimizer.optimizeAnimation({ delay, animation });
-          
+          const el = entry.target;
+          const staggerAttr = el.dataset.stagger || '';
+          const staggerNum = parseInt((staggerAttr.match(/\d+/) || ['0'])[0], 10);
+          const delay = this.optimizer.optimizeAnimation({ stagger: staggerNum * ANIMATION_CONFIG.STAGGER_DELAY }).stagger;
+
           setTimeout(() => {
-            element.classList.add('revealed');
-            element.style.animationName = config.animation;
-            element.style.animationDuration = '0.6s';
-            element.style.animationFillMode = 'forwards';
-            element.style.animationTimingFunction = 'ease-out';
-          }, config.delay);
+            el.classList.add('revealed');
+          }, delay);
 
-          observer.unobserve(element);
-        }
-      });
-    }, this.observerOptions);
+          observer.unobserve(el);
+        });
+      },
+      { threshold: ANIMATION_CONFIG.SCROLL_THRESHOLD, rootMargin: '0px 0px -40px 0px' }
+    );
 
-    revealElements.forEach(el => observer.observe(el));
+    targets.forEach((el) => observer.observe(el));
     this.observers.set('scrollReveal', observer);
   }
 
-  initProgressBars() {
-    const progressBars = document.querySelectorAll('.progress-bar');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const progressBar = entry.target.querySelector('.progress-bar') || entry.target;
-          if (progressBar && progressBar.style.width) {
-            const targetWidth = progressBar.style.width;
-            const config = this.optimizer.optimizeAnimation({ duration: ANIMATION_CONFIG.PROGRESS_DURATION });
-            
-            progressBar.style.width = '0%';
-            progressBar.style.transition = `width ${config.duration}ms ease-out`;
-            
-            setTimeout(() => {
-              progressBar.style.width = targetWidth;
-            }, 100);
-          }
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
+  _initProgressBars() {
+    const bars = document.querySelectorAll('.progress-bar');
+    if (!bars.length) return;
 
-    progressBars.forEach(bar => {
-      observer.observe(bar.parentElement || bar);
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const bar = entry.target;
+          const targetWidth = bar.style.width || bar.dataset.width || '80%';
+          const cfg = this.optimizer.optimizeAnimation({ duration: ANIMATION_CONFIG.PROGRESS_DURATION });
+
+          bar.style.width = '0%';
+          // Use rAF so the browser registers the 0% before animating
+          requestAnimationFrame(() => {
+            bar.style.transition = `width ${cfg.duration}ms cubic-bezier(0.4,0,0.2,1)`;
+            bar.style.width = targetWidth;
+          });
+
+          observer.unobserve(bar);
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    bars.forEach((bar) => observer.observe(bar));
+    this.observers.set('progressBars', observer);
   }
 
-  initScrollProgress() {
-    let ticking = false;
-    
-    const updateScrollProgress = () => {
-      const scrolled = window.pageYOffset;
-      const maxHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrolled / maxHeight) * 100;
-      
-      const progressBar = document.querySelector('.scroll-progress');
-      if (progressBar) {
-        progressBar.style.width = `${progress}%`;
-      }
-      
-      ticking = false;
-    };
+  _initScrollProgress() {
+    const progressBar = document.querySelector('.scroll-progress');
+    if (!progressBar) return;
 
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateScrollProgress);
-        ticking = true;
-      }
-    });
+      if (ticking) return;
+      requestAnimationFrame(() => {
+        const scrolled = window.pageYOffset;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.width = `${(scrolled / max) * 100}%`;
+        ticking = false;
+      });
+      ticking = true;
+    }, { passive: true });
   }
 
   destroy() {
-    this.observers.forEach(observer => observer.disconnect());
+    this.observers.forEach((o) => o.disconnect());
     this.observers.clear();
+    this._initialized = false;
   }
 }
 
-/**
- * Floating Shapes Manager
- */
+/* ─────────────────────────────────────────────
+   Floating Shapes
+   ───────────────────────────────────────────── */
 class FloatingShapes {
   constructor(optimizer) {
     this.optimizer = optimizer;
     this.shapes = [];
     this.animationId = null;
+    this._initialized = false;
   }
 
   init() {
-    console.log('🎈 Initializing floating shapes...');
-    
-    const container = document.getElementById('floating-shapes-container');
-    if (!container) {
-      console.warn('⚠️ Floating shapes container not found');
-      return;
-    }
+    if (this._initialized) return;
+    this._initialized = true;
 
-    this.createShapes(container);
-    this.startAnimation();
-    
-    console.log('✅ Floating shapes ready');
+    const container = document.getElementById('floating-shapes-container');
+    if (!container) return;
+
+    this._createShapes(container);
+    if (!this.optimizer.shouldOptimize()) this._startAnimation();
   }
 
-  createShapes(container) {
-    const shapeCount = this.optimizer.shouldOptimize() ? 8 : ANIMATION_CONFIG.MAX_FLOATING_SHAPES;
-    
-    const shapesData = [
-      { w: 96, h: 96, color: 'bg-purple-100', rounded: 'rounded-[20px]', opacity: 'opacity-20' },
-      { w: 80, h: 80, color: 'bg-purple-200', rounded: 'rounded-full', opacity: 'opacity-15' },
-      { w: 64, h: 64, color: 'bg-blue-100', rounded: 'rounded-[20px]', opacity: 'opacity-10' },
-      { w: 56, h: 56, color: 'bg-yellow-100', rounded: 'rounded-full', opacity: 'opacity-25' },
-      { w: 80, h: 40, color: 'bg-pink-200', rounded: 'rounded-[16px]', opacity: 'opacity-15' },
-      { w: 40, h: 40, color: 'bg-green-100', rounded: 'rounded-full', opacity: 'opacity-20' },
-      { w: 48, h: 48, color: 'bg-blue-200', rounded: 'rounded-[30px]', opacity: 'opacity-10' },
-      { w: 64, h: 64, color: 'bg-yellow-200', rounded: 'rounded-full', opacity: 'opacity-15' },
-      { w: 48, h: 96, color: 'bg-purple-300', rounded: 'rounded-[40px]', opacity: 'opacity-10' },
-      { w: 56, h: 56, color: 'bg-green-300', rounded: 'rounded-[30px]', opacity: 'opacity-15' },
-      { w: 40, h: 40, color: 'bg-pink-100', rounded: 'rounded-full', opacity: 'opacity-20' },
-      { w: 56, h: 56, color: 'bg-yellow-300', rounded: 'rounded-[20px]', opacity: 'opacity-10' },
-      { w: 64, h: 48, color: 'bg-green-200', rounded: 'rounded-[16px]', opacity: 'opacity-15' },
-      { w: 48, h: 64, color: 'bg-blue-300', rounded: 'rounded-[30px]', opacity: 'opacity-10' },
-      { w: 80, h: 80, color: 'bg-purple-400', rounded: 'rounded-full', opacity: 'opacity-10' }
+  _createShapes(container) {
+    const count = this.optimizer.shouldOptimize() ? 6 : ANIMATION_CONFIG.MAX_FLOATING_SHAPES;
+    const configs = [
+      { w: 96, h: 96, cls: 'bg-purple-100 rounded-[20px] opacity-20' },
+      { w: 80, h: 80, cls: 'bg-purple-200 rounded-full opacity-15' },
+      { w: 64, h: 64, cls: 'bg-blue-100 rounded-[20px] opacity-10' },
+      { w: 56, h: 56, cls: 'bg-yellow-100 rounded-full opacity-25' },
+      { w: 80, h: 40, cls: 'bg-pink-200 rounded-[16px] opacity-15' },
+      { w: 40, h: 40, cls: 'bg-green-100 rounded-full opacity-20' },
+      { w: 48, h: 48, cls: 'bg-blue-200 rounded-[30px] opacity-10' },
+      { w: 64, h: 64, cls: 'bg-yellow-200 rounded-full opacity-15' },
+      { w: 48, h: 96, cls: 'bg-purple-300 rounded-[40px] opacity-10' },
+      { w: 56, h: 56, cls: 'bg-green-300 rounded-[30px] opacity-15' },
+      { w: 40, h: 40, cls: 'bg-pink-100 rounded-full opacity-20' },
+      { w: 56, h: 56, cls: 'bg-yellow-300 rounded-[20px] opacity-10' },
     ];
 
     const positions = [
@@ -239,231 +217,219 @@ class FloatingShapes {
       { bottom: '33%', left: '25%' },
       { top: '25%', right: '25%' },
       { bottom: '25%', left: '50%' },
-      { top: '16.6667%', right: '16.6667%' },
+      { top: '16%', right: '16%' },
       { top: '1.25rem', left: '1.25rem' },
       { bottom: '1.25rem', right: '1.25rem' },
-      { top: '20%', left: '16.6667%' },
-      { bottom: '16.6667%', right: '20%' },
-      { top: '12.5%', left: '12.5%' }
     ];
 
-    for (let i = 0; i < Math.min(shapeCount, shapesData.length); i++) {
-      const shapeData = shapesData[i];
-      const position = positions[i];
-      
-      const shape = document.createElement('div');
-      shape.className = `absolute pointer-events-none transition-all duration-1000 ${shapeData.color} ${shapeData.rounded} ${shapeData.opacity}`;
-      shape.style.width = `${shapeData.w}px`;
-      shape.style.height = `${shapeData.h}px`;
-      
-      // Apply position
-      Object.entries(position).forEach(([key, value]) => {
-        shape.style[key] = value;
-      });
+    for (let i = 0; i < Math.min(count, configs.length); i++) {
+      const { w, h, cls } = configs[i];
+      const el = document.createElement('div');
+      el.className = `absolute pointer-events-none ${cls}`;
+      el.style.cssText = `width:${w}px;height:${h}px;`;
+      Object.entries(positions[i]).forEach(([k, v]) => (el.style[k] = v));
+      container.appendChild(el);
 
-      container.appendChild(shape);
       this.shapes.push({
-        element: shape,
-        baseY: 0,
-        amplitude: 10 + Math.random() * 20,
-        frequency: 0.5 + Math.random() * 1.5,
-        phase: Math.random() * Math.PI * 2
+        el,
+        amplitude: 8 + Math.random() * 14,
+        frequency: 0.4 + Math.random() * 1.2,
+        phase: Math.random() * Math.PI * 2,
       });
     }
   }
 
-  startAnimation() {
-    if (this.optimizer.shouldOptimize()) {
-      // Static shapes for performance mode
-      return;
-    }
-
-    const animate = (timestamp) => {
-      this.shapes.forEach((shape, index) => {
-        const y = Math.sin(timestamp * 0.001 * shape.frequency + shape.phase) * shape.amplitude;
-        const rotation = Math.sin(timestamp * 0.0005 + shape.phase) * 5;
-        
-        shape.element.style.transform = `translateY(${y}px) rotate(${rotation}deg)`;
+  _startAnimation() {
+    const tick = (ts) => {
+      this.shapes.forEach(({ el, amplitude, frequency, phase }) => {
+        const y = Math.sin(ts * 0.001 * frequency + phase) * amplitude;
+        const r = Math.sin(ts * 0.0004 + phase) * 4;
+        el.style.transform = `translateY(${y}px) rotate(${r}deg)`;
       });
-
-      this.animationId = requestAnimationFrame(animate);
+      this.animationId = requestAnimationFrame(tick);
     };
-
-    this.animationId = requestAnimationFrame(animate);
+    this.animationId = requestAnimationFrame(tick);
   }
 
   destroy() {
-    if (this.animationId) {
-      cancelAnimationFrame(this.animationId);
-    }
-    this.shapes.forEach(shape => shape.element.remove());
+    if (this.animationId) cancelAnimationFrame(this.animationId);
+    this.shapes.forEach(({ el }) => el.remove());
     this.shapes = [];
+    this._initialized = false;
   }
 }
 
-/**
- * Micro Interactions Manager
- */
+/* ─────────────────────────────────────────────
+   Micro Interactions  (FIXED: no interference with scroll observer)
+   ───────────────────────────────────────────── */
 class MicroInteractions {
   constructor(optimizer) {
     this.optimizer = optimizer;
+    this._initialized = false;
   }
 
   init() {
-    console.log('⚡ Initializing micro interactions...');
-    
-    this.initHoverEffects();
-    this.initRippleEffects();
-    this.initMagneticEffects();
-    
-    console.log('✅ Micro interactions ready');
+    if (this._initialized) return;
+    this._initialized = true;
+
+    this._initHover();
+    this._initRipple();
+    this._initMagnetic();
   }
 
-  initHoverEffects() {
-    const hoverElements = document.querySelectorAll('.enhanced-hover, .skill-card, .project-card');
-    
-    hoverElements.forEach(element => {
-      element.addEventListener('mouseenter', (e) => {
+  _initHover() {
+    document.querySelectorAll('.enhanced-hover, .skill-card, .project-card').forEach((el) => {
+      el.addEventListener('mouseenter', () => {
         if (this.optimizer.shouldOptimize()) return;
-        
-        e.target.style.transform = 'translateY(-5px) scale(1.02)';
-        e.target.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
-        e.target.style.transition = 'all 0.3s ease';
-      });
+        el.style.transform = 'translateY(-6px) scale(1.02)';
+        el.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
+        // Use a specific transition here, NOT the global * rule
+        el.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1), box-shadow 0.28s cubic-bezier(0.4,0,0.2,1)';
+      }, { passive: true });
 
-      element.addEventListener('mouseleave', (e) => {
-        e.target.style.transform = 'translateY(0) scale(1)';
-        e.target.style.boxShadow = '';
-      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+        el.style.boxShadow = '';
+      }, { passive: true });
     });
   }
 
-  initRippleEffects() {
-    const rippleElements = document.querySelectorAll('[data-ripple]');
-    
-    rippleElements.forEach(element => {
-      element.addEventListener('click', (e) => {
+  _initRipple() {
+    document.querySelectorAll('[data-ripple]').forEach((el) => {
+      el.addEventListener('click', (e) => {
         if (this.optimizer.shouldOptimize()) return;
-        
-        const ripple = document.createElement('div');
-        const rect = e.target.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
+        const rect = el.getBoundingClientRect();
+        const ripple = document.createElement('span');
         ripple.style.cssText = `
-          position: absolute;
-          border-radius: 50%;
-          background: rgba(147, 51, 234, 0.3);
-          transform: scale(0);
-          animation: ripple ${ANIMATION_CONFIG.RIPPLE_DURATION}ms linear;
-          left: ${x - 25}px;
-          top: ${y - 25}px;
-          width: 50px;
-          height: 50px;
-          pointer-events: none;
+          position:absolute;border-radius:50%;
+          background:rgba(147,51,234,0.25);
+          transform:scale(0);pointer-events:none;
+          width:50px;height:50px;
+          left:${e.clientX - rect.left - 25}px;
+          top:${e.clientY - rect.top - 25}px;
+          animation:_ripple ${ANIMATION_CONFIG.RIPPLE_DURATION}ms linear forwards;
         `;
-
-        if (!element.style.position || element.style.position === 'static') {
-          element.style.position = 'relative';
-        }
-        element.style.overflow = 'hidden';
-
-        element.appendChild(ripple);
-
-        setTimeout(() => ripple.remove(), ANIMATION_CONFIG.RIPPLE_DURATION);
+        if (!el.style.position || el.style.position === 'static') el.style.position = 'relative';
+        el.style.overflow = 'hidden';
+        el.appendChild(ripple);
+        setTimeout(() => ripple.remove(), ANIMATION_CONFIG.RIPPLE_DURATION + 50);
       });
     });
   }
 
-  initMagneticEffects() {
-    const magneticElements = document.querySelectorAll('.magnetic, [data-magnetic]');
-    
-    magneticElements.forEach(element => {
-      element.addEventListener('mouseenter', (e) => {
+  _initMagnetic() {
+    document.querySelectorAll('.magnetic, [data-magnetic]').forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
         if (this.optimizer.shouldOptimize()) return;
-        
-        e.target.style.transform = 'scale(1.05)';
-        e.target.style.transition = 'transform 0.3s ease';
-      });
+        const rect = el.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) * 0.12;
+        const y = (e.clientY - rect.top - rect.height / 2) * 0.12;
+        el.style.transform = `scale(1.05) translate(${x}px,${y}px)`;
+        el.style.transition = 'transform 0.2s ease';
+      }, { passive: true });
 
-      element.addEventListener('mouseleave', (e) => {
-        e.target.style.transform = 'scale(1)';
-      });
-
-      element.addEventListener('mousemove', (e) => {
-        if (this.optimizer.shouldOptimize()) return;
-        
-        const rect = e.target.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        e.target.style.transform = `scale(1.05) translate(${x * 0.1}px, ${y * 0.1}px)`;
-      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+      }, { passive: true });
     });
   }
 }
 
-/**
- * Parallax Effects Manager
- */
+/* ─────────────────────────────────────────────
+   Parallax
+   ───────────────────────────────────────────── */
 class ParallaxEffects {
   constructor(optimizer) {
     this.optimizer = optimizer;
     this.elements = [];
     this.ticking = false;
+    this._initialized = false;
   }
 
   init() {
-    if (this.optimizer.shouldOptimize()) {
-      console.log('⚠️ Parallax effects disabled for performance');
-      return;
-    }
+    if (this.optimizer.shouldOptimize() || this._initialized) return;
+    this._initialized = true;
 
-    console.log('🌊 Initializing parallax effects...');
-    
-    this.findParallaxElements();
-    this.bindScrollEvents();
-    
-    console.log('✅ Parallax effects ready');
-  }
-
-  findParallaxElements() {
-    const parallaxElements = document.querySelectorAll('[data-parallax]');
-    
-    parallaxElements.forEach(element => {
-      const speed = parseFloat(element.dataset.parallax) || ANIMATION_CONFIG.PARALLAX_SPEED;
-      this.elements.push({ element, speed });
+    document.querySelectorAll('[data-parallax]').forEach((el) => {
+      const speed = parseFloat(el.dataset.parallax) || ANIMATION_CONFIG.PARALLAX_SPEED;
+      this.elements.push({ el, speed });
     });
-  }
 
-  bindScrollEvents() {
-    const updateParallax = () => {
-      const scrolled = window.pageYOffset;
-      
-      this.elements.forEach(({ element, speed }) => {
-        const yPos = -(scrolled * speed);
-        element.style.transform = `translateY(${yPos}px)`;
-      });
-      
-      this.ticking = false;
-    };
+    if (!this.elements.length) return;
 
     window.addEventListener('scroll', () => {
-      if (!this.ticking) {
-        requestAnimationFrame(updateParallax);
-        this.ticking = true;
-      }
-    });
+      if (this.ticking) return;
+      requestAnimationFrame(() => {
+        const scrolled = window.pageYOffset;
+        this.elements.forEach(({ el, speed }) => {
+          el.style.transform = `translateY(${-(scrolled * speed)}px)`;
+        });
+        this.ticking = false;
+      });
+      this.ticking = true;
+    }, { passive: true });
   }
 
   destroy() {
     this.elements = [];
+    this._initialized = false;
   }
 }
 
-/**
- * Main Animation System
- */
+/* ─────────────────────────────────────────────
+   CSS injection  (FIXED: no global * transition override)
+   ───────────────────────────────────────────── */
+function injectAnimationCSS() {
+  if (document.getElementById('_anim-sys-styles')) return;
+  const style = document.createElement('style');
+  style.id = '_anim-sys-styles';
+  style.textContent = `
+    @keyframes _ripple { to { transform:scale(4); opacity:0; } }
+
+    /* Scroll reveal base states */
+    .scroll-reveal          { opacity:0; transform:translateY(28px); }
+    .scroll-reveal-left     { opacity:0; transform:translateX(-40px); }
+    .scroll-reveal-right    { opacity:0; transform:translateX(40px); }
+    .scroll-reveal-scale    { opacity:0; transform:scale(0.85); }
+
+    /* Revealed state — transition only on these specific classes */
+    .scroll-reveal.revealed,
+    .scroll-reveal-left.revealed,
+    .scroll-reveal-right.revealed,
+    .scroll-reveal-scale.revealed {
+      opacity:1 !important;
+      transform:translateY(0) translateX(0) scale(1) !important;
+      transition: opacity 0.55s cubic-bezier(0.4,0,0.2,1),
+                  transform 0.55s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* Stagger delays */
+    [data-stagger="stagger-1"].revealed { transition-delay:0.07s; }
+    [data-stagger="stagger-2"].revealed { transition-delay:0.14s; }
+    [data-stagger="stagger-3"].revealed { transition-delay:0.21s; }
+    [data-stagger="stagger-4"].revealed { transition-delay:0.28s; }
+    [data-stagger="stagger-5"].revealed { transition-delay:0.35s; }
+
+    /* FIXED: Scope theme-colour transitions to body/html only — not every element */
+    html, body {
+      transition: background-color 300ms cubic-bezier(0.4,0,0.2,1),
+                  color 300ms cubic-bezier(0.4,0,0.2,1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+/* ─────────────────────────────────────────────
+   Main AnimationSystem  (singleton)
+   ───────────────────────────────────────────── */
 class AnimationSystem {
   constructor() {
     this.optimizer = new PerformanceOptimizer();
@@ -471,117 +437,26 @@ class AnimationSystem {
     this.floatingShapes = new FloatingShapes(this.optimizer);
     this.microInteractions = new MicroInteractions(this.optimizer);
     this.parallaxEffects = new ParallaxEffects(this.optimizer);
-    
     this.isInitialized = false;
   }
 
   init() {
-    console.log('🎭 Initializing unified animation system...');
-    
-    try {
-      // Add required CSS animations
-      this.injectCSS();
-      
-      // Initialize all animation modules
-      this.scrollEffects.init();
-      this.floatingShapes.init();
-      this.microInteractions.init();
-      this.parallaxEffects.init();
-      
-      this.isInitialized = true;
-      console.log('✅ Animation system ready');
-      
-    } catch (error) {
-      console.error('❌ Animation system initialization error:', error);
+    if (this.isInitialized) {
+      console.warn('⚠️ AnimationSystem already initialised — skipping');
+      return this;
     }
-  }
 
-  injectCSS() {
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes float {
-        0% { transform: translateY(0px) rotate(0deg); }
-        100% { transform: translateY(-20px) rotate(5deg); }
-      }
+    console.log('🎭 Initialising unified animation system…');
+    injectAnimationCSS();
 
-      @keyframes ripple {
-        to {
-          transform: scale(4);
-          opacity: 0;
-        }
-      }
+    this.scrollEffects.init();
+    this.floatingShapes.init();
+    this.microInteractions.init();
+    this.parallaxEffects.init();
 
-      @keyframes fade-in-up {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes fade-in-left {
-        from {
-          opacity: 0;
-          transform: translateX(-30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      @keyframes fade-in-right {
-        from {
-          opacity: 0;
-          transform: translateX(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      @keyframes fade-in-scale {
-        from {
-          opacity: 0;
-          transform: scale(0.8);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      .scroll-reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.6s ease-out;
-      }
-
-      .scroll-reveal.revealed {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .enhanced-hover {
-        transition: all 0.3s ease;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    `;
-    
-    document.head.appendChild(style);
+    this.isInitialized = true;
+    console.log('✅ Animation system ready');
+    return this;
   }
 
   destroy() {
@@ -589,6 +464,7 @@ class AnimationSystem {
     this.floatingShapes.destroy();
     this.parallaxEffects.destroy();
     this.isInitialized = false;
+    _animationSystemInstance = null;
   }
 
   getStatus() {
@@ -596,33 +472,48 @@ class AnimationSystem {
       initialized: this.isInitialized,
       performanceMode: this.optimizer.performanceMode,
       reducedMotion: this.optimizer.isReducedMotion,
-      activeAnimations: this.optimizer.activeAnimations.size
     };
   }
 }
 
-// Create singleton instance
-const animationSystem = new AnimationSystem();
+/* ─────────────────────────────────────────────
+   Exports
+   ───────────────────────────────────────────── */
 
-// Export individual components for compatibility
+/** Returns the singleton AnimationSystem (creates on first call) */
+export function getAnimationSystem() {
+  if (!_animationSystemInstance) {
+    _animationSystemInstance = new AnimationSystem();
+  }
+  return _animationSystemInstance;
+}
+
+/**
+ * FIXED export name — was 'initEnhancedAnimations' in animations.js
+ * app-manager.js tried to import 'initAnimations' which didn't exist.
+ * Both names are now exported here for compatibility.
+ */
+export function initAnimations() {
+  return getAnimationSystem().init();
+}
+
+export const initEnhancedAnimations = initAnimations;
+
+// Named sub-system exports (used in app.js / main.js)
 export const scrollEffects = {
-  init: () => animationSystem.scrollEffects.init()
+  init: () => getAnimationSystem().scrollEffects.init(),
 };
-
 export const floatingShapes = {
-  init: () => animationSystem.floatingShapes.init()
+  init: () => getAnimationSystem().floatingShapes.init(),
 };
-
 export const microInteractions = {
-  init: () => animationSystem.microInteractions.init()
+  init: () => getAnimationSystem().microInteractions.init(),
 };
-
 export const parallaxEffects = {
-  init: () => animationSystem.parallaxEffects.init()
+  init: () => getAnimationSystem().parallaxEffects.init(),
 };
 
-// Export main system
-export { animationSystem };
+export const animationSystem = getAnimationSystem();
 export default animationSystem;
 
-console.log('🎭 Animation system module loaded');
+console.log('🎭 animation-system.js loaded (fixed version)');
