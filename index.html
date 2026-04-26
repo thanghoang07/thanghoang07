@@ -4,407 +4,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/src/design-system.css">
-  <!-- Google Fonts cho design system mới -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Design system CSS — thêm TRƯỚC style.css hiện tại -->
-  <link rel="stylesheet" href="/src/design-system.css">
   <!-- Primary Meta Tags -->
   <title>Thang Hoang Duc - Frontend Developer Portfolio</title>
   <meta name="title" content="Thang Hoang Duc - Frontend Developer Portfolio">
   <meta name="description"
     content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng, đam mê tạo ra sản phẩm web hiện đại, tối ưu trải nghiệm người dùng.">
   <meta name="keywords"
-    content="frontend developer, portfolio, javascript, react, vue, web development, UI/UX, responsive design, vietnam">
+    content="frontend developer, portfolio, javascript, IBM BPM, xamarin, web development, UI/UX, vietnam">
   <meta name="author" content="Thang Hoang Duc">
   <meta name="robots" content="index, follow">
-  <meta name="language" content="English, Vietnamese">
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thanghoang07.github.io/">
   <meta property="og:title" content="Thang Hoang Duc - Frontend Developer Portfolio">
   <meta property="og:description"
-    content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng, đam mê tạo ra sản phẩm web hiện đại, tối ưu trải nghiệm người dùng.">
+    content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng.">
   <meta property="og:image"
-    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=1200">
-  <meta property="og:site_name" content="Thang Hoang Duc Portfolio">
-  <meta property="og:locale" content="en_US">
+    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=7c3aed&color=fff&size=1200">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://thanghoang07.github.io/">
   <meta property="twitter:title" content="Thang Hoang Duc - Frontend Developer Portfolio">
-  <meta property="twitter:description"
-    content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng, đam mê tạo ra sản phẩm web hiện đại, tối ưu trải nghiệm người dùng.">
   <meta property="twitter:image"
-    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=1200">
+    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=7c3aed&color=fff&size=1200">
 
-  <!-- Additional SEO Meta Tags -->
-  <meta name="theme-color" content="#9333ea">
-  <meta name="msapplication-TileColor" content="#9333ea">
+  <meta name="theme-color" content="#7c3aed">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Thang Portfolio">
-
-  <!-- Canonical URL -->
   <link rel="canonical" href="https://thanghoang07.github.io/">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <link rel="manifest" href="/manifest.json" />
-  <link rel="apple-touch-icon"
-    href="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=180">
 
-  <!-- EmailJS CDN -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous">
+  </noscript>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/src/design-system.css">
+  <link rel="preload" href="/src/style.css" as="style">
+
+  <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-  <!-- Critical CSS inline - minified for performance -->
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Thang Hoang Duc","jobTitle":"Frontend Developer","url":"https://thanghoang07.github.io/","sameAs":["https://www.linkedin.com/in/thanghoang07","https://github.com/thanghoang07"],"worksFor":{"@type":"Organization","name":"HPT Vietnam Corporation"},"address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"email":"thanghoang07@gmail.com","telephone":"+84932431562"}
+  </script>
+
+  <link rel="modulepreload" href="/src/main.js">
+
+  <!-- Critical inline styles: loader + base body override -->
   <style>
+    /* ── Loader ── */
     .page-loader {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6366f1 100%);
+      inset: 0;
+      background: var(--c-bg, #080b14);
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
+      gap: 1.5rem;
       z-index: 9999;
-      opacity: 1;
-      transition: opacity 0.8s ease-out;
+      transition: opacity .6s ease, visibility .6s ease
     }
 
     .page-loader.fade-out {
       opacity: 0;
-      pointer-events: none;
-    }
-
-    .loader-content {
-      text-align: center;
-      color: white;
-      max-width: 300px;
+      visibility: hidden;
+      pointer-events: none
     }
 
     .loader-logo {
-      font-size: 3rem;
+      font-family: 'Oxanium', monospace;
+      font-size: 2.5rem;
       font-weight: 800;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, #ffffff, #e0e7ff);
+      background: linear-gradient(135deg, #7c3aed, #22d3ee);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: logoGlow 2s ease-in-out infinite alternate;
+      animation: _lglow 2s ease-in-out infinite alternate
+    }
+
+    @keyframes _lglow {
+      0% {
+        opacity: .8;
+        transform: scale(1)
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1.04)
+      }
     }
 
     .loader-spinner {
-      width: 60px;
-      height: 60px;
-      border: 3px solid rgba(255, 255, 255, 0.2);
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      border-top: 3px solid #ffffff;
-      border-right: 3px solid #e0e7ff;
-      animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-      margin: 0 auto 1.5rem;
-      position: relative;
+      border: 3px solid rgba(124, 58, 237, .15);
+      border-top-color: #7c3aed;
+      border-right-color: #22d3ee;
+      animation: _lspin .9s linear infinite
     }
 
-    .loader-spinner::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 30px;
-      height: 30px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top: 2px solid #ffffff;
-      animation: spinReverse 1s linear infinite;
+    @keyframes _lspin {
+      to {
+        transform: rotate(360deg)
+      }
     }
 
     .loader-text {
-      font-size: 1.1rem;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-      opacity: 0.9;
-      animation: textPulse 2s ease-in-out infinite;
+      font-family: 'Oxanium', monospace;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+      animation: _lpulse 1.5s ease-in-out infinite
     }
 
-    .loader-progress {
-      width: 200px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 2px;
-      margin: 0 auto;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .loader-progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, #ffffff, #e0e7ff, #ffffff);
-      border-radius: 2px;
-      width: 0%;
-      animation: progressFill 3s ease-out forwards;
-      position: relative;
-    }
-
-    .loader-progress-bar::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-      animation: shimmer 1.5s infinite;
-    }
-
-    .loader-dots {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-      gap: 0.5rem;
-    }
-
-    .loader-dot {
-      width: 8px;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 50%;
-      animation: dotBounce 1.5s ease-in-out infinite;
-    }
-
-    .loader-dot:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .loader-dot:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes spinReverse {
-      0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
-
-      100% {
-        transform: translate(-50%, -50%) rotate(-360deg);
-      }
-    }
-
-    @keyframes logoGlow {
-      0% {
-        opacity: 0.8;
-        transform: scale(1);
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1.05);
-      }
-    }
-
-    @keyframes textPulse {
+    @keyframes _lpulse {
 
       0%,
       100% {
-        opacity: 0.9;
+        opacity: .35
       }
 
       50% {
-        opacity: 0.6;
+        opacity: .75
       }
     }
 
-    @keyframes progressFill {
-      0% {
-        width: 0%;
-      }
-
-      30% {
-        width: 30%;
-      }
-
-      60% {
-        width: 65%;
-      }
-
-      90% {
-        width: 90%;
-      }
-
-      100% {
-        width: 100%;
-      }
-    }
-
-    @keyframes shimmer {
-      0% {
-        transform: translateX(-100%);
-      }
-
-      100% {
-        transform: translateX(100%);
-      }
-    }
-
-    @keyframes dotBounce {
-
-      0%,
-      60%,
-      100% {
-        transform: translateY(0);
-        opacity: 0.6;
-      }
-
-      30% {
-        transform: translateY(-10px);
-        opacity: 1;
-      }
-    }
-
-    /* Dark mode support for loader */
-    @media (prefers-color-scheme: dark) {
-      .page-loader {
-        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #3730a3 100%);
-      }
-    }
-
-    /* Typing Animation */
-    .typing-container {
-      position: relative;
-      display: inline-block;
-    }
-
-    .typing-text {
-      opacity: 0;
-      animation: typeIn 0.1s forwards;
-    }
-
+    /* ── Typing cursor ── */
     .typing-cursor {
       display: inline-block;
-      background-color: currentColor;
       width: 3px;
-      animation: blink 1s infinite;
+      background: currentColor;
+      animation: _blink 1s infinite;
+      margin-left: 2px;
+      vertical-align: middle
     }
 
-    @keyframes typeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes blink {
+    @keyframes _blink {
 
       0%,
       50% {
-        opacity: 1;
+        opacity: 1
       }
 
       51%,
       100% {
-        opacity: 0;
+        opacity: 0
       }
     }
 
-    /* Hero animations */
+    /* ── Hero entrance ── */
     .hero-fade-up {
       opacity: 0;
-      transform: translateY(30px);
-      animation: heroFadeUp 0.8s 0.3s ease-out forwards;
+      transform: translateY(28px);
+      animation: _hfu .8s .3s ease-out forwards
     }
 
     .hero-fade-up-delay {
       opacity: 0;
-      transform: translateY(30px);
-      animation: heroFadeUp 0.8s 0.8s ease-out forwards;
+      transform: translateY(28px);
+      animation: _hfu .8s .7s ease-out forwards
     }
 
-    @keyframes heroFadeUp {
+    @keyframes _hfu {
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: none
       }
     }
 
-    .loader-text {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 18px;
-      font-weight: 500;
-      opacity: .9
-    }
-
+    /* ── Main content hidden until loaded ── */
     body:not(.loaded) .main-content {
       opacity: 0
     }
 
     .main-content {
       opacity: 1;
-      transition: opacity .3s ease-in
+      transition: opacity .4s ease
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      background-color: #ffffff;
-      color: #1f2937;
-      transition: background-color .3s ease, color .3s ease
-    }
-
-    html.dark body {
-      background-color: #111827;
-      color: #f3f4f6
-    }
-
-    .fade-in {
-      animation: fadeIn .6s ease-out
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
+    /* skeleton */
     .skeleton {
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background: linear-gradient(90deg, rgba(255, 255, 255, .04) 25%, rgba(255, 255, 255, .08) 50%, rgba(255, 255, 255, .04) 75%);
       background-size: 200% 100%;
-      animation: skeleton-loading 1.5s infinite
+      animation: _sk 1.5s infinite
     }
 
-    html.dark .skeleton {
-      background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
-      background-size: 200% 100%
-    }
-
-    @keyframes skeleton-loading {
+    @keyframes _sk {
       0% {
         background-position: 200% 0
       }
@@ -413,944 +219,819 @@
         background-position: -200% 0
       }
     }
-
-    .loading-placeholder {
-      min-height: 200px;
-      border-radius: 8px
-    }
   </style>
-
-  <!-- Resource hints for performance -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preconnect" href="https://ui-avatars.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://via.placeholder.com">
-
-  <!-- Critical resources -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style"
-    onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous">
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      crossorigin="anonymous">
-  </noscript>
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Thang Hoang Duc",
-    "jobTitle": "Frontend Developer",
-    "description": "Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng",
-    "url": "https://thanghoang07.github.io/",
-    "image": "https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=400",
-    "sameAs": [
-      "https://www.linkedin.com/in/thanghoang07",
-      "https://github.com/thanghoang07"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "HPT Vietnam Corporation"
-    },
-    "alumniOf": {
-      "@type": "EducationalOrganization",
-      "name": "Nong Lam University - Ho Chi Minh City"
-    },
-    "knowsAbout": [
-      "JavaScript",
-      "Java",
-      "IBM BPM",
-      "Xamarin",
-      "C#",
-      "Azure IoT",
-      "Frontend Development",
-      "UI/UX Design"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Ho Chi Minh City",
-      "addressCountry": "VN"
-    },
-    "email": "thanghoang07@gmail.com",
-    "telephone": "+84932431562"
-  }
-  </script>
-
-  <!-- Preload critical resources -->
-  <link rel="modulepreload" href="/src/main.js">
-  <link rel="preload" href="/src/style.css" as="style">
 </head>
 
-<body class="bg-white dark:bg-gray-900 transition-colors duration-300">
-  <!-- Ngay sau thẻ <body> mở -->
-  <div class="ds-scroll-progress" style="width:0%;position:fixed;top:0;left:0;height:2px;z-index:9999;"></div>
-  <!-- Cursor glow -->
+<body>
+  <!-- Scroll progress -->
+  <div class="ds-scroll-progress" style="width:0%"></div>
+
+  <!-- Cursor glow (desktop) -->
   <div class="ds-cursor-glow"></div>
-  <!-- Loading Screen -->
+
+  <!-- ═══════════════════════════════════════
+       LOADING SCREEN
+       ═══════════════════════════════════════ -->
   <div class="page-loader" id="page-loader">
-    <div class="loader-content">
-      <div class="loader-logo">Thang.</div>
-      <div class="loader-spinner"></div>
-      <div class="loader-text">Loading Portfolio...</div>
-      <div class="loader-progress">
-        <div class="loader-progress-bar"></div>
-      </div>
-      <div class="loader-dots">
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-      </div>
-    </div>
+    <div class="loader-logo">Thang.</div>
+    <div class="loader-spinner"></div>
+    <div class="loader-text" id="loader-msg">Initialising…</div>
   </div>
 
-  <!-- Main Content Wrapper -->
+  <!-- ═══════════════════════════════════════
+       MAIN CONTENT
+       ═══════════════════════════════════════ -->
   <div class="main-content" id="main-content">
-    <!-- Background Shapes -->
+
+    <!-- Background floating shapes -->
     <div class="fixed inset-0 z-0 pointer-events-none" id="floating-shapes-container"></div>
 
-    <!-- Header -->
-    <header class="sticky top-0 z-30 bg-white dark:bg-gray-800 shadow-sm py-4 transition-colors duration-300">
-      <div class="container mx-auto flex items-center justify-between px-4">
-        <div class="flex items-center space-x-2">
-          <span class="text-2xl font-extrabold text-gray-900 tracking-tight">Thang.</span>
-        </div>
-        <nav class="hidden md:flex space-x-8 mx-auto">
-          <a href="#services" id="nav-services" class="text-gray-700 hover:text-purple-600 transition"
-            data-i18n="nav-services">Services</a>
-          <a href="#portfolio" id="nav-portfolio" class="text-gray-700 hover:text-purple-600 transition"
-            data-i18n="nav-portfolio">Portfolio</a>
-          <a href="#experience" id="nav-experience" class="text-gray-700 hover:text-purple-600 transition"
-            data-i18n="nav-experience">Experience</a>
-          <a href="#blog" id="nav-blog" class="text-gray-700 hover:text-purple-600 transition"
-            data-i18n="nav-blog">Blog</a>
-          <a href="#resume" id="nav-resume" class="text-gray-700 hover:text-purple-600 transition"
-            data-i18n="nav-resume">Resume</a>
+    <!-- ─────────────────────────────────────
+         HEADER / NAV
+         ───────────────────────────────────── -->
+    <header class="ds-nav sticky top-0 z-30 py-4">
+      <div class="ds-container" style="display:flex;align-items:center;justify-content:space-between;">
+
+        <!-- Logo -->
+        <a href="#"
+          style="font-family:var(--f-display);font-size:1.4rem;font-weight:800;background:var(--g-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;">
+          Thang.
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex" style="gap:0.25rem;">
+          <a href="#services" class="ds-nav__link" id="nav-services" data-i18n="nav-services">Services</a>
+          <a href="#portfolio" class="ds-nav__link" id="nav-portfolio" data-i18n="nav-portfolio">Portfolio</a>
+          <a href="#experience" class="ds-nav__link" id="nav-experience" data-i18n="nav-experience">Experience</a>
+          <a href="#skills-tools" class="ds-nav__link" id="nav-blog" data-i18n="nav-blog">Skills</a>
+          <a href="#contact" class="ds-nav__link" id="nav-resume" data-i18n="nav-resume">Contact</a>
         </nav>
-        <div class="flex items-center space-x-2">
-          <button id="toggle-theme"
-            class="theme-toggle text-xl px-2 py-1 rounded-full hover:bg-purple-100 dark:hover:bg-gray-700 transition magnetic"
-            aria-label="Toggle dark mode" data-magnetic data-ripple>
+
+        <!-- Controls -->
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <button id="toggle-theme" class="ds-btn ds-btn--icon" aria-label="Toggle dark mode" data-ripple>
             <i class="fas fa-moon dark:hidden"></i>
             <i class="fas fa-sun hidden dark:block"></i>
           </button>
-          <button id="toggle-language"
-            class="language-toggle text-xl px-2 py-1 rounded-full hover:bg-purple-100 dark:hover:bg-gray-700 transition magnetic"
-            data-magnetic data-ripple>
-            <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese" class="w-6 h-4">
-            <img id="lang-en-icon" src="https://flagcdn.com/w40/gb.png" alt="English" class="w-6 h-4 hidden">
+          <button id="toggle-language" class="ds-btn ds-btn--icon" data-ripple>
+            <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese"
+              style="width:22px;height:15px;border-radius:2px;">
+            <img id="lang-en-icon" src="https://flagcdn.com/w40/gb.png" alt="English"
+              style="width:22px;height:15px;border-radius:2px;" class="hidden">
           </button>
+
+          <!-- Mobile menu -->
+          <button id="mobile-menu-btn" class="ds-btn ds-btn--icon md:hidden" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden"
+        style="border-top:var(--b-subtle);background:rgba(8,11,20,.95);backdrop-filter:blur(20px);">
+        <div class="ds-container"
+          style="padding-top:1rem;padding-bottom:1rem;display:flex;flex-direction:column;gap:.5rem;">
+          <a href="#services" class="ds-nav__link"
+            onclick="document.getElementById('mobile-menu').classList.add('hidden')">Services</a>
+          <a href="#portfolio" class="ds-nav__link"
+            onclick="document.getElementById('mobile-menu').classList.add('hidden')">Portfolio</a>
+          <a href="#experience" class="ds-nav__link"
+            onclick="document.getElementById('mobile-menu').classList.add('hidden')">Experience</a>
+          <a href="#skills-tools" class="ds-nav__link"
+            onclick="document.getElementById('mobile-menu').classList.add('hidden')">Skills</a>
+          <a href="#contact" class="ds-nav__link"
+            onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
         </div>
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section
-      class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center md:items-stretch gap-12 md:gap-0 min-h-[70vh] relative z-10">
-      <div class="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left">
-        <span class="uppercase tracking-widest text-sm text-gray-400 mb-2 hero-fade-up" id="hero-mynameis"
-          data-i18n="hero-mynameis">My name is</span>
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
-          <span id="hero-name" class="text-purple-600 typing-container">
-            <span class="typing-text">Thang Hoang Duc.</span>
-            <span class="typing-cursor">|</span>
-          </span>
-        </h1>
-        <p id="hero-intro" class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-xl hero-fade-up-delay"
-          data-i18n="hero-intro">Front-end developer with 5+ years of
-          experience in UI development, passionate about creating modern web products and optimizing user experience.
-        </p>
-        <div class="flex space-x-4 justify-center md:justify-start mb-6">
-          <a href="#" class="text-gray-500 hover:text-purple-600 text-2xl transition"><i
-              class="fab fa-facebook"></i></a>
-          <a href="#" class="text-gray-500 hover:text-purple-600 text-2xl transition"><i
-              class="fab fa-linkedin"></i></a>
-          <a href="#" class="text-gray-500 hover:text-purple-600 text-2xl transition"><i class="fab fa-github"></i></a>
+    <!-- ─────────────────────────────────────
+         HERO
+         ───────────────────────────────────── -->
+    <section style="min-height:88vh;display:flex;align-items:center;padding:var(--sp-2xl) 0;">
+      <div class="ds-container" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+
+        <!-- Left: text -->
+        <div>
+          <span class="ds-eyebrow hero-fade-up" id="hero-mynameis" data-i18n="hero-mynameis">My name is</span>
+
+          <h1 class="ds-h1" style="margin:1rem 0 1.5rem;color:rgba(255,255,255,.95);">
+            <span id="hero-name" class="ds-text-gradient" style="font-family:var(--f-display);">
+              <span class="typing-text" data-text="Thang Hoang Duc.">Thang Hoang Duc.</span><span
+                class="typing-cursor">|</span>
+            </span>
+          </h1>
+
+          <p id="hero-intro" class="ds-body-lg hero-fade-up-delay"
+            style="max-width:500px;color:rgba(255,255,255,.55);margin-bottom:2rem;" data-i18n="hero-intro">
+            Front-end developer with 5+ years of experience in UI development, passionate about creating modern web
+            products and optimizing user experience.
+          </p>
+
+          <!-- Stats row -->
+          <div style="display:flex;gap:2.5rem;margin-bottom:2.5rem;" class="hero-fade-up-delay">
+            <div class="ds-stat">
+              <span class="ds-stat__number" data-count="5" data-suffix="+">5+</span>
+              <span class="ds-stat__label">Years Exp.</span>
+            </div>
+            <div style="width:1px;background:var(--b-subtle);"></div>
+            <div class="ds-stat">
+              <span class="ds-stat__number" data-count="10" data-suffix="+">10+</span>
+              <span class="ds-stat__label">Projects</span>
+            </div>
+            <div style="width:1px;background:var(--b-subtle);"></div>
+            <div class="ds-stat">
+              <span class="ds-stat__number" data-count="3" data-suffix="">3</span>
+              <span class="ds-stat__label">Companies</span>
+            </div>
+          </div>
+
+          <!-- CTA + socials -->
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;" class="hero-fade-up-delay">
+            <a href="#contact" class="ds-btn ds-btn--primary">
+              <i class="fas fa-paper-plane"></i> Get in touch
+            </a>
+            <a href="#portfolio" class="ds-btn ds-btn--ghost">View work <i class="fas fa-arrow-right"
+                style="font-size:.75rem;"></i></a>
+          </div>
+
+          <div style="display:flex;gap:1rem;margin-top:1.5rem;" class="hero-fade-up-delay">
+            <a href="#" class="ds-btn ds-btn--icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
+              aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
+              aria-label="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+
+        <!-- Right: avatar -->
+        <div style="display:flex;justify-content:center;align-items:center;position:relative;" class="hidden md:flex">
+          <!-- Glow rings -->
+          <div
+            style="position:absolute;width:320px;height:320px;border-radius:50%;border:1px solid rgba(124,58,237,.2);animation:_orbit2 8s linear infinite;">
+          </div>
+          <div
+            style="position:absolute;width:260px;height:260px;border-radius:50%;border:1px solid rgba(34,211,238,.15);animation:_orbit2 6s linear infinite reverse;">
+          </div>
+
+          <div class="ds-glow-border" style="padding:4px;border-radius:50%;">
+            <img src="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=7c3aed&color=fff&size=256"
+              alt="Thang Hoang Duc avatar"
+              style="width:200px;height:200px;border-radius:50%;border:4px solid var(--c-bg);display:block;object-fit:cover;"
+              loading="lazy">
+          </div>
+
+          <!-- Floating chips around avatar -->
+          <div class="glass-card"
+            style="position:absolute;top:10%;left:0;padding:.6rem 1rem;font-family:var(--f-display);font-size:.7rem;font-weight:700;color:var(--c-cyan);white-space:nowrap;animation:_fc 4s ease-in-out infinite;">
+            <i class="fas fa-code" style="margin-right:.4rem;"></i>IBM BPM Dev
+          </div>
+          <div class="glass-card"
+            style="position:absolute;bottom:15%;right:-1rem;padding:.6rem 1rem;font-family:var(--f-display);font-size:.7rem;font-weight:700;color:var(--c-violet-hi);white-space:nowrap;animation:_fc 4s ease-in-out 1s infinite;">
+            <i class="fas fa-mobile-alt" style="margin-right:.4rem;"></i>Mobile Dev
+          </div>
+          <div class="glass-card"
+            style="position:absolute;top:55%;left:-2rem;padding:.6rem 1rem;font-family:var(--f-display);font-size:.7rem;font-weight:700;color:rgba(255,255,255,.7);white-space:nowrap;animation:_fc 4s ease-in-out 2s infinite;">
+            <i class="fas fa-microchip" style="margin-right:.4rem;"></i>IoT Dev
+          </div>
         </div>
       </div>
-      <div class="flex-1 flex justify-center items-center relative min-h-[220px]">
-        <!-- Avatar floating shapes -->
-        <div class="absolute top-4 left-8 w-16 h-16 bg-purple-200 rounded-full opacity-30 avatar-shape-1"></div>
-        <div class="absolute bottom-8 right-12 w-12 h-12 bg-purple-300 rounded-lg opacity-25 avatar-shape-2"></div>
-        <div class="absolute top-12 right-6 w-8 h-8 bg-purple-400 rounded-full opacity-20 avatar-shape-3"></div>
-        <div class="absolute bottom-4 left-4 w-20 h-20 bg-purple-100 rounded-2xl opacity-15 avatar-shape-4"></div>
-        <div class="absolute top-16 left-16 w-6 h-6 bg-purple-500 rounded-full opacity-35 avatar-shape-5"></div>
 
-        <img src="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=256" alt="Avatar"
-          class="relative z-10 w-48 h-48 object-cover rounded-[20px] shadow-lg border-4 border-white bg-white"
-          loading="lazy" />
+      <style>
+        @keyframes _orbit2 {
+          from {
+            transform: rotate(0deg)
+          }
+
+          to {
+            transform: rotate(360deg)
+          }
+        }
+
+        @keyframes _fc {
+
+          0%,
+          100% {
+            transform: translateY(0)
+          }
+
+          50% {
+            transform: translateY(-8px)
+          }
+        }
+
+        @media(max-width:768px) {
+          section:first-of-type .ds-container {
+            grid-template-columns: 1fr !important;
+            text-align: center
+          }
+
+          section:first-of-type .ds-eyebrow {
+            justify-content: center
+          }
+        }
+      </style>
+    </section>
+
+    <!-- ─────────────────────────────────────
+         SERVICES / SPECIALIZED
+         ───────────────────────────────────── -->
+    <section id="services" class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header ds-section-header--center ds-reveal">
+          <span class="ds-eyebrow" id="specialized-subtitle" data-i18n="specialized-subtitle">Specialized</span>
+          <h2 class="ds-h2" id="specialized-title" data-i18n="specialized-title" style="color:rgba(255,255,255,.92);">
+            Specialized in</h2>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;">
+
+          <!-- IBM BPM -->
+          <div class="glass-card ds-reveal ds-stagger-1" style="padding:2rem;text-align:center;" data-ripple>
+            <div
+              style="width:60px;height:60px;border-radius:var(--r-md);background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(34,211,238,.12));border:var(--b-accent);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+              <i class="fas fa-cogs skill-icon"
+                style="font-size:1.4rem;color:var(--c-violet-hi);transition:transform .3s ease;"></i>
+            </div>
+            <h3 class="ds-h4" id="skill-ibm-title" data-i18n="skill-ibm-title"
+              style="color:rgba(255,255,255,.9);margin-bottom:.75rem;">IBM BPM Development</h3>
+            <p id="ux-desc" data-i18n="ux-desc" style="font-size:.9rem;color:rgba(255,255,255,.45);line-height:1.65;">
+              Phát triển ứng dụng IBM BPM với JavaScript và Java, thiết kế giao diện theo gui-spec.</p>
+          </div>
+
+          <!-- Mobile -->
+          <div class="glass-card ds-reveal ds-stagger-2" style="padding:2rem;text-align:center;" data-ripple>
+            <div
+              style="width:60px;height:60px;border-radius:var(--r-md);background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(34,211,238,.12));border:var(--b-accent);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+              <i class="fas fa-mobile-alt skill-icon"
+                style="font-size:1.4rem;color:var(--c-violet-hi);transition:transform .3s ease;"></i>
+            </div>
+            <h3 class="ds-h4" id="skill-mobile-title" data-i18n="skill-mobile-title"
+              style="color:rgba(255,255,255,.9);margin-bottom:.75rem;">Mobile Development</h3>
+            <p id="webdev-desc" data-i18n="webdev-desc"
+              style="font-size:.9rem;color:rgba(255,255,255,.45);line-height:1.65;">Phát triển ứng dụng mobile
+              cross-platform bằng Xamarin.Forms cho iOS/Android.</p>
+          </div>
+
+          <!-- IoT -->
+          <div class="glass-card ds-reveal ds-stagger-3" style="padding:2rem;text-align:center;" data-ripple>
+            <div
+              style="width:60px;height:60px;border-radius:var(--r-md);background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(34,211,238,.12));border:var(--b-accent);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+              <i class="fas fa-microchip skill-icon"
+                style="font-size:1.4rem;color:var(--c-violet-hi);transition:transform .3s ease;"></i>
+            </div>
+            <h3 class="ds-h4" id="skill-iot-title" data-i18n="skill-iot-title"
+              style="color:rgba(255,255,255,.9);margin-bottom:.75rem;">IoT Development</h3>
+            <p id="webdesign-desc" data-i18n="webdesign-desc"
+              style="font-size:.9rem;color:rgba(255,255,255,.45);line-height:1.65;">Phát triển ứng dụng IoT và kết nối
+              Azure IoT hub cho thiết bị tùy biến.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Specialized Section -->
-    <section id="services" class="container mx-auto px-4 py-24 bg-[#f8f9fb] dark:bg-gray-900 rounded-2xl relative z-10"
-      style="background: linear-gradient(135deg, #f8f9fb 0%, #f1f5f9 100%);">
-      <div class="mb-4 text-center">
-        <span class="uppercase tracking-widest text-xs text-gray-400" id="specialized-subtitle"
-          data-i18n="specialized-subtitle">Specialized</span>
-        <h2 id="specialized-title" class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal"
-          data-animation="fade-in-up" data-i18n="specialized-title">Specialized in</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <div
-          class="card skill-card flex flex-col items-center bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 scroll-reveal-left enhanced-hover"
-          data-animation="fade-in-left" data-stagger="stagger-1" data-ripple data-longpress data-zoomable>
-          <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-cogs text-2xl text-purple-600 dark:text-purple-400 skill-icon"></i>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-center text-gray-900 dark:text-gray-100" id="skill-ibm-title"
-            data-i18n="skill-ibm-title">IBM
-            BPM Development</h3>
-          <p id="ux-desc" class="text-gray-600 dark:text-gray-300 text-center" data-i18n="ux-desc">Phát triển ứng dụng
-            IBM BPM với
-            JavaScript và Java, thiết kế giao diện theo gui-spec.</p>
-        </div>
-        <div
-          class="card skill-card flex flex-col items-center bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 scroll-reveal enhanced-hover"
-          data-animation="fade-in-up" data-stagger="stagger-2" data-ripple data-longpress data-zoomable>
-          <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-mobile-alt text-2xl text-purple-600 dark:text-purple-400 skill-icon"></i>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-center text-gray-900 dark:text-gray-100" id="skill-mobile-title"
-            data-i18n="skill-mobile-title">
-            Mobile Development</h3>
-          <p id="webdev-desc" class="text-gray-600 dark:text-gray-300 text-center" data-i18n="webdev-desc">Phát triển
-            ứng dụng mobile
-            cross-platform bằng Xamarin.Forms cho iOS/Android.</p>
-        </div>
-        <div
-          class="card skill-card flex flex-col items-center bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 scroll-reveal-right enhanced-hover"
-          data-animation="fade-in-right" data-stagger="stagger-3" data-ripple data-longpress data-zoomable>
-          <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-microchip text-2xl text-purple-600 dark:text-purple-400 skill-icon"></i>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-center text-gray-900 dark:text-gray-100" id="skill-iot-title"
-            data-i18n="skill-iot-title">IoT
-            Development</h3>
-          <p id="webdesign-desc" class="text-gray-600 dark:text-gray-300 text-center" data-i18n="webdesign-desc">Phát
-            triển ứng dụng IoT và kết nối
-            Azure IoT hub cho thiết bị tùy biến.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <!--
-  PROJECT CARDS — Modern Tech / Glassmorphism
-  Thay thế toàn bộ section #portfolio trong index.html bằng đoạn này.
-
-  Cách dùng:
-  1. Thêm <link rel="stylesheet" href="/src/design-system.css"> vào <head>
-  2. Thay section #portfolio hiện tại bằng section bên dưới
-  3. Cập nhật: pc-image (src thật), pc-title, pc-desc, pc-tags, href link
-
-  Lưu ý: class "glass-card" cần design-system.css đã load.
--->
-
-    <!-- ═══════════════════════════════════════════
-     SECTION: Portfolio / Projects
-     ═══════════════════════════════════════════ -->
+    <!-- ─────────────────────────────────────
+         PORTFOLIO
+         ───────────────────────────────────── -->
     <section id="portfolio" class="ds-section">
       <div class="ds-container">
-
-        <!-- Section header -->
         <div class="ds-section-header ds-section-header--center ds-reveal">
-          <span class="ds-eyebrow" id="portfolio-subtitle">My Works</span>
-          <h2 class="ds-h2 ds-text-gradient" id="portfolio-title">Featured Projects</h2>
-          <p class="ds-body-lg" style="max-width:520px;opacity:0.55;margin-top:0.5rem;" id="portfolio-desc">
+          <span class="ds-eyebrow" id="portfolio-subtitle" data-i18n="portfolio-subtitle">My Works</span>
+          <h2 class="ds-h2 ds-text-gradient" id="portfolio-title" data-i18n="portfolio-title">Featured Projects</h2>
+          <p style="max-width:500px;margin-top:.75rem;color:rgba(255,255,255,.45);font-size:.95rem;line-height:1.7;"
+            id="portfolio-desc">
             A selection of work spanning enterprise BPM, mobile apps, and IoT systems.
           </p>
         </div>
 
-        <!-- Cards grid -->
-        <div style="
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1.5rem;
-    ">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;">
 
-          <!-- ── Card 1: SAALEM HPT ── -->
+          <!-- Card: SAALEM -->
           <article class="glass-card glass-card--accent ds-reveal ds-stagger-1"
             style="display:flex;flex-direction:column;overflow:hidden;">
-
-            <!-- Image area -->
             <div
-              style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(124,58,237,0.25),rgba(34,211,238,0.12));">
+              style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(124,58,237,.3),rgba(34,211,238,.15));">
               <img
-                data-src="https://ui-avatars.com/api/?name=SAALEM+HPT&background=7c3aed&color=fff&size=640&font-size=0.2"
-                alt="SAALEM HPT project screenshot" class="project-image" loading="lazy"
-                style="width:100%;height:100%;object-fit:cover;filter:brightness(0.85) saturate(1.1);transition:transform 0.5s ease,filter 0.5s ease;" />
-              <!-- Gradient overlay -->
+                data-src="https://ui-avatars.com/api/?name=SAALEM+HPT&background=7c3aed&color=fff&size=640&font-size=0.18"
+                alt="SAALEM HPT" class="project-image" loading="lazy"
+                style="width:100%;height:100%;object-fit:cover;filter:brightness(.85) saturate(1.1);transition:transform .5s ease,filter .5s ease;">
               <div
-                style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(8,11,20,0.7) 100%);pointer-events:none;">
+                style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(8,11,20,.75) 100%);pointer-events:none;">
               </div>
-              <!-- Badge -->
-              <span style="
-            position:absolute;top:12px;right:12px;
-            font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:700;
-            letter-spacing:0.1em;text-transform:uppercase;
-            padding:4px 10px;border-radius:100px;
-            background:rgba(34,211,238,0.12);border:1px solid rgba(34,211,238,0.35);
-            color:var(--c-cyan,#22d3ee);backdrop-filter:blur(8px);
-          ">Enterprise</span>
+              <span
+                style="position:absolute;top:12px;right:12px;font-family:var(--f-display);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.35);color:var(--c-cyan);backdrop-filter:blur(8px);">Enterprise</span>
             </div>
-
-            <!-- Body -->
-            <div style="padding:1.5rem;display:flex;flex-direction:column;gap:0.5rem;flex:1;">
-              <span style="
-            font-family:var(--f-display,monospace);font-size:0.65rem;font-weight:700;
-            letter-spacing:0.14em;text-transform:uppercase;color:var(--c-cyan,#22d3ee);
-          " id="project-saalem-category">Enterprise Web Development</span>
-
-              <h3 style="
-            font-family:var(--f-display,monospace);font-size:1.1rem;font-weight:700;
-            color:rgba(255,255,255,0.92);transition:color 0.18s ease;
-            margin:0;
-          " class="project-title" id="project-saalem-title">SAALEM HPT</h3>
-
-              <p style="font-size:0.875rem;line-height:1.6;color:rgba(255,255,255,0.48);margin:0;"
-                id="project-saalem-desc">
-                Loan Origination System web app for BIDV &amp; EXIMBANK. Built with IBM BPM, Java, and custom JS
-                UI components.
-              </p>
-
-              <!-- Tech tags -->
-              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:0.75rem;">
+            <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:.5rem;">
+              <span
+                style="font-family:var(--f-display);font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c-cyan);"
+                id="project-saalem-category" data-i18n="project-saalem-category">Enterprise Web Development</span>
+              <h3 class="project-title" id="project-saalem-title" data-i18n="project-saalem-title"
+                style="font-family:var(--f-display);font-size:1.1rem;font-weight:700;color:rgba(255,255,255,.92);margin:0;transition:color .18s ease;">
+                SAALEM HPT</h3>
+              <p id="project-saalem-desc"
+                style="font-size:.875rem;line-height:1.6;color:rgba(255,255,255,.45);margin:0;">Loan Origination System
+                web app for BIDV &amp; EXIMBANK. Built with IBM BPM, Java, and custom JS UI components.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:.75rem;">
                 <span
-                  style="font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);color:var(--c-violet-hi,#a78bfa);">IBM
+                  style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">IBM
                   BPM</span>
                 <span
-                  style="font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);color:var(--c-violet-hi,#a78bfa);">Java</span>
+                  style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Java</span>
                 <span
-                  style="font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);color:var(--c-violet-hi,#a78bfa);">JavaScript</span>
-                <span
-                  style="font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);color:var(--c-violet-hi,#a78bfa);">REST
-                  API</span>
+                  style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">JavaScript</span>
               </div>
             </div>
-
-            <!-- Actions -->
             <div style="padding:0 1.5rem 1.5rem;display:flex;gap:8px;">
-              <a href="#" class="ds-btn ds-btn--ghost" style="font-size:0.75rem;padding:8px 14px;">
-                <i class="fa-solid fa-lock" style="font-size:0.7rem;opacity:0.6;"></i> Private
-              </a>
+              <span class="ds-btn ds-btn--ghost" style="font-size:.75rem;padding:8px 14px;cursor:default;opacity:.6;"><i
+                  class="fas fa-lock" style="font-size:.7rem;"></i> Private</span>
             </div>
           </article>
 
-          <!-- ── Card 2: Flutter Mobile App ── -->
+          <!-- Card: Flutter -->
           <article class="glass-card ds-reveal ds-stagger-2"
             style="display:flex;flex-direction:column;overflow:hidden;">
-
             <div
-              style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(34,211,238,0.2),rgba(124,58,237,0.1));">
+              style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(34,211,238,.2),rgba(124,58,237,.1));">
               <img
-                data-src="https://ui-avatars.com/api/?name=Flutter+App&background=22d3ee&color=fff&size=640&font-size=0.2"
-                alt="Flutter mobile app screenshot" class="project-image" loading="lazy"
-                style="width:100%;height:100%;object-fit:cover;filter:brightness(0.85) saturate(1.1);transition:transform 0.5s ease,filter 0.5s ease;" />
+                data-src="https://ui-avatars.com/api/?name=Flutter+App&background=22d3ee&color=fff&size=640&font-size=0.18"
+                alt="Flutter App" class="project-image" loading="lazy"
+                style="width:100%;height:100%;object-fit:cover;filter:brightness(.85) saturate(1.1);transition:transform .5s ease,filter .5s ease;">
               <div
-                style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(8,11,20,0.7) 100%);pointer-events:none;">
+                style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(8,11,20,.75) 100%);pointer-events:none;">
               </div>
-              <span style="
-            position:absolute;top:12px;right:12px;
-            font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:700;
-            letter-spacing:0.1em;text-transform:uppercase;
-            padding:4px 10px;border-radius:100px;
-            background:rgba(124,58,237,0.15);border:1px solid rgba(167,139,250,0.4);
-            color:var(--c-violet-hi,#a78bfa);backdrop-filter:blur(8px);
-          ">Mobile</span>
+              <span
+                style="position:absolute;top:12px;right:12px;font-family:var(--f-display);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(124,58,237,.15);border:1px solid rgba(167,139,250,.4);color:var(--c-violet-hi);backdrop-filter:blur(8px);">Mobile</span>
             </div>
-
-            <div style="padding:1.5rem;display:flex;flex-direction:column;gap:0.5rem;flex:1;">
-              <span style="
-            font-family:var(--f-display,monospace);font-size:0.65rem;font-weight:700;
-            letter-spacing:0.14em;text-transform:uppercase;color:var(--c-cyan,#22d3ee);
-          " id="project-flutter-category">Mobile Development</span>
-
-              <h3 style="
-            font-family:var(--f-display,monospace);font-size:1.1rem;font-weight:700;
-            color:rgba(255,255,255,0.92);transition:color 0.18s ease;margin:0;
-          " class="project-title" id="project-flutter-title">Personal Mobile App</h3>
-
-              <p style="font-size:0.875rem;line-height:1.6;color:rgba(255,255,255,0.48);margin:0;"
-                id="project-flutter-desc">
-                Cross-platform mobile app built with Flutter. Smooth animations, clean architecture, and
-                offline-first design.
-              </p>
-
-              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:0.75rem;">
+            <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:.5rem;">
+              <span
+                style="font-family:var(--f-display);font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c-cyan);"
+                id="project-flutter-category" data-i18n="project-flutter-category">Mobile Development</span>
+              <h3 class="project-title" id="project-flutter-title" data-i18n="project-flutter-title"
+                style="font-family:var(--f-display);font-size:1.1rem;font-weight:700;color:rgba(255,255,255,.92);margin:0;transition:color .18s ease;">
+                Personal Mobile App</h3>
+              <p id="project-flutter-desc" data-i18n="project-flutter-desc"
+                style="font-size:.875rem;line-height:1.6;color:rgba(255,255,255,.45);margin:0;">Cross-platform mobile
+                app built with Flutter. Smooth animations, clean architecture, and offline-first design.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:.75rem;">
                 <span
-                  style="font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);color:var(--c-violet-hi,#a78bfa);">Flutter</span>
+                  style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Flutter</span>
                 <span
-                  style="font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);color:var(--c-violet-hi,#a78bfa);">Dart</span>
+                  style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Dart</span>
                 <span
-                  style="font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);color:var(--c-violet-hi,#a78bfa);">iOS
+                  style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">iOS
                   / Android</span>
               </div>
             </div>
-
             <div style="padding:0 1.5rem 1.5rem;display:flex;gap:8px;">
-              <a href="#" target="_blank" rel="noopener" class="ds-btn ds-btn--primary"
-                style="font-size:0.75rem;padding:8px 14px;">
-                <i class="fa-brands fa-github" style="font-size:0.8rem;"></i> GitHub
-              </a>
-              <a href="#" target="_blank" rel="noopener" class="ds-btn ds-btn--ghost"
-                style="font-size:0.75rem;padding:8px 14px;">
-                <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem;"></i> Demo
-              </a>
+              <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary"
+                style="font-size:.75rem;padding:8px 14px;"><i class="fab fa-github"></i> GitHub</a>
             </div>
           </article>
 
-          <!-- ── Card 3: Go Backend ── -->
+          <!-- Card: Go -->
           <article class="glass-card ds-reveal ds-stagger-3"
             style="display:flex;flex-direction:column;overflow:hidden;">
-
             <div
-              style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(34,211,238,0.1));">
-              <img data-src="https://ui-avatars.com/api/?name=Go+API&background=10b981&color=fff&size=640&font-size=0.2"
-                alt="Go backend API screenshot" class="project-image" loading="lazy"
-                style="width:100%;height:100%;object-fit:cover;filter:brightness(0.85) saturate(1.1);transition:transform 0.5s ease,filter 0.5s ease;" />
+              style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(34,211,238,.1));">
+              <img
+                data-src="https://ui-avatars.com/api/?name=Go+API&background=10b981&color=fff&size=640&font-size=0.18"
+                alt="Go API" class="project-image" loading="lazy"
+                style="width:100%;height:100%;object-fit:cover;filter:brightness(.85) saturate(1.1);transition:transform .5s ease,filter .5s ease;">
               <div
-                style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(8,11,20,0.7) 100%);pointer-events:none;">
+                style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(8,11,20,.75) 100%);pointer-events:none;">
               </div>
-              <span style="
-            position:absolute;top:12px;right:12px;
-            font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:700;
-            letter-spacing:0.1em;text-transform:uppercase;
-            padding:4px 10px;border-radius:100px;
-            background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.35);
-            color:#34d399;backdrop-filter:blur(8px);
-          ">Backend</span>
+              <span
+                style="position:absolute;top:12px;right:12px;font-family:var(--f-display);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.35);color:#34d399;backdrop-filter:blur(8px);">Backend</span>
             </div>
-
-            <div style="padding:1.5rem;display:flex;flex-direction:column;gap:0.5rem;flex:1;">
-              <span style="
-            font-family:var(--f-display,monospace);font-size:0.65rem;font-weight:700;
-            letter-spacing:0.14em;text-transform:uppercase;color:var(--c-cyan,#22d3ee);
-          " id="project-go-category">Backend Development</span>
-
-              <h3 style="
-            font-family:var(--f-display,monospace);font-size:1.1rem;font-weight:700;
-            color:rgba(255,255,255,0.92);transition:color 0.18s ease;margin:0;
-          " class="project-title" id="project-go-title">Go Backend Application</h3>
-
-              <p style="font-size:0.875rem;line-height:1.6;color:rgba(255,255,255,0.48);margin:0;" id="project-go-desc">
-                High-performance REST API built with Go. Clean architecture, PostgreSQL integration, JWT
-                authentication.
-              </p>
-
-              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:0.75rem;">
+            <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:.5rem;">
+              <span
+                style="font-family:var(--f-display);font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c-cyan);"
+                id="project-go-category" data-i18n="project-go-category">Backend Development</span>
+              <h3 class="project-title" id="project-go-title" data-i18n="project-go-title"
+                style="font-family:var(--f-display);font-size:1.1rem;font-weight:700;color:rgba(255,255,255,.92);margin:0;transition:color .18s ease;">
+                Go Backend Application</h3>
+              <p id="project-go-desc" data-i18n="project-go-desc"
+                style="font-size:.875rem;line-height:1.6;color:rgba(255,255,255,.45);margin:0;">High-performance REST
+                API built with Go. Clean architecture, PostgreSQL integration, JWT authentication.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:.75rem;">
                 <span
-                  style="font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);color:var(--c-violet-hi,#a78bfa);">Go</span>
+                  style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Go</span>
                 <span
-                  style="font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);color:var(--c-violet-hi,#a78bfa);">PostgreSQL</span>
+                  style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">PostgreSQL</span>
                 <span
-                  style="font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);color:var(--c-violet-hi,#a78bfa);">Docker</span>
-                <span
-                  style="font-family:var(--f-display,monospace);font-size:0.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);color:var(--c-violet-hi,#a78bfa);">REST
-                  API</span>
+                  style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Docker</span>
               </div>
             </div>
-
             <div style="padding:0 1.5rem 1.5rem;display:flex;gap:8px;">
-              <a href="#" target="_blank" rel="noopener" class="ds-btn ds-btn--primary"
-                style="font-size:0.75rem;padding:8px 14px;">
-                <i class="fa-brands fa-github" style="font-size:0.8rem;"></i> GitHub
-              </a>
+              <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary"
+                style="font-size:.75rem;padding:8px 14px;"><i class="fab fa-github"></i> GitHub</a>
             </div>
           </article>
+        </div>
 
-        </div><!-- /grid -->
-
-        <!-- View all link -->
         <div style="display:flex;justify-content:center;margin-top:3rem;" class="ds-reveal">
           <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--ghost">
-            <i class="fa-brands fa-github"></i>
-            View all on GitHub
-            <i class="fa-solid fa-arrow-right" style="font-size:0.75rem;"></i>
+            <i class="fab fa-github"></i> View all on GitHub <i class="fas fa-arrow-right"
+              style="font-size:.75rem;"></i>
           </a>
         </div>
-
       </div>
     </section>
 
-    <!-- Work Experience -->
-    <section id="experience"
-      class="container mx-auto px-4 py-24 bg-[#f8f9fb] dark:bg-gray-900 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300"
-      data-lazy style="background: linear-gradient(135deg, #f8f9fb 0%, #f1f5f9 100%);">
-      <div class="mb-4 text-center">
-        <span class="uppercase tracking-widest text-xs text-gray-400" id="workexp-subtitle"
-          data-i18n="experience-subtitle">Career Path</span>
-        <h2 id="workexp-title" class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal"
-          data-animation="fade-in-up" data-i18n="experience-title">Work Experience</h2>
-      </div>
-      <div class="max-w-6xl mx-auto">
-
-        <!-- Company Tabs -->
-        <div class="mb-8">
-          <div class="flex flex-wrap justify-center gap-3">
-            <button id="tab-hpt"
-              class="px-4 py-3 rounded-xl bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 font-semibold shadow transition-all duration-200 focus:outline-none"
-              onclick="switchTab('hpt')">HPT Vietnam</button>
-            <button id="tab-tk25"
-              class="px-4 py-3 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold shadow transition-all duration-200 focus:outline-none"
-              onclick="switchTab('tk25')">TK25 Tech</button>
-            <button id="tab-nbn"
-              class="px-4 py-3 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold shadow transition-all duration-200 focus:outline-none"
-              onclick="switchTab('nbn')">NBN Media</button>
-            <button id="tab-devup"
-              class="px-4 py-3 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold shadow transition-all duration-200 focus:outline-none"
-              onclick="switchTab('devup')">DevUp</button>
-          </div>
+    <!-- ─────────────────────────────────────
+         WORK EXPERIENCE
+         ───────────────────────────────────── -->
+    <section id="experience" class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header ds-section-header--center ds-reveal">
+          <span class="ds-eyebrow" id="workexp-subtitle" data-i18n="experience-subtitle">Career Path</span>
+          <h2 class="ds-h2" id="workexp-title" data-i18n="experience-title" style="color:rgba(255,255,255,.92);">Work
+            Experience</h2>
         </div>
 
-        <!-- Experience Content -->
-        <div class="w-full">
+        <div style="display:grid;grid-template-columns:220px 1fr;gap:2rem;max-width:900px;margin:0 auto;"
+          class="ds-reveal">
 
-          <!-- Experience Content -->
-          <div id="content-hpt" class="bg-white dark:bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-sm">
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">IBM BPM Developer</h3>
-            <div class="text-purple-600 dark:text-purple-400 font-semibold mb-4">
-              <i class="fas fa-building mr-2"></i>HPT Vietnam Corporation
-            </div>
-            <div class="text-gray-500 dark:text-gray-400 mb-4">
-              <div class="mb-1"><i class="fas fa-map-marker-alt mr-2"></i>Ho Chi Minh City, Vietnam</div>
-              <div><i class="fas fa-calendar-alt mr-2"></i>Oct 2022 - Present · Full-time</div>
-            </div>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span
-                class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">JavaScript</span>
-              <span
-                class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">Java</span>
-              <span
-                class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">IBM
-                BPM</span>
-            </div>
-            <ul class="text-gray-600 dark:text-gray-300 leading-relaxed space-y-2">
-              <li>• Phát triển ứng dụng web cho LOS (Loan Origination System) Eximbank SALLEM (IBM BPM base) bằng
-                JavaScript và Java.</li>
-              <li>• Thiết kế giao diện theo gui-spec từ BA.</li>
-              <li>• Xử lý lỗi giao diện, bug từ tester.</li>
-              <li>• Dự án theo mô hình agile scrum.</li>
-            </ul>
+          <!-- Tab buttons -->
+          <div style="display:flex;flex-direction:column;gap:.5rem;">
+            <button id="tab-hpt" class="ds-tab active" onclick="switchTab('hpt')">HPT Vietnam</button>
+            <button id="tab-tk25" class="ds-tab" onclick="switchTab('tk25')">TK25 Tech</button>
+            <button id="tab-nbn" class="ds-tab" onclick="switchTab('nbn')">NBN Media</button>
+            <button id="tab-devup" class="ds-tab" onclick="switchTab('devup')">DevUp</button>
           </div>
 
-          <div id="content-tk25" class="bg-white dark:bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-sm"
-            style="display: none;">
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Xamarin Developer</h3>
-            <div class="text-purple-600 dark:text-purple-400 font-semibold mb-4">
-              <i class="fas fa-building mr-2"></i>TK25 Technology Incorporation
-            </div>
-            <div class="text-gray-500 dark:text-gray-400 mb-4">
-              <div class="mb-1"><i class="fas fa-map-marker-alt mr-2"></i>Ho Chi Minh City, Vietnam</div>
-              <div><i class="fas fa-calendar-alt mr-2"></i>Jul 2019 – Oct 2022 · Full-time</div>
-            </div>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span
-                class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">Xamarin</span>
-              <span
-                class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">C#</span>
-              <span
-                class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">Azure
-                IoT</span>
-            </div>
-            <ul class="text-gray-600 dark:text-gray-300 leading-relaxed space-y-2">
-              <li>• Phát triển app locators.asia trên iOS/Android bằng Xamarin.Forms cho các cửa hàng bán lẻ kết nối
-                shipper.</li>
-              <li>• Chịu trách nhiệm coding các chức năng "Advertising", "Placement", "Signee".</li>
-              <li>• Phát triển ứng dụng cho thiết bị Signee (Android tùy biến, kết nối Bluetooth, Azure IoT hub).</li>
-              <li>• Sử dụng Native, Xamarin.Android, Azure IoT hub.</li>
-            </ul>
-          </div>
+          <!-- Content panels -->
+          <div style="position:relative;min-height:280px;">
 
-          <div id="content-nbn" class="bg-white dark:bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-sm"
-            style="display: none;">
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Xamarin Developer Intern</h3>
-            <div class="text-purple-600 dark:text-purple-400 font-semibold mb-4">
-              <i class="fas fa-building mr-2"></i>NBN Media
+            <div id="content-hpt" class="glass-card ds-exp-panel" style="padding:2rem;">
+              <h3
+                style="font-family:var(--f-display);font-size:1.2rem;font-weight:700;color:rgba(255,255,255,.92);margin:0 0 .5rem;">
+                IBM BPM Developer</h3>
+              <div style="color:var(--c-violet-hi);font-weight:600;margin-bottom:1rem;font-size:.9rem;"><i
+                  class="fas fa-building" style="margin-right:.5rem;"></i>HPT Vietnam Corporation</div>
+              <div
+                style="color:rgba(255,255,255,.4);font-size:.85rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:.25rem;">
+                <span><i class="fas fa-map-marker-alt" style="margin-right:.5rem;width:14px;"></i>Ho Chi Minh City,
+                  Vietnam</span>
+                <span><i class="fas fa-calendar-alt" style="margin-right:.5rem;width:14px;"></i>Oct 2022 – Present ·
+                  Full-time</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;">
+                <span
+                  style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">JavaScript</span>
+                <span
+                  style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Java</span>
+                <span
+                  style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">IBM
+                  BPM</span>
+              </div>
+              <ul
+                style="color:rgba(255,255,255,.55);font-size:.875rem;line-height:1.7;list-style:none;padding:0;display:flex;flex-direction:column;gap:.4rem;">
+                <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Phát triển
+                  ứng dụng web cho LOS (Loan Origination System) Eximbank SALLEM bằng JavaScript và Java.</li>
+                <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Thiết kế
+                  giao diện theo gui-spec từ BA.</li>
+                <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Xử lý lỗi
+                  giao diện, bug từ tester. Dự án theo mô hình Agile Scrum.</li>
+              </ul>
             </div>
-            <div class="text-gray-500 dark:text-gray-400 mb-4">
-              <div class="mb-1"><i class="fas fa-map-marker-alt mr-2"></i>Ho Chi Minh City, Vietnam</div>
-              <div><i class="fas fa-calendar-alt mr-2"></i>Feb 2019 – Jul 2019 · Internship</div>
-            </div>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span
-                class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">Xamarin</span>
-              <span
-                class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">C#</span>
-            </div>
-            <ul class="text-gray-600 dark:text-gray-300 leading-relaxed space-y-2">
-              <li>• Phát triển chức năng đo bước chân cho app "Sanus" trên Android/iOS.</li>
-            </ul>
-          </div>
 
-          <div id="content-devup"
-            class="bg-white dark:bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-sm"
-            style="display: none;">
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Xamarin Developer (Part-time)</h3>
-            <div class="text-purple-600 dark:text-purple-400 font-semibold mb-4">
-              <i class="fas fa-building mr-2"></i>DevUp
+            <div id="content-tk25" class="glass-card ds-exp-panel hidden" style="padding:2rem;">
+              <h3
+                style="font-family:var(--f-display);font-size:1.2rem;font-weight:700;color:rgba(255,255,255,.92);margin:0 0 .5rem;">
+                Xamarin Developer</h3>
+              <div style="color:var(--c-violet-hi);font-weight:600;margin-bottom:1rem;font-size:.9rem;"><i
+                  class="fas fa-building" style="margin-right:.5rem;"></i>TK25 Technology Incorporation</div>
+              <div
+                style="color:rgba(255,255,255,.4);font-size:.85rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:.25rem;">
+                <span><i class="fas fa-map-marker-alt" style="margin-right:.5rem;width:14px;"></i>Ho Chi Minh City,
+                  Vietnam</span>
+                <span><i class="fas fa-calendar-alt" style="margin-right:.5rem;width:14px;"></i>Jul 2019 – Oct 2022 ·
+                  Full-time</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;">
+                <span
+                  style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Xamarin</span>
+                <span
+                  style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">C#</span>
+                <span
+                  style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Azure
+                  IoT</span>
+              </div>
+              <ul
+                style="color:rgba(255,255,255,.55);font-size:.875rem;line-height:1.7;list-style:none;padding:0;display:flex;flex-direction:column;gap:.4rem;">
+                <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Phát triển
+                  app locators.asia trên iOS/Android bằng Xamarin.Forms.</li>
+                <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Phát triển
+                  ứng dụng cho thiết bị Signee kết nối Bluetooth, Azure IoT hub.</li>
+              </ul>
             </div>
-            <div class="text-gray-500 dark:text-gray-400 mb-4">
-              <div class="mb-1"><i class="fas fa-map-marker-alt mr-2"></i>Ho Chi Minh City, Vietnam</div>
-              <div><i class="fas fa-calendar-alt mr-2"></i>Aug 2018 – Jan 2019 · Part-time</div>
+
+            <div id="content-nbn" class="glass-card ds-exp-panel hidden" style="padding:2rem;">
+              <h3
+                style="font-family:var(--f-display);font-size:1.2rem;font-weight:700;color:rgba(255,255,255,.92);margin:0 0 .5rem;">
+                Xamarin Developer Intern</h3>
+              <div style="color:var(--c-violet-hi);font-weight:600;margin-bottom:1rem;font-size:.9rem;"><i
+                  class="fas fa-building" style="margin-right:.5rem;"></i>NBN Media</div>
+              <div
+                style="color:rgba(255,255,255,.4);font-size:.85rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:.25rem;">
+                <span><i class="fas fa-map-marker-alt" style="margin-right:.5rem;width:14px;"></i>Ho Chi Minh City,
+                  Vietnam</span>
+                <span><i class="fas fa-calendar-alt" style="margin-right:.5rem;width:14px;"></i>Feb 2019 – Jul 2019 ·
+                  Internship</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;">
+                <span
+                  style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Xamarin</span>
+                <span
+                  style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">C#</span>
+              </div>
+              <ul style="color:rgba(255,255,255,.55);font-size:.875rem;line-height:1.7;list-style:none;padding:0;">
+                <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Phát triển
+                  chức năng đo bước chân cho app "Sanus" trên Android/iOS.</li>
+              </ul>
             </div>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span
-                class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">Xamarin</span>
-              <span
-                class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">C#</span>
+
+            <div id="content-devup" class="glass-card ds-exp-panel hidden" style="padding:2rem;">
+              <h3
+                style="font-family:var(--f-display);font-size:1.2rem;font-weight:700;color:rgba(255,255,255,.92);margin:0 0 .5rem;">
+                Xamarin Developer (Part-time)</h3>
+              <div style="color:var(--c-violet-hi);font-weight:600;margin-bottom:1rem;font-size:.9rem;"><i
+                  class="fas fa-building" style="margin-right:.5rem;"></i>DevUp</div>
+              <div
+                style="color:rgba(255,255,255,.4);font-size:.85rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:.25rem;">
+                <span><i class="fas fa-map-marker-alt" style="margin-right:.5rem;width:14px;"></i>Ho Chi Minh City,
+                  Vietnam</span>
+                <span><i class="fas fa-calendar-alt" style="margin-right:.5rem;width:14px;"></i>Aug 2018 – Jan 2019 ·
+                  Part-time</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;">
+                <span
+                  style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Xamarin</span>
+                <span
+                  style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">C#</span>
+              </div>
+              <ul style="color:rgba(255,255,255,.55);font-size:.875rem;line-height:1.7;list-style:none;padding:0;">
+                <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Part-time
+                  Xamarin developer position.</li>
+              </ul>
             </div>
-            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Part-time Xamarin developer position.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Tab Switching JavaScript -->
-    <script>
-      function switchTab(company) {
-        // Remove active from all tabs
-        const tabs = ['hpt', 'tk25', 'nbn', 'devup'];
-        tabs.forEach(tab => {
-          const tabBtn = document.getElementById('tab-' + tab);
-          const content = document.getElementById('content-' + tab);
+    <!-- ─────────────────────────────────────
+         SKILLS & TOOLS
+         ───────────────────────────────────── -->
+    <section id="skills-tools" class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header ds-section-header--center ds-reveal">
+          <span class="ds-eyebrow" id="skills-subtitle" data-i18n="skills-subtitle">Technical Expertise</span>
+          <h2 class="ds-h2" id="skills-title" data-i18n="skills-title" style="color:rgba(255,255,255,.92);">Skills &amp;
+            Tools</h2>
+        </div>
 
-          if (tabBtn && content) {
-            // Remove active classes
-            tabBtn.classList.remove('bg-purple-50', 'dark:bg-purple-900', 'text-purple-600', 'dark:text-purple-300');
-            tabBtn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-200');
-            content.style.display = 'none';
-          }
-        });
-
-        // Set active tab
-        const activeTab = document.getElementById('tab-' + company);
-        const activeContent = document.getElementById('content-' + company);
-
-        if (activeTab && activeContent) {
-          // Add active classes
-          activeTab.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-200');
-          activeTab.classList.add('bg-purple-50', 'dark:bg-purple-900', 'text-purple-600', 'dark:text-purple-300');
-          activeContent.style.display = 'block';
-        }
-
-        console.log('Switched to: ' + company);
-      }
-    </script>
-
-
-
-    <!-- Skills & Tools Section -->
-    <section id="skills-tools"
-      class="container mx-auto px-4 py-24 bg-white dark:bg-gray-800 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300"
-      data-lazy>
-      <div class="mb-4 text-center">
-        <span class="uppercase tracking-widest text-xs text-gray-400" id="skills-subtitle"
-          data-i18n="skills-subtitle">Technical Expertise</span>
-        <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up"
-          id="skills-title" data-i18n="skills-title">Skills & Tools</h2>
-      </div>
-
-      <!-- Skills & Tools Grid -->
-      <div class="max-w-6xl mx-auto">
         <!-- Programming Languages -->
-        <div class="mb-8">
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">Programming Languages</h3>
-          <div class="flex flex-wrap justify-center gap-4">
-            <div
-              class="skill-badge bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-microsoft mr-2"></i>C#
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-js-square mr-2"></i>Javascript
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-js-square mr-2"></i>TypeScript
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-blue-400 to-blue-500 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-mobile-alt mr-2"></i>Dart
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-node-js mr-2"></i>Node.Js
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-code mr-2"></i>Go
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-python mr-2"></i>Python
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-java mr-2"></i>Java
-            </div>
+        <div style="margin-bottom:2.5rem;" class="ds-reveal">
+          <h3
+            style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center;margin-bottom:1.25rem;">
+            Programming Languages</h3>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;">
+            <span class="ds-skill-badge"><i class="fab fa-microsoft"></i>C#</span>
+            <span class="ds-skill-badge"><i class="fab fa-js-square"></i>JavaScript</span>
+            <span class="ds-skill-badge"><i class="fab fa-js-square"></i>TypeScript</span>
+            <span class="ds-skill-badge"><i class="fas fa-mobile-alt"></i>Dart</span>
+            <span class="ds-skill-badge"><i class="fab fa-node-js"></i>Node.js</span>
+            <span class="ds-skill-badge"><i class="fas fa-code"></i>Go</span>
+            <span class="ds-skill-badge"><i class="fab fa-python"></i>Python</span>
+            <span class="ds-skill-badge"><i class="fab fa-java"></i>Java</span>
           </div>
         </div>
 
-        <!-- Frameworks & Libraries -->
-        <div class="mb-8">
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">Frameworks & Libraries
-          </h3>
-          <div class="flex flex-wrap justify-center gap-4">
-            <div
-              class="skill-badge bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-store mr-2"></i>Redux
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-gray-800 to-gray-900 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-react mr-2"></i>Next.js
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-mobile-alt mr-2"></i>Flutter
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-microsoft mr-2"></i>.NET MAUI (Xamarin)
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-css3-alt mr-2"></i>Tailwind CSS
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-palette mr-2"></i>Material UI
-            </div>
+        <!-- Frameworks -->
+        <div style="margin-bottom:2.5rem;" class="ds-reveal ds-stagger-1">
+          <h3
+            style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center;margin-bottom:1.25rem;">
+            Frameworks &amp; Libraries</h3>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;">
+            <span class="ds-skill-badge"><i class="fas fa-project-diagram"></i>IBM BPM</span>
+            <span class="ds-skill-badge"><i class="fas fa-mobile-alt"></i>Xamarin.Forms</span>
+            <span class="ds-skill-badge"><i class="fas fa-feather"></i>Flutter</span>
+            <span class="ds-skill-badge"><i class="fab fa-react"></i>React</span>
+            <span class="ds-skill-badge"><i class="fas fa-leaf"></i>.NET MAUI</span>
+            <span class="ds-skill-badge"><i class="fas fa-bolt"></i>Vite</span>
+            <span class="ds-skill-badge"><i class="fab fa-css3-alt"></i>TailwindCSS</span>
           </div>
         </div>
 
-        <!-- DevOps & Cloud -->
-        <div class="mb-8">
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">DevOps & Cloud</h3>
-          <div class="flex flex-wrap justify-center gap-4">
-            <div
-              class="skill-badge bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-git-alt mr-2"></i>Git
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-blue-400 to-blue-500 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-docker mr-2"></i>Docker
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-microsoft mr-2"></i>Azure
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-fire mr-2"></i>Firebase
-            </div>
+        <!-- Tools & Platforms -->
+        <div style="margin-bottom:2.5rem;" class="ds-reveal ds-stagger-2">
+          <h3
+            style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center;margin-bottom:1.25rem;">
+            Tools &amp; Platforms</h3>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;">
+            <span class="ds-skill-badge"><i class="fas fa-cloud"></i>Azure IoT</span>
+            <span class="ds-skill-badge"><i class="fab fa-docker"></i>Docker</span>
+            <span class="ds-skill-badge"><i class="fab fa-git-alt"></i>Git</span>
+            <span class="ds-skill-badge"><i class="fab fa-github"></i>GitHub</span>
+            <span class="ds-skill-badge"><i class="fas fa-database"></i>PostgreSQL</span>
+            <span class="ds-skill-badge"><i class="fas fa-database"></i>SQL Server</span>
+            <span class="ds-skill-badge"><i class="fab fa-figma"></i>Figma</span>
           </div>
         </div>
 
-        <!-- Databases & Tools -->
-        <div class="mb-8">
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">Databases & Tools</h3>
-          <div class="flex flex-wrap justify-center gap-4">
-            <div
-              class="skill-badge bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-database mr-2"></i>Redis
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-blue-700 to-blue-800 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-database mr-2"></i>Postgresql
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-rocket mr-2"></i>Postman
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-pen-nib mr-2"></i>Figma
-            </div>
-          </div>
-        </div>
-
-        <!-- Development Environment -->
-        <div class="mb-4">
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">Development Environment
-          </h3>
-          <div class="flex flex-wrap justify-center gap-4 mb-6">
-            <div
-              class="skill-badge bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-chrome mr-2"></i>Google Chrome
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-code mr-2"></i>VS Code
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-microsoft mr-2"></i>Visual Studio
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-android mr-2"></i>Android Studio
-            </div>
-          </div>
-
-          <div class="flex flex-wrap justify-center gap-4">
-            <div
-              class="skill-badge bg-gradient-to-r from-gray-600 to-gray-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-apple mr-2"></i>macOS
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-windows mr-2"></i>Windows
-            </div>
-            <div
-              class="skill-badge bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-ubuntu mr-2"></i>Linux - Ubuntu Server
-            </div>
+        <!-- OS -->
+        <div class="ds-reveal ds-stagger-3">
+          <h3
+            style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center;margin-bottom:1.25rem;">
+            Environments</h3>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;">
+            <span class="ds-skill-badge"><i class="fab fa-android"></i>Android Studio</span>
+            <span class="ds-skill-badge"><i class="fab fa-apple"></i>macOS</span>
+            <span class="ds-skill-badge"><i class="fab fa-windows"></i>Windows</span>
+            <span class="ds-skill-badge"><i class="fab fa-ubuntu"></i>Linux / Ubuntu</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications"
-      class="container mx-auto px-4 py-24 bg-white dark:bg-gray-800 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300"
-      data-lazy style="background: linear-gradient(135deg, #f8f9fb 0%, #f1f5f9 100%);">
-      <div class="mb-4 text-center">
-        <span class="uppercase tracking-widest text-xs text-gray-400" id="certifications-subtitle"
-          data-i18n="cert-subtitle">Certifications</span>
-        <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up"
-          id="certifications-title" data-i18n="cert-title">Certifications</h2>
-      </div>
-      <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div
-          class="cert-card bg-white dark:bg-gray-800 rounded-2xl shadow p-6 border border-gray-100 dark:border-gray-700">
-          <span class="cert-icon text-purple-600 dark:text-purple-400">
-            <i class="fas fa-certificate text-xl"></i>
-          </span>
-          <div>
-            <div class="font-semibold text-gray-800 dark:text-gray-100" id="cert-xamarin-title">Xamarin Crosss-Platform
-              Mobile Apps Development</div>
-            <div class="text-gray-400 dark:text-gray-500 text-sm" id="cert-xamarin-date">05/2018</div>
-          </div>
+    <!-- ─────────────────────────────────────
+         CERTIFICATIONS
+         ───────────────────────────────────── -->
+    <section id="certifications" class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header ds-section-header--center ds-reveal">
+          <span class="ds-eyebrow" id="certifications-subtitle" data-i18n="cert-subtitle">Certifications</span>
+          <h2 class="ds-h2" id="certifications-title" data-i18n="cert-title" style="color:rgba(255,255,255,.92);">
+            Certifications</h2>
         </div>
-        <div
-          class="cert-card bg-white dark:bg-gray-800 rounded-2xl shadow p-6 border border-gray-100 dark:border-gray-700">
-          <span class="cert-icon text-purple-600 dark:text-purple-400">
-            <i class="fas fa-award text-xl"></i>
-          </span>
-          <div>
-            <div class="font-semibold text-gray-800 dark:text-gray-100" id="cert-flutter-title">Flutter Development
-            </div>
-            <div class="text-gray-400 dark:text-gray-500 text-sm" id="cert-flutter-date">01/2023</div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact"
-      class="container mx-auto px-4 py-24 bg-white dark:bg-gray-800 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300"
-      data-lazy>
-      <div class="mb-4 text-center">
-        <span class="uppercase tracking-widest text-xs text-gray-400" id="contact-subtitle"
-          data-i18n="contact-subtitle">Contact</span>
-        <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up"
-          id="contact-title" data-i18n="contact-title">Contact</h2>
-      </div>
-      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
-        <form id="contact-form" class="bg-white dark:bg-gray-800 rounded-2xl p-10 flex flex-col space-y-6">
-          <input type="text" id="contact-name-input" name="name" placeholder="Your Name"
-            class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 dark:text-gray-200 dark:placeholder-gray-400"
-            required>
-          <input type="email" id="contact-email-input" name="email" placeholder="Your Email"
-            class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 dark:text-gray-200 dark:placeholder-gray-400"
-            required>
-          <textarea id="contact-message-input" name="message" placeholder="Your Message" rows="5" maxlength="1000"
-            class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 dark:text-gray-200 dark:placeholder-gray-400"
-            required></textarea>
-          <button type="submit" id="contact-send-btn"
-            class="w-full py-3 rounded-lg bg-purple-600 dark:bg-purple-600 text-white font-semibold text-lg hover:bg-purple-700 dark:hover:bg-purple-700 transition magnetic"
-            data-magnetic data-ripple>Send Message</button>
-        </form>
-        <div class="bg-white dark:bg-gray-800 rounded-2xl p-10 flex flex-col justify-center space-y-8">
-          <div class="flex items-center space-x-4">
-            <span
-              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400">
-              <i class="fas fa-map-marker-alt text-lg"></i>
-            </span>
+        <div
+          style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;max-width:700px;margin:0 auto;">
+          <div class="glass-card ds-reveal ds-stagger-1"
+            style="padding:1.5rem;display:flex;align-items:center;gap:1rem;">
+            <div
+              style="width:48px;height:48px;border-radius:var(--r-md);background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(34,211,238,.12));border:var(--b-accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-certificate" style="color:var(--c-violet-hi);font-size:1.1rem;"></i>
+            </div>
             <div>
-              <div class="font-semibold text-gray-800 dark:text-gray-100" id="contact-address-label">Address</div>
-              <div class="text-gray-500 dark:text-gray-400" id="contact-address-value">DaKao, District 1, HCMC, VietNam
+              <div id="cert-xamarin-title"
+                style="font-family:var(--f-display);font-weight:600;font-size:.9rem;color:rgba(255,255,255,.88);">
+                Xamarin Cross-Platform Mobile Apps Development</div>
+              <div id="cert-xamarin-date" style="font-size:.78rem;color:rgba(255,255,255,.38);margin-top:.2rem;">05/2018
               </div>
             </div>
           </div>
-          <div class="flex items-center space-x-4">
-            <span
-              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400">
-              <i class="fas fa-envelope text-lg"></i>
-            </span>
-            <div>
-              <div class="font-semibold text-gray-800 dark:text-gray-100" id="contact-emailinfo-label">Email</div>
-              <a href="mailto:thanghoang07@gmail.com"
-                class="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                id="contact-email-value">thanghoang07@gmail.com</a>
+
+          <div class="glass-card ds-reveal ds-stagger-2"
+            style="padding:1.5rem;display:flex;align-items:center;gap:1rem;">
+            <div
+              style="width:48px;height:48px;border-radius:var(--r-md);background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(34,211,238,.12));border:var(--b-accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="fas fa-award" style="color:var(--c-violet-hi);font-size:1.1rem;"></i>
             </div>
-          </div>
-          <div class="flex items-center space-x-4">
-            <span
-              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400">
-              <i class="fas fa-phone text-lg"></i>
-            </span>
             <div>
-              <div class="font-semibold text-gray-800 dark:text-gray-100" id="contact-phone-label">Phone</div>
-              <a href="tel:+84932431562"
-                class="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                id="contact-phone-value">(+84) 93 243 1562</a>
-            </div>
-          </div>
-          <div class="flex items-center space-x-4">
-            <span
-              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400">
-              <i class="fab fa-linkedin text-lg"></i>
-            </span>
-            <div>
-              <div class="font-semibold text-gray-800 dark:text-gray-100" id="contact-linkedin-label">LinkedIn</div>
-              <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener"
-                class="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                id="contact-linkedin-value">linkedin.com/in/thanghoang07</a>
+              <div id="cert-flutter-title"
+                style="font-family:var(--f-display);font-weight:600;font-size:.9rem;color:rgba(255,255,255,.88);">
+                Flutter Development</div>
+              <div id="cert-flutter-date" style="font-size:.78rem;color:rgba(255,255,255,.38);margin-top:.2rem;">01/2023
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-transparent rounded-2xl relative z-10 mt-[10px]">
-      <div class="container mx-auto px-4 text-center">
-        <div class="flex justify-center space-x-8 mb-4 social-links">
-          <a href="#"
-            class="text-gray-400 dark:text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 text-3xl transition"
-            aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="#"
-            class="text-gray-400 dark:text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 text-3xl transition"
-            aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#"
-            class="text-gray-400 dark:text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 text-3xl transition"
-            aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <!-- ─────────────────────────────────────
+         CONTACT
+         ───────────────────────────────────── -->
+    <section id="contact" class="ds-section">
+      <div class="ds-container">
+        <div class="ds-section-header ds-section-header--center ds-reveal">
+          <span class="ds-eyebrow" id="contact-subtitle" data-i18n="contact-subtitle">Contact</span>
+          <h2 class="ds-h2 ds-text-gradient" id="contact-title" data-i18n="contact-title">Get in Touch</h2>
         </div>
-        <p id="copyright" class="text-gray-400 dark:text-gray-500 text-xs mb-20">© 2025 thanghoang07. All rights
-          reserved.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:900px;margin:0 auto;"
+          class="ds-reveal">
+
+          <!-- Form -->
+          <form id="contact-form" class="glass-card" style="padding:2rem;display:flex;flex-direction:column;gap:1rem;">
+            <input type="text" id="contact-name-input" name="name" placeholder="Your Name"
+              style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;"
+              onfocus="this.style.borderColor='rgba(124,58,237,.5)'" onblur="this.style.borderColor=''" required>
+            <input type="email" id="contact-email-input" name="email" placeholder="Your Email"
+              style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;"
+              onfocus="this.style.borderColor='rgba(124,58,237,.5)'" onblur="this.style.borderColor=''" required>
+            <textarea id="contact-message-input" name="message" placeholder="Your Message" rows="5" maxlength="1000"
+              style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;resize:vertical;"
+              onfocus="this.style.borderColor='rgba(124,58,237,.5)'" onblur="this.style.borderColor=''"
+              required></textarea>
+            <button type="submit" id="contact-send-btn" class="ds-btn ds-btn--primary"
+              style="width:100%;justify-content:center;padding:.9rem;font-size:.9rem;" data-ripple>
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+
+          <!-- Info -->
+          <div style="display:flex;flex-direction:column;gap:1rem;justify-content:center;">
+            <a href="https://maps.google.com" target="_blank" class="ds-contact-item" style="text-decoration:none;">
+              <div class="ds-contact-item__icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <div
+                  style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"
+                  id="contact-address-label">Address</div>
+                <div style="color:rgba(255,255,255,.75);font-size:.9rem;" id="contact-address-value">DaKao, District 1,
+                  HCMC, VietNam</div>
+              </div>
+            </a>
+            <a href="mailto:thanghoang07@gmail.com" class="ds-contact-item" style="text-decoration:none;">
+              <div class="ds-contact-item__icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <div
+                  style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"
+                  id="contact-emailinfo-label">Email</div>
+                <div style="color:rgba(255,255,255,.75);font-size:.9rem;" id="contact-email-value">
+                  thanghoang07@gmail.com</div>
+              </div>
+            </a>
+            <a href="tel:+84932431562" class="ds-contact-item" style="text-decoration:none;">
+              <div class="ds-contact-item__icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <div
+                  style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"
+                  id="contact-phone-label">Phone</div>
+                <div style="color:rgba(255,255,255,.75);font-size:.9rem;" id="contact-phone-value">(+84) 93 243 1562
+                </div>
+              </div>
+            </a>
+            <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="ds-contact-item"
+              style="text-decoration:none;">
+              <div class="ds-contact-item__icon"><i class="fab fa-linkedin"></i></div>
+              <div>
+                <div
+                  style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"
+                  id="contact-linkedin-label">LinkedIn</div>
+                <div style="color:rgba(255,255,255,.75);font-size:.9rem;" id="contact-linkedin-value">
+                  linkedin.com/in/thanghoang07</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────
+         FOOTER
+         ───────────────────────────────────── -->
+    <footer style="padding:var(--sp-lg) 0;border-top:var(--b-subtle);">
+      <div class="ds-container"
+        style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <span
+          style="font-family:var(--f-display);font-size:1.1rem;font-weight:800;background:var(--g-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Thang.</span>
+        <p id="copyright" style="font-size:.8rem;color:rgba(255,255,255,.28);">© 2025 thanghoang07. All rights reserved.
+        </p>
+        <div style="display:flex;gap:.5rem;">
+          <a href="#" class="ds-btn ds-btn--icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
+            aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
+            aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
       </div>
     </footer>
 
-  </div> <!-- End main-content wrapper -->
+  </div><!-- /main-content -->
 
-  <!-- Back to Top Button -->
-  <button id="back-to-top"
-    class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50 opacity-0 invisible"
-    aria-label="Back to top">
-    <i class="fas fa-arrow-up text-lg"></i>
+  <!-- Back to top -->
+  <button id="back-to-top" class="ds-back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
   </button>
+
+  <!-- Tab switching script (inline — no dependency) -->
+  <script>
+    function switchTab(company) {
+      ['hpt', 'tk25', 'nbn', 'devup'].forEach(c => {
+        const btn = document.getElementById('tab-' + c);
+        const panel = document.getElementById('content-' + c);
+        if (btn) btn.classList.toggle('active', c === company);
+        if (panel) panel.classList.toggle('hidden', c !== company);
+      });
+    }
+    // Mobile menu
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu')?.classList.toggle('hidden');
+    });
+    // Back to top visibility
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('back-to-top');
+      if (btn) btn.classList.toggle('show', window.scrollY > 300);
+    }, { passive: true });
+    document.getElementById('back-to-top')?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 
   <script type="module" src="/src/main.js"></script>
 </body>
