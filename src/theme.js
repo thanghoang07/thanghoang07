@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 🎨 Theme Management System — FIXED VERSION
  *
  * Fixes:
@@ -126,32 +126,17 @@ export class ThemeManager {
   }
 }
 
-/* ── Singleton ─────────────────────────────────
-   FIXED: do NOT call `new ThemeManager()` here.
-   The singleton is created lazily on first import of `themeManager`.
-   ─────────────────────────────────────────────── */
-let _instance = null;
+// Instantiated directly since constructor does not touch the DOM.
+// This avoids Proxy binding issues with 'this' context during event listeners.
+export const themeManager = new ThemeManager();
 
 export function getThemeManager() {
-  if (!_instance) _instance = new ThemeManager();
-  return _instance;
+  return themeManager;
 }
 
-// Named export kept for compatibility — but instance is lazy now
-export const themeManager = new Proxy(
-  {},
-  {
-    get(_, prop) {
-      return getThemeManager()[prop];
-    },
-  }
-);
-
-// Legacy helpers
 export function initTheme() {
-  const mgr = getThemeManager();
-  mgr.init();
-  return mgr;
+  themeManager.init();
+  return themeManager;
 }
 
 export function getCurrentTheme() {
