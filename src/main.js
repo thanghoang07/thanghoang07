@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 🚀 Unified Main Entry Point
  * ✅ FIX: Removed all console.log/warn — production-clean
  */
@@ -26,9 +26,13 @@ class UnifiedApplication {
       this._initTheme();
       this._initLanguage();
       this._initNavbar();
+      this._initActiveNav();
       this._initBackToTop();
       this._initFloatingShapes();
       this._initTypingAnimation();
+      this._initPortfolioFilter();
+      this._initCounters();
+      this._initFooterYear();
       this._initLoadedFeatures();
       this._finishLoading();
     } catch (err) {
@@ -81,15 +85,6 @@ class UnifiedApplication {
       const isDark = document.documentElement.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
-  }
-
-  _withThemeTransition() {
-    const root = document.documentElement;
-    root.classList.add('theme-transitioning');
-    window.clearTimeout(this._themeTransitionTimeout);
-    this._themeTransitionTimeout = window.setTimeout(() => {
-      root.classList.remove('theme-transitioning');
-    }, 320);
   }
 
   _initLanguage() {
