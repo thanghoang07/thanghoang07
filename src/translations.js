@@ -76,7 +76,7 @@ export const translations = {
     'contact-emailinfo-label': 'Email',
     'contact-phone-label': 'Điện thoại',
     'contact-linkedin-label': 'LinkedIn',
-    'copyright': '© 2025 thanghoang07. Tất cả quyền được bảo lưu.'
+    'copyright': `© ${new Date().getFullYear()} thanghoang07. Tất cả quyền được bảo lưu.`
   },
   en: {
     // Navigation
@@ -149,7 +149,7 @@ export const translations = {
     'contact-emailinfo-label': 'Email',
     'contact-phone-label': 'Phone',
     'contact-linkedin-label': 'LinkedIn',
-    'copyright': '© 2025 thanghoang07. All rights reserved.'
+    'copyright': `© ${new Date().getFullYear()} thanghoang07. All rights reserved.`
   }
 };
 

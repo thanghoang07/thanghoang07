@@ -67,9 +67,6 @@ export class ContactFormManager {
     const inputs = this.form.querySelectorAll('input, textarea');
     
     inputs.forEach(input => {
-      // Add floating label effect
-      this.addFloatingLabelEffect(input);
-      
       // Add character counter for textarea
       if (input.tagName === 'TEXTAREA') {
         this.addCharacterCounter(input);
