@@ -91,13 +91,11 @@ export class ThemeManager {
     const html = document.documentElement;
 
     if (animate) {
-      // Scoped transition on html/body only — NOT on every element via *
-      html.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-      document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-      setTimeout(() => {
-        html.style.transition = '';
-        document.body.style.transition = '';
-      }, 350);
+      html.classList.add('theme-transitioning');
+      window.clearTimeout(this._transitionTimer);
+      this._transitionTimer = window.setTimeout(() => {
+        html.classList.remove('theme-transitioning');
+      }, 320);
     }
 
     html.classList.toggle('dark', theme === 'dark');

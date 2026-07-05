@@ -83,6 +83,15 @@ class UnifiedApplication {
     });
   }
 
+  _withThemeTransition() {
+    const root = document.documentElement;
+    root.classList.add('theme-transitioning');
+    window.clearTimeout(this._themeTransitionTimeout);
+    this._themeTransitionTimeout = window.setTimeout(() => {
+      root.classList.remove('theme-transitioning');
+    }, 320);
+  }
+
   _initLanguage() {
     const mod = this.features.get('translations');
     if (mod?.languageManager) {
@@ -169,6 +178,99 @@ class UnifiedApplication {
     }, { passive: true });
   }
 
+  _initActiveNav() {
+    const links = Array.from(document.querySelectorAll('.ds-nav__link[href^="#"]'));
+    if (!links.length) return;
+
+    const sectionIds = ['services', 'portfolio', 'experience', 'skills-tools', 'contact'];
+    const linkById = new Map(
+      links
+        .map((link) => [link.getAttribute('href')?.slice(1), link])
+        .filter(([id]) => sectionIds.includes(id))
+    );
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
+    if (!sections.length || !('IntersectionObserver' in window)) return;
+
+    const clearActive = () => links.forEach((link) => link.classList.remove('active'));
+    const setActive = (id) => {
+      clearActive();
+      linkById.get(id)?.classList.add('active');
+    };
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < 100) clearActive();
+    }, { passive: true });
+
+    const observer = new IntersectionObserver((entries) => {
+      if (window.scrollY < 100) {
+        clearActive();
+        return;
+      }
+
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible?.target?.id) setActive(visible.target.id);
+    }, { rootMargin: '-25% 0px -45% 0px', threshold: [0.3, 0.55] });
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  _initPortfolioFilter() {
+    const filterBar = document.querySelector('[data-portfolio-filter]');
+    if (!filterBar) return;
+
+    const cards = Array.from(document.querySelectorAll('[data-project-category]'));
+    filterBar.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-filter]');
+      if (!button) return;
+
+      const filter = button.dataset.filter;
+      filterBar.querySelectorAll('[data-filter]').forEach((btn) => {
+        btn.classList.toggle('active', btn === button);
+      });
+
+      cards.forEach((card) => {
+        const isVisible = filter === 'all' || card.dataset.projectCategory === filter;
+        card.classList.toggle('is-filtered-out', !isVisible);
+      });
+    });
+  }
+
+  _initCounters() {
+    const counters = Array.from(document.querySelectorAll('[data-count]'));
+    if (!counters.length || !('IntersectionObserver' in window)) return;
+
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    const animate = (el) => {
+      const target = Number(el.dataset.count || 0);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1500;
+      const start = performance.now();
+
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        el.textContent = String(Math.round(target * easeOut(progress))) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animate(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach((counter) => observer.observe(counter));
+  }
+
+  _initFooterYear() {
+    const year = document.getElementById('footer-year');
+    if (year) year.textContent = new Date().getFullYear();
+  }
   _initBackToTop() {
     const btn = document.getElementById('back-to-top');
     if (!btn) return;

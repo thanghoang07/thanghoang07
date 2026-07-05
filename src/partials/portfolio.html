@@ -12,10 +12,17 @@
       </p>
     </div>
 
+    <div class="ds-filter-bar ds-reveal" data-portfolio-filter aria-label="Project category filter">
+      <button class="ds-filter-btn active" type="button" data-filter="all">All</button>
+      <button class="ds-filter-btn" type="button" data-filter="enterprise">Enterprise</button>
+      <button class="ds-filter-btn" type="button" data-filter="mobile">Mobile</button>
+      <button class="ds-filter-btn" type="button" data-filter="backend">Backend</button>
+    </div>
+
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;">
 
       <!-- Card: SAALEM -->
-      <article class="glass-card glass-card--accent ds-reveal ds-stagger-1"
+      <article class="glass-card glass-card--accent ds-project-card ds-reveal ds-stagger-1" data-project-category="enterprise"
         style="display:flex;flex-direction:column;overflow:hidden;">
         <div
           style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(124,58,237,.3),rgba(34,211,238,.15));">
@@ -56,7 +63,7 @@
       </article>
 
       <!-- Card: Flutter -->
-      <article class="glass-card ds-reveal ds-stagger-2" style="display:flex;flex-direction:column;overflow:hidden;">
+      <article class="glass-card ds-project-card ds-reveal ds-stagger-2" data-project-category="mobile" style="display:flex;flex-direction:column;overflow:hidden;">
         <div
           style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(34,211,238,.2),rgba(124,58,237,.1));">
           <img
@@ -96,7 +103,7 @@
       </article>
 
       <!-- Card: Go -->
-      <article class="glass-card ds-reveal ds-stagger-3" style="display:flex;flex-direction:column;overflow:hidden;">
+      <article class="glass-card ds-project-card ds-reveal ds-stagger-3" data-project-category="backend" style="display:flex;flex-direction:column;overflow:hidden;">
         <div
           style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(34,211,238,.1));">
           <img data-src="https://ui-avatars.com/api/?name=Go+API&background=10b981&color=fff&size=640&font-size=0.18"
