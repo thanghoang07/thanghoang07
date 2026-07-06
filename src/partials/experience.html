@@ -12,11 +12,24 @@
     <div style="display:grid;grid-template-columns:220px 1fr;gap:2rem;max-width:900px;margin:0 auto;" class="ds-reveal">
 
       <!-- Tab buttons -->
-      <div style="display:flex;flex-direction:column;gap:.5rem;">
-        <button id="tab-hpt" class="ds-tab active" onclick="switchTab('hpt')">HPT Vietnam</button>
-        <button id="tab-tk25" class="ds-tab" onclick="switchTab('tk25')">TK25 Tech</button>
-        <button id="tab-nbn" class="ds-tab" onclick="switchTab('nbn')">NBN Media</button>
-        <button id="tab-devup" class="ds-tab" onclick="switchTab('devup')">DevUp</button>
+      <div class="ds-timeline-tabs">
+        <div class="ds-timeline-line" aria-hidden="true"></div>
+        <button id="tab-hpt" class="ds-tab active" onclick="switchTab('hpt')">
+          <span class="ds-tab-dot" aria-hidden="true"></span>
+          <span class="ds-tab-main"><span class="ds-tab-company">HPT Vietnam</span><span class="ds-tab-date">Oct 2022 - Present</span></span>
+        </button>
+        <button id="tab-tk25" class="ds-tab" onclick="switchTab('tk25')">
+          <span class="ds-tab-dot" aria-hidden="true"></span>
+          <span class="ds-tab-main"><span class="ds-tab-company">TK25 Tech</span><span class="ds-tab-date">Jul 2019 - Oct 2022</span></span>
+        </button>
+        <button id="tab-nbn" class="ds-tab" onclick="switchTab('nbn')">
+          <span class="ds-tab-dot" aria-hidden="true"></span>
+          <span class="ds-tab-main"><span class="ds-tab-company">NBN Media</span><span class="ds-tab-date">Feb 2019 - Jul 2019</span></span>
+        </button>
+        <button id="tab-devup" class="ds-tab" onclick="switchTab('devup')">
+          <span class="ds-tab-dot" aria-hidden="true"></span>
+          <span class="ds-tab-main"><span class="ds-tab-company">DevUp</span><span class="ds-tab-date">Aug 2018 - Jan 2019</span></span>
+        </button>
       </div>
 
       <!-- Content panels -->

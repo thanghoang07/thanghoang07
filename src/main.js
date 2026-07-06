@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 🚀 Unified Main Entry Point
  * ✅ FIX: Removed all console.log/warn — production-clean
  */
@@ -6,6 +6,7 @@
 import './design-system.css';
 import './style.css';
 import { initDesignSystemEnhancements } from './design-system-enhancements.js';
+import { initActiveNav, initCounters, initPortfolioFilter, updateFooterYear } from './ui/page-interactions.js';
 
 class UnifiedApplication {
   constructor() {
@@ -26,9 +27,13 @@ class UnifiedApplication {
       this._initTheme();
       this._initLanguage();
       this._initNavbar();
+      this._initActiveNav();
       this._initBackToTop();
       this._initFloatingShapes();
       this._initTypingAnimation();
+      this._initPortfolioFilter();
+      this._initCounters();
+      this._initFooterYear();
       this._initLoadedFeatures();
       this._finishLoading();
     } catch (err) {
@@ -167,6 +172,22 @@ class UnifiedApplication {
       });
       ticking = true;
     }, { passive: true });
+  }
+
+  _initActiveNav() {
+    this._cleanupActiveNav = initActiveNav();
+  }
+
+  _initPortfolioFilter() {
+    this._cleanupPortfolioFilter = initPortfolioFilter();
+  }
+
+  _initCounters() {
+    this._cleanupCounters = initCounters();
+  }
+
+  _initFooterYear() {
+    updateFooterYear();
   }
 
   _initBackToTop() {

@@ -3,7 +3,8 @@
  * Enhanced contact form with validation and better UX
  */
 
-import { colorSystem, getColor } from './color-system.js';
+import { getColor } from './color-system.js';
+import { CONTACT_MESSAGES } from './contact-messages.js';
 
 /**
  * Contact Form Manager Class
@@ -67,9 +68,6 @@ export class ContactFormManager {
     const inputs = this.form.querySelectorAll('input, textarea');
     
     inputs.forEach(input => {
-      // Add floating label effect
-      this.addFloatingLabelEffect(input);
-      
       // Add character counter for textarea
       if (input.tagName === 'TEXTAREA') {
         this.addCharacterCounter(input);
@@ -86,7 +84,7 @@ export class ContactFormManager {
     // Validate all fields
     const isValid = this.validateForm();
     if (!isValid) {
-      this.showError('Vui lòng kiểm tra lại thông tin đã nhập.');
+      this.showError(CONTACT_MESSAGES.invalidForm);
       return;
     }
 
@@ -101,12 +99,12 @@ export class ContactFormManager {
       await this.sendEmail(formData);
 
       // Show success message
-      this.showSuccess('Cảm ơn bạn đã liên hệ! Tôi sẽ phản hồi sớm nhất có thể.');
+      this.showSuccess(CONTACT_MESSAGES.sendSuccess);
       this.resetForm();
 
     } catch (error) {
       console.error('Form submission error:', error);
-      this.showError('Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau.');
+      this.showError(CONTACT_MESSAGES.sendError);
     } finally {
       this.isSubmitting = false;
       this.setSubmittingState(false);
@@ -152,7 +150,7 @@ export class ContactFormManager {
 
     // Required field validation
     if (!value) {
-      errorMessage = 'Trường này là bắt buộc.';
+      errorMessage = CONTACT_MESSAGES.required;
       isValid = false;
     } else {
       // Field-specific validation
@@ -160,21 +158,21 @@ export class ContactFormManager {
         case 'email':
         case 'contact-email-input':
           if (!this.isValidEmail(value)) {
-            errorMessage = 'Email không hợp lệ.';
+            errorMessage = CONTACT_MESSAGES.invalidEmail;
             isValid = false;
           }
           break;
         case 'name':
         case 'contact-name-input':
           if (value.length < 2) {
-            errorMessage = 'Tên phải có ít nhất 2 ký tự.';
+            errorMessage = CONTACT_MESSAGES.nameTooShort;
             isValid = false;
           }
           break;
         case 'message':
         case 'contact-message-input':
           if (value.length < 10) {
-            errorMessage = 'Tin nhắn phải có ít nhất 10 ký tự.';
+            errorMessage = CONTACT_MESSAGES.messageTooShort;
             isValid = false;
           }
           break;
@@ -330,11 +328,11 @@ export class ContactFormManager {
 
     if (isSubmitting) {
       this.submitButton.disabled = true;
-      this.submitButton.textContent = 'Đang gửi...';
+      this.submitButton.textContent = CONTACT_MESSAGES.submitting;
       this.submitButton.style.opacity = '0.7';
     } else {
       this.submitButton.disabled = false;
-      this.submitButton.textContent = 'Gửi tin nhắn';
+      this.submitButton.textContent = CONTACT_MESSAGES.submit;
       this.submitButton.style.opacity = '1';
     }
   }
@@ -513,76 +511,18 @@ export class ContactFormManager {
    * Show notification
    */
   showNotification(message, type = 'success') {
-    // Remove existing notifications
-    const existingNotification = document.querySelector('.form-notification');
-    if (existingNotification) {
-      existingNotification.remove();
-    }
+    document.querySelectorAll('.ds-toast').forEach((toast) => toast.remove());
 
-    const notification = document.createElement('div');
-    notification.className = 'form-notification';
-    notification.textContent = message;
-    
-    const backgroundGradient = type === 'success' 
-      ? colorSystem.getGradient('success')
-      : colorSystem.getGradient('error');
-    
-    notification.style.cssText = `
-      position: fixed;
-      top: 2rem;
-      right: 2rem;
-      padding: 1rem 1.5rem;
-      border-radius: 0.5rem;
-      color: white;
-      font-weight: 500;
-      z-index: 10000;
-      animation: slideIn 0.3s ease;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      background: ${backgroundGradient};
-    `;
+    const toast = document.createElement('div');
+    toast.className = `ds-toast ds-toast--${type}`;
+    toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
+    toast.textContent = message;
+    document.body.appendChild(toast);
 
-    document.body.appendChild(notification);
-
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-      notification.style.animation = 'slideOut 0.3s ease';
-      setTimeout(() => {
-        notification.remove();
-      }, 300);
-    }, 5000);
-
-    // Add animations
-    if (!document.querySelector('#notification-styles')) {
-      const style = document.createElement('style');
-      style.id = 'notification-styles';
-      style.textContent = `
-        @keyframes slideIn {
-          from {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-        @keyframes slideOut {
-          from {
-            transform: translateX(0);
-            opacity: 1;
-          }
-          to {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-      `;
-      document.head.appendChild(style);
-    }
+    window.setTimeout(() => {
+      toast.classList.add('is-hiding');
+      window.setTimeout(() => toast.remove(), 220);
+    }, 4000);
   }
 
   /**
