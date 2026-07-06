@@ -3,7 +3,8 @@
  * Enhanced contact form with validation and better UX
  */
 
-import { colorSystem, getColor } from './color-system.js';
+import { getColor } from './color-system.js';
+import { CONTACT_MESSAGES } from './contact-messages.js';
 
 /**
  * Contact Form Manager Class
@@ -83,7 +84,7 @@ export class ContactFormManager {
     // Validate all fields
     const isValid = this.validateForm();
     if (!isValid) {
-      this.showError('Vui lòng kiểm tra lại thông tin đã nhập.');
+      this.showError(CONTACT_MESSAGES.invalidForm);
       return;
     }
 
@@ -98,12 +99,12 @@ export class ContactFormManager {
       await this.sendEmail(formData);
 
       // Show success message
-      this.showSuccess('Cảm ơn bạn đã liên hệ! Tôi sẽ phản hồi sớm nhất có thể.');
+      this.showSuccess(CONTACT_MESSAGES.sendSuccess);
       this.resetForm();
 
     } catch (error) {
       console.error('Form submission error:', error);
-      this.showError('Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau.');
+      this.showError(CONTACT_MESSAGES.sendError);
     } finally {
       this.isSubmitting = false;
       this.setSubmittingState(false);
@@ -149,7 +150,7 @@ export class ContactFormManager {
 
     // Required field validation
     if (!value) {
-      errorMessage = 'Trường này là bắt buộc.';
+      errorMessage = CONTACT_MESSAGES.required;
       isValid = false;
     } else {
       // Field-specific validation
@@ -157,21 +158,21 @@ export class ContactFormManager {
         case 'email':
         case 'contact-email-input':
           if (!this.isValidEmail(value)) {
-            errorMessage = 'Email không hợp lệ.';
+            errorMessage = CONTACT_MESSAGES.invalidEmail;
             isValid = false;
           }
           break;
         case 'name':
         case 'contact-name-input':
           if (value.length < 2) {
-            errorMessage = 'Tên phải có ít nhất 2 ký tự.';
+            errorMessage = CONTACT_MESSAGES.nameTooShort;
             isValid = false;
           }
           break;
         case 'message':
         case 'contact-message-input':
           if (value.length < 10) {
-            errorMessage = 'Tin nhắn phải có ít nhất 10 ký tự.';
+            errorMessage = CONTACT_MESSAGES.messageTooShort;
             isValid = false;
           }
           break;
@@ -327,11 +328,11 @@ export class ContactFormManager {
 
     if (isSubmitting) {
       this.submitButton.disabled = true;
-      this.submitButton.textContent = 'Đang gửi...';
+      this.submitButton.textContent = CONTACT_MESSAGES.submitting;
       this.submitButton.style.opacity = '0.7';
     } else {
       this.submitButton.disabled = false;
-      this.submitButton.textContent = 'Gửi tin nhắn';
+      this.submitButton.textContent = CONTACT_MESSAGES.submit;
       this.submitButton.style.opacity = '1';
     }
   }

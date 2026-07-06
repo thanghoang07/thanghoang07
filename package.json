@@ -17,7 +17,8 @@
     "test:build": "node scripts/test-build.js",
     "ci:test": "npm ci && npm run test:build",
     "fix:rollup": "node scripts/fix-rollup.js",
-    "ci:build": "node scripts/fix-rollup.js && npm run build"
+    "ci:build": "node scripts/fix-rollup.js && npm run build",
+    "test:unit": "node --test tests/unit/*.test.js"
   },
   "keywords": [
     "portfolio",
