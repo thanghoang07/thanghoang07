@@ -1,15 +1,13 @@
-/* ═══════════════════════════════════════════════════════════
-   DESIGN SYSTEM — Modern Tech / Glassmorphism
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   DESIGN SYSTEM â€” Modern Tech / Glassmorphism
    Portfolio: Thang Hoang Duc
-   Fonts: Oxanium (display) + DM Sans (body)
+   Fonts: Figma-like system sans + mono
    Theme: Deep space dark, electric violet accent, glass layers
-   ═══════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
-
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    1. TOKENS
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root {
     /* Core palette */
     --c-bg: #080b14;
@@ -18,7 +16,7 @@
     --c-surface-md: rgba(255, 255, 255, 0.07);
     --c-surface-hi: rgba(255, 255, 255, 0.11);
 
-    /* Accent — electric violet → cyan */
+    /* Accent â€” electric violet â†’ cyan */
     --c-violet: #7c3aed;
     --c-violet-hi: #a78bfa;
     --c-cyan: #22d3ee;
@@ -42,8 +40,8 @@
     --sh-glow: 0 0 40px rgba(124, 58, 237, 0.3);
 
     /* Typography */
-    --f-display: 'Oxanium', monospace;
-    --f-body: 'DM Sans', sans-serif;
+    --f-display: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --f-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
     /* Spacing scale */
     --sp-xs: 0.5rem;
@@ -81,9 +79,9 @@ html:not(.dark) {
         radial-gradient(ellipse 60% 70% at 80% 80%, rgba(34, 211, 238, 0.06) 0%, transparent 55%);
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    2. BASE
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 *,
 *::before,
 *::after {
@@ -139,9 +137,9 @@ div {
     z-index: 1;
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    3. TYPOGRAPHY
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-h1,
 .ds-h2,
 .ds-h3,
@@ -220,9 +218,9 @@ div {
     opacity: 0.55;
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    4. GLASS CARD  (core component)
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .glass-card {
     background: var(--g-card);
     backdrop-filter: blur(20px) saturate(1.4);
@@ -277,9 +275,9 @@ div {
     opacity: 0.3;
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    5. PROJECT CARDS  (enhanced)
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .project-card-v2 {
     @extend .glass-card;
     display: flex;
@@ -442,9 +440,9 @@ html:not(.dark) .project-card-v2 .pc-meta-list strong {
     cursor: default;
     opacity: 0.6;
 }
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    6. BUTTONS
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-btn {
     display: inline-flex;
     align-items: center;
@@ -539,9 +537,9 @@ html:not(.dark) .ds-btn--ghost:hover {
     left: 100%;
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    7. SECTION LAYOUT
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-section {
     padding: var(--sp-2xl) 0;
 }
@@ -584,9 +582,9 @@ html:not(.dark) .ds-btn--ghost:hover {
     margin: var(--sp-xl) 0;
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    8. SKILL BADGES  (redesigned)
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-skill-badge {
     display: inline-flex;
     align-items: center;
@@ -632,9 +630,9 @@ html:not(.dark) .ds-skill-badge {
     transform: scale(1.25) rotate(5deg);
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    9. STAT CHIPS  (numbers in hero / about)
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-stat {
     display: flex;
     flex-direction: column;
@@ -659,9 +657,9 @@ html:not(.dark) .ds-skill-badge {
     letter-spacing: 0.04em;
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    10. ANIMATED GRADIENT BORDER  (hero / featured card)
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-glow-border {
     position: relative;
     border-radius: var(--r-lg);
@@ -693,9 +691,9 @@ html:not(.dark) .ds-skill-badge {
     }
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    11. SCROLL REVEAL  (design system scoped)
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -747,9 +745,9 @@ html:not(.dark) .ds-skill-badge {
     transition-delay: 0.35s;
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    12. FLOATING AVATAR RING  (hero visual)
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-avatar-ring {
     position: relative;
     display: inline-flex;
@@ -799,9 +797,9 @@ html:not(.dark) .ds-skill-badge {
     }
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    13. NAVIGATION  (redesigned)
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-nav {
     position: fixed;
     top: 0;
@@ -857,9 +855,9 @@ html:not(.dark) .ds-nav__link:hover {
     color: rgba(15, 15, 30, 0.9);
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    14. SCROLL PROGRESS BAR
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-scroll-progress {
     position: fixed;
     top: 0;
@@ -871,9 +869,9 @@ html:not(.dark) .ds-nav__link:hover {
     transition: width 0.08s linear;
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    15. CONTACT CARD
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-contact-item {
     display: flex;
     align-items: center;
@@ -910,9 +908,9 @@ html:not(.dark) .ds-nav__link:hover {
     flex-shrink: 0;
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    16. BACK TO TOP
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-back-to-top {
     position: fixed;
     bottom: 28px;
@@ -951,9 +949,9 @@ html:not(.dark) .ds-nav__link:hover {
     transform: translateY(-3px);
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    17. WORK EXPERIENCE TABS  (redesigned)
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-tab {
     font-family: var(--f-display);
     font-size: 0.8rem;
@@ -1100,7 +1098,7 @@ html:not(.dark) .ds-tab.active {
 }
 
 .ds-exp-list li::before {
-    content: '→';
+    content: 'â†’';
     color: var(--c-cyan);
     flex-shrink: 0;
 }
@@ -1134,9 +1132,9 @@ html:not(.dark) .ds-exp-list {
     }
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    18. RESPONSIVE UTILITIES
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (max-width: 640px) {
     :root {
         --sp-lg: 1.5rem;
@@ -1149,9 +1147,9 @@ html:not(.dark) .ds-exp-list {
     }
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    19. CURSOR GLOW  (desktop only)
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (pointer: fine) {
     .ds-cursor-glow {
         position: fixed;
@@ -1167,9 +1165,9 @@ html:not(.dark) .ds-exp-list {
     }
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    20. LOADING SCREEN
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .ds-loader {
     position: fixed;
     inset: 0;
@@ -1225,9 +1223,9 @@ html:not(.dark) .ds-exp-list {
     }
 }
 
-/* ───────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    21. ACCESSIBILITY
-   ─────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :focus-visible {
     outline: 2px solid var(--c-violet-hi);
     outline-offset: 3px;
@@ -1249,9 +1247,9 @@ html:not(.dark) .ds-exp-list {
     }
 }
 
-/* ─────────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    22. UI/UX ENHANCEMENTS
-   ───────────────────────────────────────────────── */
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 /* Theme transition */
 html.theme-transitioning *,
@@ -1404,5 +1402,1023 @@ html:not(.dark) #hero-intro {
 @media (max-width: 768px) {
     .ds-timeline-line {
         display: none;
+    }
+}
+/* Figma-inspired editorial skin from docs/DESIGN-figma.md */
+:root,
+html:not(.dark),
+html.dark {
+    --c-bg: #ffffff;
+    --c-bg-2: #f7f7f5;
+    --c-surface: #ffffff;
+    --c-surface-md: #f7f7f5;
+    --c-surface-hi: #ffffff;
+    --c-violet: #000000;
+    --c-violet-hi: #000000;
+    --c-cyan: #000000;
+    --c-cyan-lo: rgba(0, 0, 0, 0.08);
+    --g-accent: #000000;
+    --g-card: #ffffff;
+    --g-mesh: none;
+    --b-subtle: 1px solid #e6e6e6;
+    --b-accent: 1px solid #000000;
+    --b-glow: 1px solid #000000;
+    --sh-card: none;
+    --sh-hover: none;
+    --sh-glow: none;
+    --f-display: Inter, figmaSans, 'Figma Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
+    --f-body: Inter, figmaSans, 'Figma Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
+    --f-mono: 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+    --sp-xs: 8px;
+    --sp-sm: 12px;
+    --sp-md: 16px;
+    --sp-lg: 24px;
+    --sp-xl: 32px;
+    --sp-2xl: 48px;
+    --r-sm: 6px;
+    --r-md: 8px;
+    --r-lg: 24px;
+    --r-xl: 32px;
+}
+
+html,
+body,
+html.dark body,
+html:not(.dark) body {
+    background: #ffffff !important;
+    color: #000000;
+    font-family: var(--f-body);
+    font-size: 18px;
+    font-weight: 320;
+    line-height: 1.45;
+    letter-spacing: -0.26px;
+    font-feature-settings: 'kern';
+}
+
+body::before,
+body::after,
+.ds-cursor-glow,
+.ds-glow-border::before,
+.glass-card::before,
+.glass-card--accent::after,
+.ds-btn::before,
+.ds-scroll-progress {
+    display: none !important;
+}
+
+.ds-h1,
+.ds-h2,
+.ds-h3,
+.ds-h4,
+.ds-section-header h2,
+.project-card-v2 .pc-title,
+.ds-exp-title,
+.ds-skill-group-title {
+    font-family: var(--f-display);
+    color: #000000 !important;
+    font-feature-settings: 'kern';
+}
+
+.ds-h1 {
+    font-size: clamp(3rem, 8vw, 5.375rem);
+    font-weight: 340;
+    line-height: 1;
+    letter-spacing: -1.72px;
+}
+
+.ds-h2 {
+    font-size: clamp(2.75rem, 6vw, 4rem);
+    font-weight: 340;
+    line-height: 1.1;
+    letter-spacing: -0.96px;
+}
+
+.ds-h3,
+.ds-exp-title {
+    font-size: 26px;
+    font-weight: 540;
+    line-height: 1.35;
+    letter-spacing: -0.26px;
+}
+
+.project-card-v2 .pc-title,
+.ds-skill-level-group h4 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: 0;
+}
+
+.ds-h4,
+.ds-skill-group-title,
+.project-card-v2 .pc-category,
+.ds-eyebrow,
+.ds-caption,
+.project-card-v2 .pc-badge {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.ds-eyebrow {
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: 0.54px;
+    color: #000000 !important;
+}
+
+.ds-eyebrow::before {
+    display: none;
+}
+
+.ds-text-gradient,
+#hero-name,
+.project-card-v2 .pc-category,
+.ds-skill-group-title,
+.ds-exp-company,
+.ds-exp-meta i,
+.ds-contact-item__icon,
+.skill-level,
+.ds-skill-badge i,
+.ds-skill-badge svg {
+    background: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: #000000 !important;
+}
+
+.ds-body-lg,
+.ds-body,
+.project-card-v2 .pc-desc,
+.project-card-v2 .pc-meta-list,
+.ds-exp-list,
+.ds-exp-meta,
+.ds-section-header p,
+#portfolio-desc,
+#hero-intro,
+html:not(.dark) #hero-intro,
+html:not(.dark) .ds-section-header p {
+    color: #000000 !important;
+    font-family: var(--f-body);
+    font-size: 18px;
+    font-weight: 320;
+    line-height: 1.45;
+    letter-spacing: -0.26px;
+}
+
+#hero-intro,
+.ds-body-lg {
+    font-size: 20px !important;
+    font-weight: 330 !important;
+    line-height: 1.4 !important;
+    letter-spacing: -0.14px !important;
+}
+
+.ds-nav {
+    height: 56px;
+    padding: 0 !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #e6e6e6 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.ds-nav .ds-container {
+    min-height: 56px;
+}
+
+.ds-nav .ds-container > a:first-child {
+    background: none !important;
+    -webkit-text-fill-color: #000000 !important;
+    color: #000000 !important;
+    font-family: var(--f-display) !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.26px !important;
+}
+
+.ds-nav__link {
+    color: #000000 !important;
+    font-family: var(--f-body);
+    font-size: 16px;
+    font-weight: 330;
+    letter-spacing: -0.14px;
+    padding: 16px 12px;
+    border-radius: 9999px;
+}
+
+.ds-nav__link:hover,
+.ds-nav__link.active {
+    color: #000000 !important;
+    background: #f7f7f5 !important;
+}
+
+#mobile-menu {
+    background: #ffffff !important;
+    border-top: 1px solid #e6e6e6 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+#mobile-menu .ds-nav__link {
+    color: #000000 !important;
+}
+
+.ds-section,
+section.ds-section,
+section:first-of-type {
+    padding: 96px 0 !important;
+    background: #ffffff !important;
+    color: #000000;
+}
+
+.ds-container {
+    max-width: 1280px;
+    padding-left: clamp(24px, 4vw, 48px);
+    padding-right: clamp(24px, 4vw, 48px);
+}
+
+.ds-section-header {
+    max-width: 920px;
+    margin-bottom: 48px;
+}
+
+.ds-section-header--center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section:first-of-type {
+    min-height: calc(100vh - 56px) !important;
+    align-items: center;
+}
+
+section:first-of-type .ds-container {
+    max-width: 1280px;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr) !important;
+    gap: 48px !important;
+}
+
+section:first-of-type .ds-eyebrow {
+    color: #000000 !important;
+}
+
+section:first-of-type .ds-stat__number,
+section:first-of-type .ds-stat__label {
+    color: #000000;
+}
+
+section:first-of-type .hidden.md\:flex {
+    display: flex !important;
+}
+
+section:first-of-type .ds-glow-border {
+    border-radius: 32px !important;
+    padding: 0 !important;
+}
+
+section:first-of-type .ds-glow-border img {
+    border-radius: 24px !important;
+    border: 1px solid #e6e6e6 !important;
+    background: #f7f7f5 !important;
+}
+
+#services > .ds-container,
+#skills-tools > .ds-container,
+#experience > .ds-container,
+#certifications > .ds-container,
+#contact > .ds-container {
+    border-radius: 24px;
+    padding: 48px;
+}
+
+#services > .ds-container,
+#contact > .ds-container {
+    background: #dceeb1;
+}
+
+#skills-tools > .ds-container {
+    background: #f4ecd6;
+}
+
+#experience > .ds-container {
+    background: #1f1d3d;
+    color: #ffffff;
+}
+
+#certifications > .ds-container {
+    background: #c5b0f4;
+}
+
+#portfolio > .ds-container {
+    background: #ffffff;
+}
+
+#experience .ds-h2,
+#experience .ds-h3,
+#experience .ds-h4,
+#experience .ds-exp-title,
+#experience .ds-eyebrow,
+#experience .ds-section-header p,
+#experience .ds-body,
+#experience .ds-exp-list,
+#experience .ds-exp-meta,
+#experience .ds-exp-company,
+#experience .ds-exp-meta i,
+#experience .skill-level {
+    color: #ffffff !important;
+}
+
+.glass-card,
+.project-card-v2,
+.ds-exp-panel,
+.ds-contact-item,
+.ds-skill-level-group,
+.ds-skill-badge,
+.cert-card,
+.contact-card,
+.card {
+    background: #ffffff !important;
+    border: 1px solid #e6e6e6 !important;
+    border-radius: 24px !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    color: #000000 !important;
+    transform: none !important;
+}
+
+.glass-card:hover,
+.project-card-v2:hover,
+.ds-contact-item:hover,
+.card:hover,
+.project-card:hover,
+.skill-card:hover,
+.cert-card:hover,
+.contact-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: #000000 !important;
+}
+
+#experience .glass-card,
+#experience .ds-exp-panel {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+    color: #ffffff !important;
+}
+
+.ds-btn {
+    min-height: 44px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-family: var(--f-body);
+    font-size: 20px;
+    font-weight: 480;
+    line-height: 1.4;
+    letter-spacing: -0.1px;
+    box-shadow: none !important;
+}
+
+.ds-btn:hover {
+    transform: none;
+}
+
+.ds-btn:active,
+.ds-filter-btn:active,
+.ds-tab:active {
+    transform: scale(0.96) !important;
+}
+
+.ds-btn--primary,
+.ds-filter-btn.active,
+.ds-back-to-top {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #000000 !important;
+}
+
+.ds-btn--ghost,
+.ds-filter-btn,
+.project-card-v2 .pc-action-btn--muted {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+}
+
+.ds-btn--icon {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    padding: 0;
+    justify-content: center;
+    background: #f7f7f5 !important;
+    border: 0 !important;
+    color: #000000 !important;
+}
+
+.ds-nav .ds-btn--icon {
+    background: #f7f7f5 !important;
+    color: #000000 !important;
+}
+
+.ds-filter-bar {
+    margin-bottom: 32px;
+    gap: 12px;
+}
+
+.ds-filter-btn {
+    min-height: 44px;
+    padding: 8px 18px 10px;
+    border-radius: 50px;
+    font-family: var(--f-body);
+    font-size: 20px;
+    font-weight: 480;
+    letter-spacing: -0.1px;
+    text-transform: none;
+}
+
+.project-card-v2 .pc-image-wrap {
+    aspect-ratio: 4 / 3;
+    background: #f7f7f5 !important;
+    border-radius: 8px;
+    margin: 16px 16px 0;
+}
+
+.project-card-v2 .pc-image-wrap img {
+    filter: none !important;
+    object-fit: cover;
+    box-shadow: none !important;
+}
+
+.project-card-v2 .pc-image-wrap::after {
+    display: none;
+}
+
+.project-card-v2:hover .pc-image-wrap img,
+.project-card:hover .project-image {
+    transform: none !important;
+    filter: none !important;
+}
+
+.project-card-v2 .pc-badge,
+.project-card-v2 .pc-tag,
+.ds-exp-tags span,
+.ds-skill-badge {
+    background: #f7f7f5 !important;
+    border: 1px solid #e6e6e6 !important;
+    border-radius: 8px !important;
+    color: #000000 !important;
+    font-family: var(--f-body);
+    font-size: 16px;
+    font-weight: 330;
+    line-height: 1.45;
+    letter-spacing: -0.14px;
+    text-transform: none;
+}
+
+.project-card-v2 .pc-badge {
+    border-radius: 50px !important;
+    background: #ffffff !important;
+}
+
+.project-card-v2 .pc-body {
+    padding: 24px;
+    gap: 12px;
+}
+
+.project-card-v2 .pc-actions {
+    padding: 0 24px 24px;
+}
+
+.ds-timeline-line {
+    background: rgba(255, 255, 255, 0.32) !important;
+}
+
+.ds-tab {
+    border: 1px solid transparent;
+    border-radius: 50px;
+    padding: 12px 16px;
+    color: #ffffff;
+}
+
+.ds-tab.active {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+.ds-tab-dot,
+.ds-tab.active .ds-tab-dot {
+    background: currentColor !important;
+    border-color: currentColor !important;
+    box-shadow: none !important;
+}
+
+.ds-tab-date {
+    color: inherit !important;
+}
+
+.ds-exp-tags span {
+    background: rgba(255, 255, 255, 0.14) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.24) !important;
+}
+
+.ds-skill-level-grid {
+    gap: 24px;
+}
+
+.ds-skill-level-group {
+    padding: 24px;
+}
+
+.ds-skill-level-group h4,
+.ds-skill-level-group--expert h4,
+.ds-skill-level-group--advanced h4,
+.ds-skill-level-group--familiar h4 {
+    color: #000000 !important;
+}
+
+input,
+textarea,
+select,
+#contact input,
+#contact textarea {
+    min-height: 48px;
+    border-radius: 8px !important;
+    border: 1px solid #e6e6e6 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: var(--f-body) !important;
+    font-size: 18px !important;
+    font-weight: 320 !important;
+    box-shadow: none !important;
+}
+
+footer {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 64px 0 !important;
+    border-top: 1px solid #f1f1f1 !important;
+}
+
+footer .ds-btn--icon {
+    background: #f7f7f5 !important;
+    color: #000000 !important;
+}
+
+.page-loader,
+.ds-loader {
+    background: #ffffff !important;
+}
+
+.loader-logo,
+.ds-loader__text,
+.loader-text {
+    background: none !important;
+    -webkit-text-fill-color: #000000 !important;
+    color: #000000 !important;
+    font-family: var(--f-display) !important;
+    letter-spacing: -0.96px !important;
+    text-transform: none !important;
+}
+
+.loader-spinner,
+.ds-loader__ring {
+    border-color: #e6e6e6 !important;
+    border-top-color: #000000 !important;
+    border-right-color: #000000 !important;
+}
+
+[style*="linear-gradient(135deg,rgba(124,58,237"],
+[style*="linear-gradient(135deg, rgba(124, 58, 237"],
+[style*="radial-gradient"] {
+    background: #f7f7f5 !important;
+}
+
+#services [style*="linear-gradient(135deg,rgba(124,58,237"],
+#contact [style*="linear-gradient(135deg,rgba(124,58,237"] {
+    background: #ffffff !important;
+}
+
+:focus-visible {
+    outline: 2px solid #000000 !important;
+    outline-offset: 3px;
+}
+
+@media (max-width: 960px) {
+    section:first-of-type .ds-container {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+        justify-items: center;
+    }
+
+    section:first-of-type .hidden.md\:flex {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .ds-section,
+    section.ds-section,
+    section:first-of-type {
+        padding: 64px 0 !important;
+    }
+
+    #services > .ds-container,
+    #skills-tools > .ds-container,
+    #experience > .ds-container,
+    #certifications > .ds-container,
+    #contact > .ds-container {
+        border-radius: 0;
+        padding: 48px 24px;
+        margin-left: -24px;
+        margin-right: -24px;
+    }
+
+    .ds-h1 {
+        font-size: clamp(3rem, 14vw, 4rem);
+    }
+
+    .ds-h2 {
+        font-size: clamp(2.5rem, 12vw, 3.5rem);
+    }
+
+    .ds-btn,
+    .ds-filter-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .ds-btn--icon,
+    .ds-nav .ds-btn--icon {
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+    }
+
+    .ds-nav__link {
+        padding: 12px 0;
+    }
+}
+/* Figma skin responsive fixes */
+html body,
+html.dark body,
+html:not(.dark) body {
+    color: #000000 !important;
+}
+
+#experience,
+#experience > .ds-container {
+    color: #ffffff !important;
+}
+
+#contact-send-btn {
+    width: 100% !important;
+    min-width: 0;
+    white-space: normal;
+}
+
+@media (max-width: 768px) {
+    .ds-btn:not(.ds-btn--icon),
+    .ds-filter-btn {
+        width: 100%;
+        min-width: 0;
+        white-space: normal;
+    }
+
+    .ds-btn--icon,
+    .ds-nav .ds-btn--icon {
+        width: 44px !important;
+        min-width: 44px !important;
+        flex: 0 0 44px;
+    }
+}
+/* Contact layout fixes for Figma color block */
+#contact .ds-container > .ds-reveal {
+    width: 100%;
+}
+
+#contact-form {
+    width: 100% !important;
+    min-width: 0;
+}
+
+@media (max-width: 768px) {
+    #contact .ds-container > .ds-reveal {
+        grid-template-columns: 1fr !important;
+        max-width: none !important;
+    }
+}
+/* UI/UX audit fixes */
+.ds-nav-desktop {
+    display: flex;
+}
+
+.ds-nav-mobile {
+    display: none;
+}
+
+.ds-nav .ds-container > a:first-child {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.form-label {
+    display: block;
+    color: #000000;
+    font-family: var(--f-body);
+    font-size: 16px;
+    font-weight: 480;
+    line-height: 1.4;
+    letter-spacing: -0.1px;
+    margin-bottom: -6px;
+}
+
+.hero-feature-tile {
+    min-height: 360px;
+    width: min(420px, 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 32px;
+    background: #f4ecd6;
+    border-radius: 32px;
+    border: 1px solid #e6e6e6;
+}
+
+.hero-feature-tile__note {
+    padding: 18px 22px;
+    border-radius: 8px;
+    color: #000000;
+    font-family: var(--f-display);
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 540;
+    line-height: 1.1;
+    letter-spacing: -0.26px;
+    transform: rotate(-2deg);
+}
+
+.hero-feature-tile__note--lime { background: #dceeb1; }
+.hero-feature-tile__note--lilac { background: #c5b0f4; transform: rotate(1.5deg); }
+.hero-feature-tile__note--coral { background: #f3c9b6; transform: rotate(-1deg); }
+
+.hero-feature-tile__caption {
+    margin-top: 8px;
+    color: #000000;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+#services [style*="rgba(255,255,255"],
+#skills-tools [style*="rgba(255,255,255"],
+#certifications [style*="rgba(255,255,255"],
+#portfolio [style*="rgba(255,255,255"] {
+    color: #000000 !important;
+}
+
+#contact [style*="rgba(255,255,255"] {
+    color: #000000 !important;
+}
+
+@media (max-width: 960px) {
+    .ds-nav-desktop {
+        display: none !important;
+    }
+
+    .ds-nav-mobile {
+        display: block !important;
+    }
+
+    #mobile-menu.ds-nav-mobile.hidden {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-feature-tile {
+        display: none;
+    }
+}
+/* Contrast cleanup after audit */
+.ds-stat__number,
+.ds-stat__label {
+    background: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: #000000 !important;
+}
+
+.project-card-v2 .pc-meta-list strong {
+    color: #000000 !important;
+}
+
+#experience .glass-card,
+#experience .ds-exp-panel {
+    background: #2f2d57 !important;
+}
+
+#experience .ds-exp-tags span {
+    background: #3a3766 !important;
+}
+
+/* Figma motion polish */
+@keyframes figmaRise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes figmaPop {
+    from { opacity: 0; transform: translateY(18px) scale(0.96) rotate(-1deg); }
+    to { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+}
+
+@keyframes figmaNoteIn {
+    from { opacity: 0; transform: translateY(16px) rotate(0deg); }
+    to { opacity: 1; }
+}
+
+@keyframes figmaLoaderPulse {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.hero-fade-up,
+.hero-fade-up-delay,
+.typing-text {
+    opacity: 0;
+    animation: figmaRise 0.62s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.hero-fade-up-delay { animation-delay: 0.14s; }
+.typing-text { animation-delay: 0.08s; }
+
+.hero-feature-tile {
+    opacity: 0;
+    transform-origin: center;
+    animation: figmaPop 0.72s cubic-bezier(.2,.8,.2,1) 0.18s forwards;
+}
+
+.hero-feature-tile__note {
+    opacity: 0;
+    animation: figmaNoteIn 0.5s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.hero-feature-tile__note--lime { animation-delay: 0.34s; }
+.hero-feature-tile__note--lilac { animation-delay: 0.44s; }
+.hero-feature-tile__note--coral { animation-delay: 0.54s; }
+
+.ds-reveal {
+    transition-duration: 0.62s !important;
+    transition-timing-function: cubic-bezier(.2,.8,.2,1) !important;
+    transition-delay: var(--reveal-delay, 0ms) !important;
+}
+
+.ds-stagger-1 { --reveal-delay: 80ms; }
+.ds-stagger-2 { --reveal-delay: 150ms; }
+.ds-stagger-3 { --reveal-delay: 220ms; }
+
+#services > .ds-container,
+#skills-tools > .ds-container,
+#experience > .ds-container,
+#certifications > .ds-container,
+#contact > .ds-container {
+    transition: transform 0.62s cubic-bezier(.2,.8,.2,1), border-color 0.35s ease;
+}
+
+.project-card-v2,
+.ds-skill-badge,
+.ds-contact-item,
+.cert-card,
+.glass-card {
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+}
+
+.project-card-v2:hover,
+.project-card-v2.is-hovered {
+    transform: translateY(-4px) !important;
+    border-color: #000000 !important;
+    box-shadow: 8px 8px 0 #000000 !important;
+}
+
+.project-card-v2 .pc-image-wrap img {
+    transition: transform 0.45s cubic-bezier(.2,.8,.2,1), filter 0.3s ease !important;
+}
+
+.project-card-v2:hover .pc-image-wrap img,
+.project-card-v2.is-hovered .pc-image-wrap img {
+    transform: scale(1.025) !important;
+    filter: none !important;
+}
+
+.ds-skill-badge:hover {
+    transform: translateY(-2px) !important;
+    border-color: #000000 !important;
+    box-shadow: 4px 4px 0 #000000 !important;
+}
+
+.ds-skill-badge:hover i,
+.ds-skill-badge:hover svg {
+    transform: scale(1.08) rotate(2deg) !important;
+}
+
+.ds-tab {
+    transition: transform 0.18s ease, background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+
+.ds-tab:hover { transform: translateX(3px); }
+.ds-tab.active { transform: translateX(6px); }
+
+.ds-exp-panel.is-entering {
+    animation: figmaRise 0.28s cubic-bezier(.2,.8,.2,1) both;
+}
+
+#mobile-menu {
+    transform-origin: top center;
+    opacity: 0;
+    transform: translateY(-8px) scaleY(0.98);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+#mobile-menu.is-open {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+}
+
+#mobile-menu .ds-nav__link {
+    transition: transform 0.18s ease, color 0.18s ease;
+}
+
+#mobile-menu .ds-nav__link:hover { transform: translateX(4px); }
+
+.ds-back-to-top {
+    transform: translateY(14px) scale(0.94);
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease !important;
+}
+
+.ds-back-to-top.show { transform: translateY(0) scale(1); }
+.ds-back-to-top:hover { transform: translateY(-3px) scale(1.03) !important; }
+
+.loader-logo { animation: figmaLoaderPulse 1.1s ease-in-out infinite; }
+.page-loader.fade-out { transform: translateY(-8px); }
+
+#contact-form input,
+#contact-form textarea {
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.06) !important;
+}
+
+#contact-send-btn {
+    transition: transform 0.18s ease, opacity 0.18s ease, background-color 0.18s ease;
+}
+
+#contact-send-btn:disabled { cursor: wait; transform: translateY(1px); }
+
+.ds-toast { animation: figmaRise 0.22s cubic-bezier(.2,.8,.2,1) both; }
+.ds-toast.is-hiding {
+    opacity: 0 !important;
+    transform: translateY(8px) !important;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+footer .ds-btn,
+footer a,
+.ds-social-link {
+    transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+footer .ds-btn:hover,
+footer a:hover,
+.ds-social-link:hover {
+    transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    .hero-fade-up,
+    .hero-fade-up-delay,
+    .typing-text,
+    .hero-feature-tile,
+    .hero-feature-tile__note {
+        opacity: 1 !important;
+        transform: none !important;
     }
 }

@@ -42,51 +42,26 @@
       <!-- CTA + socials -->
       <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;" class="hero-fade-up-delay">
         <a href="#contact" class="ds-btn ds-btn--primary">
-          <i class="fas fa-paper-plane"></i> Get in touch
+          <i class="fas fa-paper-plane" aria-hidden="true"></i> Get in touch
         </a>
-        <a href="#portfolio" class="ds-btn ds-btn--ghost">View work <i class="fas fa-arrow-right"
+        <a href="#portfolio" class="ds-btn ds-btn--ghost">View work <i class="fas fa-arrow-right" aria-hidden="true"
             style="font-size:.75rem;"></i></a>
       </div>
 
       <div style="display:flex;gap:1rem;margin-top:1.5rem;" class="hero-fade-up-delay">
-        <a href="#" class="ds-btn ds-btn--icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
         <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
-          aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
         <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
-          aria-label="GitHub"><i class="fab fa-github"></i></a>
+          aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
       </div>
     </div>
 
-    <!-- Right: avatar -->
-    <div style="display:flex;justify-content:center;align-items:center;position:relative;" class="hidden md:flex">
-      <!-- Glow rings -->
-      <div
-        style="position:absolute;width:320px;height:320px;border-radius:50%;border:1px solid rgba(124,58,237,.2);animation:_orbit2 8s linear infinite;">
-      </div>
-      <div
-        style="position:absolute;width:260px;height:260px;border-radius:50%;border:1px solid rgba(34,211,238,.15);animation:_orbit2 6s linear infinite reverse;">
-      </div>
-
-      <div class="ds-glow-border" style="padding:4px;border-radius:50%;">
-        <img src="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=7c3aed&color=fff&size=256"
-          alt="Thang Hoang Duc avatar"
-          style="width:200px;height:200px;border-radius:50%;border:4px solid var(--c-bg);display:block;object-fit:cover;"
-          loading="lazy">
-      </div>
-
-      <!-- Floating chips around avatar -->
-      <div class="glass-card"
-        style="position:absolute;top:10%;left:0;padding:.6rem 1rem;font-family:var(--f-display);font-size:.7rem;font-weight:700;color:var(--c-cyan);white-space:nowrap;animation:_fc 4s ease-in-out infinite;">
-        <i class="fas fa-code" style="margin-right:.4rem;"></i>IBM BPM Dev
-      </div>
-      <div class="glass-card"
-        style="position:absolute;bottom:15%;right:-1rem;padding:.6rem 1rem;font-family:var(--f-display);font-size:.7rem;font-weight:700;color:var(--c-violet-hi);white-space:nowrap;animation:_fc 4s ease-in-out 1s infinite;">
-        <i class="fas fa-mobile-alt" style="margin-right:.4rem;"></i>Mobile Dev
-      </div>
-      <div class="glass-card"
-        style="position:absolute;top:55%;left:-2rem;padding:.6rem 1rem;font-family:var(--f-display);font-size:.7rem;font-weight:700;color:rgba(255,255,255,.7);white-space:nowrap;animation:_fc 4s ease-in-out 2s infinite;">
-        <i class="fas fa-microchip" style="margin-right:.4rem;"></i>IoT Dev
-      </div>
+    <!-- Right: feature tile -->
+    <div class="hero-feature-tile" aria-label="Portfolio capability summary">
+      <div class="hero-feature-tile__note hero-feature-tile__note--lime">IBM BPM</div>
+      <div class="hero-feature-tile__note hero-feature-tile__note--lilac">Mobile apps</div>
+      <div class="hero-feature-tile__note hero-feature-tile__note--coral">IoT systems</div>
+      <div class="hero-feature-tile__caption">Designing practical interfaces for workflow-heavy products.</div>
     </div>
   </div>
 

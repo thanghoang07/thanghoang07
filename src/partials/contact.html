@@ -12,25 +12,25 @@
 
       <!-- Form -->
       <form id="contact-form" class="glass-card" style="padding:2rem;display:flex;flex-direction:column;gap:1rem;">
+        <label for="contact-name-input" class="form-label">Your Name</label>
         <input type="text" id="contact-name-input" name="name" placeholder="Your Name"
-          style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;"
-          onfocus="this.style.borderColor='rgba(124,58,237,.5)'" onblur="this.style.borderColor=''" required>
+          style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;" required>
+        <label for="contact-email-input" class="form-label">Your Email</label>
         <input type="email" id="contact-email-input" name="email" placeholder="Your Email"
-          style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;"
-          onfocus="this.style.borderColor='rgba(124,58,237,.5)'" onblur="this.style.borderColor=''" required>
+          style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;" required>
+        <label for="contact-message-input" class="form-label">Your Message</label>
         <textarea id="contact-message-input" name="message" placeholder="Your Message" rows="5" maxlength="1000"
-          style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;resize:vertical;"
-          onfocus="this.style.borderColor='rgba(124,58,237,.5)'" onblur="this.style.borderColor=''" required></textarea>
+          style="width:100%;padding:.85rem 1rem;border-radius:var(--r-sm);border:var(--b-subtle);background:rgba(255,255,255,.04);color:rgba(255,255,255,.85);font-family:var(--f-body);font-size:.9rem;outline:none;transition:border-color .2s ease;resize:vertical;" required></textarea>
         <button type="submit" id="contact-send-btn" class="ds-btn ds-btn--primary"
           style="width:100%;justify-content:center;padding:.9rem;font-size:.9rem;" data-ripple>
-          <i class="fas fa-paper-plane"></i> Send Message
+          <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
         </button>
       </form>
 
       <!-- Info -->
       <div style="display:flex;flex-direction:column;gap:1rem;justify-content:center;">
         <a href="https://maps.google.com" target="_blank" class="ds-contact-item" style="text-decoration:none;">
-          <div class="ds-contact-item__icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="ds-contact-item__icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div>
           <div>
             <div
               style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"
@@ -40,7 +40,7 @@
           </div>
         </a>
         <a href="mailto:thanghoang07@gmail.com" class="ds-contact-item" style="text-decoration:none;">
-          <div class="ds-contact-item__icon"><i class="fas fa-envelope"></i></div>
+          <div class="ds-contact-item__icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
           <div>
             <div
               style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"
@@ -50,7 +50,7 @@
           </div>
         </a>
         <a href="tel:+84932431562" class="ds-contact-item" style="text-decoration:none;">
-          <div class="ds-contact-item__icon"><i class="fas fa-phone"></i></div>
+          <div class="ds-contact-item__icon"><i class="fas fa-phone" aria-hidden="true"></i></div>
           <div>
             <div
               style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"
@@ -61,7 +61,7 @@
         </a>
         <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="ds-contact-item"
           style="text-decoration:none;">
-          <div class="ds-contact-item__icon"><i class="fab fa-linkedin"></i></div>
+          <div class="ds-contact-item__icon"><i class="fab fa-linkedin" aria-hidden="true"></i></div>
           <div>
             <div
               style="font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.2rem;"

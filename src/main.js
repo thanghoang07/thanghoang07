@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 🚀 Unified Main Entry Point
  * ✅ FIX: Removed all console.log/warn — production-clean
  */
@@ -25,6 +25,7 @@ class UnifiedApplication {
       initDesignSystemEnhancements();
       this._applyThemeEarly();
       await this._loadModules();
+      initDesignSystemEnhancements();
       this._initTheme();
       this._initLanguage();
       this._initNavbar();

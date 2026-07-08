@@ -1,5 +1,5 @@
 /**
- * 🎨 Design System Enhancements
+ * ðŸŽ¨ Design System Enhancements
  * - Cursor glow effect (desktop)
  * - Project card hover (image zoom)
  * - ds-reveal scroll observer
@@ -11,9 +11,7 @@
  *   import './design-system-enhancements.js'
  */
 
-/* ─────────────────────────────────────────────
-   1. Cursor glow (desktop / fine pointer only)
-   ─────────────────────────────────────────────  */
+
 function initCursorGlow() {
     if (!window.matchMedia('(pointer: fine)').matches) return;
 
@@ -49,34 +47,15 @@ function initCursorGlow() {
     }, { passive: true });
 }
 
-/* ─────────────────────────────────────────────
-   2. Project card image hover zoom
-   ─────────────────────────────────────────────  */
+
 function initProjectCardHover() {
-    document.querySelectorAll('.glass-card, article.glass-card').forEach((card) => {
-        const img = card.querySelector('.project-image, img');
-        if (!img) return;
-
-        card.addEventListener('mouseenter', () => {
-            img.style.transform = 'scale(1.06)';
-            img.style.filter = 'brightness(0.95) saturate(1.3)';
-            const title = card.querySelector('.project-title, h3');
-            if (title) title.style.color = 'var(--c-violet-hi, #a78bfa)';
-        }, { passive: true });
-
-        card.addEventListener('mouseleave', () => {
-            img.style.transform = 'scale(1)';
-            img.style.filter = 'brightness(0.85) saturate(1.1)';
-            const title = card.querySelector('.project-title, h3');
-            if (title) title.style.color = '';
-        }, { passive: true });
+    document.querySelectorAll('.project-card-v2, article.glass-card').forEach((card) => {
+        card.addEventListener('mouseenter', () => card.classList.add('is-hovered'), { passive: true });
+        card.addEventListener('mouseleave', () => card.classList.remove('is-hovered'), { passive: true });
     });
 }
 
-/* ─────────────────────────────────────────────
-   3. ds-reveal scroll observer
-   Works in parallel with existing scroll-reveal — uses different class names.
-   ─────────────────────────────────────────────  */
+
 function initDsReveal() {
     const targets = document.querySelectorAll('.ds-reveal:not([data-ds-observed])');
     if (!targets.length) return;
@@ -99,9 +78,7 @@ function initDsReveal() {
     });
 }
 
-/* ─────────────────────────────────────────────
-   4. Nav scroll class
-   ─────────────────────────────────────────────  */
+
 function initNavScroll() {
     const nav = document.querySelector('header, .ds-nav, nav');
     if (!nav) return;
@@ -117,9 +94,7 @@ function initNavScroll() {
     update();
 }
 
-/* ─────────────────────────────────────────────
-   5. Scroll progress bar
-   ─────────────────────────────────────────────  */
+
 function initScrollProgress() {
     // Prefer the new design-system class
     let bar = document.querySelector('.ds-scroll-progress');
@@ -141,9 +116,7 @@ function initScrollProgress() {
     }, { passive: true });
 }
 
-/* ─────────────────────────────────────────────
-   6. Typed number counter for stats
-   ─────────────────────────────────────────────  */
+
 function initStatCounters() {
     const stats = document.querySelectorAll('[data-count]');
     if (!stats.length) return;
@@ -178,9 +151,7 @@ function initStatCounters() {
     stats.forEach((el) => observer.observe(el));
 }
 
-/* ─────────────────────────────────────────────
-   7. Lazy image loader for new cards (data-src)
-   ─────────────────────────────────────────────  */
+
 function initLazyImages() {
     const images = document.querySelectorAll('img[data-src]:not([data-lazy-done])');
     if (!images.length) return;
@@ -213,9 +184,7 @@ function initLazyImages() {
     images.forEach((img) => observer.observe(img));
 }
 
-/* ─────────────────────────────────────────────
-   INIT — call once after DOM ready
-   ─────────────────────────────────────────────  */
+
 export function initDesignSystemEnhancements() {
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', _run, { once: true });
@@ -225,7 +194,7 @@ export function initDesignSystemEnhancements() {
 }
 
 function _run() {
-    console.log('🎨 Design system enhancements init…');
+    console.log('Design system enhancements init');
     initCursorGlow();
     initProjectCardHover();
     initDsReveal();
@@ -233,7 +202,7 @@ function _run() {
     initScrollProgress();
     initStatCounters();
     initLazyImages();
-    console.log('✅ Design system enhancements ready');
+    console.log('Design system enhancements ready');
 }
 
 export default initDesignSystemEnhancements;

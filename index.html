@@ -9,7 +9,7 @@
   <title>Thang Hoang Duc - Frontend Developer Portfolio</title>
   <meta name="title" content="Thang Hoang Duc - Frontend Developer Portfolio">
   <meta name="description"
-    content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng, đam mê tạo ra sản phẩm web hiện đại, tối ưu trải nghiệm người dùng.">
+    content="Frontend developer with 5+ years of experience building modern, accessible, user-focused web interfaces.">
   <meta name="keywords"
     content="frontend developer, portfolio, javascript, IBM BPM, xamarin, web development, UI/UX, vietnam">
   <meta name="author" content="Thang Hoang Duc">
@@ -20,30 +20,23 @@
   <meta property="og:url" content="https://thanghoang07.github.io/">
   <meta property="og:title" content="Thang Hoang Duc - Frontend Developer Portfolio">
   <meta property="og:description"
-    content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng.">
+    content="Frontend developer with 5+ years of experience building user-focused interfaces.">
   <meta property="og:image"
-    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=7c3aed&color=fff&size=1200">
+    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=ffffff&color=000000&size=1200">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://thanghoang07.github.io/">
   <meta property="twitter:title" content="Thang Hoang Duc - Frontend Developer Portfolio">
   <meta property="twitter:image"
-    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=7c3aed&color=fff&size=1200">
+    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=ffffff&color=000000&size=1200">
 
-  <meta name="theme-color" content="#7c3aed">
+  <meta name="theme-color" content="#ffffff">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Thang Portfolio">
   <link rel="canonical" href="https://thanghoang07.github.io/">
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <link rel="manifest" href="/manifest.json" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
-    rel="stylesheet">
 
   <!-- Icons -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -70,11 +63,11 @@
 
   <!-- Critical inline styles: loader + base body override -->
   <style>
-    /* ── Loader ── */
+    /* â”€â”€ Loader â”€â”€ */
     .page-loader {
       position: fixed;
       inset: 0;
-      background: var(--c-bg, #080b14);
+      background: var(--c-bg, #ffffff);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -91,10 +84,10 @@
     }
 
     .loader-logo {
-      font-family: 'Oxanium', monospace;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
       font-size: 2.5rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #7c3aed, #22d3ee);
+      background: none;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -117,9 +110,9 @@
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      border: 3px solid rgba(124, 58, 237, .15);
-      border-top-color: #7c3aed;
-      border-right-color: #22d3ee;
+      border: 3px solid #e0e0e0;
+      border-top-color: #000000;
+      border-right-color: #000000;
       animation: _lspin .9s linear infinite
     }
 
@@ -130,11 +123,11 @@
     }
 
     .loader-text {
-      font-family: 'Oxanium', monospace;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
       font-size: .7rem;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, .35);
+      color: #000000;
       animation: _lpulse 1.5s ease-in-out infinite
     }
 
@@ -150,7 +143,7 @@
       }
     }
 
-    /* ── Typing cursor ── */
+    /* â”€â”€ Typing cursor â”€â”€ */
     .typing-cursor {
       display: inline-block;
       width: 3px;
@@ -173,7 +166,7 @@
       }
     }
 
-    /* ── Hero entrance ── */
+    /* â”€â”€ Hero entrance â”€â”€ */
     .hero-fade-up {
       opacity: 0;
       transform: translateY(28px);
@@ -193,7 +186,7 @@
       }
     }
 
-    /* ── Main content hidden until loaded ── */
+    /* â”€â”€ Main content hidden until loaded â”€â”€ */
     body:not(.loaded) .main-content {
       opacity: 0
     }
@@ -222,65 +215,61 @@
   </style>
 </head>
 
-<body>
+<body id="top">
   <!-- Scroll progress -->
   <div class="ds-scroll-progress" style="width:0%"></div>
 
   <!-- Cursor glow (desktop) -->
   <div class="ds-cursor-glow"></div>
 
-  <!-- ═══════════════════════════════════════
-       LOADING SCREEN
-       ═══════════════════════════════════════ -->
+  <!-- Loading screen -->
   <div class="page-loader" id="page-loader">
     <div class="loader-logo">Thang.</div>
     <div class="loader-spinner"></div>
-    <div class="loader-text" id="loader-msg">Initialising…</div>
+    <div class="loader-text" id="loader-msg">Initialising...</div>
   </div>
 
-  <!-- ═══════════════════════════════════════
-       MAIN CONTENT
-       ═══════════════════════════════════════ -->
+  <!-- Main content -->
   <div class="main-content" id="main-content">
 
     <!-- Background floating shapes -->
     <div class="fixed inset-0 z-0 pointer-events-none" id="floating-shapes-container"></div>
 
-    <!-- ── HEADER / NAV ── -->
+    <!-- Section -->
     <load-partial src="./src/partials/header.html" />
 
-    <!-- ── HERO ── -->
+    <!-- Section -->
     <load-partial src="./src/partials/hero.html" />
 
-    <!-- ── SERVICES / SPECIALIZED ── -->
+    <!-- Section -->
     <load-partial src="./src/partials/services.html" />
 
-    <!-- ── PORTFOLIO ── -->
+    <!-- Section -->
     <load-partial src="./src/partials/portfolio.html" />
 
-    <!-- ── WORK EXPERIENCE ── -->
+    <!-- Section -->
     <load-partial src="./src/partials/experience.html" />
 
-    <!-- ── SKILLS & TOOLS ── -->
+    <!-- Section -->
     <load-partial src="./src/partials/skills.html" />
 
-    <!-- ── CERTIFICATIONS ── -->
+    <!-- Section -->
     <load-partial src="./src/partials/certifications.html" />
 
-    <!-- ── CONTACT ── -->
+    <!-- Section -->
     <load-partial src="./src/partials/contact.html" />
 
-    <!-- ── FOOTER ── -->
+    <!-- Section -->
     <load-partial src="./src/partials/footer.html" />
 
   </div><!-- /main-content -->
 
   <!-- Back to top -->
   <button id="back-to-top" class="ds-back-to-top" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
   </button>
 
-  <!-- Tab switching script (inline — no dependency) -->
+  <!-- Tab switching script (inline - no dependency) -->
   <script>
     function switchTab(company) {
       ['hpt', 'tk25', 'nbn', 'devup'].forEach(c => {
@@ -299,8 +288,23 @@
       });
     }
     // Mobile menu
+    const mobileMenu = document.getElementById('mobile-menu');
     document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
-      document.getElementById('mobile-menu')?.classList.toggle('hidden');
+      if (!mobileMenu) return;
+      const opening = mobileMenu.classList.contains('hidden');
+      if (opening) {
+        mobileMenu.classList.remove('hidden');
+        requestAnimationFrame(() => mobileMenu.classList.add('is-open'));
+      } else {
+        mobileMenu.classList.remove('is-open');
+        setTimeout(() => mobileMenu.classList.add('hidden'), 180);
+      }
+    });
+    document.querySelectorAll('#mobile-menu .ds-nav__link').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.remove('is-open');
+        setTimeout(() => mobileMenu?.classList.add('hidden'), 180);
+      });
     });
     // Back to top visibility
     window.addEventListener('scroll', () => {
@@ -316,3 +320,4 @@
 </body>
 
 </html>
+

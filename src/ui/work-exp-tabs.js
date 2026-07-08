@@ -11,6 +11,15 @@ export function switchWorkExperienceTab(company, doc = document) {
     tab?.setAttribute('tabindex', isActive ? '0' : '-1');
     panel?.classList.toggle('hidden', !isActive);
     panel?.setAttribute('aria-hidden', String(!isActive));
+
+    if (panel && isActive) {
+      panel.classList.add('is-entering');
+      if (typeof window !== 'undefined') {
+        window.setTimeout(() => panel.classList.remove('is-entering'), 320);
+      }
+    } else {
+      panel?.classList.remove('is-entering');
+    }
   });
 }
 
@@ -20,3 +29,4 @@ export function initWorkExpTabs(doc = document) {
     tab.addEventListener('click', () => switchWorkExperienceTab(tab.id.replace('tab-', ''), doc));
   });
 }
+
