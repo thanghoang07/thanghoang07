@@ -9,6 +9,7 @@ import {
   updateFooterYear,
 } from '../../src/ui/page-interactions.js';
 import { CONTACT_MESSAGES } from '../../src/contact-messages.js';
+import { switchWorkExperienceTab } from '../../src/ui/work-exp-tabs.js';
 
 function classList(initial = []) {
   const values = new Set(initial);
@@ -27,11 +28,15 @@ function classList(initial = []) {
 
 function element({ href, category, classes = [] } = {}) {
   return {
+    attributes: {},
     dataset: category ? { projectCategory: category, filter: category } : {},
     classList: classList(classes),
     getAttribute(name) {
       if (name === 'href') return href;
-      return null;
+      return this.attributes[name] || null;
+    },
+    setAttribute(name, value) {
+      this.attributes[name] = value;
     },
   };
 }
@@ -137,4 +142,22 @@ test('updateFooterYear writes the supplied year when footer exists', () => {
 test('contact messages stay readable and centralized', () => {
   assert.equal(CONTACT_MESSAGES.invalidEmail, 'Email không hợp lệ.');
   assert.equal(CONTACT_MESSAGES.submit, 'Gửi tin nhắn');
+});
+test('switchWorkExperienceTab activates matching tab and panel only', () => {
+  const nodes = {
+    'tab-hpt': element(),
+    'tab-tk25': element(),
+    'content-hpt': element({ classes: ['hidden'] }),
+    'content-tk25': element(),
+  };
+  const doc = { getElementById: (id) => nodes[id] || null };
+
+  switchWorkExperienceTab('hpt', doc);
+
+  assert.equal(nodes['tab-hpt'].classList.contains('active'), true);
+  assert.equal(nodes['tab-tk25'].classList.contains('active'), false);
+  assert.equal(nodes['tab-hpt'].getAttribute('aria-selected'), 'true');
+  assert.equal(nodes['tab-tk25'].getAttribute('aria-selected'), 'false');
+  assert.equal(nodes['content-hpt'].classList.contains('hidden'), false);
+  assert.equal(nodes['content-tk25'].classList.contains('hidden'), true);
 });

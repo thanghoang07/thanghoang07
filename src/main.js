@@ -6,6 +6,7 @@
 import './design-system.css';
 import './style.css';
 import { initDesignSystemEnhancements } from './design-system-enhancements.js';
+import { switchWorkExperienceTab } from './ui/work-exp-tabs.js';
 import { initActiveNav, initCounters, initPortfolioFilter, updateFooterYear } from './ui/page-interactions.js';
 
 class UnifiedApplication {
@@ -323,10 +324,7 @@ setTimeout(() => {
   if (!app.isInitialized) app._finishLoading?.();
 }, 5000);
 
-// ✅ FIX 3: Tab switching global function
+// Global hook for inline tab buttons in the experience partial.
 window.switchTab = (company) => {
-  ['hpt', 'tk25', 'nbn', 'devup'].forEach((c) => {
-    document.getElementById(`tab-${c}`)?.classList.toggle('active', c === company);
-    document.getElementById(`content-${c}`)?.classList.toggle('hidden', c !== company);
-  });
+  switchWorkExperienceTab(company);
 };

@@ -284,10 +284,18 @@
   <script>
     function switchTab(company) {
       ['hpt', 'tk25', 'nbn', 'devup'].forEach(c => {
+        const isActive = c === company;
         const btn = document.getElementById('tab-' + c);
         const panel = document.getElementById('content-' + c);
-        if (btn) btn.classList.toggle('active', c === company);
-        if (panel) panel.classList.toggle('hidden', c !== company);
+        if (btn) {
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-selected', String(isActive));
+          btn.setAttribute('tabindex', isActive ? '0' : '-1');
+        }
+        if (panel) {
+          panel.classList.toggle('hidden', !isActive);
+          panel.setAttribute('aria-hidden', String(!isActive));
+        }
       });
     }
     // Mobile menu

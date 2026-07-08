@@ -1,153 +1,101 @@
-<!-- ─────────────────────────────────────
-         WORK EXPERIENCE
-         ───────────────────────────────────── -->
+<!-- WORK EXPERIENCE -->
 <section id="experience" class="ds-section">
   <div class="ds-container">
     <div class="ds-section-header ds-section-header--center ds-reveal">
       <span class="ds-eyebrow" id="workexp-subtitle" data-i18n="experience-subtitle">Career Path</span>
-      <h2 class="ds-h2" id="workexp-title" data-i18n="experience-title" style="color:rgba(255,255,255,.92);">Work
-        Experience</h2>
+      <h2 class="ds-h2" id="workexp-title" data-i18n="experience-title">Work Experience</h2>
     </div>
 
-    <div style="display:grid;grid-template-columns:220px 1fr;gap:2rem;max-width:900px;margin:0 auto;" class="ds-reveal">
-
-      <!-- Tab buttons -->
-      <div class="ds-timeline-tabs">
+    <div class="ds-exp-layout ds-reveal">
+      <div class="ds-timeline-tabs" role="tablist" aria-label="Work experience timeline">
         <div class="ds-timeline-line" aria-hidden="true"></div>
-        <button id="tab-hpt" class="ds-tab active" onclick="switchTab('hpt')">
+        <button id="tab-hpt" class="ds-tab active" type="button" role="tab" aria-selected="true" aria-controls="content-hpt" onclick="switchTab('hpt')">
           <span class="ds-tab-dot" aria-hidden="true"></span>
           <span class="ds-tab-main"><span class="ds-tab-company">HPT Vietnam</span><span class="ds-tab-date">Oct 2022 - Present</span></span>
         </button>
-        <button id="tab-tk25" class="ds-tab" onclick="switchTab('tk25')">
+        <button id="tab-tk25" class="ds-tab" type="button" role="tab" aria-selected="false" aria-controls="content-tk25" tabindex="-1" onclick="switchTab('tk25')">
           <span class="ds-tab-dot" aria-hidden="true"></span>
           <span class="ds-tab-main"><span class="ds-tab-company">TK25 Tech</span><span class="ds-tab-date">Jul 2019 - Oct 2022</span></span>
         </button>
-        <button id="tab-nbn" class="ds-tab" onclick="switchTab('nbn')">
+        <button id="tab-nbn" class="ds-tab" type="button" role="tab" aria-selected="false" aria-controls="content-nbn" tabindex="-1" onclick="switchTab('nbn')">
           <span class="ds-tab-dot" aria-hidden="true"></span>
           <span class="ds-tab-main"><span class="ds-tab-company">NBN Media</span><span class="ds-tab-date">Feb 2019 - Jul 2019</span></span>
         </button>
-        <button id="tab-devup" class="ds-tab" onclick="switchTab('devup')">
+        <button id="tab-devup" class="ds-tab" type="button" role="tab" aria-selected="false" aria-controls="content-devup" tabindex="-1" onclick="switchTab('devup')">
           <span class="ds-tab-dot" aria-hidden="true"></span>
           <span class="ds-tab-main"><span class="ds-tab-company">DevUp</span><span class="ds-tab-date">Aug 2018 - Jan 2019</span></span>
         </button>
       </div>
 
-      <!-- Content panels -->
-      <div style="position:relative;min-height:280px;">
-
-        <div id="content-hpt" class="glass-card ds-exp-panel" style="padding:2rem;">
-          <h3
-            style="font-family:var(--f-display);font-size:1.2rem;font-weight:700;color:rgba(255,255,255,.92);margin:0 0 .5rem;">
-            IBM BPM Developer</h3>
-          <div style="color:var(--c-violet-hi);font-weight:600;margin-bottom:1rem;font-size:.9rem;"><i
-              class="fas fa-building" style="margin-right:.5rem;"></i>HPT Vietnam Corporation</div>
-          <div
-            style="color:rgba(255,255,255,.4);font-size:.85rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:.25rem;">
-            <span><i class="fas fa-map-marker-alt" style="margin-right:.5rem;width:14px;"></i>Ho Chi Minh City,
-              Vietnam</span>
-            <span><i class="fas fa-calendar-alt" style="margin-right:.5rem;width:14px;"></i>Oct 2022 – Present ·
-              Full-time</span>
+      <div class="ds-exp-panels">
+        <article id="content-hpt" class="glass-card ds-exp-panel" role="tabpanel" aria-labelledby="tab-hpt" aria-hidden="false">
+          <h3 class="ds-exp-title">IBM BPM Developer</h3>
+          <div class="ds-exp-company"><i class="fas fa-building"></i>HPT Vietnam Corporation</div>
+          <div class="ds-exp-meta">
+            <span><i class="fas fa-map-marker-alt"></i>Ho Chi Minh City, Vietnam</span>
+            <span><i class="fas fa-calendar-alt"></i>Oct 2022 - Present · Full-time</span>
           </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;">
-            <span
-              style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">JavaScript</span>
-            <span
-              style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Java</span>
-            <span
-              style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">IBM
-              BPM</span>
+          <div class="ds-exp-tags">
+            <span>JavaScript</span>
+            <span>Java</span>
+            <span>IBM BPM</span>
           </div>
-          <ul
-            style="color:rgba(255,255,255,.55);font-size:.875rem;line-height:1.7;list-style:none;padding:0;display:flex;flex-direction:column;gap:.4rem;">
-            <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Phát triển
-              ứng dụng web cho LOS (Loan Origination System) Eximbank SALLEM bằng JavaScript và Java.</li>
-            <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Thiết kế
-              giao diện theo gui-spec từ BA.</li>
-            <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Xử lý lỗi
-              giao diện, bug từ tester. Dự án theo mô hình Agile Scrum.</li>
+          <ul class="ds-exp-list">
+            <li>Developed LOS web application screens for Eximbank SAALEM using IBM BPM, JavaScript, and Java.</li>
+            <li>Translated BA gui-specs into production UI screens and workflow interfaces.</li>
+            <li>Resolved UI defects from QA during Agile Scrum delivery cycles.</li>
           </ul>
-        </div>
+        </article>
 
-        <div id="content-tk25" class="glass-card ds-exp-panel hidden" style="padding:2rem;">
-          <h3
-            style="font-family:var(--f-display);font-size:1.2rem;font-weight:700;color:rgba(255,255,255,.92);margin:0 0 .5rem;">
-            Xamarin Developer</h3>
-          <div style="color:var(--c-violet-hi);font-weight:600;margin-bottom:1rem;font-size:.9rem;"><i
-              class="fas fa-building" style="margin-right:.5rem;"></i>TK25 Technology Incorporation</div>
-          <div
-            style="color:rgba(255,255,255,.4);font-size:.85rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:.25rem;">
-            <span><i class="fas fa-map-marker-alt" style="margin-right:.5rem;width:14px;"></i>Ho Chi Minh City,
-              Vietnam</span>
-            <span><i class="fas fa-calendar-alt" style="margin-right:.5rem;width:14px;"></i>Jul 2019 – Oct 2022 ·
-              Full-time</span>
+        <article id="content-tk25" class="glass-card ds-exp-panel hidden" role="tabpanel" aria-labelledby="tab-tk25" aria-hidden="true">
+          <h3 class="ds-exp-title">Xamarin Developer</h3>
+          <div class="ds-exp-company"><i class="fas fa-building"></i>TK25 Technology Incorporation</div>
+          <div class="ds-exp-meta">
+            <span><i class="fas fa-map-marker-alt"></i>Ho Chi Minh City, Vietnam</span>
+            <span><i class="fas fa-calendar-alt"></i>Jul 2019 - Oct 2022 · Full-time</span>
           </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;">
-            <span
-              style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Xamarin</span>
-            <span
-              style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">C#</span>
-            <span
-              style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Azure
-              IoT</span>
+          <div class="ds-exp-tags">
+            <span>Xamarin</span>
+            <span>C#</span>
+            <span>Azure IoT</span>
           </div>
-          <ul
-            style="color:rgba(255,255,255,.55);font-size:.875rem;line-height:1.7;list-style:none;padding:0;display:flex;flex-direction:column;gap:.4rem;">
-            <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Phát triển
-              app locators.asia trên iOS/Android bằng Xamarin.Forms.</li>
-            <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Phát triển
-              ứng dụng cho thiết bị Signee kết nối Bluetooth, Azure IoT hub.</li>
+          <ul class="ds-exp-list">
+            <li>Built the locators.asia mobile app for iOS and Android with Xamarin.Forms.</li>
+            <li>Developed mobile features for Signee devices with Bluetooth connectivity and Azure IoT Hub integration.</li>
           </ul>
-        </div>
+        </article>
 
-        <div id="content-nbn" class="glass-card ds-exp-panel hidden" style="padding:2rem;">
-          <h3
-            style="font-family:var(--f-display);font-size:1.2rem;font-weight:700;color:rgba(255,255,255,.92);margin:0 0 .5rem;">
-            Xamarin Developer Intern</h3>
-          <div style="color:var(--c-violet-hi);font-weight:600;margin-bottom:1rem;font-size:.9rem;"><i
-              class="fas fa-building" style="margin-right:.5rem;"></i>NBN Media</div>
-          <div
-            style="color:rgba(255,255,255,.4);font-size:.85rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:.25rem;">
-            <span><i class="fas fa-map-marker-alt" style="margin-right:.5rem;width:14px;"></i>Ho Chi Minh City,
-              Vietnam</span>
-            <span><i class="fas fa-calendar-alt" style="margin-right:.5rem;width:14px;"></i>Feb 2019 – Jul 2019 ·
-              Internship</span>
+        <article id="content-nbn" class="glass-card ds-exp-panel hidden" role="tabpanel" aria-labelledby="tab-nbn" aria-hidden="true">
+          <h3 class="ds-exp-title">Xamarin Developer Intern</h3>
+          <div class="ds-exp-company"><i class="fas fa-building"></i>NBN Media</div>
+          <div class="ds-exp-meta">
+            <span><i class="fas fa-map-marker-alt"></i>Ho Chi Minh City, Vietnam</span>
+            <span><i class="fas fa-calendar-alt"></i>Feb 2019 - Jul 2019 · Internship</span>
           </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;">
-            <span
-              style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Xamarin</span>
-            <span
-              style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">C#</span>
+          <div class="ds-exp-tags">
+            <span>Xamarin</span>
+            <span>C#</span>
           </div>
-          <ul style="color:rgba(255,255,255,.55);font-size:.875rem;line-height:1.7;list-style:none;padding:0;">
-            <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Phát triển
-              chức năng đo bước chân cho app "Sanus" trên Android/iOS.</li>
+          <ul class="ds-exp-list">
+            <li>Implemented step-tracking features for the Sanus mobile app on Android and iOS.</li>
           </ul>
-        </div>
+        </article>
 
-        <div id="content-devup" class="glass-card ds-exp-panel hidden" style="padding:2rem;">
-          <h3
-            style="font-family:var(--f-display);font-size:1.2rem;font-weight:700;color:rgba(255,255,255,.92);margin:0 0 .5rem;">
-            Xamarin Developer (Part-time)</h3>
-          <div style="color:var(--c-violet-hi);font-weight:600;margin-bottom:1rem;font-size:.9rem;"><i
-              class="fas fa-building" style="margin-right:.5rem;"></i>DevUp</div>
-          <div
-            style="color:rgba(255,255,255,.4);font-size:.85rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:.25rem;">
-            <span><i class="fas fa-map-marker-alt" style="margin-right:.5rem;width:14px;"></i>Ho Chi Minh City,
-              Vietnam</span>
-            <span><i class="fas fa-calendar-alt" style="margin-right:.5rem;width:14px;"></i>Aug 2018 – Jan 2019 ·
-              Part-time</span>
+        <article id="content-devup" class="glass-card ds-exp-panel hidden" role="tabpanel" aria-labelledby="tab-devup" aria-hidden="true">
+          <h3 class="ds-exp-title">Xamarin Developer (Part-time)</h3>
+          <div class="ds-exp-company"><i class="fas fa-building"></i>DevUp</div>
+          <div class="ds-exp-meta">
+            <span><i class="fas fa-map-marker-alt"></i>Ho Chi Minh City, Vietnam</span>
+            <span><i class="fas fa-calendar-alt"></i>Aug 2018 - Jan 2019 · Part-time</span>
           </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;">
-            <span
-              style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Xamarin</span>
-            <span
-              style="font-family:var(--f-display);font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">C#</span>
+          <div class="ds-exp-tags">
+            <span>Xamarin</span>
+            <span>C#</span>
           </div>
-          <ul style="color:rgba(255,255,255,.55);font-size:.875rem;line-height:1.7;list-style:none;padding:0;">
-            <li style="display:flex;gap:.5rem;"><span style="color:var(--c-cyan);flex-shrink:0;">→</span>Part-time
-              Xamarin developer position.</li>
+          <ul class="ds-exp-list">
+            <li>Worked part-time on Xamarin mobile development tasks.</li>
           </ul>
-        </div>
+        </article>
       </div>
     </div>
   </div>

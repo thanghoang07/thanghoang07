@@ -1,25 +1,22 @@
-export function initWorkExpTabs() {
-  const tabs = document.querySelectorAll('.company-tab');
-  const details = document.querySelectorAll('.company-detail');
+const WORK_EXPERIENCE_COMPANIES = ['hpt', 'tk25', 'nbn', 'devup'];
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => handleTabClick(tab, tabs, details));
+export function switchWorkExperienceTab(company, doc = document) {
+  WORK_EXPERIENCE_COMPANIES.forEach((id) => {
+    const isActive = id === company;
+    const tab = doc.getElementById('tab-' + id);
+    const panel = doc.getElementById('content-' + id);
+
+    tab?.classList.toggle('active', isActive);
+    tab?.setAttribute('aria-selected', String(isActive));
+    tab?.setAttribute('tabindex', isActive ? '0' : '-1');
+    panel?.classList.toggle('hidden', !isActive);
+    panel?.setAttribute('aria-hidden', String(!isActive));
   });
 }
 
-function handleTabClick(clickedTab, allTabs, allDetails) {
-  // Remove active state from all tabs
-  allTabs.forEach(tab => tab.classList.remove('active'));
-
-  // Hide all details
-  allDetails.forEach(detail => detail.classList.add('hidden'));
-
-  // Activate clicked tab
-  clickedTab.classList.add('active');
-
-  // Show corresponding detail
-  const detail = document.getElementById('exp-' + clickedTab.dataset.company);
-  if (detail) {
-    detail.classList.remove('hidden');
-  }
+export function initWorkExpTabs(doc = document) {
+  const tabs = doc.querySelectorAll('.ds-tab[id^="tab-"]');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => switchWorkExperienceTab(tab.id.replace('tab-', ''), doc));
+  });
 }

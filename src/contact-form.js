@@ -5,6 +5,7 @@
 
 import { getColor } from './color-system.js';
 import { CONTACT_MESSAGES } from './contact-messages.js';
+import { initWorkExpTabs } from './ui/work-exp-tabs.js';
 
 /**
  * Contact Form Manager Class
@@ -559,35 +560,7 @@ export class ContactFormManager {
 
 // Initialize work experience tabs (moved from main.js)
 export function initWorkExperienceTabs() {
-  const tabs = document.querySelectorAll('.company-tab');
-  const details = document.querySelectorAll('.company-detail');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const company = tab.dataset.company;
-
-      // Remove active class from all tabs
-      tabs.forEach(t => {
-        t.classList.remove('active', 'bg-purple-50', 'text-purple-600', 'dark:bg-purple-900', 'dark:text-purple-300');
-        t.classList.add('bg-white', 'text-gray-700', 'dark:bg-gray-800', 'dark:text-gray-200');
-      });
-
-      // Add active class to clicked tab
-      tab.classList.add('active', 'bg-purple-50', 'text-purple-600', 'dark:bg-purple-900', 'dark:text-purple-300');
-      tab.classList.remove('bg-white', 'text-gray-700', 'dark:bg-gray-800', 'dark:text-gray-200');
-
-      // Hide all details
-      details.forEach(d => d.classList.add('hidden'));
-
-      // Show selected detail
-      const targetDetail = document.getElementById(`exp-${company}`);
-      if (targetDetail) {
-        targetDetail.classList.remove('hidden');
-      }
-
-      console.log(`Switched to company: ${company}`);
-    });
-  });
+  return initWorkExpTabs();
 }
 
 // Create and export singleton instance

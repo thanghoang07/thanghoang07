@@ -382,6 +382,29 @@ html:not(.dark) .project-card-v2 .pc-desc {
     color: rgba(15, 15, 30, 0.55);
 }
 
+.project-card-v2 .pc-meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+    margin: 0.35rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.52);
+}
+
+.project-card-v2 .pc-meta-list strong {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+html:not(.dark) .project-card-v2 .pc-meta-list {
+    color: rgba(15, 15, 30, 0.58);
+}
+
+html:not(.dark) .project-card-v2 .pc-meta-list strong {
+    color: rgba(15, 15, 30, 0.82);
+}
 /* Tech stack tags */
 .project-card-v2 .pc-tags {
     display: flex;
@@ -410,6 +433,15 @@ html:not(.dark) .project-card-v2 .pc-desc {
     padding: 0 var(--sp-md) var(--sp-md);
 }
 
+.project-card-v2 .pc-action-btn {
+    font-size: 0.75rem;
+    padding: 8px 14px;
+}
+
+.project-card-v2 .pc-action-btn--muted {
+    cursor: default;
+    opacity: 0.6;
+}
 /* ───────────────────────────────────────────────
    6. BUTTONS
    ─────────────────────────────────────────────── */
@@ -976,6 +1008,132 @@ html:not(.dark) .ds-tab.active {
     pointer-events: auto;
 }
 
+
+.ds-exp-layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.ds-exp-panels {
+    position: relative;
+    min-height: 280px;
+}
+
+.ds-exp-panel {
+    padding: 2rem;
+}
+
+.ds-exp-title {
+    font-family: var(--f-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0 0 0.5rem;
+}
+
+.ds-exp-company {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--c-violet-hi);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.ds-exp-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.ds-exp-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ds-exp-meta i {
+    width: 14px;
+    text-align: center;
+}
+
+.ds-exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 1rem;
+}
+
+.ds-exp-tags span {
+    font-family: var(--f-display);
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(124, 58, 237, 0.12);
+    border: 1px solid rgba(124, 58, 237, 0.28);
+    color: var(--c-violet-hi);
+}
+
+.ds-exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.875rem;
+    line-height: 1.7;
+}
+
+.ds-exp-list li {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.ds-exp-list li::before {
+    content: '→';
+    color: var(--c-cyan);
+    flex-shrink: 0;
+}
+
+html:not(.dark) .ds-exp-title {
+    color: rgba(15, 15, 30, 0.92);
+}
+
+html:not(.dark) .ds-exp-meta,
+html:not(.dark) .ds-exp-list {
+    color: rgba(15, 15, 30, 0.58);
+}
+
+@media (max-width: 768px) {
+    .ds-exp-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .ds-timeline-tabs {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+    }
+
+    .ds-timeline-line {
+        display: none;
+    }
+
+    .ds-tab {
+        flex: 0 0 min(220px, 78vw);
+    }
+}
+
 /* ───────────────────────────────────────────────
    18. RESPONSIVE UTILITIES
    ─────────────────────────────────────────────── */
@@ -1192,7 +1350,7 @@ html:not(.dark) #hero-intro {
 /* Experience timeline */
 .ds-timeline-tabs { position: relative; display: flex; flex-direction: column; gap: .55rem; }
 .ds-timeline-line {
-    position: absolute; top: 1rem; bottom: 1rem; left: .72rem; width: 2px;
+    position: absolute; top: 1rem; bottom: 1rem; left: 25px; width: 2px;
     background: linear-gradient(180deg, rgba(124,58,237,.8), rgba(124,58,237,.08));
     pointer-events: none;
 }
@@ -1239,5 +1397,12 @@ html:not(.dark) #hero-intro {
 @media (prefers-reduced-motion: reduce) {
     .ds-filter-btn, .ds-project-card, .ds-tab-dot, .ds-toast {
         transition: none !important; animation: none !important;
+    }
+}
+
+/* Keep the timeline rail aligned with tab dots. */
+@media (max-width: 768px) {
+    .ds-timeline-line {
+        display: none;
     }
 }
