@@ -11,355 +11,45 @@
   <meta name="description"
     content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng, đam mê tạo ra sản phẩm web hiện đại, tối ưu trải nghiệm người dùng.">
   <meta name="keywords"
-    content="frontend developer, portfolio, javascript, react, vue, web development, UI/UX, responsive design, vietnam">
+    content="frontend developer, portfolio, javascript, IBM BPM, xamarin, web development, UI/UX, vietnam">
   <meta name="author" content="Thang Hoang Duc">
   <meta name="robots" content="index, follow">
-  <meta name="language" content="English, Vietnamese">
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thanghoang07.github.io/">
   <meta property="og:title" content="Thang Hoang Duc - Frontend Developer Portfolio">
   <meta property="og:description"
-    content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng, đam mê tạo ra sản phẩm web hiện đại, tối ưu trải nghiệm người dùng.">
-  <meta property="og:image"
-    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=1200">
-  <meta property="og:site_name" content="Thang Hoang Duc Portfolio">
-  <meta property="og:locale" content="en_US">
+    content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng.">
+  <meta property="og:image" content="https://thanghoang07.github.io/images/og-preview.svg">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://thanghoang07.github.io/">
   <meta property="twitter:title" content="Thang Hoang Duc - Frontend Developer Portfolio">
-  <meta property="twitter:description"
-    content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng, đam mê tạo ra sản phẩm web hiện đại, tối ưu trải nghiệm người dùng.">
-  <meta property="twitter:image"
-    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=1200">
+  <meta property="twitter:image" content="https://thanghoang07.github.io/images/og-preview.svg">
 
-  <!-- Additional SEO Meta Tags -->
-  <meta name="theme-color" content="#9333ea">
-  <meta name="msapplication-TileColor" content="#9333ea">
+  <meta name="theme-color" content="#6d28d9">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Thang Portfolio">
-
-  <!-- Canonical URL -->
   <link rel="canonical" href="https://thanghoang07.github.io/">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/thanghoang07/favicon.svg" />
   <link rel="manifest" href="/thanghoang07/manifest.json" />
-  <link rel="apple-touch-icon"
-    href="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=180">
 
-  <!-- EmailJS CDN -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-  <!-- Critical CSS inline - minified for performance -->
-  <style>
-    .page-loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6366f1 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 1;
-      transition: opacity 0.8s ease-out;
-    }
-
-    .page-loader.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .loader-content {
-      text-align: center;
-      color: white;
-      max-width: 300px;
-    }
-
-    .loader-logo {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, #ffffff, #e0e7ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: logoGlow 2s ease-in-out infinite alternate;
-    }
-
-    .loader-spinner {
-      width: 60px;
-      height: 60px;
-      border: 3px solid rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      border-top: 3px solid #ffffff;
-      border-right: 3px solid #e0e7ff;
-      animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-      margin: 0 auto 1.5rem;
-      position: relative;
-    }
-
-    .loader-spinner::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 30px;
-      height: 30px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top: 2px solid #ffffff;
-      animation: spinReverse 1s linear infinite;
-    }
-
-    .loader-text {
-      font-size: 1.1rem;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-      opacity: 0.9;
-      animation: textPulse 2s ease-in-out infinite;
-    }
-
-    .loader-progress {
-      width: 200px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 2px;
-      margin: 0 auto;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .loader-progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, #ffffff, #e0e7ff, #ffffff);
-      border-radius: 2px;
-      width: 0%;
-      animation: progressFill 3s ease-out forwards;
-      position: relative;
-    }
-
-    .loader-progress-bar::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-      animation: shimmer 1.5s infinite;
-    }
-
-    .loader-dots {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-      gap: 0.5rem;
-    }
-
-    .loader-dot {
-      width: 8px;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 50%;
-      animation: dotBounce 1.5s ease-in-out infinite;
-    }
-
-    .loader-dot:nth-child(2) { animation-delay: 0.2s; }
-    .loader-dot:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    @keyframes spinReverse {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(-360deg); }
-    }
-
-    @keyframes logoGlow {
-      0% { opacity: 0.8; transform: scale(1); }
-      100% { opacity: 1; transform: scale(1.05); }
-    }
-
-    @keyframes textPulse {
-      0%, 100% { opacity: 0.9; }
-      50% { opacity: 0.6; }
-    }
-
-    @keyframes progressFill {
-      0% { width: 0%; }
-      30% { width: 30%; }
-      60% { width: 65%; }
-      90% { width: 90%; }
-      100% { width: 100%; }
-    }
-
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    @keyframes dotBounce {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
-      30% { transform: translateY(-10px); opacity: 1; }
-    }
-
-    /* Dark mode support for loader */
-    @media (prefers-color-scheme: dark) {
-      .page-loader {
-        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #3730a3 100%);
-      }
-    }
-
-    /* Typing Animation */
-    .typing-container {
-      position: relative;
-      display: inline-block;
-    }
-
-    .typing-text {
-      opacity: 0;
-      animation: typeIn 0.1s forwards;
-    }
-
-    .typing-cursor {
-      display: inline-block;
-      background-color: currentColor;
-      width: 3px;
-      animation: blink 1s infinite;
-    }
-
-    @keyframes typeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes blink {
-      0%, 50% {
-        opacity: 1;
-      }
-      51%, 100% {
-        opacity: 0;
-      }
-    }
-
-    /* Hero animations */
-    .hero-fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: heroFadeUp 0.8s 0.3s ease-out forwards;
-    }
-
-    .hero-fade-up-delay {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: heroFadeUp 0.8s 0.8s ease-out forwards;
-    }
-
-    @keyframes heroFadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .loader-text {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 18px;
-      font-weight: 500;
-      opacity: .9
-    }
-
-    body:not(.loaded) .main-content {
-      opacity: 0
-    }
-
-    .main-content {
-      opacity: 1;
-      transition: opacity .3s ease-in
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      background-color: #ffffff;
-      color: #1f2937;
-      transition: background-color .3s ease, color .3s ease
-    }
-
-    html.dark body {
-      background-color: #111827;
-      color: #f3f4f6
-    }
-
-    .fade-in {
-      animation: fadeIn .6s ease-out
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    .skeleton {
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 200% 100%;
-      animation: skeleton-loading 1.5s infinite
-    }
-
-    html.dark .skeleton {
-      background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
-      background-size: 200% 100%
-    }
-
-    @keyframes skeleton-loading {
-      0% {
-        background-position: 200% 0
-      }
-
-      100% {
-        background-position: -200% 0
-      }
-    }
-
-    .loading-placeholder {
-      min-height: 200px;
-      border-radius: 8px
-    }
-  </style>
-
-  <!-- Resource hints for performance -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preconnect" href="https://ui-avatars.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <!-- Fonts (non-render-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://via.placeholder.com">
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet">
+  </noscript>
 
-  <!-- Critical resources -->
+  <!-- Icons -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style"
     onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous">
   <noscript>
@@ -369,696 +59,621 @@
 
   <!-- Structured Data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Thang Hoang Duc",
-    "jobTitle": "Frontend Developer",
-    "description": "Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng",
-    "url": "https://thanghoang07.github.io/",
-    "image": "https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=400",
-    "sameAs": [
-      "https://www.linkedin.com/in/thanghoang07",
-      "https://github.com/thanghoang07"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "HPT Vietnam Corporation"
-    },
-    "alumniOf": {
-      "@type": "EducationalOrganization",
-      "name": "Nong Lam University - Ho Chi Minh City"
-    },
-    "knowsAbout": [
-      "JavaScript",
-      "Java",
-      "IBM BPM",
-      "Xamarin",
-      "C#",
-      "Azure IoT",
-      "Frontend Development",
-      "UI/UX Design"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Ho Chi Minh City",
-      "addressCountry": "VN"
-    },
-    "email": "thanghoang07@gmail.com",
-    "telephone": "+84932431562"
-  }
+  {"@context":"https://schema.org","@type":"Person","name":"Thang Hoang Duc","jobTitle":"Frontend Developer","url":"https://thanghoang07.github.io/","sameAs":["https://www.linkedin.com/in/thanghoang07","https://github.com/thanghoang07"],"worksFor":{"@type":"Organization","name":"HPT Vietnam Corporation"},"address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"email":"thanghoang07@gmail.com","telephone":"+84932431562"}
   </script>
-
-  <!-- Preload critical resources -->
-  <link rel="modulepreload" href="/thanghoang07/assets/main-Cd8mSniF.js">
-  <script type="module" crossorigin src="/thanghoang07/js/index-DK5g-MI9.js"></script>
-  <link rel="stylesheet" crossorigin href="/thanghoang07/css/index-0MUsDPml.css">
+  <script type="module" crossorigin src="/thanghoang07/assets/index-D-YwBzLp.js"></script>
+  <link rel="stylesheet" crossorigin href="/thanghoang07/assets/index-DSd8UQVG.css">
 </head>
 
-<body class="bg-white dark:bg-gray-900 transition-colors duration-300">
-  <!-- Loading Screen -->
-  <div class="page-loader" id="page-loader">
-    <div class="loader-content">
-      <div class="loader-logo">Thang.</div>
-      <div class="loader-spinner"></div>
-      <div class="loader-text">Loading Portfolio...</div>
-      <div class="loader-progress">
-        <div class="loader-progress-bar"></div>
-      </div>
-      <div class="loader-dots">
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-      </div>
+<body>
+  <a class="skip-link" href="#main-content" data-i18n="skip-content">Skip to main content</a>
+  <!-- Scroll progress -->
+  <div class="ds-scroll-progress" style="width:0%"></div>
+
+  <!-- Cursor glow (desktop) -->
+  <div class="ds-cursor-glow"></div>
+
+  <!-- ═══════════════════════════════════════
+       MAIN CONTENT
+       ═══════════════════════════════════════ -->
+  <div class="page-shell">
+
+    <!-- Background floating shapes -->
+    <div class="fixed inset-0 z-0 pointer-events-none" id="floating-shapes-container"></div>
+
+    <!-- ── HEADER / NAV ── -->
+    <!-- ─────────────────────────────────────
+         HEADER / NAV
+         ───────────────────────────────────── -->
+<header class="ds-nav sticky top-0 z-30 py-4">
+  <div class="ds-container ds-header-bar">
+
+    <!-- Logo -->
+    <a href="#main-content" class="ds-logo">
+      Thang.
+    </a>
+
+    <!-- Desktop nav -->
+    <nav aria-label="Main navigation" data-i18n-aria="nav-label" class="hidden md:flex ds-desktop-nav">
+      <a href="#services" class="ds-nav__link" id="nav-services" data-i18n="nav-services">Services</a>
+      <a href="#portfolio" class="ds-nav__link" id="nav-portfolio" data-i18n="nav-portfolio">Portfolio</a>
+      <a href="#experience" class="ds-nav__link" id="nav-experience" data-i18n="nav-experience">Experience</a>
+      <a href="#skills-tools" class="ds-nav__link" id="nav-skills" data-i18n="nav-skills">Skills</a>
+      <a href="#contact" class="ds-nav__link" id="nav-contact" data-i18n="nav-contact">Contact</a>
+    </nav>
+
+    <!-- Controls -->
+    <div class="ds-header-controls">
+      <button type="button" id="toggle-theme" class="ds-btn ds-btn--icon" aria-label="Toggle light/dark theme" data-i18n-aria="toggle-theme" data-ripple>
+        <i aria-hidden="true" class="fas fa-moon dark:hidden"></i>
+        <i aria-hidden="true" class="fas fa-sun hidden dark:block"></i>
+      </button>
+      <button type="button" id="toggle-language" aria-label="Switch language" data-i18n-aria="toggle-language" class="ds-btn ds-btn--icon ds-lang-toggle" data-ripple>
+        <span id="lang-vi-icon" class="ds-lang-badge" hidden>VI</span>
+        <span id="lang-en-icon" class="ds-lang-badge">EN</span>
+      </button>
+
+      <!-- Mobile menu button -->
+      <button type="button" id="mobile-menu-btn" hidden aria-expanded="false" aria-controls="mobile-menu" data-i18n-aria="menu-label" class="ds-btn ds-btn--icon md:hidden" aria-label="Menu">
+        <i aria-hidden="true" class="fas fa-bars"></i>
+      </button>
     </div>
   </div>
 
-  <!-- Main Content Wrapper -->
-  <div class="main-content" id="main-content">
-    <!-- Background Shapes -->
-    <div class="fixed inset-0 z-0 pointer-events-none" id="floating-shapes-container"></div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden ds-mobile-menu">
+    <div class="ds-container ds-mobile-menu__inner">
+      <a href="#services" class="ds-nav__link" data-i18n="nav-services">Services</a>
+      <a href="#portfolio" class="ds-nav__link" data-i18n="nav-portfolio">Portfolio</a>
+      <a href="#experience" class="ds-nav__link" data-i18n="nav-experience">Experience</a>
+      <a href="#skills-tools" class="ds-nav__link" data-i18n="nav-skills">Skills</a>
+      <a href="#contact" class="ds-nav__link" data-i18n="nav-contact">Contact</a>
+    </div>
+  </div>
+</header>
+    <main id="main-content" tabindex="-1">
 
-    <!-- Header -->
-    <header class="sticky top-0 z-30 bg-white dark:bg-gray-800 shadow-sm py-4 transition-colors duration-300">
-      <div class="container mx-auto flex items-center justify-between px-4">
-        <div class="flex items-center space-x-2">
-          <span class="text-2xl font-extrabold text-gray-900 tracking-tight">Thang.</span>
-        </div>
-        <nav class="hidden md:flex space-x-8 mx-auto">
-          <a href="#services" id="nav-services" class="text-gray-700 hover:text-purple-600 transition" data-i18n="nav-services">Services</a>
-          <a href="#portfolio" id="nav-portfolio" class="text-gray-700 hover:text-purple-600 transition" data-i18n="nav-portfolio">Portfolio</a>
-          <a href="#experience" id="nav-experience"
-            class="text-gray-700 hover:text-purple-600 transition" data-i18n="nav-experience">Experience</a>
-          <a href="#blog" id="nav-blog" class="text-gray-700 hover:text-purple-600 transition" data-i18n="nav-blog">Blog</a>
-          <a href="#resume" id="nav-resume" class="text-gray-700 hover:text-purple-600 transition" data-i18n="nav-resume">Resume</a>
-        </nav>
-        <div class="flex items-center space-x-2">
-          <button id="toggle-theme"
-            class="theme-toggle text-xl px-2 py-1 rounded-full hover:bg-purple-100 dark:hover:bg-gray-700 transition magnetic"
-            aria-label="Toggle dark mode" data-magnetic data-ripple>
-            <i class="fas fa-moon dark:hidden"></i>
-            <i class="fas fa-sun hidden dark:block"></i>
-          </button>
-          <button id="toggle-language"
-            class="language-toggle text-xl px-2 py-1 rounded-full hover:bg-purple-100 dark:hover:bg-gray-700 transition magnetic"
-            data-magnetic data-ripple>
-            <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese" class="w-6 h-4">
-            <img id="lang-en-icon" src="https://flagcdn.com/w40/gb.png" alt="English" class="w-6 h-4 hidden">
-          </button>
-        </div>
-      </div>
-    </header>
+    <!-- ── HERO ── -->
+    <!-- ─────────────────────────────────────
+         HERO
+         ───────────────────────────────────── -->
+<section class="hero-section">
+  <div class="ds-container hero-layout">
 
-    <!-- Hero Section -->
-    <section
-      class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center md:items-stretch gap-12 md:gap-0 min-h-[70vh] relative z-10">
-      <div class="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left">
-        <span class="uppercase tracking-widest text-sm text-gray-400 mb-2 hero-fade-up" id="hero-mynameis" data-i18n="hero-mynameis">My name is</span>
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
-          <span id="hero-name" class="text-purple-600 typing-container">
-            <span class="typing-text">Thang Hoang Duc.</span>
-            <span class="typing-cursor">|</span>
-          </span>
-        </h1>
-        <p id="hero-intro" class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-xl hero-fade-up-delay" data-i18n="hero-intro">Front-end developer with 5+ years of
-          experience in UI development, passionate about creating modern web products and optimizing user experience.
-        </p>
-        <div class="flex space-x-4 justify-center md:justify-start mb-6">
-          <a href="#" class="text-gray-500 hover:text-purple-600 text-2xl transition"><i
-              class="fab fa-facebook"></i></a>
-          <a href="#" class="text-gray-500 hover:text-purple-600 text-2xl transition"><i
-              class="fab fa-linkedin"></i></a>
-          <a href="#" class="text-gray-500 hover:text-purple-600 text-2xl transition"><i class="fab fa-github"></i></a>
+    <!-- Left: text -->
+    <div>
+      <span class="ds-eyebrow hero-fade-up" id="hero-mynameis" data-i18n="hero-mynameis">My name is</span>
+
+      <h1 class="ds-h1 hero-heading">
+        <span id="hero-name" class="ds-text-gradient">
+          <span class="typing-text" data-text="Thang Hoang Duc.">Thang Hoang Duc.</span>
+        </span>
+      </h1>
+
+      <p id="hero-intro" class="ds-body-lg hero-intro hero-fade-up-delay" data-i18n="hero-intro">Front-end developer with 5+ years of experience in UI development, passionate about creating modern web products and optimizing user experience.</p>
+
+      <!-- Stats row -->
+      <div class="hero-stats hero-fade-up-delay">
+        <div class="ds-stat">
+          <span class="ds-stat__number" data-count="5" data-suffix="+">5+</span>
+          <span class="ds-stat__label"><span data-i18n="years">Years Exp.</span></span>
+        </div>
+
+        <div class="ds-stat">
+          <span class="ds-stat__number" data-count="10" data-suffix="+">10+</span>
+          <span class="ds-stat__label"><span data-i18n="projects">Projects</span></span>
+        </div>
+
+        <div class="ds-stat">
+          <span class="ds-stat__number" data-count="3" data-suffix="">3</span>
+          <span class="ds-stat__label"><span data-i18n="companies">Companies</span></span>
         </div>
       </div>
-      <div class="flex-1 flex justify-center items-center relative min-h-[220px]">
-        <!-- Avatar floating shapes -->
-        <div class="absolute top-4 left-8 w-16 h-16 bg-purple-200 rounded-full opacity-30 avatar-shape-1"></div>
-        <div class="absolute bottom-8 right-12 w-12 h-12 bg-purple-300 rounded-lg opacity-25 avatar-shape-2"></div>
-        <div class="absolute top-12 right-6 w-8 h-8 bg-purple-400 rounded-full opacity-20 avatar-shape-3"></div>
-        <div class="absolute bottom-4 left-4 w-20 h-20 bg-purple-100 rounded-2xl opacity-15 avatar-shape-4"></div>
-        <div class="absolute top-16 left-16 w-6 h-6 bg-purple-500 rounded-full opacity-35 avatar-shape-5"></div>
 
-        <img src="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=9333ea&color=fff&size=256"
-          alt="Avatar"
-          class="relative z-10 w-48 h-48 object-cover rounded-[20px] shadow-lg border-4 border-white bg-white"
-          loading="lazy" />
+      <!-- CTA + socials -->
+      <div class="hero-actions hero-fade-up-delay">
+        <a href="#contact" class="ds-btn ds-btn--primary">
+          <i aria-hidden="true" class="fas fa-paper-plane"></i><span data-i18n="get-touch">Get in touch</span>
+        </a>
+        <a href="#portfolio" class="ds-btn ds-btn--ghost">
+          <span data-i18n="view-work">View work</span><i aria-hidden="true" class="fas fa-arrow-right ds-icon-sm"></i>
+        </a>
       </div>
-    </section>
 
-    <!-- Specialized Section -->
-    <section id="services" class="container mx-auto px-4 py-24 bg-[#f8f9fb] dark:bg-gray-900 rounded-2xl relative z-10"
-      style="background: linear-gradient(135deg, #f8f9fb 0%, #f1f5f9 100%);">
-      <div class="mb-4 text-center">
-        <span class="uppercase tracking-widest text-xs text-gray-400" id="specialized-subtitle" data-i18n="specialized-subtitle">Specialized</span>
-        <h2 id="specialized-title" class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal"
-          data-animation="fade-in-up" data-i18n="specialized-title">Specialized in</h2>
+      <div class="hero-socials hero-fade-up-delay">
+        <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
+          aria-label="LinkedIn"><i aria-hidden="true" class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
+          aria-label="GitHub"><i aria-hidden="true" class="fab fa-github"></i></a>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <div
-          class="card skill-card flex flex-col items-center bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 scroll-reveal-left enhanced-hover"
-          data-animation="fade-in-left" data-stagger="stagger-1" data-ripple data-longpress data-zoomable>
-          <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-cogs text-2xl text-purple-600 dark:text-purple-400 skill-icon"></i>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-center text-gray-900 dark:text-gray-100" id="skill-ibm-title" data-i18n="skill-ibm-title">IBM
-            BPM Development</h3>
-          <p id="ux-desc" class="text-gray-600 dark:text-gray-300 text-center" data-i18n="ux-desc">Phát triển ứng dụng IBM BPM với
-            JavaScript và Java, thiết kế giao diện theo gui-spec.</p>
-        </div>
-        <div
-          class="card skill-card flex flex-col items-center bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 scroll-reveal enhanced-hover"
-          data-animation="fade-in-up" data-stagger="stagger-2" data-ripple data-longpress data-zoomable>
-          <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-mobile-alt text-2xl text-purple-600 dark:text-purple-400 skill-icon"></i>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-center text-gray-900 dark:text-gray-100" id="skill-mobile-title" data-i18n="skill-mobile-title">
-            Mobile Development</h3>
-          <p id="webdev-desc" class="text-gray-600 dark:text-gray-300 text-center" data-i18n="webdev-desc">Phát triển ứng dụng mobile
-            cross-platform bằng Xamarin.Forms cho iOS/Android.</p>
-        </div>
-        <div
-          class="card skill-card flex flex-col items-center bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 scroll-reveal-right enhanced-hover"
-          data-animation="fade-in-right" data-stagger="stagger-3" data-ripple data-longpress data-zoomable>
-          <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-microchip text-2xl text-purple-600 dark:text-purple-400 skill-icon"></i>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-center text-gray-900 dark:text-gray-100" id="skill-iot-title" data-i18n="skill-iot-title">IoT
-            Development</h3>
-          <p id="webdesign-desc" class="text-gray-600 dark:text-gray-300 text-center" data-i18n="webdesign-desc">Phát triển ứng dụng IoT và kết nối
-            Azure IoT hub cho thiết bị tùy biến.</p>
-        </div>
+    </div>
+
+    <!-- Right: avatar -->
+    <div class="hero-avatar hidden md:flex">
+      <!-- Glow rings -->
+      <div class="hero-orbit hero-orbit--outer" aria-hidden="true"></div>
+      <div class="hero-orbit hero-orbit--inner" aria-hidden="true"></div>
+
+      <div class="ds-glow-border hero-avatar-frame">
+        <img src="/thanghoang07/images/avatar.svg" width="200" height="200" decoding="async"
+          alt="Thang Hoang Duc avatar" class="hero-avatar-img">
       </div>
-    </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio"
-      class="container mx-auto px-4 py-24 bg-white dark:bg-gray-800 rounded-2xl relative z-10 mt-[10px] mb-[10px] transition-colors duration-300"
-      data-lazy>
-      <div class="mb-4 text-center">
-        <span class="uppercase tracking-widest text-xs text-gray-400" id="portfolio-subtitle">My Works</span>
-        <h2 id="portfolio-title" class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal"
-          data-animation="fade-in-up">Featured Portfolios</h2>
+      <!-- Floating chips around avatar -->
+      <div class="glass-card hero-chip hero-chip--1">
+        <i aria-hidden="true" class="fas fa-code"></i>IBM BPM Dev
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <!-- Flutter Mobile App Project -->
-        <div
-          class="card project-card flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale border border-gray-100 dark:border-gray-700 enhanced-hover"
-          data-animation="fade-in-scale" data-stagger="stagger-1" data-ripple data-longpress data-zoomable>
-          <div class="w-full h-56 bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center relative">
-            <!-- Mobile App Icons -->
-            <div class="text-center">
-              <i class="fas fa-mobile-alt text-6xl text-white opacity-90 mb-2"></i>
-              <div class="text-white text-sm font-semibold tracking-wider">FLUTTER</div>
-            </div>
-            <div class="absolute top-3 right-3 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full font-medium">
-              In Development
-            </div>
-          </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="text-lg font-semibold mb-2 project-title text-center text-gray-900 dark:text-gray-100"
-                id="project-flutter-title">Personal Mobile App</h3>
-              <p class="text-gray-500 dark:text-gray-400 text-sm text-center mb-3" id="project-flutter-category">Mobile Development</p>
-              <div class="flex justify-center flex-wrap gap-1 mb-3">
-                <span class="bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 px-2 py-1 rounded text-xs">Flutter</span>
-                <span class="bg-cyan-100 text-cyan-600 dark:bg-cyan-900 dark:text-cyan-300 px-2 py-1 rounded text-xs">Dart</span>
-              </div>
-            </div>
-            <p class="text-gray-600 dark:text-gray-300 text-xs text-center" id="project-flutter-desc">Cross-platform mobile application built with Flutter</p>
-          </div>
-        </div>
-
-        <!-- Go Backend App Project -->
-        <div
-          class="card project-card flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale border border-gray-100 dark:border-gray-700"
-          data-animation="fade-in-scale" data-stagger="stagger-2">
-          <div class="w-full h-56 bg-gradient-to-br from-cyan-500 to-teal-400 flex items-center justify-center relative">
-            <i class="fab fa-golang text-6xl text-white opacity-90"></i>
-            <div class="absolute top-3 right-3 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full font-medium">
-              In Development
-            </div>
-          </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="text-lg font-semibold mb-2 project-title text-center text-gray-900 dark:text-gray-100"
-                id="project-go-title">Go Backend Application</h3>
-              <p class="text-gray-500 dark:text-gray-400 text-sm text-center mb-3" id="project-go-category">Backend Development</p>
-              <div class="flex justify-center flex-wrap gap-1 mb-3">
-                <span class="bg-cyan-100 text-cyan-600 dark:bg-cyan-900 dark:text-cyan-300 px-2 py-1 rounded text-xs">Go</span>
-                <span class="bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300 px-2 py-1 rounded text-xs">REST API</span>
-              </div>
-            </div>
-            <p class="text-gray-600 dark:text-gray-300 text-xs text-center" id="project-go-desc">High-performance backend API built with Go language</p>
-          </div>
-        </div>
-
-        <!-- SAALEM HPT Project -->
-        <div
-          class="card project-card flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg overflow-hidden transition-all duration-300 scroll-reveal-scale border border-gray-100 dark:border-gray-700"
-          data-animation="fade-in-scale" data-stagger="stagger-3">
-          <div class="w-full h-56 bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center relative">
-            <i class="fas fa-university text-4xl text-white opacity-90 mr-2"></i>
-            <i class="fas fa-chart-line text-3xl text-white opacity-75"></i>
-            <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-medium">
-              Production
-            </div>
-          </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="text-lg font-semibold mb-2 project-title text-center text-gray-900 dark:text-gray-100"
-                id="project-saalem-title">SAALEM HPT</h3>
-              <p class="text-gray-500 dark:text-gray-400 text-sm text-center mb-3" id="project-saalem-category">Enterprise Web Development</p>
-              <div class="flex justify-center flex-wrap gap-1 mb-3">
-                <span class="bg-yellow-100 text-yellow-600 dark:bg-yellow-900 dark:text-yellow-300 px-2 py-1 rounded text-xs">JavaScript</span>
-                <span class="bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 px-2 py-1 rounded text-xs">IBM BPM</span>
-                <span class="bg-orange-100 text-orange-600 dark:bg-orange-900 dark:text-orange-300 px-2 py-1 rounded text-xs">HTML</span>
-              </div>
-            </div>
-            <p class="text-gray-600 dark:text-gray-300 text-xs text-center" id="project-saalem-desc">LOS (Loan Origination System) web application for BIDV - EXIMBANK</p>
-          </div>
-        </div>
+      <div class="glass-card hero-chip hero-chip--2">
+        <i aria-hidden="true" class="fas fa-mobile-alt"></i>Mobile Dev
       </div>
-    </section>
-
-    <!-- Work Experience -->
-    <section id="experience"
-      class="container mx-auto px-4 py-24 bg-[#f8f9fb] dark:bg-gray-900 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300"
-      data-lazy style="background: linear-gradient(135deg, #f8f9fb 0%, #f1f5f9 100%);">
-      <div class="mb-4 text-center">
-        <span class="uppercase tracking-widest text-xs text-gray-400" id="workexp-subtitle" data-i18n="experience-subtitle">Career Path</span>
-        <h2 id="workexp-title" class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal"
-          data-animation="fade-in-up" data-i18n="experience-title">Work Experience</h2>
+      <div class="glass-card hero-chip hero-chip--3">
+        <i aria-hidden="true" class="fas fa-microchip"></i>IoT Dev
       </div>
-      <div class="max-w-6xl mx-auto">
-        
-        <!-- Company Tabs -->
-        <div class="mb-8">
-          <div class="flex flex-wrap justify-center gap-3">
-            <button id="tab-hpt" class="px-4 py-3 rounded-xl bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 font-semibold shadow transition-all duration-200 focus:outline-none" onclick="switchTab('hpt')">HPT Vietnam</button>
-            <button id="tab-tk25" class="px-4 py-3 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold shadow transition-all duration-200 focus:outline-none" onclick="switchTab('tk25')">TK25 Tech</button>
-            <button id="tab-nbn" class="px-4 py-3 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold shadow transition-all duration-200 focus:outline-none" onclick="switchTab('nbn')">NBN Media</button>
-            <button id="tab-devup" class="px-4 py-3 rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold shadow transition-all duration-200 focus:outline-none" onclick="switchTab('devup')">DevUp</button>
-          </div>
+    </div>
+  </div>
+</section>
+
+    <!-- ── SERVICES / SPECIALIZED ── -->
+    <!-- ─────────────────────────────────────
+         SERVICES / SPECIALIZED
+         ───────────────────────────────────── -->
+<section id="services" class="ds-section">
+  <div class="ds-container">
+    <div class="ds-section-header ds-section-header--center ds-reveal">
+      <span class="ds-eyebrow" id="specialized-subtitle" data-i18n="specialized-subtitle">Specialized</span>
+      <h2 class="ds-h2" id="specialized-title" data-i18n="specialized-title">Specialized in</h2>
+    </div>
+
+    <div class="card-grid">
+
+      <!-- IBM BPM -->
+      <div class="glass-card ds-service-card ds-reveal ds-stagger-1" data-ripple>
+        <div class="ds-service-card__icon">
+          <i aria-hidden="true" class="fas fa-cogs skill-icon"></i>
         </div>
-        
-        <!-- Experience Content -->
-        <div class="w-full">
-          
-          <!-- Experience Content -->
-          <div id="content-hpt" class="bg-white dark:bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-sm">
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">IBM BPM Developer</h3>
-            <div class="text-purple-600 dark:text-purple-400 font-semibold mb-4">
-              <i class="fas fa-building mr-2"></i>HPT Vietnam Corporation
-            </div>
-            <div class="text-gray-500 dark:text-gray-400 mb-4">
-              <div class="mb-1"><i class="fas fa-map-marker-alt mr-2"></i>Ho Chi Minh City, Vietnam</div>
-              <div><i class="fas fa-calendar-alt mr-2"></i>Oct 2022 - Present · Full-time</div>
-            </div>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">JavaScript</span>
-              <span class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">Java</span>
-              <span class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">IBM BPM</span>
-            </div>
-            <ul class="text-gray-600 dark:text-gray-300 leading-relaxed space-y-2">
-              <li>• Phát triển ứng dụng web cho LOS (Loan Origination System) Eximbank SALLEM (IBM BPM base) bằng JavaScript và Java.</li>
-              <li>• Thiết kế giao diện theo gui-spec từ BA.</li>
-              <li>• Xử lý lỗi giao diện, bug từ tester.</li>
-              <li>• Dự án theo mô hình agile scrum.</li>
-            </ul>
-          </div>
-
-          <div id="content-tk25" class="bg-white dark:bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-sm" style="display: none;">
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Xamarin Developer</h3>
-            <div class="text-purple-600 dark:text-purple-400 font-semibold mb-4">
-              <i class="fas fa-building mr-2"></i>TK25 Technology Incorporation
-            </div>
-            <div class="text-gray-500 dark:text-gray-400 mb-4">
-              <div class="mb-1"><i class="fas fa-map-marker-alt mr-2"></i>Ho Chi Minh City, Vietnam</div>
-              <div><i class="fas fa-calendar-alt mr-2"></i>Jul 2019 – Oct 2022 · Full-time</div>
-            </div>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">Xamarin</span>
-              <span class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">C#</span>
-              <span class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">Azure IoT</span>
-            </div>
-            <ul class="text-gray-600 dark:text-gray-300 leading-relaxed space-y-2">
-              <li>• Phát triển app locators.asia trên iOS/Android bằng Xamarin.Forms cho các cửa hàng bán lẻ kết nối shipper.</li>
-              <li>• Chịu trách nhiệm coding các chức năng "Advertising", "Placement", "Signee".</li>
-              <li>• Phát triển ứng dụng cho thiết bị Signee (Android tùy biến, kết nối Bluetooth, Azure IoT hub).</li>
-              <li>• Sử dụng Native, Xamarin.Android, Azure IoT hub.</li>
-            </ul>
-          </div>
-
-          <div id="content-nbn" class="bg-white dark:bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-sm" style="display: none;">
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Xamarin Developer Intern</h3>
-            <div class="text-purple-600 dark:text-purple-400 font-semibold mb-4">
-              <i class="fas fa-building mr-2"></i>NBN Media
-            </div>
-            <div class="text-gray-500 dark:text-gray-400 mb-4">
-              <div class="mb-1"><i class="fas fa-map-marker-alt mr-2"></i>Ho Chi Minh City, Vietnam</div>
-              <div><i class="fas fa-calendar-alt mr-2"></i>Feb 2019 – Jul 2019 · Internship</div>
-            </div>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">Xamarin</span>
-              <span class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">C#</span>
-            </div>
-            <ul class="text-gray-600 dark:text-gray-300 leading-relaxed space-y-2">
-              <li>• Phát triển chức năng đo bước chân cho app "Sanus" trên Android/iOS.</li>
-            </ul>
-          </div>
-
-          <div id="content-devup" class="bg-white dark:bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-sm" style="display: none;">
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Xamarin Developer (Part-time)</h3>
-            <div class="text-purple-600 dark:text-purple-400 font-semibold mb-4">
-              <i class="fas fa-building mr-2"></i>DevUp
-            </div>
-            <div class="text-gray-500 dark:text-gray-400 mb-4">
-              <div class="mb-1"><i class="fas fa-map-marker-alt mr-2"></i>Ho Chi Minh City, Vietnam</div>
-              <div><i class="fas fa-calendar-alt mr-2"></i>Aug 2018 – Jan 2019 · Part-time</div>
-            </div>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">Xamarin</span>
-              <span class="bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-medium">C#</span>
-            </div>
-            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Part-time Xamarin developer position.</p>
-          </div>
-        </div>
+        <h3 class="ds-h4 ds-service-card__title" id="skill-ibm-title" data-i18n="skill-ibm-title">IBM BPM Development</h3>
+        <p id="ux-desc" class="ds-service-card__desc" data-i18n="ux-desc">Develop IBM BPM applications with JavaScript and Java, design interfaces according to gui-spec.</p>
       </div>
-    </section>
 
-    <!-- Tab Switching JavaScript -->
-    <script>
-      function switchTab(company) {
-        // Remove active from all tabs
-        const tabs = ['hpt', 'tk25', 'nbn', 'devup'];
-        tabs.forEach(tab => {
-          const tabBtn = document.getElementById('tab-' + tab);
-          const content = document.getElementById('content-' + tab);
-          
-          if (tabBtn && content) {
-            // Remove active classes
-            tabBtn.classList.remove('bg-purple-50', 'dark:bg-purple-900', 'text-purple-600', 'dark:text-purple-300');
-            tabBtn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-200');
-            content.style.display = 'none';
-          }
-        });
-        
-        // Set active tab
-        const activeTab = document.getElementById('tab-' + company);
-        const activeContent = document.getElementById('content-' + company);
-        
-        if (activeTab && activeContent) {
-          // Add active classes
-          activeTab.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-200');
-          activeTab.classList.add('bg-purple-50', 'dark:bg-purple-900', 'text-purple-600', 'dark:text-purple-300');
-          activeContent.style.display = 'block';
-        }
-        
-        console.log('Switched to: ' + company);
-      }
-    </script>
-
-
-
-    <!-- Skills & Tools Section -->
-    <section id="skills-tools"
-      class="container mx-auto px-4 py-24 bg-white dark:bg-gray-800 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300"
-      data-lazy>
-      <div class="mb-4 text-center">
-        <span class="uppercase tracking-widest text-xs text-gray-400" id="skills-subtitle" data-i18n="skills-subtitle">Technical Expertise</span>
-        <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up"
-          id="skills-title" data-i18n="skills-title">Skills & Tools</h2>
+      <!-- Mobile -->
+      <div class="glass-card ds-service-card ds-reveal ds-stagger-2" data-ripple>
+        <div class="ds-service-card__icon">
+          <i aria-hidden="true" class="fas fa-mobile-alt skill-icon"></i>
+        </div>
+        <h3 class="ds-h4 ds-service-card__title" id="skill-mobile-title" data-i18n="skill-mobile-title">Mobile Development</h3>
+        <p id="webdev-desc" class="ds-service-card__desc" data-i18n="webdev-desc">Develop cross-platform mobile applications using Xamarin.Forms for iOS/Android.</p>
       </div>
-      
-      <!-- Skills & Tools Grid -->
-      <div class="max-w-6xl mx-auto">
-        <!-- Programming Languages -->
-        <div class="mb-8">
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">Programming Languages</h3>
-          <div class="flex flex-wrap justify-center gap-4">
-            <div class="skill-badge bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-microsoft mr-2"></i>C#
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-js-square mr-2"></i>Javascript
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-js-square mr-2"></i>TypeScript
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-blue-400 to-blue-500 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-mobile-alt mr-2"></i>Dart
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-node-js mr-2"></i>Node.Js
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-code mr-2"></i>Go
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-python mr-2"></i>Python
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-java mr-2"></i>Java
-            </div>
+
+      <!-- IoT -->
+      <div class="glass-card ds-service-card ds-reveal ds-stagger-3" data-ripple>
+        <div class="ds-service-card__icon">
+          <i aria-hidden="true" class="fas fa-microchip skill-icon"></i>
+        </div>
+        <h3 class="ds-h4 ds-service-card__title" id="skill-iot-title" data-i18n="skill-iot-title">IoT Development</h3>
+        <p id="webdesign-desc" class="ds-service-card__desc" data-i18n="webdesign-desc">Develop IoT applications and connect Azure IoT hub for custom devices.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- ── PORTFOLIO ── -->
+    <!-- ─────────────────────────────────────
+         PORTFOLIO
+         ───────────────────────────────────── -->
+<section id="portfolio" class="ds-section">
+  <div class="ds-container">
+    <div class="ds-section-header ds-section-header--center ds-reveal">
+      <span class="ds-eyebrow" id="portfolio-subtitle" data-i18n="portfolio-subtitle">My Works</span>
+      <h2 class="ds-h2 ds-text-gradient" id="portfolio-title" data-i18n="portfolio-title">Featured Portfolios</h2>
+      <p class="ds-section-desc" id="portfolio-desc" data-i18n="portfolio-desc">A selection of work spanning enterprise BPM, mobile apps, and IoT systems.</p>
+    </div>
+
+    <div class="ds-filter-bar ds-reveal" data-portfolio-filter data-i18n-aria="filter-label" aria-label="Project category filter">
+      <button class="ds-filter-btn active" type="button" data-filter="all" aria-pressed="true"><span data-i18n="all">All</span></button>
+      <button class="ds-filter-btn" type="button" data-filter="enterprise" aria-pressed="false"><span data-i18n="enterprise">Enterprise</span></button>
+      <button class="ds-filter-btn" type="button" data-filter="mobile" aria-pressed="false"><span data-i18n="mobile">Mobile</span></button>
+      <button class="ds-filter-btn" type="button" data-filter="backend" aria-pressed="false"><span data-i18n="backend">Backend</span></button>
+    </div>
+
+    <div class="card-grid">
+
+      <!-- Card: SAALEM -->
+      <article class="glass-card glass-card--accent ds-project-card ds-reveal ds-stagger-1" data-project-category="enterprise">
+        <div class="ds-project-card__media">
+          <img src="/thanghoang07/images/project-saalem.svg" width="640" height="360" loading="lazy" decoding="async"
+            alt="SAALEM HPT" class="project-image">
+          <div class="ds-project-card__overlay"></div>
+          <span class="ds-project-badge ds-project-badge--cyan"><span data-i18n="enterprise">Enterprise</span></span>
+        </div>
+        <div class="ds-project-card__body">
+          <span class="ds-project-card__category" id="project-saalem-category" data-i18n="project-saalem-category">Enterprise Web Development</span>
+          <h3 class="project-title" id="project-saalem-title" data-i18n="project-saalem-title">SAALEM HPT</h3>
+          <p class="ds-project-card__desc" id="project-saalem-desc" data-i18n="project-saalem-desc">LOS (Loan Origination System) web application for BIDV - EXIMBANK</p>
+          <div class="ds-tag-list">
+            <span class="ds-tag-pill">IBM BPM</span>
+            <span class="ds-tag-pill">Java</span>
+            <span class="ds-tag-pill">JavaScript</span>
           </div>
         </div>
+        <div class="ds-project-card__actions">
+          <span class="ds-btn ds-btn--ghost ds-btn--sm ds-btn--static"><i aria-hidden="true" class="fas fa-lock"></i><span data-i18n="private">Private</span></span>
+        </div>
+      </article>
 
-        <!-- Frameworks & Libraries -->
-        <div class="mb-8">
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">Frameworks & Libraries</h3>
-          <div class="flex flex-wrap justify-center gap-4">
-            <div class="skill-badge bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-store mr-2"></i>Redux
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-gray-800 to-gray-900 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-react mr-2"></i>Next.js
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-mobile-alt mr-2"></i>Flutter
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-microsoft mr-2"></i>.NET MAUI (Xamarin)
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-css3-alt mr-2"></i>Tailwind CSS
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-palette mr-2"></i>Material UI
-            </div>
+      <!-- Card: Flutter -->
+      <article class="glass-card ds-project-card ds-reveal ds-stagger-2" data-project-category="mobile">
+        <div class="ds-project-card__media">
+          <img src="/thanghoang07/images/project-flutter.svg" width="640" height="360" loading="lazy" decoding="async"
+            alt="Flutter App" class="project-image">
+          <div class="ds-project-card__overlay"></div>
+          <span class="ds-project-badge ds-project-badge--violet"><span data-i18n="mobile">Mobile</span></span>
+        </div>
+        <div class="ds-project-card__body">
+          <span class="ds-project-card__category" id="project-flutter-category" data-i18n="project-flutter-category">Mobile Development</span>
+          <h3 class="project-title" id="project-flutter-title" data-i18n="project-flutter-title">Personal Mobile App</h3>
+          <p class="ds-project-card__desc" id="project-flutter-desc" data-i18n="project-flutter-desc">Cross-platform mobile application built with Flutter</p>
+          <div class="ds-tag-list">
+            <span class="ds-tag-pill">Flutter</span>
+            <span class="ds-tag-pill">Dart</span>
+            <span class="ds-tag-pill">iOS / Android</span>
           </div>
         </div>
+        <div class="ds-project-card__actions">
+          <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary ds-btn--sm"><i aria-hidden="true" class="fab fa-github"></i> <span data-i18n="github-profile">GitHub profile</span></a>
+        </div>
+      </article>
 
-        <!-- DevOps & Cloud -->
-        <div class="mb-8">
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">DevOps & Cloud</h3>
-          <div class="flex flex-wrap justify-center gap-4">
-            <div class="skill-badge bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-git-alt mr-2"></i>Git
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-blue-400 to-blue-500 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-docker mr-2"></i>Docker
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-microsoft mr-2"></i>Azure
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-fire mr-2"></i>Firebase
-            </div>
+      <!-- Card: Go -->
+      <article class="glass-card ds-project-card ds-reveal ds-stagger-3" data-project-category="backend">
+        <div class="ds-project-card__media">
+          <img src="/thanghoang07/images/project-go.svg" width="640" height="360" loading="lazy" decoding="async"
+            alt="Go API" class="project-image">
+          <div class="ds-project-card__overlay"></div>
+          <span class="ds-project-badge ds-project-badge--emerald"><span data-i18n="backend">Backend</span></span>
+        </div>
+        <div class="ds-project-card__body">
+          <span class="ds-project-card__category" id="project-go-category" data-i18n="project-go-category">Backend Development</span>
+          <h3 class="project-title" id="project-go-title" data-i18n="project-go-title">Go Backend Application</h3>
+          <p class="ds-project-card__desc" id="project-go-desc" data-i18n="project-go-desc">High-performance backend API built with Go language</p>
+          <div class="ds-tag-list">
+            <span class="ds-tag-pill">Go</span>
+            <span class="ds-tag-pill">PostgreSQL</span>
+            <span class="ds-tag-pill">Docker</span>
           </div>
         </div>
+        <div class="ds-project-card__actions">
+          <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary ds-btn--sm"><i aria-hidden="true" class="fab fa-github"></i> <span data-i18n="github-profile">GitHub profile</span></a>
+        </div>
+      </article>
+    </div>
 
-        <!-- Databases & Tools -->
-        <div class="mb-8">
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">Databases & Tools</h3>
-          <div class="flex flex-wrap justify-center gap-4">
-            <div class="skill-badge bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-database mr-2"></i>Redis
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-blue-700 to-blue-800 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-database mr-2"></i>Postgresql
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-rocket mr-2"></i>Postman
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-pen-nib mr-2"></i>Figma
-            </div>
+    <div class="ds-section-footer ds-reveal">
+      <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--ghost">
+        <i aria-hidden="true" class="fab fa-github"></i><span data-i18n="github-all">View GitHub profile</span><i aria-hidden="true" class="fas fa-arrow-right ds-icon-sm"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+    <!-- ── WORK EXPERIENCE ── -->
+    <!-- ─────────────────────────────────────
+         WORK EXPERIENCE
+         ───────────────────────────────────── -->
+<section id="experience" class="ds-section">
+  <div class="ds-container">
+    <div class="ds-section-header ds-section-header--center ds-reveal">
+      <span class="ds-eyebrow" id="workexp-subtitle" data-i18n="experience-subtitle">Career Path</span>
+      <h2 class="ds-h2" id="workexp-title" data-i18n="experience-title">Work Experience</h2>
+    </div>
+
+    <div class="experience-layout ds-reveal">
+
+      <!-- Tab buttons (only role="tab" buttons inside tablist for WAI-ARIA compliance) -->
+      <div class="ds-timeline-tabs" aria-label="Work experience companies" data-i18n-aria="experience-label">
+        <button type="button" id="tab-hpt" class="ds-tab active">
+          <span class="ds-tab-dot" aria-hidden="true"></span>
+          <span class="ds-tab-main"><span class="ds-tab-company">HPT Vietnam</span><span class="ds-tab-date" data-i18n="date-hpt">Oct 2022 - Present</span></span>
+        </button>
+        <button type="button" id="tab-tk25" class="ds-tab">
+          <span class="ds-tab-dot" aria-hidden="true"></span>
+          <span class="ds-tab-main"><span class="ds-tab-company">TK25 Tech</span><span class="ds-tab-date" data-i18n="date-tk25">Jul 2019 - Oct 2022</span></span>
+        </button>
+        <button type="button" id="tab-nbn" class="ds-tab">
+          <span class="ds-tab-dot" aria-hidden="true"></span>
+          <span class="ds-tab-main"><span class="ds-tab-company">NBN Media</span><span class="ds-tab-date" data-i18n="date-nbn">Feb 2019 - Jul 2019</span></span>
+        </button>
+        <button type="button" id="tab-devup" class="ds-tab">
+          <span class="ds-tab-dot" aria-hidden="true"></span>
+          <span class="ds-tab-main"><span class="ds-tab-company">DevUp</span><span class="ds-tab-date" data-i18n="date-devup">Aug 2018 - Jan 2019</span></span>
+        </button>
+      </div>
+
+      <!-- Content panels -->
+      <div class="ds-exp-panels">
+
+        <div id="content-hpt" class="glass-card ds-exp-panel">
+          <h3 class="ds-exp-role" data-i18n="role-hpt">IBM BPM Developer</h3>
+          <div class="ds-exp-company"><i aria-hidden="true" class="fas fa-building"></i>HPT Vietnam Corporation</div>
+          <div class="ds-exp-meta">
+            <span><i aria-hidden="true" class="fas fa-map-marker-alt"></i><span data-i18n="location">Ho Chi Minh City, Vietnam</span></span>
+            <span><i aria-hidden="true" class="fas fa-calendar-alt"></i><span data-i18n="period-hpt">Oct 2022 – Present · Full-time</span></span>
           </div>
+          <div class="ds-tag-list ds-exp-tags">
+            <span class="ds-tag-pill">JavaScript</span>
+            <span class="ds-tag-pill">Java</span>
+            <span class="ds-tag-pill">IBM BPM</span>
+          </div>
+          <ul class="ds-exp-list">
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="hpt-task-1">Developed the Eximbank SALLEM Loan Origination System with JavaScript and Java.</span></li>
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="hpt-task-2">Implemented interfaces from business analyst UI specifications.</span></li>
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="hpt-task-3">Fixed UI issues reported by testers in an Agile Scrum team.</span></li>
+          </ul>
         </div>
 
-        <!-- Development Environment -->
-        <div class="mb-4">
-          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">Development Environment</h3>
-          <div class="flex flex-wrap justify-center gap-4 mb-6">
-            <div class="skill-badge bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-chrome mr-2"></i>Google Chrome
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fas fa-code mr-2"></i>VS Code
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-microsoft mr-2"></i>Visual Studio
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-android mr-2"></i>Android Studio
-            </div>
+        <div id="content-tk25" class="glass-card ds-exp-panel">
+          <h3 class="ds-exp-role" data-i18n="role-tk25">Xamarin Developer</h3>
+          <div class="ds-exp-company"><i aria-hidden="true" class="fas fa-building"></i>TK25 Technology Incorporation</div>
+          <div class="ds-exp-meta">
+            <span><i aria-hidden="true" class="fas fa-map-marker-alt"></i><span data-i18n="location">Ho Chi Minh City, Vietnam</span></span>
+            <span><i aria-hidden="true" class="fas fa-calendar-alt"></i><span data-i18n="period-tk25">Jul 2019 – Oct 2022 · Full-time</span></span>
           </div>
-          
-          <div class="flex flex-wrap justify-center gap-4">
-            <div class="skill-badge bg-gradient-to-r from-gray-600 to-gray-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-apple mr-2"></i>macOS
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-windows mr-2"></i>Windows
-            </div>
-            <div class="skill-badge bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <i class="fab fa-ubuntu mr-2"></i>Linux - Ubuntu Server
-            </div>
+          <div class="ds-tag-list ds-exp-tags">
+            <span class="ds-tag-pill">Xamarin</span>
+            <span class="ds-tag-pill">C#</span>
+            <span class="ds-tag-pill">Azure IoT</span>
           </div>
+          <ul class="ds-exp-list">
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="tk25-task-1">Developed locators.asia for iOS and Android with Xamarin.Forms.</span></li>
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="tk25-task-2">Developed applications for Signee devices with Bluetooth and Azure IoT Hub connectivity.</span></li>
+          </ul>
+        </div>
+
+        <div id="content-nbn" class="glass-card ds-exp-panel">
+          <h3 class="ds-exp-role" data-i18n="role-intern">Xamarin Developer Intern</h3>
+          <div class="ds-exp-company"><i aria-hidden="true" class="fas fa-building"></i>NBN Media</div>
+          <div class="ds-exp-meta">
+            <span><i aria-hidden="true" class="fas fa-map-marker-alt"></i><span data-i18n="location">Ho Chi Minh City, Vietnam</span></span>
+            <span><i aria-hidden="true" class="fas fa-calendar-alt"></i><span data-i18n="period-nbn">Feb 2019 – Jul 2019 · Internship</span></span>
+          </div>
+          <div class="ds-tag-list ds-exp-tags">
+            <span class="ds-tag-pill">Xamarin</span>
+            <span class="ds-tag-pill">C#</span>
+          </div>
+          <ul class="ds-exp-list">
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="nbn-task">Developed step tracking for the Sanus app on Android and iOS.</span></li>
+          </ul>
+        </div>
+
+        <div id="content-devup" class="glass-card ds-exp-panel">
+          <h3 class="ds-exp-role" data-i18n="role-parttime">Xamarin Developer (Part-time)</h3>
+          <div class="ds-exp-company"><i aria-hidden="true" class="fas fa-building"></i>DevUp</div>
+          <div class="ds-exp-meta">
+            <span><i aria-hidden="true" class="fas fa-map-marker-alt"></i><span data-i18n="location">Ho Chi Minh City, Vietnam</span></span>
+            <span><i aria-hidden="true" class="fas fa-calendar-alt"></i><span data-i18n="period-devup">Aug 2018 – Jan 2019 · Part-time</span></span>
+          </div>
+          <div class="ds-tag-list ds-exp-tags">
+            <span class="ds-tag-pill">Xamarin</span>
+            <span class="ds-tag-pill">C#</span>
+          </div>
+          <ul class="ds-exp-list">
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="devup-task">Part-time Xamarin developer position.</span></li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Certifications Section -->
-    <section id="certifications"
-      class="container mx-auto px-4 py-24 bg-white dark:bg-gray-800 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300"
-      data-lazy style="background: linear-gradient(135deg, #f8f9fb 0%, #f1f5f9 100%);">
-      <div class="mb-4 text-center">
-        <span class="uppercase tracking-widest text-xs text-gray-400" id="certifications-subtitle" data-i18n="cert-subtitle">Certifications</span>
-        <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up"
-          id="certifications-title" data-i18n="cert-title">Certifications</h2>
+    <!-- ── SKILLS & TOOLS ── -->
+    <!-- ─────────────────────────────────────
+         SKILLS & TOOLS
+         ───────────────────────────────────── -->
+<section id="skills-tools" class="ds-section">
+  <div class="ds-container">
+    <div class="ds-section-header ds-section-header--center ds-reveal">
+      <span class="ds-eyebrow" id="skills-subtitle" data-i18n="skills-subtitle">Technical Expertise</span>
+      <h2 class="ds-h2" id="skills-title" data-i18n="skills-title">Skills & Tools</h2>
+    </div>
+
+    <!-- Programming Languages -->
+    <div class="ds-skill-section ds-reveal">
+      <h3 class="ds-skill-group-title" data-i18n="programming">Programming Languages</h3>
+      <div class="ds-skill-level-grid">
+        <div class="ds-skill-level-group ds-skill-level-group--expert"><h4 data-i18n="expert">Expert</h4><div class="ds-skill-list">
+          <span class="ds-skill-badge ds-skill-badge--expert" data-level="expert"><i aria-hidden="true" class="fab fa-microsoft"></i>C#<span class="skill-level" aria-label="Expert" data-i18n-aria="expert">●●●</span></span>
+          <span class="ds-skill-badge ds-skill-badge--expert" data-level="expert"><i aria-hidden="true" class="fab fa-js-square"></i>JavaScript<span class="skill-level" aria-label="Expert" data-i18n-aria="expert">●●●</span></span>
+        </div></div>
+        <div class="ds-skill-level-group ds-skill-level-group--advanced"><h4 data-i18n="advanced">Advanced</h4><div class="ds-skill-list">
+          <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><i aria-hidden="true" class="fab fa-js-square"></i>TypeScript<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
+          <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><i aria-hidden="true" class="fas fa-mobile-alt"></i>Dart<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
+          <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><i aria-hidden="true" class="fab fa-node-js"></i>Node.js<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
+        </div></div>
+        <div class="ds-skill-level-group ds-skill-level-group--familiar"><h4 data-i18n="familiar">Familiar</h4><div class="ds-skill-list">
+          <span class="ds-skill-badge ds-skill-badge--familiar" data-level="familiar"><i aria-hidden="true" class="fas fa-code"></i>Go<span class="skill-level" aria-label="Familiar" data-i18n-aria="familiar">●○○</span></span>
+          <span class="ds-skill-badge ds-skill-badge--familiar" data-level="familiar"><i aria-hidden="true" class="fab fa-python"></i>Python<span class="skill-level" aria-label="Familiar" data-i18n-aria="familiar">●○○</span></span>
+          <span class="ds-skill-badge ds-skill-badge--familiar" data-level="familiar"><i aria-hidden="true" class="fab fa-java"></i>Java<span class="skill-level" aria-label="Familiar" data-i18n-aria="familiar">●○○</span></span>
+        </div></div>
       </div>
-      <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div
-          class="cert-card bg-white dark:bg-gray-800 rounded-2xl shadow p-6 border border-gray-100 dark:border-gray-700">
-          <span class="cert-icon text-purple-600 dark:text-purple-400">
-            <i class="fas fa-certificate text-xl"></i>
-          </span>
+    </div>
+
+    <!-- Frameworks -->
+    <div class="ds-skill-section ds-reveal ds-stagger-1">
+      <h3 class="ds-skill-group-title" data-i18n="frameworks">Frameworks & Libraries</h3>
+      <div class="ds-skill-level-grid">
+        <div class="ds-skill-level-group ds-skill-level-group--expert"><h4 data-i18n="expert">Expert</h4><div class="ds-skill-list">
+          <span class="ds-skill-badge ds-skill-badge--expert" data-level="expert"><i aria-hidden="true" class="fas fa-project-diagram"></i>IBM BPM<span class="skill-level" aria-label="Expert" data-i18n-aria="expert">●●●</span></span>
+          <span class="ds-skill-badge ds-skill-badge--expert" data-level="expert"><i aria-hidden="true" class="fas fa-mobile-alt"></i>Xamarin.Forms<span class="skill-level" aria-label="Expert" data-i18n-aria="expert">●●●</span></span>
+        </div></div>
+        <div class="ds-skill-level-group ds-skill-level-group--advanced"><h4 data-i18n="advanced">Advanced</h4><div class="ds-skill-list">
+          <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><i aria-hidden="true" class="fas fa-feather"></i>Flutter<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
+          <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><i aria-hidden="true" class="fab fa-react"></i>React<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
+          <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><i aria-hidden="true" class="fas fa-leaf"></i>.NET MAUI<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
+        </div></div>
+        <div class="ds-skill-level-group ds-skill-level-group--familiar"><h4 data-i18n="familiar">Familiar</h4><div class="ds-skill-list">
+          <span class="ds-skill-badge ds-skill-badge--familiar" data-level="familiar"><i aria-hidden="true" class="fas fa-bolt"></i>Vite<span class="skill-level" aria-label="Familiar" data-i18n-aria="familiar">●○○</span></span>
+          <span class="ds-skill-badge ds-skill-badge--familiar" data-level="familiar"><i aria-hidden="true" class="fab fa-css3-alt"></i>TailwindCSS<span class="skill-level" aria-label="Familiar" data-i18n-aria="familiar">●○○</span></span>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Tools & Platforms -->
+    <div class="ds-skill-section ds-reveal ds-stagger-2">
+      <h3 class="ds-skill-group-title" data-i18n="tools-platforms">Tools & Platforms</h3>
+      <div class="ds-skill-list">
+        <span class="ds-skill-badge"><i aria-hidden="true" class="fas fa-cloud"></i>Azure IoT</span>
+        <span class="ds-skill-badge"><i aria-hidden="true" class="fab fa-docker"></i>Docker</span>
+        <span class="ds-skill-badge"><i aria-hidden="true" class="fab fa-git-alt"></i>Git</span>
+        <span class="ds-skill-badge"><i aria-hidden="true" class="fab fa-github"></i>GitHub</span>
+        <span class="ds-skill-badge"><i aria-hidden="true" class="fas fa-database"></i>PostgreSQL</span>
+        <span class="ds-skill-badge"><i aria-hidden="true" class="fas fa-database"></i>SQL Server</span>
+        <span class="ds-skill-badge"><i aria-hidden="true" class="fab fa-figma"></i>Figma</span>
+      </div>
+    </div>
+
+    <!-- OS -->
+    <div class="ds-reveal ds-stagger-3">
+      <h3 class="ds-skill-group-title" data-i18n="environments">Environments</h3>
+      <div class="ds-skill-list">
+        <span class="ds-skill-badge"><i aria-hidden="true" class="fab fa-android"></i>Android Studio</span>
+        <span class="ds-skill-badge"><i aria-hidden="true" class="fab fa-apple"></i>macOS</span>
+        <span class="ds-skill-badge"><i aria-hidden="true" class="fab fa-windows"></i>Windows</span>
+        <span class="ds-skill-badge"><i aria-hidden="true" class="fab fa-ubuntu"></i>Linux / Ubuntu</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- ── CERTIFICATIONS ── -->
+    <!-- ─────────────────────────────────────
+         CERTIFICATIONS
+         ───────────────────────────────────── -->
+<section id="certifications" class="ds-section">
+  <div class="ds-container">
+    <div class="ds-section-header ds-section-header--center ds-reveal">
+      <span class="ds-eyebrow" id="certifications-subtitle" data-i18n="cert-subtitle">Certifications</span>
+      <h2 class="ds-h2" id="certifications-title" data-i18n="cert-title">Certifications</h2>
+    </div>
+
+    <div class="card-grid certification-grid">
+      <div class="glass-card ds-cert-card ds-reveal ds-stagger-1">
+        <div class="ds-cert-card__icon">
+          <i aria-hidden="true" class="fas fa-certificate"></i>
+        </div>
+        <div>
+          <div id="cert-xamarin-title" class="ds-cert-card__title" data-i18n="cert-xamarin-title">Xamarin Cross-Platform Mobile Apps Development</div>
+          <div id="cert-xamarin-date" class="ds-cert-card__date" data-i18n="cert-xamarin-date">05/2018</div>
+        </div>
+      </div>
+
+      <div class="glass-card ds-cert-card ds-reveal ds-stagger-2">
+        <div class="ds-cert-card__icon">
+          <i aria-hidden="true" class="fas fa-award"></i>
+        </div>
+        <div>
+          <div id="cert-flutter-title" class="ds-cert-card__title" data-i18n="cert-flutter-title">Flutter Development</div>
+          <div id="cert-flutter-date" class="ds-cert-card__date" data-i18n="cert-flutter-date">01/2023</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- ── CONTACT ── -->
+    <!-- ─────────────────────────────────────
+         CONTACT
+         ───────────────────────────────────── -->
+<section id="contact" class="ds-section">
+  <div class="ds-container">
+    <div class="ds-section-header ds-section-header--center ds-reveal">
+      <span class="ds-eyebrow" id="contact-subtitle" data-i18n="contact-subtitle">Contact</span>
+      <h2 class="ds-h2 ds-text-gradient" id="contact-title" data-i18n="contact-title">Contact</h2>
+    </div>
+
+    <div class="contact-layout ds-reveal">
+
+      <!-- Form -->
+      <form id="contact-form" class="glass-card contact-form" novalidate onsubmit="return false" aria-describedby="contact-hint">
+        <div class="form-field">
+          <label for="contact-name-input" data-i18n="contact-name">Your name</label>
+          <input type="text" autocomplete="name" id="contact-name-input" name="name" maxlength="100" required aria-describedby="contact-name-error">
+          <p id="contact-name-error" class="field-error" hidden></p>
+        </div>
+        <div class="form-field">
+          <label for="contact-email-input" data-i18n="contact-email">Your email</label>
+          <input type="email" autocomplete="email" id="contact-email-input" name="email" maxlength="254" required aria-describedby="contact-email-error">
+          <p id="contact-email-error" class="field-error" hidden></p>
+        </div>
+        <div class="form-field">
+          <label for="contact-message-input" data-i18n="contact-message">Your message</label>
+          <textarea rows="5" id="contact-message-input" name="message" maxlength="1000" required aria-describedby="contact-message-error"></textarea>
+          <p id="contact-message-error" class="field-error" hidden></p>
+        </div>
+        <p id="contact-hint" data-i18n="contact-hint">This opens your email app with your message. You still need to press Send there. Your text stays here.</p>
+        <button type="submit" disabled id="contact-send-btn" class="ds-btn ds-btn--primary" data-i18n="contact-submit">Open email app</button>
+        <p id="contact-status" role="status" aria-live="polite"></p>
+        <p><span data-i18n="contact-fallback">You can also email directly:</span> <a href="mailto:thanghoang07@gmail.com">thanghoang07@gmail.com</a></p>
+      </form>
+
+      <!-- Info -->
+      <div class="ds-contact-list">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Da+Kao+District+1+Ho+Chi+Minh+City" target="_blank" rel="noopener" class="ds-contact-item">
+          <div class="ds-contact-item__icon"><i aria-hidden="true" class="fas fa-map-marker-alt"></i></div>
           <div>
-            <div class="font-semibold text-gray-800 dark:text-gray-100" id="cert-xamarin-title">Xamarin Crosss-Platform
-              Mobile Apps Development</div>
-            <div class="text-gray-400 dark:text-gray-500 text-sm" id="cert-xamarin-date">05/2018</div>
+            <div class="ds-contact-item__label" id="contact-address-label" data-i18n="contact-address-label">Address</div>
+            <div class="ds-contact-item__value" id="contact-address-value" data-i18n="contact-address-value">DaKao, District 1, HCMC, VietNam</div>
           </div>
-        </div>
-        <div
-          class="cert-card bg-white dark:bg-gray-800 rounded-2xl shadow p-6 border border-gray-100 dark:border-gray-700">
-          <span class="cert-icon text-purple-600 dark:text-purple-400">
-            <i class="fas fa-award text-xl"></i>
-          </span>
+        </a>
+        <a href="mailto:thanghoang07@gmail.com" class="ds-contact-item">
+          <div class="ds-contact-item__icon"><i aria-hidden="true" class="fas fa-envelope"></i></div>
           <div>
-            <div class="font-semibold text-gray-800 dark:text-gray-100" id="cert-flutter-title">Flutter Development
-            </div>
-            <div class="text-gray-400 dark:text-gray-500 text-sm" id="cert-flutter-date">01/2023</div>
+            <div class="ds-contact-item__label" id="contact-emailinfo-label" data-i18n="contact-emailinfo-label">Email</div>
+            <div class="ds-contact-item__value" id="contact-email-value">thanghoang07@gmail.com</div>
           </div>
-        </div>
+        </a>
+        <a href="tel:+84932431562" class="ds-contact-item">
+          <div class="ds-contact-item__icon"><i aria-hidden="true" class="fas fa-phone"></i></div>
+          <div>
+            <div class="ds-contact-item__label" id="contact-phone-label" data-i18n="contact-phone-label">Phone</div>
+            <div class="ds-contact-item__value" id="contact-phone-value">(+84) 93 243 1562</div>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="ds-contact-item">
+          <div class="ds-contact-item__icon"><i aria-hidden="true" class="fab fa-linkedin"></i></div>
+          <div>
+            <div class="ds-contact-item__label" id="contact-linkedin-label" data-i18n="contact-linkedin-label">LinkedIn</div>
+            <div class="ds-contact-item__value" id="contact-linkedin-value">linkedin.com/in/thanghoang07</div>
+          </div>
+        </a>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact"
-      class="container mx-auto px-4 py-24 bg-white dark:bg-gray-800 rounded-2xl relative z-10 mt-[10px] transition-colors duration-300"
-      data-lazy>
-      <div class="mb-4 text-center">
-        <span class="uppercase tracking-widest text-xs text-gray-400" id="contact-subtitle" data-i18n="contact-subtitle">Contact</span>
-        <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center scroll-reveal" data-animation="fade-in-up"
-          id="contact-title" data-i18n="contact-title">Contact</h2>
-      </div>
-      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
-        <form id="contact-form" class="bg-white dark:bg-gray-800 rounded-2xl p-10 flex flex-col space-y-6">
-          <input type="text" id="contact-name-input" name="name" placeholder="Your Name"
-            class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 dark:text-gray-200 dark:placeholder-gray-400"
-            required>
-          <input type="email" id="contact-email-input" name="email" placeholder="Your Email"
-            class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 dark:text-gray-200 dark:placeholder-gray-400"
-            required>
-          <textarea id="contact-message-input" name="message" placeholder="Your Message" rows="5" maxlength="1000"
-            class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 dark:text-gray-200 dark:placeholder-gray-400"
-            required></textarea>
-          <button type="submit" id="contact-send-btn"
-            class="w-full py-3 rounded-lg bg-purple-600 dark:bg-purple-600 text-white font-semibold text-lg hover:bg-purple-700 dark:hover:bg-purple-700 transition magnetic"
-            data-magnetic data-ripple>Send Message</button>
-        </form>
-        <div class="bg-white dark:bg-gray-800 rounded-2xl p-10 flex flex-col justify-center space-y-8">
-          <div class="flex items-center space-x-4">
-            <span
-              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400">
-              <i class="fas fa-map-marker-alt text-lg"></i>
-            </span>
-            <div>
-              <div class="font-semibold text-gray-800 dark:text-gray-100" id="contact-address-label">Address</div>
-              <div class="text-gray-500 dark:text-gray-400" id="contact-address-value">DaKao, District 1, HCMC, VietNam
-              </div>
-            </div>
-          </div>
-          <div class="flex items-center space-x-4">
-            <span
-              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400">
-              <i class="fas fa-envelope text-lg"></i>
-            </span>
-            <div>
-              <div class="font-semibold text-gray-800 dark:text-gray-100" id="contact-emailinfo-label">Email</div>
-              <a href="mailto:thanghoang07@gmail.com"
-                class="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                id="contact-email-value">thanghoang07@gmail.com</a>
-            </div>
-          </div>
-          <div class="flex items-center space-x-4">
-            <span
-              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400">
-              <i class="fas fa-phone text-lg"></i>
-            </span>
-            <div>
-              <div class="font-semibold text-gray-800 dark:text-gray-100" id="contact-phone-label">Phone</div>
-              <a href="tel:+84932431562"
-                class="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                id="contact-phone-value">(+84) 93 243 1562</a>
-            </div>
-          </div>
-          <div class="flex items-center space-x-4">
-            <span
-              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400">
-              <i class="fab fa-linkedin text-lg"></i>
-            </span>
-            <div>
-              <div class="font-semibold text-gray-800 dark:text-gray-100" id="contact-linkedin-label">LinkedIn</div>
-              <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener"
-                class="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                id="contact-linkedin-value">linkedin.com/in/thanghoang07</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </main>
+    <!-- ── FOOTER ── -->
+    <!-- ─────────────────────────────────────
+         FOOTER
+         ───────────────────────────────────── -->
+<footer class="ds-footer">
+  <div class="ds-container ds-footer__inner">
+    <span class="ds-logo ds-logo--sm">Thang.</span>
+    <p id="copyright" class="ds-footer__copy">© <span id="footer-year">2026</span> thanghoang07. <span data-i18n="rights">All rights reserved.</span></p>
+    <div class="ds-footer__socials">
+      <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
+        aria-label="LinkedIn"><i aria-hidden="true" class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
+        aria-label="GitHub"><i aria-hidden="true" class="fab fa-github"></i></a>
+    </div>
+  </div>
+</footer>
 
-    <!-- Footer -->
-    <footer class="bg-transparent rounded-2xl relative z-10 mt-[10px]">
-      <div class="container mx-auto px-4 text-center">
-        <div class="flex justify-center space-x-8 mb-4 social-links">
-          <a href="#"
-            class="text-gray-400 dark:text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 text-3xl transition"
-            aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="#"
-            class="text-gray-400 dark:text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 text-3xl transition"
-            aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#"
-            class="text-gray-400 dark:text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 text-3xl transition"
-            aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-        <p id="copyright" class="text-gray-400 dark:text-gray-500 text-xs mb-20">© 2025 thanghoang07. All rights
-          reserved.</p>
-      </div>
-    </footer>
+  </div><!-- /main-content -->
 
-  </div> <!-- End main-content wrapper -->
-
-  <!-- Back to Top Button -->
-  <button id="back-to-top"
-    class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50 opacity-0 invisible"
-    aria-label="Back to top">
-    <i class="fas fa-arrow-up text-lg"></i>
+  <!-- Back to top -->
+  <button type="button" id="back-to-top" class="ds-back-to-top" aria-label="Back to top" data-i18n-aria="back-top" tabindex="-1" aria-hidden="true">
+    <i aria-hidden="true" class="fas fa-arrow-up"></i>
   </button>
-
+
 </body>
 
 </html>

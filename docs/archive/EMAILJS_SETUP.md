@@ -1,3 +1,5 @@
+> Historical document: describes the pre-review implementation. For current setup, architecture and tests, see the root README and docs/REVIEW_IMPLEMENTATION_2026-10-19.md.
+
 # 📧 Hướng dẫn Setup EmailJS cho Contact Form
 
 ## 🚀 Bước 1: Tạo tài khoản EmailJS

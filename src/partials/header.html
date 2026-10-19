@@ -2,58 +2,48 @@
          HEADER / NAV
          ───────────────────────────────────── -->
 <header class="ds-nav sticky top-0 z-30 py-4">
-  <div class="ds-container" style="display:flex;align-items:center;justify-content:space-between;">
+  <div class="ds-container ds-header-bar">
 
     <!-- Logo -->
-    <a href="#"
-      style="font-family:var(--f-display);font-size:1.4rem;font-weight:800;background:var(--g-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;">
+    <a href="#main-content" class="ds-logo">
       Thang.
     </a>
 
     <!-- Desktop nav -->
-    <nav class="hidden md:flex" style="gap:0.25rem;">
+    <nav aria-label="Main navigation" data-i18n-aria="nav-label" class="hidden md:flex ds-desktop-nav">
       <a href="#services" class="ds-nav__link" id="nav-services" data-i18n="nav-services">Services</a>
       <a href="#portfolio" class="ds-nav__link" id="nav-portfolio" data-i18n="nav-portfolio">Portfolio</a>
       <a href="#experience" class="ds-nav__link" id="nav-experience" data-i18n="nav-experience">Experience</a>
-      <a href="#skills-tools" class="ds-nav__link" id="nav-blog" data-i18n="nav-blog">Skills</a>
-      <a href="#contact" class="ds-nav__link" id="nav-resume" data-i18n="nav-resume">Contact</a>
+      <a href="#skills-tools" class="ds-nav__link" id="nav-skills" data-i18n="nav-skills">Skills</a>
+      <a href="#contact" class="ds-nav__link" id="nav-contact" data-i18n="nav-contact">Contact</a>
     </nav>
 
     <!-- Controls -->
-    <div style="display:flex;align-items:center;gap:0.5rem;">
-      <button id="toggle-theme" class="ds-btn ds-btn--icon" aria-label="Toggle dark mode" data-ripple>
-        <i class="fas fa-moon dark:hidden"></i>
-        <i class="fas fa-sun hidden dark:block"></i>
+    <div class="ds-header-controls">
+      <button type="button" id="toggle-theme" class="ds-btn ds-btn--icon" aria-label="Toggle light/dark theme" data-i18n-aria="toggle-theme" data-ripple>
+        <i aria-hidden="true" class="fas fa-moon dark:hidden"></i>
+        <i aria-hidden="true" class="fas fa-sun hidden dark:block"></i>
       </button>
-      <button id="toggle-language" class="ds-btn ds-btn--icon" data-ripple>
-        <img id="lang-vi-icon" src="https://flagcdn.com/w40/vn.png" alt="Vietnamese"
-          style="width:22px;height:15px;border-radius:2px;">
-        <img id="lang-en-icon" src="https://flagcdn.com/w40/gb.png" alt="English"
-          style="width:22px;height:15px;border-radius:2px;" class="hidden">
+      <button type="button" id="toggle-language" aria-label="Switch language" data-i18n-aria="toggle-language" class="ds-btn ds-btn--icon ds-lang-toggle" data-ripple>
+        <span id="lang-vi-icon" class="ds-lang-badge" hidden>VI</span>
+        <span id="lang-en-icon" class="ds-lang-badge">EN</span>
       </button>
 
-      <!-- Mobile menu -->
-      <button id="mobile-menu-btn" class="ds-btn ds-btn--icon md:hidden" aria-label="Menu">
-        <i class="fas fa-bars"></i>
+      <!-- Mobile menu button -->
+      <button type="button" id="mobile-menu-btn" hidden aria-expanded="false" aria-controls="mobile-menu" data-i18n-aria="menu-label" class="ds-btn ds-btn--icon md:hidden" aria-label="Menu">
+        <i aria-hidden="true" class="fas fa-bars"></i>
       </button>
     </div>
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden"
-    style="border-top:var(--b-subtle);background:rgba(8,11,20,.95);backdrop-filter:blur(20px);">
-    <div class="ds-container"
-      style="padding-top:1rem;padding-bottom:1rem;display:flex;flex-direction:column;gap:.5rem;">
-      <a href="#services" class="ds-nav__link"
-        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Services</a>
-      <a href="#portfolio" class="ds-nav__link"
-        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Portfolio</a>
-      <a href="#experience" class="ds-nav__link"
-        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Experience</a>
-      <a href="#skills-tools" class="ds-nav__link"
-        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Skills</a>
-      <a href="#contact" class="ds-nav__link"
-        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+  <div id="mobile-menu" class="md:hidden ds-mobile-menu">
+    <div class="ds-container ds-mobile-menu__inner">
+      <a href="#services" class="ds-nav__link" data-i18n="nav-services">Services</a>
+      <a href="#portfolio" class="ds-nav__link" data-i18n="nav-portfolio">Portfolio</a>
+      <a href="#experience" class="ds-nav__link" data-i18n="nav-experience">Experience</a>
+      <a href="#skills-tools" class="ds-nav__link" data-i18n="nav-skills">Skills</a>
+      <a href="#contact" class="ds-nav__link" data-i18n="nav-contact">Contact</a>
     </div>
   </div>
 </header>

@@ -5,145 +5,92 @@
   <div class="ds-container">
     <div class="ds-section-header ds-section-header--center ds-reveal">
       <span class="ds-eyebrow" id="portfolio-subtitle" data-i18n="portfolio-subtitle">My Works</span>
-      <h2 class="ds-h2 ds-text-gradient" id="portfolio-title" data-i18n="portfolio-title">Featured Projects</h2>
-      <p style="max-width:500px;margin-top:.75rem;color:rgba(255,255,255,.45);font-size:.95rem;line-height:1.7;"
-        id="portfolio-desc">
-        A selection of work spanning enterprise BPM, mobile apps, and IoT systems.
-      </p>
+      <h2 class="ds-h2 ds-text-gradient" id="portfolio-title" data-i18n="portfolio-title">Featured Portfolios</h2>
+      <p class="ds-section-desc" id="portfolio-desc" data-i18n="portfolio-desc">A selection of work spanning enterprise BPM, mobile apps, and IoT systems.</p>
     </div>
 
-    <div class="ds-filter-bar ds-reveal" data-portfolio-filter aria-label="Project category filter">
-      <button class="ds-filter-btn active" type="button" data-filter="all">All</button>
-      <button class="ds-filter-btn" type="button" data-filter="enterprise">Enterprise</button>
-      <button class="ds-filter-btn" type="button" data-filter="mobile">Mobile</button>
-      <button class="ds-filter-btn" type="button" data-filter="backend">Backend</button>
+    <div class="ds-filter-bar ds-reveal" data-portfolio-filter data-i18n-aria="filter-label" aria-label="Project category filter">
+      <button class="ds-filter-btn active" type="button" data-filter="all" aria-pressed="true"><span data-i18n="all">All</span></button>
+      <button class="ds-filter-btn" type="button" data-filter="enterprise" aria-pressed="false"><span data-i18n="enterprise">Enterprise</span></button>
+      <button class="ds-filter-btn" type="button" data-filter="mobile" aria-pressed="false"><span data-i18n="mobile">Mobile</span></button>
+      <button class="ds-filter-btn" type="button" data-filter="backend" aria-pressed="false"><span data-i18n="backend">Backend</span></button>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;">
+    <div class="card-grid">
 
       <!-- Card: SAALEM -->
-      <article class="glass-card glass-card--accent ds-project-card ds-reveal ds-stagger-1" data-project-category="enterprise"
-        style="display:flex;flex-direction:column;overflow:hidden;">
-        <div
-          style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(124,58,237,.3),rgba(34,211,238,.15));">
-          <img
-            data-src="https://ui-avatars.com/api/?name=SAALEM+HPT&background=7c3aed&color=fff&size=640&font-size=0.18"
-            alt="SAALEM HPT" class="project-image" loading="lazy"
-            style="width:100%;height:100%;object-fit:cover;filter:brightness(.85) saturate(1.1);transition:transform .5s ease,filter .5s ease;">
-          <div
-            style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(8,11,20,.75) 100%);pointer-events:none;">
-          </div>
-          <span
-            style="position:absolute;top:12px;right:12px;font-family:var(--f-display);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.35);color:var(--c-cyan);backdrop-filter:blur(8px);">Enterprise</span>
+      <article class="glass-card glass-card--accent ds-project-card ds-reveal ds-stagger-1" data-project-category="enterprise">
+        <div class="ds-project-card__media">
+          <img src="/images/project-saalem.svg" width="640" height="360" loading="lazy" decoding="async"
+            alt="SAALEM HPT" class="project-image">
+          <div class="ds-project-card__overlay"></div>
+          <span class="ds-project-badge ds-project-badge--cyan"><span data-i18n="enterprise">Enterprise</span></span>
         </div>
-        <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:.5rem;">
-          <span
-            style="font-family:var(--f-display);font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c-cyan);"
-            id="project-saalem-category" data-i18n="project-saalem-category">Enterprise Web Development</span>
-          <h3 class="project-title" id="project-saalem-title" data-i18n="project-saalem-title"
-            style="font-family:var(--f-display);font-size:1.1rem;font-weight:700;color:rgba(255,255,255,.92);margin:0;transition:color .18s ease;">
-            SAALEM HPT</h3>
-          <p id="project-saalem-desc" style="font-size:.875rem;line-height:1.6;color:rgba(255,255,255,.45);margin:0;">
-            Loan Origination System
-            web app for BIDV &amp; EXIMBANK. Built with IBM BPM, Java, and custom JS UI components.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:.75rem;">
-            <span
-              style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">IBM
-              BPM</span>
-            <span
-              style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Java</span>
-            <span
-              style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">JavaScript</span>
+        <div class="ds-project-card__body">
+          <span class="ds-project-card__category" id="project-saalem-category" data-i18n="project-saalem-category">Enterprise Web Development</span>
+          <h3 class="project-title" id="project-saalem-title" data-i18n="project-saalem-title">SAALEM HPT</h3>
+          <p class="ds-project-card__desc" id="project-saalem-desc" data-i18n="project-saalem-desc">LOS (Loan Origination System) web application for BIDV - EXIMBANK</p>
+          <div class="ds-tag-list">
+            <span class="ds-tag-pill">IBM BPM</span>
+            <span class="ds-tag-pill">Java</span>
+            <span class="ds-tag-pill">JavaScript</span>
           </div>
         </div>
-        <div style="padding:0 1.5rem 1.5rem;display:flex;gap:8px;">
-          <span class="ds-btn ds-btn--ghost" style="font-size:.75rem;padding:8px 14px;cursor:default;opacity:.6;"><i
-              class="fas fa-lock" style="font-size:.7rem;"></i> Private</span>
+        <div class="ds-project-card__actions">
+          <span class="ds-btn ds-btn--ghost ds-btn--sm ds-btn--static"><i aria-hidden="true" class="fas fa-lock"></i><span data-i18n="private">Private</span></span>
         </div>
       </article>
 
       <!-- Card: Flutter -->
-      <article class="glass-card ds-project-card ds-reveal ds-stagger-2" data-project-category="mobile" style="display:flex;flex-direction:column;overflow:hidden;">
-        <div
-          style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(34,211,238,.2),rgba(124,58,237,.1));">
-          <img
-            data-src="https://ui-avatars.com/api/?name=Flutter+App&background=22d3ee&color=fff&size=640&font-size=0.18"
-            alt="Flutter App" class="project-image" loading="lazy"
-            style="width:100%;height:100%;object-fit:cover;filter:brightness(.85) saturate(1.1);transition:transform .5s ease,filter .5s ease;">
-          <div
-            style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(8,11,20,.75) 100%);pointer-events:none;">
-          </div>
-          <span
-            style="position:absolute;top:12px;right:12px;font-family:var(--f-display);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(124,58,237,.15);border:1px solid rgba(167,139,250,.4);color:var(--c-violet-hi);backdrop-filter:blur(8px);">Mobile</span>
+      <article class="glass-card ds-project-card ds-reveal ds-stagger-2" data-project-category="mobile">
+        <div class="ds-project-card__media">
+          <img src="/images/project-flutter.svg" width="640" height="360" loading="lazy" decoding="async"
+            alt="Flutter App" class="project-image">
+          <div class="ds-project-card__overlay"></div>
+          <span class="ds-project-badge ds-project-badge--violet"><span data-i18n="mobile">Mobile</span></span>
         </div>
-        <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:.5rem;">
-          <span
-            style="font-family:var(--f-display);font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c-cyan);"
-            id="project-flutter-category" data-i18n="project-flutter-category">Mobile Development</span>
-          <h3 class="project-title" id="project-flutter-title" data-i18n="project-flutter-title"
-            style="font-family:var(--f-display);font-size:1.1rem;font-weight:700;color:rgba(255,255,255,.92);margin:0;transition:color .18s ease;">
-            Personal Mobile App</h3>
-          <p id="project-flutter-desc" data-i18n="project-flutter-desc"
-            style="font-size:.875rem;line-height:1.6;color:rgba(255,255,255,.45);margin:0;">Cross-platform mobile
-            app built with Flutter. Smooth animations, clean architecture, and offline-first design.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:.75rem;">
-            <span
-              style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Flutter</span>
-            <span
-              style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Dart</span>
-            <span
-              style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">iOS
-              / Android</span>
+        <div class="ds-project-card__body">
+          <span class="ds-project-card__category" id="project-flutter-category" data-i18n="project-flutter-category">Mobile Development</span>
+          <h3 class="project-title" id="project-flutter-title" data-i18n="project-flutter-title">Personal Mobile App</h3>
+          <p class="ds-project-card__desc" id="project-flutter-desc" data-i18n="project-flutter-desc">Cross-platform mobile application built with Flutter</p>
+          <div class="ds-tag-list">
+            <span class="ds-tag-pill">Flutter</span>
+            <span class="ds-tag-pill">Dart</span>
+            <span class="ds-tag-pill">iOS / Android</span>
           </div>
         </div>
-        <div style="padding:0 1.5rem 1.5rem;display:flex;gap:8px;">
-          <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary"
-            style="font-size:.75rem;padding:8px 14px;"><i class="fab fa-github"></i> GitHub</a>
+        <div class="ds-project-card__actions">
+          <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary ds-btn--sm"><i aria-hidden="true" class="fab fa-github"></i> <span data-i18n="github-profile">GitHub profile</span></a>
         </div>
       </article>
 
       <!-- Card: Go -->
-      <article class="glass-card ds-project-card ds-reveal ds-stagger-3" data-project-category="backend" style="display:flex;flex-direction:column;overflow:hidden;">
-        <div
-          style="position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(34,211,238,.1));">
-          <img data-src="https://ui-avatars.com/api/?name=Go+API&background=10b981&color=fff&size=640&font-size=0.18"
-            alt="Go API" class="project-image" loading="lazy"
-            style="width:100%;height:100%;object-fit:cover;filter:brightness(.85) saturate(1.1);transition:transform .5s ease,filter .5s ease;">
-          <div
-            style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(8,11,20,.75) 100%);pointer-events:none;">
-          </div>
-          <span
-            style="position:absolute;top:12px;right:12px;font-family:var(--f-display);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.35);color:#34d399;backdrop-filter:blur(8px);">Backend</span>
+      <article class="glass-card ds-project-card ds-reveal ds-stagger-3" data-project-category="backend">
+        <div class="ds-project-card__media">
+          <img src="/images/project-go.svg" width="640" height="360" loading="lazy" decoding="async"
+            alt="Go API" class="project-image">
+          <div class="ds-project-card__overlay"></div>
+          <span class="ds-project-badge ds-project-badge--emerald"><span data-i18n="backend">Backend</span></span>
         </div>
-        <div style="padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:.5rem;">
-          <span
-            style="font-family:var(--f-display);font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c-cyan);"
-            id="project-go-category" data-i18n="project-go-category">Backend Development</span>
-          <h3 class="project-title" id="project-go-title" data-i18n="project-go-title"
-            style="font-family:var(--f-display);font-size:1.1rem;font-weight:700;color:rgba(255,255,255,.92);margin:0;transition:color .18s ease;">
-            Go Backend Application</h3>
-          <p id="project-go-desc" data-i18n="project-go-desc"
-            style="font-size:.875rem;line-height:1.6;color:rgba(255,255,255,.45);margin:0;">High-performance REST
-            API built with Go. Clean architecture, PostgreSQL integration, JWT authentication.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:.75rem;">
-            <span
-              style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Go</span>
-            <span
-              style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">PostgreSQL</span>
-            <span
-              style="font-family:var(--f-display);font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);color:var(--c-violet-hi);">Docker</span>
+        <div class="ds-project-card__body">
+          <span class="ds-project-card__category" id="project-go-category" data-i18n="project-go-category">Backend Development</span>
+          <h3 class="project-title" id="project-go-title" data-i18n="project-go-title">Go Backend Application</h3>
+          <p class="ds-project-card__desc" id="project-go-desc" data-i18n="project-go-desc">High-performance backend API built with Go language</p>
+          <div class="ds-tag-list">
+            <span class="ds-tag-pill">Go</span>
+            <span class="ds-tag-pill">PostgreSQL</span>
+            <span class="ds-tag-pill">Docker</span>
           </div>
         </div>
-        <div style="padding:0 1.5rem 1.5rem;display:flex;gap:8px;">
-          <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary"
-            style="font-size:.75rem;padding:8px 14px;"><i class="fab fa-github"></i> GitHub</a>
+        <div class="ds-project-card__actions">
+          <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary ds-btn--sm"><i aria-hidden="true" class="fab fa-github"></i> <span data-i18n="github-profile">GitHub profile</span></a>
         </div>
       </article>
     </div>
 
-    <div style="display:flex;justify-content:center;margin-top:3rem;" class="ds-reveal">
+    <div class="ds-section-footer ds-reveal">
       <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--ghost">
-        <i class="fab fa-github"></i> View all on GitHub <i class="fas fa-arrow-right" style="font-size:.75rem;"></i>
+        <i aria-hidden="true" class="fab fa-github"></i><span data-i18n="github-all">View GitHub profile</span><i aria-hidden="true" class="fas fa-arrow-right ds-icon-sm"></i>
       </a>
     </div>
   </div>

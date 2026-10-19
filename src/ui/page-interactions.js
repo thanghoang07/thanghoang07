@@ -10,6 +10,7 @@ export function shouldShowProject(category, filter) {
 
 export function applyPortfolioFilter(cards, buttons, activeButton, filter) {
   setOnlyActive(buttons, activeButton);
+  buttons.forEach(button => button.setAttribute?.('aria-pressed', String(button === activeButton)));
   cards.forEach((card) => {
     card.classList.toggle('is-filtered-out', !shouldShowProject(card.dataset.projectCategory, filter));
   });
@@ -55,18 +56,19 @@ export function initActiveNav({
   const links = Array.from(doc.querySelectorAll('.ds-nav__link[href^="#"]'));
   if (!links.length) return null;
 
-  const linkById = new Map(
-    links
-      .map((link) => [link.getAttribute('href')?.slice(1), link])
-      .filter(([id]) => sectionIds.includes(id))
-  );
   const sections = sectionIds.map((id) => doc.getElementById(id)).filter(Boolean);
   if (!sections.length || !('IntersectionObserver' in win)) return null;
 
-  const clearActive = () => links.forEach((link) => link.classList.remove('active'));
+  const clearActive = () => links.forEach((link) => {
+    link.classList.remove('active');
+    link.removeAttribute?.('aria-current');
+  });
   const setActive = (id) => {
     clearActive();
-    linkById.get(id)?.classList.add('active');
+    links.filter(link => link.getAttribute('href') === `#${id}`).forEach(link => {
+      link.classList.add('active');
+      link.setAttribute?.('aria-current', 'location');
+    });
   };
 
   const onScroll = () => {
@@ -74,17 +76,19 @@ export function initActiveNav({
   };
   win.addEventListener('scroll', onScroll, { passive: true });
 
+  const intersections = new Map();
   const observer = observerFactory((entries) => {
+    entries.forEach(entry => intersections.set(entry.target.id, entry));
     if (win.scrollY < 100) {
       clearActive();
       return;
     }
 
-    const visible = entries
+    const visible = [...intersections.values()]
       .filter((entry) => entry.isIntersecting)
       .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
     if (visible?.target?.id) setActive(visible.target.id);
-  }, { rootMargin: '-25% 0px -45% 0px', threshold: [0.3, 0.55] });
+  }, { rootMargin: '-10% 0px -25% 0px', threshold: [0, 0.1, 0.3, 0.55] });
 
   sections.forEach((section) => observer.observe(section));
   return () => {
@@ -109,6 +113,10 @@ export function initCounters({
     const start = now();
 
     const tick = (currentTime) => {
+      if (win.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+        el.textContent = formatCounterValue(target, 1, suffix);
+        return;
+      }
       const progress = Math.min((currentTime - start) / duration, 1);
       el.textContent = formatCounterValue(target, easeOutCubic(progress), suffix);
       if (progress < 1) win.requestAnimationFrame(tick);

@@ -21,29 +21,32 @@
   <meta property="og:title" content="Thang Hoang Duc - Frontend Developer Portfolio">
   <meta property="og:description"
     content="Frontend developer với hơn 5 năm kinh nghiệm phát triển giao diện người dùng.">
-  <meta property="og:image"
-    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=7c3aed&color=fff&size=1200">
+  <meta property="og:image" content="https://thanghoang07.github.io/images/og-preview.svg">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://thanghoang07.github.io/">
   <meta property="twitter:title" content="Thang Hoang Duc - Frontend Developer Portfolio">
-  <meta property="twitter:image"
-    content="https://ui-avatars.com/api/?name=Thang+Hoang+Duc&background=7c3aed&color=fff&size=1200">
+  <meta property="twitter:image" content="https://thanghoang07.github.io/images/og-preview.svg">
 
-  <meta name="theme-color" content="#7c3aed">
+  <meta name="theme-color" content="#6d28d9">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Thang Portfolio">
   <link rel="canonical" href="https://thanghoang07.github.io/">
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="manifest" href="/manifest.json" />
 
-  <!-- Fonts -->
+  <!-- Fonts (non-render-blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
+  <link rel="preload"
     href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
-    rel="stylesheet">
+    as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet">
+  </noscript>
 
   <!-- Icons -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -54,175 +57,14 @@
       crossorigin="anonymous">
   </noscript>
 
-  <!-- CSS -->
-  <!-- <link rel="stylesheet" href="/src/design-system.css"> -->
-  <!-- <link rel="preload" href="/src/style.css" as="style"> -->
-
-  <!-- EmailJS -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
   <!-- Structured Data -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Person","name":"Thang Hoang Duc","jobTitle":"Frontend Developer","url":"https://thanghoang07.github.io/","sameAs":["https://www.linkedin.com/in/thanghoang07","https://github.com/thanghoang07"],"worksFor":{"@type":"Organization","name":"HPT Vietnam Corporation"},"address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"email":"thanghoang07@gmail.com","telephone":"+84932431562"}
   </script>
-
-  <link rel="modulepreload" href="/src/main.js">
-
-  <!-- Critical inline styles: loader + base body override -->
-  <style>
-    /* ── Loader ── */
-    .page-loader {
-      position: fixed;
-      inset: 0;
-      background: var(--c-bg, #080b14);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 1.5rem;
-      z-index: 9999;
-      transition: opacity .6s ease, visibility .6s ease
-    }
-
-    .page-loader.fade-out {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none
-    }
-
-    .loader-logo {
-      font-family: 'Oxanium', monospace;
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #7c3aed, #22d3ee);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: _lglow 2s ease-in-out infinite alternate
-    }
-
-    @keyframes _lglow {
-      0% {
-        opacity: .8;
-        transform: scale(1)
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1.04)
-      }
-    }
-
-    .loader-spinner {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 3px solid rgba(124, 58, 237, .15);
-      border-top-color: #7c3aed;
-      border-right-color: #22d3ee;
-      animation: _lspin .9s linear infinite
-    }
-
-    @keyframes _lspin {
-      to {
-        transform: rotate(360deg)
-      }
-    }
-
-    .loader-text {
-      font-family: 'Oxanium', monospace;
-      font-size: .7rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .35);
-      animation: _lpulse 1.5s ease-in-out infinite
-    }
-
-    @keyframes _lpulse {
-
-      0%,
-      100% {
-        opacity: .35
-      }
-
-      50% {
-        opacity: .75
-      }
-    }
-
-    /* ── Typing cursor ── */
-    .typing-cursor {
-      display: inline-block;
-      width: 3px;
-      background: currentColor;
-      animation: _blink 1s infinite;
-      margin-left: 2px;
-      vertical-align: middle
-    }
-
-    @keyframes _blink {
-
-      0%,
-      50% {
-        opacity: 1
-      }
-
-      51%,
-      100% {
-        opacity: 0
-      }
-    }
-
-    /* ── Hero entrance ── */
-    .hero-fade-up {
-      opacity: 0;
-      transform: translateY(28px);
-      animation: _hfu .8s .3s ease-out forwards
-    }
-
-    .hero-fade-up-delay {
-      opacity: 0;
-      transform: translateY(28px);
-      animation: _hfu .8s .7s ease-out forwards
-    }
-
-    @keyframes _hfu {
-      to {
-        opacity: 1;
-        transform: none
-      }
-    }
-
-    /* ── Main content hidden until loaded ── */
-    body:not(.loaded) .main-content {
-      opacity: 0
-    }
-
-    .main-content {
-      opacity: 1;
-      transition: opacity .4s ease
-    }
-
-    /* skeleton */
-    .skeleton {
-      background: linear-gradient(90deg, rgba(255, 255, 255, .04) 25%, rgba(255, 255, 255, .08) 50%, rgba(255, 255, 255, .04) 75%);
-      background-size: 200% 100%;
-      animation: _sk 1.5s infinite
-    }
-
-    @keyframes _sk {
-      0% {
-        background-position: 200% 0
-      }
-
-      100% {
-        background-position: -200% 0
-      }
-    }
-  </style>
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content" data-i18n="skip-content">Skip to main content</a>
   <!-- Scroll progress -->
   <div class="ds-scroll-progress" style="width:0%"></div>
 
@@ -230,24 +72,16 @@
   <div class="ds-cursor-glow"></div>
 
   <!-- ═══════════════════════════════════════
-       LOADING SCREEN
-       ═══════════════════════════════════════ -->
-  <div class="page-loader" id="page-loader">
-    <div class="loader-logo">Thang.</div>
-    <div class="loader-spinner"></div>
-    <div class="loader-text" id="loader-msg">Initialising…</div>
-  </div>
-
-  <!-- ═══════════════════════════════════════
        MAIN CONTENT
        ═══════════════════════════════════════ -->
-  <div class="main-content" id="main-content">
+  <div class="page-shell">
 
     <!-- Background floating shapes -->
     <div class="fixed inset-0 z-0 pointer-events-none" id="floating-shapes-container"></div>
 
     <!-- ── HEADER / NAV ── -->
     <load-partial src="./src/partials/header.html" />
+    <main id="main-content" tabindex="-1">
 
     <!-- ── HERO ── -->
     <load-partial src="./src/partials/hero.html" />
@@ -270,39 +104,16 @@
     <!-- ── CONTACT ── -->
     <load-partial src="./src/partials/contact.html" />
 
+    </main>
     <!-- ── FOOTER ── -->
     <load-partial src="./src/partials/footer.html" />
 
   </div><!-- /main-content -->
 
   <!-- Back to top -->
-  <button id="back-to-top" class="ds-back-to-top" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
+  <button type="button" id="back-to-top" class="ds-back-to-top" aria-label="Back to top" data-i18n-aria="back-top" tabindex="-1" aria-hidden="true">
+    <i aria-hidden="true" class="fas fa-arrow-up"></i>
   </button>
-
-  <!-- Tab switching script (inline — no dependency) -->
-  <script>
-    function switchTab(company) {
-      ['hpt', 'tk25', 'nbn', 'devup'].forEach(c => {
-        const btn = document.getElementById('tab-' + c);
-        const panel = document.getElementById('content-' + c);
-        if (btn) btn.classList.toggle('active', c === company);
-        if (panel) panel.classList.toggle('hidden', c !== company);
-      });
-    }
-    // Mobile menu
-    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
-      document.getElementById('mobile-menu')?.classList.toggle('hidden');
-    });
-    // Back to top visibility
-    window.addEventListener('scroll', () => {
-      const btn = document.getElementById('back-to-top');
-      if (btn) btn.classList.toggle('show', window.scrollY > 300);
-    }, { passive: true });
-    document.getElementById('back-to-top')?.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
 
   <script type="module" src="/src/main.js"></script>
 </body>

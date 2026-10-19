@@ -1,594 +1,65 @@
-/**
- * 📧 Contact Form Handler
- * Enhanced contact form with validation and better UX
- */
+import { translate } from './translations.js';
+import { validateContactValue, buildMailto } from './contact-validation.js';
 
-import { getColor } from './color-system.js';
-import { CONTACT_MESSAGES } from './contact-messages.js';
-
-/**
- * Contact Form Manager Class
- */
 export class ContactFormManager {
-  constructor() {
-    this.form = null;
-    this.submitButton = null;
-    this.isSubmitting = false;
-  }
-
-  /**
-   * Initialize contact form functionality
-   */
   init() {
-    console.log('📧 Initializing contact form...');
-
-    this.form = document.querySelector('#contact form');
-    if (!this.form) {
-      console.warn('Contact form not found');
-      return;
-    }
-
-    this.submitButton = this.form.querySelector('[type="submit"], #contact-send-btn');
-    
-    this.initEmailJS();
-    this.setupFormValidation();
-    this.setupFormSubmission();
-    this.setupInputEnhancements();
-
-    console.log('✅ Contact form ready');
-  }
-
-  /**
-   * Setup form validation
-   */
-  setupFormValidation() {
-    const inputs = this.form.querySelectorAll('input, textarea');
-    
-    inputs.forEach(input => {
-      // Real-time validation
+    this.form = document.getElementById('contact-form');
+    if (!this.form || this.form.dataset.ready) return;
+    this.inputs = [...this.form.querySelectorAll('input, textarea')];
+    this.status = document.getElementById('contact-status');
+    this.inputs.forEach(input => {
       input.addEventListener('blur', () => this.validateField(input));
-      input.addEventListener('input', () => this.clearFieldError(input));
+      input.addEventListener('input', () => {
+        this.clearFieldError(input);
+        this.status.textContent = '';
+        delete this.status.dataset.i18n;
+      });
     });
-  }
-
-  /**
-   * Setup form submission handler
-   */
-  setupFormSubmission() {
-    this.form.addEventListener('submit', (e) => {
-      e.preventDefault();
+    this.form.addEventListener('submit', event => {
+      event.preventDefault();
       this.handleFormSubmit();
     });
+    this.form.removeAttribute('onsubmit');
+    this.form.dataset.ready = 'true';
+    document.getElementById('contact-send-btn').disabled = false;
   }
-
-  /**
-   * Setup input enhancements
-   */
-  setupInputEnhancements() {
-    const inputs = this.form.querySelectorAll('input, textarea');
-    
-    inputs.forEach(input => {
-      // Add character counter for textarea
-      if (input.tagName === 'TEXTAREA') {
-        this.addCharacterCounter(input);
-      }
-    });
+  clearFieldError(input) {
+    const error = document.getElementById('contact-' + input.name + '-error');
+    error.hidden = true;
+    error.textContent = '';
+    delete error.dataset.i18n;
+    input.removeAttribute('aria-invalid');
   }
-
-  /**
-   * Handle form submission
-   */
-  async handleFormSubmit() {
-    if (this.isSubmitting) return;
-
-    // Validate all fields
-    const isValid = this.validateForm();
-    if (!isValid) {
-      this.showError(CONTACT_MESSAGES.invalidForm);
+  validateField(input) {
+    const code = validateContactValue(input.name, input.value, input.maxLength);
+    this.clearFieldError(input);
+    if (!code) return true;
+    const error = document.getElementById('contact-' + input.name + '-error');
+    error.dataset.i18n = 'contact-' + code;
+    error.textContent = translate(error.dataset.i18n);
+    error.hidden = false;
+    input.setAttribute('aria-invalid', 'true');
+    return false;
+  }
+  showStatus(key) {
+    this.status.dataset.i18n = 'contact-' + key;
+    this.status.textContent = translate(this.status.dataset.i18n);
+  }
+  handleFormSubmit() {
+    const invalid = this.inputs.filter(input => !this.validateField(input));
+    if (invalid.length) {
+      this.showStatus('invalidForm');
+      invalid[0].focus();
       return;
     }
-
-    this.isSubmitting = true;
-    this.setSubmittingState(true);
-
+    const data = Object.fromEntries(this.inputs.map(input => [input.name, input.value]));
     try {
-      const formData = this.getFormData();
-      console.log('Contact form submitted:', formData);
-
-      // Try EmailJS first, fallback to Formspree
-      await this.sendEmail(formData);
-
-      // Show success message
-      this.showSuccess(CONTACT_MESSAGES.sendSuccess);
-      this.resetForm();
-
-    } catch (error) {
-      console.error('Form submission error:', error);
-      this.showError(CONTACT_MESSAGES.sendError);
-    } finally {
-      this.isSubmitting = false;
-      this.setSubmittingState(false);
+      window.location.href = buildMailto(data);
+      this.showStatus('opened');
+    } catch {
+      this.showStatus('error');
     }
-  }
-
-  /**
-   * Get form data
-   */
-  getFormData() {
-    const formData = new FormData(this.form);
-    return {
-      name: formData.get('name') || document.getElementById('contact-name-input')?.value || '',
-      email: formData.get('email') || document.getElementById('contact-email-input')?.value || '',
-      message: formData.get('message') || document.getElementById('contact-message-input')?.value || ''
-    };
-  }
-
-  /**
-   * Validate entire form
-   */
-  validateForm() {
-    const inputs = this.form.querySelectorAll('input, textarea');
-    let isValid = true;
-
-    inputs.forEach(input => {
-      if (!this.validateField(input)) {
-        isValid = false;
-      }
-    });
-
-    return isValid;
-  }
-
-  /**
-   * Validate individual field
-   */
-  validateField(input) {
-    const value = input.value.trim();
-    const fieldName = input.name || input.id;
-    let isValid = true;
-    let errorMessage = '';
-
-    // Required field validation
-    if (!value) {
-      errorMessage = CONTACT_MESSAGES.required;
-      isValid = false;
-    } else {
-      // Field-specific validation
-      switch (fieldName) {
-        case 'email':
-        case 'contact-email-input':
-          if (!this.isValidEmail(value)) {
-            errorMessage = CONTACT_MESSAGES.invalidEmail;
-            isValid = false;
-          }
-          break;
-        case 'name':
-        case 'contact-name-input':
-          if (value.length < 2) {
-            errorMessage = CONTACT_MESSAGES.nameTooShort;
-            isValid = false;
-          }
-          break;
-        case 'message':
-        case 'contact-message-input':
-          if (value.length < 10) {
-            errorMessage = CONTACT_MESSAGES.messageTooShort;
-            isValid = false;
-          }
-          break;
-      }
-    }
-
-    // Show/hide field error
-    if (!isValid) {
-      this.showFieldError(input, errorMessage);
-    } else {
-      this.clearFieldError(input);
-    }
-
-    return isValid;
-  }
-
-  /**
-   * Validate email format
-   */
-  isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  /**
-   * Show field error
-   */
-  showFieldError(input, message) {
-    // Remove existing error
-    this.clearFieldError(input);
-
-    // Add error class
-    input.classList.add('error');
-
-    // Create error message element
-    const errorElement = document.createElement('div');
-    errorElement.className = 'field-error';
-    errorElement.textContent = message;
-    errorElement.style.cssText = `
-      color: #ef4444;
-      font-size: 0.875rem;
-      margin-top: 0.25rem;
-      animation: fadeIn 0.3s ease;
-    `;
-
-    // Insert after input
-    input.parentNode.insertBefore(errorElement, input.nextSibling);
-  }
-
-  /**
-   * Clear field error
-   */
-  clearFieldError(input) {
-    input.classList.remove('error');
-    const errorElement = input.parentNode.querySelector('.field-error');
-    if (errorElement) {
-      errorElement.remove();
-    }
-  }
-
-  /**
-   * Add floating label effect
-   */
-  addFloatingLabelEffect(input) {
-    const placeholder = input.placeholder;
-    if (!placeholder) return;
-
-    // Create floating label
-    const label = document.createElement('label');
-    label.textContent = placeholder;
-    label.className = 'floating-label';
-    label.style.cssText = `
-      position: absolute;
-      left: 0.75rem;
-      top: 0.75rem;
-      background: white;
-      padding: 0 0.25rem;
-      font-size: 0.875rem;
-      color: #6b7280;
-      pointer-events: none;
-      transition: all 0.2s ease;
-      z-index: 1;
-    `;
-
-    // Wrap input in relative container
-    const wrapper = document.createElement('div');
-    wrapper.style.position = 'relative';
-    input.parentNode.insertBefore(wrapper, input);
-    wrapper.appendChild(input);
-    wrapper.appendChild(label);
-
-    // Handle focus/blur events
-    const updateLabel = () => {
-      if (input.value || input === document.activeElement) {
-        label.style.transform = 'translateY(-1.5rem) scale(0.875)';
-        label.style.color = getColor('primary', 600);
-      } else {
-        label.style.transform = 'translateY(0) scale(1)';
-        label.style.color = getColor('secondary', 500);
-      }
-    };
-
-    input.addEventListener('focus', updateLabel);
-    input.addEventListener('blur', updateLabel);
-    input.addEventListener('input', updateLabel);
-
-    // Initial state
-    updateLabel();
-
-    // Clear placeholder to avoid overlap
-    input.placeholder = '';
-  }
-
-  /**
-   * Add character counter
-   */
-  addCharacterCounter(textarea) {
-    const maxLength = textarea.getAttribute('maxlength') || 500;
-    
-    const counter = document.createElement('div');
-    counter.className = 'character-counter';
-    counter.style.cssText = `
-      text-align: right;
-      font-size: 0.75rem;
-      color: #6b7280;
-      margin-top: 0.25rem;
-    `;
-
-    textarea.parentNode.appendChild(counter);
-
-    const updateCounter = () => {
-      const current = textarea.value.length;
-      counter.textContent = `${current}/${maxLength}`;
-      
-      if (current > maxLength * 0.8) {
-        counter.style.color = getColor('warning', 500);
-      } else if (current === maxLength) {
-        counter.style.color = getColor('error', 500);
-      } else {
-        counter.style.color = getColor('secondary', 500);
-      }
-    };
-
-    textarea.addEventListener('input', updateCounter);
-    updateCounter();
-  }
-
-  /**
-   * Set submitting state
-   */
-  setSubmittingState(isSubmitting) {
-    if (!this.submitButton) return;
-
-    if (isSubmitting) {
-      this.submitButton.disabled = true;
-      this.submitButton.textContent = CONTACT_MESSAGES.submitting;
-      this.submitButton.style.opacity = '0.7';
-    } else {
-      this.submitButton.disabled = false;
-      this.submitButton.textContent = CONTACT_MESSAGES.submit;
-      this.submitButton.style.opacity = '1';
-    }
-  }
-
-  /**
-   * Send email with reliable strategy
-   */
-  async sendEmail(formData) {
-    console.log('Attempting to send email...', formData);
-    
-    // For now, use the most reliable method: mailto
-    // This will always work and open user's default email client
-    return this.sendEmailWithMailto(formData);
-    
-    // Alternative: uncomment below to try web services first
-    /*
-    try {
-      return await this.sendEmailWithWeb3Forms(formData);
-    } catch (error) {
-      console.warn('Web service failed, using mailto:', error);
-      return this.sendEmailWithMailto(formData);
-    }
-    */
-  }
-
-  /**
-   * Send email using EmailJS service
-   */
-  async sendEmailWithEmailJS(formData) {
-    const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      message: formData.message,
-      to_email: 'thanghoang07@gmail.com',
-      reply_to: formData.email
-    };
-
-    const result = await window.emailjs.send(
-      this.emailJSConfig.serviceId,
-      this.emailJSConfig.templateId,
-      templateParams
-    );
-    
-    console.log('Email sent via EmailJS:', result);
-    return result;
-  }
-
-  /**
-   * Send email using Web3Forms service
-   */
-  async sendEmailWithWeb3Forms(formData) {
-    // Get your free access key from https://web3forms.com
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        access_key: 'YOUR_WEB3FORMS_KEY', // Replace with your key from web3forms.com
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-        subject: `Portfolio Contact: ${formData.name}`,
-        from_name: formData.name,
-        to_email: 'thanghoang07@gmail.com'
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-
-    const result = await response.json();
-    
-    if (!result.success) {
-      throw new Error(result.message || 'Form submission failed');
-    }
-    
-    console.log('Email sent via Web3Forms:', result);
-    return result;
-  }
-
-  /**
-   * Send email using Formspree service (backup)
-   */
-  async sendEmailWithFormspree(formData) {
-    // Use Web3Forms - more reliable and free
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        access_key: '8f4b2c1e-7d3a-4f9e-b2c8-1e7d3a4f9e2c', // Public demo key
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-        subject: `New message from ${formData.name} - Portfolio Contact`,
-        from_name: formData.name,
-        to_email: 'thanghoang07@gmail.com'
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-
-    const result = await response.json();
-    
-    if (!result.success) {
-      throw new Error(result.message || 'Form submission failed');
-    }
-    
-    console.log('Email sent via Web3Forms:', result);
-    return result;
-  }
-
-  /**
-   * Send email using mailto (final fallback)
-   */
-  sendEmailWithMailto(formData) {
-    const subject = encodeURIComponent(`New message from ${formData.name} - Portfolio Contact`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n\n` +
-      `Message:\n${formData.message}\n\n` +
-      `---\nSent from Portfolio Contact Form`
-    );
-    
-    const mailtoUrl = `mailto:thanghoang07@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Open default email client
-    window.location.href = mailtoUrl;
-    
-    console.log('Email client opened with mailto');
-    return Promise.resolve({ method: 'mailto', success: true });
-  }
-
-  /**
-   * Initialize EmailJS configuration
-   */
-  initEmailJS() {
-    // EmailJS configuration - replace with your actual keys
-    const emailJSConfig = {
-      publicKey: 'YOUR_PUBLIC_KEY',        // Get from EmailJS dashboard
-      serviceId: 'YOUR_SERVICE_ID',        // Get from EmailJS dashboard  
-      templateId: 'YOUR_TEMPLATE_ID'       // Get from EmailJS dashboard
-    };
-
-    // Store config for later use
-    this.emailJSConfig = emailJSConfig;
-
-    if (window.emailjs && emailJSConfig.publicKey !== 'YOUR_PUBLIC_KEY') {
-      window.emailjs.init(emailJSConfig.publicKey);
-      console.log('✅ EmailJS initialized');
-    } else {
-      console.log('ℹ️ EmailJS not configured, will use Formspree fallback');
-    }
-  }
-
-  /**
-   * Show success message
-   */
-  showSuccess(message) {
-    this.showNotification(message, 'success');
-  }
-
-  /**
-   * Show error message
-   */
-  showError(message) {
-    this.showNotification(message, 'error');
-  }
-
-  /**
-   * Show notification
-   */
-  showNotification(message, type = 'success') {
-    document.querySelectorAll('.ds-toast').forEach((toast) => toast.remove());
-
-    const toast = document.createElement('div');
-    toast.className = `ds-toast ds-toast--${type}`;
-    toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
-    toast.textContent = message;
-    document.body.appendChild(toast);
-
-    window.setTimeout(() => {
-      toast.classList.add('is-hiding');
-      window.setTimeout(() => toast.remove(), 220);
-    }, 4000);
-  }
-
-  /**
-   * Reset form to initial state
-   */
-  resetForm() {
-    this.form.reset();
-    
-    // Clear all field errors
-    const inputs = this.form.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-      this.clearFieldError(input);
-      
-      // Reset floating labels
-      const label = input.parentNode.querySelector('.floating-label');
-      if (label) {
-        label.style.transform = 'translateY(0) scale(1)';
-        label.style.color = getColor('secondary', 500);
-      }
-    });
-
-    // Reset character counters
-    const counters = this.form.querySelectorAll('.character-counter');
-    counters.forEach(counter => {
-      const textarea = counter.parentNode.querySelector('textarea');
-      if (textarea) {
-        const maxLength = textarea.getAttribute('maxlength') || 500;
-        counter.textContent = `0/${maxLength}`;
-        counter.style.color = getColor('secondary', 500);
-      }
-    });
+    // Opening a mail client is not delivery confirmation. Keep the draft intact.
   }
 }
-
-// Initialize work experience tabs (moved from main.js)
-export function initWorkExperienceTabs() {
-  const tabs = document.querySelectorAll('.company-tab');
-  const details = document.querySelectorAll('.company-detail');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const company = tab.dataset.company;
-
-      // Remove active class from all tabs
-      tabs.forEach(t => {
-        t.classList.remove('active', 'bg-purple-50', 'text-purple-600', 'dark:bg-purple-900', 'dark:text-purple-300');
-        t.classList.add('bg-white', 'text-gray-700', 'dark:bg-gray-800', 'dark:text-gray-200');
-      });
-
-      // Add active class to clicked tab
-      tab.classList.add('active', 'bg-purple-50', 'text-purple-600', 'dark:bg-purple-900', 'dark:text-purple-300');
-      tab.classList.remove('bg-white', 'text-gray-700', 'dark:bg-gray-800', 'dark:text-gray-200');
-
-      // Hide all details
-      details.forEach(d => d.classList.add('hidden'));
-
-      // Show selected detail
-      const targetDetail = document.getElementById(`exp-${company}`);
-      if (targetDetail) {
-        targetDetail.classList.remove('hidden');
-      }
-
-      console.log(`Switched to company: ${company}`);
-    });
-  });
-}
-
-// Create and export singleton instance
 export const contactFormManager = new ContactFormManager();

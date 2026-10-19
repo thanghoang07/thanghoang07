@@ -1,3 +1,5 @@
+> Historical document: describes the pre-review implementation. For current setup, architecture and tests, see the root README and docs/REVIEW_IMPLEMENTATION_2026-10-19.md.
+
 # 📚 Portfolio Documentation - Complete Guide
 
 **Last Updated**: November 1, 2025  
