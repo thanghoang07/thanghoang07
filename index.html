@@ -48,15 +48,6 @@
       rel="stylesheet">
   </noscript>
 
-  <!-- Icons -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style"
-    onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous">
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      crossorigin="anonymous">
-  </noscript>
-
   <!-- Structured Data -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Person","name":"Thang Hoang Duc","jobTitle":"Frontend Developer","url":"https://thanghoang07.github.io/","sameAs":["https://www.linkedin.com/in/thanghoang07","https://github.com/thanghoang07"],"worksFor":{"@type":"Organization","name":"HPT Vietnam Corporation"},"address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"email":"thanghoang07@gmail.com","telephone":"+84932431562"}
@@ -64,6 +55,7 @@
 </head>
 
 <body>
+  <load-partial src="./src/partials/icons-sprite.html" />
   <a class="skip-link" href="#main-content" data-i18n="skip-content">Skip to main content</a>
   <!-- Scroll progress -->
   <div class="ds-scroll-progress" style="width:0%"></div>
@@ -112,7 +104,7 @@
 
   <!-- Back to top -->
   <button type="button" id="back-to-top" class="ds-back-to-top" aria-label="Back to top" data-i18n-aria="back-top" tabindex="-1" aria-hidden="true">
-    <i aria-hidden="true" class="fas fa-arrow-up"></i>
+    <svg aria-hidden="true" class="ds-icon"><use href="#icon-arrow-up"/></svg>
   </button>
 
   <script type="module" src="/src/main.js"></script>

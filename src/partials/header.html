@@ -21,8 +21,8 @@
     <!-- Controls -->
     <div class="ds-header-controls">
       <button type="button" id="toggle-theme" class="ds-btn ds-btn--icon" aria-label="Toggle light/dark theme" data-i18n-aria="toggle-theme" data-ripple>
-        <i aria-hidden="true" class="fas fa-moon dark:hidden"></i>
-        <i aria-hidden="true" class="fas fa-sun hidden dark:block"></i>
+        <svg aria-hidden="true" class="ds-icon dark:hidden"><use href="#icon-moon"/></svg>
+        <svg aria-hidden="true" class="ds-icon hidden dark:block"><use href="#icon-sun"/></svg>
       </button>
       <button type="button" id="toggle-language" aria-label="Switch language" data-i18n-aria="toggle-language" class="ds-btn ds-btn--icon ds-lang-toggle" data-ripple>
         <span id="lang-vi-icon" class="ds-lang-badge" hidden>VI</span>
@@ -31,7 +31,7 @@
 
       <!-- Mobile menu button -->
       <button type="button" id="mobile-menu-btn" hidden aria-expanded="false" aria-controls="mobile-menu" data-i18n-aria="menu-label" class="ds-btn ds-btn--icon md:hidden" aria-label="Menu">
-        <i aria-hidden="true" class="fas fa-bars"></i>
+        <svg aria-hidden="true" class="ds-icon"><use href="#icon-bars"/></svg>
       </button>
     </div>
   </div>

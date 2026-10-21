@@ -10,6 +10,7 @@ import {
 } from '../../src/ui/page-interactions.js';
 import { initWorkExpTabs } from '../../src/ui/work-exp-tabs.js';
 import { LanguageManager } from '../../src/translations.js';
+import { ContactFormManager } from '../../src/contact-form.js';
 
 function classList(initial = []) {
   const values = new Set(initial);
@@ -233,3 +234,43 @@ test('LanguageManager updates text, aria-label, and language badges safely', () 
   assert.equal(viBadge.hidden, false);
   assert.equal(enBadge.hidden, true);
 });
+
+test('ContactFormManager copies email to clipboard and updates status & icon state', async () => {
+  let copiedText = '';
+  const copyIcon = { hiddenAttr: false, setAttribute: () => { copyIcon.hiddenAttr = true; }, removeAttribute: () => { copyIcon.hiddenAttr = false; } };
+  const checkIcon = { hiddenAttr: true, setAttribute: () => { checkIcon.hiddenAttr = true; }, removeAttribute: () => { checkIcon.hiddenAttr = false; } };
+  const label = { dataset: { i18n: 'contact-copy' }, textContent: 'Copy email' };
+  const status = { dataset: {}, textContent: '' };
+  const copyBtn = {
+    dataset: { email: 'thanghoang07@gmail.com' },
+    classList: classList(),
+    addEventListener: () => {},
+    querySelector: (sel) => (sel.includes('"copy"') ? copyIcon : checkIcon),
+  };
+  const doc = {
+    getElementById: (id) => {
+      if (id === 'contact-copy-label') return label;
+      if (id === 'contact-status') return status;
+      return null;
+    },
+  };
+
+  const manager = new ContactFormManager();
+  manager.doc = doc;
+  manager.copyBtn = copyBtn;
+  manager.status = status;
+
+  const ok = await manager.handleCopyEmail({
+    writeText: async (value) => { copiedText = value; },
+  });
+  clearTimeout(manager.copyTimer);
+
+  assert.equal(ok, true);
+  assert.equal(copiedText, 'thanghoang07@gmail.com');
+  assert.equal(copyBtn.classList.contains('is-copied'), true);
+  assert.equal(copyIcon.hiddenAttr, true);
+  assert.equal(checkIcon.hiddenAttr, false);
+  assert.equal(label.dataset.i18n, 'contact-copied');
+  assert.equal(status.dataset.i18n, 'contact-copy-status');
+});
+

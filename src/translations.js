@@ -1,7 +1,7 @@
 import translations from './translations.json' with { type: 'json' };
 export { translations };
 
-export function translate(key, lang = document.documentElement.lang) {
+export function translate(key, lang = (typeof document !== 'undefined' && document.documentElement?.lang) || 'en') {
   return translations[lang]?.[key] ?? translations.en[key] ?? key;
 }
 
