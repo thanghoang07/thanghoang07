@@ -4,9 +4,9 @@
 <section id="portfolio" class="ds-section">
   <div class="ds-container">
     <div class="ds-section-header ds-section-header--center ds-reveal">
-      <span class="ds-eyebrow" id="portfolio-subtitle" data-i18n="portfolio-subtitle">My Works</span>
-      <h2 class="ds-h2 ds-text-gradient" id="portfolio-title" data-i18n="portfolio-title">Featured Portfolios</h2>
-      <p class="ds-section-desc" id="portfolio-desc" data-i18n="portfolio-desc">A selection of work spanning enterprise BPM, mobile apps, and IoT systems.</p>
+      <span class="ds-eyebrow" id="portfolio-subtitle" data-i18n="portfolio-subtitle">Selected Works</span>
+      <h2 class="ds-h2 ds-text-gradient" id="portfolio-title" data-i18n="portfolio-title">Featured Projects</h2>
+      <p class="ds-section-desc" id="portfolio-desc" data-i18n="portfolio-desc">A selection of projects spanning enterprise banking BPM, cross-platform mobile apps, and backend services.</p>
     </div>
 
     <div class="ds-filter-bar ds-reveal" data-portfolio-filter data-i18n-aria="filter-label" aria-label="Project category filter">
@@ -16,7 +16,7 @@
       <button class="ds-filter-btn" type="button" data-filter="backend" aria-pressed="false"><span data-i18n="backend">Backend</span></button>
     </div>
 
-    <div class="card-grid">
+    <div class="card-grid portfolio-grid">
 
       <!-- Card: SAALEM -->
       <article class="glass-card glass-card--accent ds-project-card ds-reveal ds-stagger-1" data-project-category="enterprise">
@@ -27,7 +27,10 @@
           <span class="ds-project-badge ds-project-badge--cyan"><span data-i18n="enterprise">Enterprise</span></span>
         </div>
         <div class="ds-project-card__body">
-          <span class="ds-project-card__category" id="project-saalem-category" data-i18n="project-saalem-category">Enterprise Web Development</span>
+          <div class="ds-project-card__meta-row">
+            <span class="ds-project-index" aria-hidden="true">01</span>
+            <span class="ds-project-card__category" id="project-saalem-category" data-i18n="project-saalem-category">Enterprise Web Development</span>
+          </div>
           <h3 class="project-title" id="project-saalem-title" data-i18n="project-saalem-title">SAALEM HPT</h3>
           <p class="ds-project-card__desc" id="project-saalem-desc" data-i18n="project-saalem-desc">LOS (Loan Origination System) web application for BIDV - EXIMBANK</p>
           <div class="ds-tag-list">
@@ -37,7 +40,7 @@
           </div>
         </div>
         <div class="ds-project-card__actions">
-          <span class="ds-btn ds-btn--ghost ds-btn--sm ds-btn--static"><svg aria-hidden="true" class="ds-icon"><use href="#icon-lock"/></svg><span data-i18n="private">Private</span></span>
+          <span class="ds-btn ds-btn--ghost ds-btn--sm ds-btn--static"><svg aria-hidden="true" class="ds-icon"><use href="#icon-lock"/></svg><span data-i18n="private">Enterprise NDA</span></span>
         </div>
       </article>
 
@@ -50,9 +53,12 @@
           <span class="ds-project-badge ds-project-badge--violet"><span data-i18n="mobile">Mobile</span></span>
         </div>
         <div class="ds-project-card__body">
-          <span class="ds-project-card__category" id="project-flutter-category" data-i18n="project-flutter-category">Mobile Development</span>
+          <div class="ds-project-card__meta-row">
+            <span class="ds-project-index" aria-hidden="true">02</span>
+            <span class="ds-project-card__category" id="project-flutter-category" data-i18n="project-flutter-category">Mobile Development</span>
+          </div>
           <h3 class="project-title" id="project-flutter-title" data-i18n="project-flutter-title">Personal Mobile App</h3>
-          <p class="ds-project-card__desc" id="project-flutter-desc" data-i18n="project-flutter-desc">Cross-platform mobile application built with Flutter</p>
+          <p class="ds-project-card__desc" id="project-flutter-desc" data-i18n="project-flutter-desc">Cross-platform mobile application built with Flutter and clean architecture</p>
           <div class="ds-tag-list">
             <span class="ds-tag-pill">Flutter</span>
             <span class="ds-tag-pill">Dart</span>
@@ -60,7 +66,7 @@
           </div>
         </div>
         <div class="ds-project-card__actions">
-          <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary ds-btn--sm"><svg aria-hidden="true" class="ds-icon"><use href="#icon-github"/></svg> <span data-i18n="github-profile">GitHub profile</span></a>
+          <a href="https://github.com/thanghoang07?tab=repositories&amp;q=flutter" target="_blank" rel="noopener" class="ds-btn ds-btn--ghost ds-btn--sm"><svg aria-hidden="true" class="ds-icon"><use href="#icon-github"/></svg> <span data-i18n="github-profile">View repository</span></a>
         </div>
       </article>
 
@@ -73,9 +79,12 @@
           <span class="ds-project-badge ds-project-badge--emerald"><span data-i18n="backend">Backend</span></span>
         </div>
         <div class="ds-project-card__body">
-          <span class="ds-project-card__category" id="project-go-category" data-i18n="project-go-category">Backend Development</span>
+          <div class="ds-project-card__meta-row">
+            <span class="ds-project-index" aria-hidden="true">03</span>
+            <span class="ds-project-card__category" id="project-go-category" data-i18n="project-go-category">Backend Development</span>
+          </div>
           <h3 class="project-title" id="project-go-title" data-i18n="project-go-title">Go Backend Application</h3>
-          <p class="ds-project-card__desc" id="project-go-desc" data-i18n="project-go-desc">High-performance backend API built with Go language</p>
+          <p class="ds-project-card__desc" id="project-go-desc" data-i18n="project-go-desc">High-performance RESTful backend API built with Go, PostgreSQL, and Docker</p>
           <div class="ds-tag-list">
             <span class="ds-tag-pill">Go</span>
             <span class="ds-tag-pill">PostgreSQL</span>
@@ -83,7 +92,7 @@
           </div>
         </div>
         <div class="ds-project-card__actions">
-          <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary ds-btn--sm"><svg aria-hidden="true" class="ds-icon"><use href="#icon-github"/></svg> <span data-i18n="github-profile">GitHub profile</span></a>
+          <a href="https://github.com/thanghoang07?tab=repositories&amp;q=go" target="_blank" rel="noopener" class="ds-btn ds-btn--ghost ds-btn--sm"><svg aria-hidden="true" class="ds-icon"><use href="#icon-github"/></svg> <span data-i18n="github-profile">View repository</span></a>
         </div>
       </article>
     </div>

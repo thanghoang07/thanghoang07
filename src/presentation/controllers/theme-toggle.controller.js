@@ -44,7 +44,7 @@ export class ThemeController {
     doc.getElementById('toggle-theme')?.setAttribute('aria-pressed', String(theme === 'dark'));
     doc.querySelector('meta[name="theme-color"]')?.setAttribute(
       'content',
-      theme === 'dark' ? '#080b14' : '#f0f2ff'
+      theme === 'dark' ? '#0b0f19' : '#ffffff'
     );
   }
 }

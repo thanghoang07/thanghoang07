@@ -29,7 +29,7 @@
   <meta property="twitter:title" content="Thang Hoang Duc - Frontend Developer Portfolio">
   <meta property="twitter:image" content="https://thanghoang07.github.io/images/og-preview.svg">
 
-  <meta name="theme-color" content="#6d28d9">
+  <meta name="theme-color" content="#1d4ed8">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Thang Portfolio">
   <link rel="canonical" href="https://thanghoang07.github.io/">
@@ -40,11 +40,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload"
-    href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
     as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link
-      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
       rel="stylesheet">
   </noscript>
 
@@ -52,8 +52,8 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Person","name":"Thang Hoang Duc","jobTitle":"Frontend Developer","url":"https://thanghoang07.github.io/","sameAs":["https://www.linkedin.com/in/thanghoang07","https://github.com/thanghoang07"],"worksFor":{"@type":"Organization","name":"HPT Vietnam Corporation"},"address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"email":"thanghoang07@gmail.com","telephone":"+84932431562"}
   </script>
-  <script type="module" crossorigin src="/thanghoang07/assets/index-C7z5AIgZ.js"></script>
-  <link rel="stylesheet" crossorigin href="/thanghoang07/assets/index-B5Ox6jRW.css">
+  <script type="module" crossorigin src="/thanghoang07/assets/index-B5HYnl0J.js"></script>
+  <link rel="stylesheet" crossorigin href="/thanghoang07/assets/index-CbFzeb15.css">
 </head>
 
 <body>
@@ -245,9 +245,7 @@
   <div class="ds-container ds-header-bar">
 
     <!-- Logo -->
-    <a href="#main-content" class="ds-logo">
-      Thang.
-    </a>
+    <a href="#main-content" class="ds-logo">Thang</a>
 
     <!-- Desktop nav -->
     <nav aria-label="Main navigation" data-i18n-aria="nav-label" class="hidden md:flex ds-desktop-nav">
@@ -294,6 +292,15 @@
          HERO
          ───────────────────────────────────── -->
 <section class="hero-section">
+  <!-- Decorative developer watermark inspired by Ryan Fitzgerald DevPortfolio -->
+  <div class="hero-code-watermark" aria-hidden="true">
+    <span class="hero-glyph hero-glyph--1">{ }</span>
+    <span class="hero-glyph hero-glyph--2">&lt;/&gt;</span>
+    <span class="hero-glyph hero-glyph--3">( )</span>
+    <span class="hero-glyph hero-glyph--4">[ ]</span>
+    <span class="hero-watermark-name">Thang Hoang Duc</span>
+  </div>
+
   <div class="ds-container hero-layout">
 
     <!-- Left: text -->
@@ -321,7 +328,7 @@
         </div>
 
         <div class="ds-stat">
-          <span class="ds-stat__number" data-count="3" data-suffix="">3</span>
+          <span class="ds-stat__number" data-count="4" data-suffix="">4</span>
           <span class="ds-stat__label"><span data-i18n="companies">Companies</span></span>
         </div>
       </div>
@@ -345,7 +352,7 @@
     </div>
 
     <!-- Right: avatar -->
-    <div class="hero-avatar hidden md:flex">
+    <div class="hero-avatar flex">
       <!-- Glow rings -->
       <div class="hero-orbit hero-orbit--outer" aria-hidden="true"></div>
       <div class="hero-orbit hero-orbit--inner" aria-hidden="true"></div>
@@ -376,11 +383,11 @@
 <section id="services" class="ds-section">
   <div class="ds-container">
     <div class="ds-section-header ds-section-header--center ds-reveal">
-      <span class="ds-eyebrow" id="specialized-subtitle" data-i18n="specialized-subtitle">Specialized</span>
+      <span class="ds-eyebrow" id="specialized-subtitle" data-i18n="specialized-subtitle">What I Do</span>
       <h2 class="ds-h2" id="specialized-title" data-i18n="specialized-title">Specialized in</h2>
     </div>
 
-    <div class="card-grid">
+    <div class="card-grid services-grid">
 
       <!-- IBM BPM -->
       <div class="glass-card ds-service-card ds-reveal ds-stagger-1" data-ripple>
@@ -388,7 +395,7 @@
           <svg aria-hidden="true" class="ds-icon skill-icon"><use href="#icon-cogs"/></svg>
         </div>
         <h3 class="ds-h4 ds-service-card__title" id="skill-ibm-title" data-i18n="skill-ibm-title">IBM BPM Development</h3>
-        <p id="ux-desc" class="ds-service-card__desc" data-i18n="ux-desc">Develop IBM BPM applications with JavaScript and Java, design interfaces according to gui-spec.</p>
+        <p id="ux-desc" class="ds-service-card__desc" data-i18n="ux-desc">Architect and implement enterprise banking workflows (LOS) with IBM BPM, JavaScript, and Java based on business UI specifications.</p>
       </div>
 
       <!-- Mobile -->
@@ -397,7 +404,7 @@
           <svg aria-hidden="true" class="ds-icon skill-icon"><use href="#icon-mobile"/></svg>
         </div>
         <h3 class="ds-h4 ds-service-card__title" id="skill-mobile-title" data-i18n="skill-mobile-title">Mobile Development</h3>
-        <p id="webdev-desc" class="ds-service-card__desc" data-i18n="webdev-desc">Develop cross-platform mobile applications using Xamarin.Forms for iOS/Android.</p>
+        <p id="webdev-desc" class="ds-service-card__desc" data-i18n="webdev-desc">Build high-performance cross-platform mobile applications for iOS and Android using Xamarin.Forms, .NET MAUI, and Flutter.</p>
       </div>
 
       <!-- IoT -->
@@ -406,7 +413,7 @@
           <svg aria-hidden="true" class="ds-icon skill-icon"><use href="#icon-microchip"/></svg>
         </div>
         <h3 class="ds-h4 ds-service-card__title" id="skill-iot-title" data-i18n="skill-iot-title">IoT Development</h3>
-        <p id="webdesign-desc" class="ds-service-card__desc" data-i18n="webdesign-desc">Develop IoT applications and connect Azure IoT hub for custom devices.</p>
+        <p id="webdesign-desc" class="ds-service-card__desc" data-i18n="webdesign-desc">Develop smart device companion apps with Bluetooth Low Energy (BLE) and real-time Azure IoT Hub cloud telemetry.</p>
       </div>
     </div>
   </div>
@@ -419,9 +426,9 @@
 <section id="portfolio" class="ds-section">
   <div class="ds-container">
     <div class="ds-section-header ds-section-header--center ds-reveal">
-      <span class="ds-eyebrow" id="portfolio-subtitle" data-i18n="portfolio-subtitle">My Works</span>
-      <h2 class="ds-h2 ds-text-gradient" id="portfolio-title" data-i18n="portfolio-title">Featured Portfolios</h2>
-      <p class="ds-section-desc" id="portfolio-desc" data-i18n="portfolio-desc">A selection of work spanning enterprise BPM, mobile apps, and IoT systems.</p>
+      <span class="ds-eyebrow" id="portfolio-subtitle" data-i18n="portfolio-subtitle">Selected Works</span>
+      <h2 class="ds-h2 ds-text-gradient" id="portfolio-title" data-i18n="portfolio-title">Featured Projects</h2>
+      <p class="ds-section-desc" id="portfolio-desc" data-i18n="portfolio-desc">A selection of projects spanning enterprise banking BPM, cross-platform mobile apps, and backend services.</p>
     </div>
 
     <div class="ds-filter-bar ds-reveal" data-portfolio-filter data-i18n-aria="filter-label" aria-label="Project category filter">
@@ -431,7 +438,7 @@
       <button class="ds-filter-btn" type="button" data-filter="backend" aria-pressed="false"><span data-i18n="backend">Backend</span></button>
     </div>
 
-    <div class="card-grid">
+    <div class="card-grid portfolio-grid">
 
       <!-- Card: SAALEM -->
       <article class="glass-card glass-card--accent ds-project-card ds-reveal ds-stagger-1" data-project-category="enterprise">
@@ -442,7 +449,10 @@
           <span class="ds-project-badge ds-project-badge--cyan"><span data-i18n="enterprise">Enterprise</span></span>
         </div>
         <div class="ds-project-card__body">
-          <span class="ds-project-card__category" id="project-saalem-category" data-i18n="project-saalem-category">Enterprise Web Development</span>
+          <div class="ds-project-card__meta-row">
+            <span class="ds-project-index" aria-hidden="true">01</span>
+            <span class="ds-project-card__category" id="project-saalem-category" data-i18n="project-saalem-category">Enterprise Web Development</span>
+          </div>
           <h3 class="project-title" id="project-saalem-title" data-i18n="project-saalem-title">SAALEM HPT</h3>
           <p class="ds-project-card__desc" id="project-saalem-desc" data-i18n="project-saalem-desc">LOS (Loan Origination System) web application for BIDV - EXIMBANK</p>
           <div class="ds-tag-list">
@@ -452,7 +462,7 @@
           </div>
         </div>
         <div class="ds-project-card__actions">
-          <span class="ds-btn ds-btn--ghost ds-btn--sm ds-btn--static"><svg aria-hidden="true" class="ds-icon"><use href="#icon-lock"/></svg><span data-i18n="private">Private</span></span>
+          <span class="ds-btn ds-btn--ghost ds-btn--sm ds-btn--static"><svg aria-hidden="true" class="ds-icon"><use href="#icon-lock"/></svg><span data-i18n="private">Enterprise NDA</span></span>
         </div>
       </article>
 
@@ -465,9 +475,12 @@
           <span class="ds-project-badge ds-project-badge--violet"><span data-i18n="mobile">Mobile</span></span>
         </div>
         <div class="ds-project-card__body">
-          <span class="ds-project-card__category" id="project-flutter-category" data-i18n="project-flutter-category">Mobile Development</span>
+          <div class="ds-project-card__meta-row">
+            <span class="ds-project-index" aria-hidden="true">02</span>
+            <span class="ds-project-card__category" id="project-flutter-category" data-i18n="project-flutter-category">Mobile Development</span>
+          </div>
           <h3 class="project-title" id="project-flutter-title" data-i18n="project-flutter-title">Personal Mobile App</h3>
-          <p class="ds-project-card__desc" id="project-flutter-desc" data-i18n="project-flutter-desc">Cross-platform mobile application built with Flutter</p>
+          <p class="ds-project-card__desc" id="project-flutter-desc" data-i18n="project-flutter-desc">Cross-platform mobile application built with Flutter and clean architecture</p>
           <div class="ds-tag-list">
             <span class="ds-tag-pill">Flutter</span>
             <span class="ds-tag-pill">Dart</span>
@@ -475,7 +488,7 @@
           </div>
         </div>
         <div class="ds-project-card__actions">
-          <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary ds-btn--sm"><svg aria-hidden="true" class="ds-icon"><use href="#icon-github"/></svg> <span data-i18n="github-profile">GitHub profile</span></a>
+          <a href="https://github.com/thanghoang07?tab=repositories&amp;q=flutter" target="_blank" rel="noopener" class="ds-btn ds-btn--ghost ds-btn--sm"><svg aria-hidden="true" class="ds-icon"><use href="#icon-github"/></svg> <span data-i18n="github-profile">View repository</span></a>
         </div>
       </article>
 
@@ -488,9 +501,12 @@
           <span class="ds-project-badge ds-project-badge--emerald"><span data-i18n="backend">Backend</span></span>
         </div>
         <div class="ds-project-card__body">
-          <span class="ds-project-card__category" id="project-go-category" data-i18n="project-go-category">Backend Development</span>
+          <div class="ds-project-card__meta-row">
+            <span class="ds-project-index" aria-hidden="true">03</span>
+            <span class="ds-project-card__category" id="project-go-category" data-i18n="project-go-category">Backend Development</span>
+          </div>
           <h3 class="project-title" id="project-go-title" data-i18n="project-go-title">Go Backend Application</h3>
-          <p class="ds-project-card__desc" id="project-go-desc" data-i18n="project-go-desc">High-performance backend API built with Go language</p>
+          <p class="ds-project-card__desc" id="project-go-desc" data-i18n="project-go-desc">High-performance RESTful backend API built with Go, PostgreSQL, and Docker</p>
           <div class="ds-tag-list">
             <span class="ds-tag-pill">Go</span>
             <span class="ds-tag-pill">PostgreSQL</span>
@@ -498,7 +514,7 @@
           </div>
         </div>
         <div class="ds-project-card__actions">
-          <a href="https://github.com/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--primary ds-btn--sm"><svg aria-hidden="true" class="ds-icon"><use href="#icon-github"/></svg> <span data-i18n="github-profile">GitHub profile</span></a>
+          <a href="https://github.com/thanghoang07?tab=repositories&amp;q=go" target="_blank" rel="noopener" class="ds-btn ds-btn--ghost ds-btn--sm"><svg aria-hidden="true" class="ds-icon"><use href="#icon-github"/></svg> <span data-i18n="github-profile">View repository</span></a>
         </div>
       </article>
     </div>
@@ -606,9 +622,12 @@
           <div class="ds-tag-list ds-exp-tags">
             <span class="ds-tag-pill">Xamarin</span>
             <span class="ds-tag-pill">C#</span>
+            <span class="ds-tag-pill">Android / iOS</span>
           </div>
           <ul class="ds-exp-list">
             <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="nbn-task">Developed step tracking for the Sanus app on Android and iOS.</span></li>
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="nbn-task-2">Integrated mobile sensor APIs and optimized background battery consumption for daily health tracking.</span></li>
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="nbn-task-3">Collaborated with product designers to build responsive activity charts and user profile screens.</span></li>
           </ul>
         </div>
 
@@ -626,9 +645,12 @@
           <div class="ds-tag-list ds-exp-tags">
             <span class="ds-tag-pill">Xamarin</span>
             <span class="ds-tag-pill">C#</span>
+            <span class="ds-tag-pill">MVVM</span>
           </div>
           <ul class="ds-exp-list">
-            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="devup-task">Part-time Xamarin developer position.</span></li>
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="devup-task">Developed and maintained cross-platform mobile UI components using Xamarin.Forms and XAML.</span></li>
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="devup-task-2">Connected RESTful APIs and local SQLite storage following the MVVM architectural pattern.</span></li>
+            <li><span class="ds-exp-bullet" aria-hidden="true">→</span><span data-i18n="devup-task-3">Participated in code reviews, UI bug fixing, and sprint deliveries with the mobile engineering team.</span></li>
           </ul>
         </div>
       </div>
@@ -658,19 +680,18 @@
         <div class="ds-skill-level-group ds-skill-level-group--advanced"><h4 data-i18n="advanced">Advanced</h4><div class="ds-skill-list">
           <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><svg aria-hidden="true" class="ds-icon"><use href="#icon-js"/></svg>TypeScript<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
           <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><svg aria-hidden="true" class="ds-icon"><use href="#icon-mobile"/></svg>Dart<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
-          <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><svg aria-hidden="true" class="ds-icon"><use href="#icon-node"/></svg>Node.js<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
+          <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><svg aria-hidden="true" class="ds-icon"><use href="#icon-java"/></svg>Java<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
         </div></div>
         <div class="ds-skill-level-group ds-skill-level-group--familiar"><h4 data-i18n="familiar">Familiar</h4><div class="ds-skill-list">
           <span class="ds-skill-badge ds-skill-badge--familiar" data-level="familiar"><svg aria-hidden="true" class="ds-icon"><use href="#icon-code"/></svg>Go<span class="skill-level" aria-label="Familiar" data-i18n-aria="familiar">●○○</span></span>
           <span class="ds-skill-badge ds-skill-badge--familiar" data-level="familiar"><svg aria-hidden="true" class="ds-icon"><use href="#icon-python"/></svg>Python<span class="skill-level" aria-label="Familiar" data-i18n-aria="familiar">●○○</span></span>
-          <span class="ds-skill-badge ds-skill-badge--familiar" data-level="familiar"><svg aria-hidden="true" class="ds-icon"><use href="#icon-java"/></svg>Java<span class="skill-level" aria-label="Familiar" data-i18n-aria="familiar">●○○</span></span>
         </div></div>
       </div>
     </div>
 
-    <!-- Frameworks -->
+    <!-- Frameworks & Runtimes -->
     <div class="ds-skill-section ds-reveal ds-stagger-1">
-      <h3 class="ds-skill-group-title" data-i18n="frameworks">Frameworks & Libraries</h3>
+      <h3 class="ds-skill-group-title" data-i18n="frameworks">Frameworks & Runtimes</h3>
       <div class="ds-skill-level-grid">
         <div class="ds-skill-level-group ds-skill-level-group--expert"><h4 data-i18n="expert">Expert</h4><div class="ds-skill-list">
           <span class="ds-skill-badge ds-skill-badge--expert" data-level="expert"><svg aria-hidden="true" class="ds-icon"><use href="#icon-diagram"/></svg>IBM BPM<span class="skill-level" aria-label="Expert" data-i18n-aria="expert">●●●</span></span>
@@ -680,36 +701,38 @@
           <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><svg aria-hidden="true" class="ds-icon"><use href="#icon-feather"/></svg>Flutter<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
           <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><svg aria-hidden="true" class="ds-icon"><use href="#icon-react"/></svg>React<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
           <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><svg aria-hidden="true" class="ds-icon"><use href="#icon-leaf"/></svg>.NET MAUI<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
+          <span class="ds-skill-badge ds-skill-badge--advanced" data-level="advanced"><svg aria-hidden="true" class="ds-icon"><use href="#icon-node"/></svg>Node.js<span class="skill-level" aria-label="Advanced" data-i18n-aria="advanced">●●○</span></span>
         </div></div>
         <div class="ds-skill-level-group ds-skill-level-group--familiar"><h4 data-i18n="familiar">Familiar</h4><div class="ds-skill-list">
-          <span class="ds-skill-badge ds-skill-badge--familiar" data-level="familiar"><svg aria-hidden="true" class="ds-icon"><use href="#icon-bolt"/></svg>Vite<span class="skill-level" aria-label="Familiar" data-i18n-aria="familiar">●○○</span></span>
           <span class="ds-skill-badge ds-skill-badge--familiar" data-level="familiar"><svg aria-hidden="true" class="ds-icon"><use href="#icon-css3"/></svg>TailwindCSS<span class="skill-level" aria-label="Familiar" data-i18n-aria="familiar">●○○</span></span>
         </div></div>
       </div>
     </div>
 
-    <!-- Tools & Platforms -->
-    <div class="ds-skill-section ds-reveal ds-stagger-2">
-      <h3 class="ds-skill-group-title" data-i18n="tools-platforms">Tools & Platforms</h3>
-      <div class="ds-skill-list">
-        <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-cloud"/></svg>Azure IoT</span>
-        <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-docker"/></svg>Docker</span>
-        <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-git"/></svg>Git</span>
-        <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-github"/></svg>GitHub</span>
-        <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-database"/></svg>PostgreSQL</span>
-        <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-database"/></svg>SQL Server</span>
-        <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-figma"/></svg>Figma</span>
+    <!-- Tools & Environments -->
+    <div class="ds-skill-level-grid ds-skill-meta-grid ds-reveal ds-stagger-2">
+      <div class="ds-skill-level-group">
+        <h3 class="ds-skill-group-title" data-i18n="tools-platforms">Tools & Platforms</h3>
+        <div class="ds-skill-list">
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-cloud"/></svg>Azure IoT</span>
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-docker"/></svg>Docker</span>
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-bolt"/></svg>Vite</span>
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-git"/></svg>Git</span>
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-github"/></svg>GitHub</span>
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-database"/></svg>PostgreSQL</span>
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-database"/></svg>SQL Server</span>
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-figma"/></svg>Figma</span>
+        </div>
       </div>
-    </div>
 
-    <!-- OS -->
-    <div class="ds-reveal ds-stagger-3">
-      <h3 class="ds-skill-group-title" data-i18n="environments">Environments</h3>
-      <div class="ds-skill-list">
-        <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-android"/></svg>Android Studio</span>
-        <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-apple"/></svg>macOS</span>
-        <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-windows"/></svg>Windows</span>
-        <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-ubuntu"/></svg>Linux / Ubuntu</span>
+      <div class="ds-skill-level-group">
+        <h3 class="ds-skill-group-title" data-i18n="environments">Environments</h3>
+        <div class="ds-skill-list">
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-android"/></svg>Android Studio</span>
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-apple"/></svg>macOS</span>
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-windows"/></svg>Windows</span>
+          <span class="ds-skill-badge"><svg aria-hidden="true" class="ds-icon"><use href="#icon-ubuntu"/></svg>Linux / Ubuntu</span>
+        </div>
       </div>
     </div>
   </div>
@@ -722,7 +745,7 @@
 <section id="certifications" class="ds-section">
   <div class="ds-container">
     <div class="ds-section-header ds-section-header--center ds-reveal">
-      <span class="ds-eyebrow" id="certifications-subtitle" data-i18n="cert-subtitle">Certifications</span>
+      <span class="ds-eyebrow" id="certifications-subtitle" data-i18n="cert-subtitle">Credentials</span>
       <h2 class="ds-h2" id="certifications-title" data-i18n="cert-title">Certifications</h2>
     </div>
 
@@ -757,7 +780,7 @@
 <section id="contact" class="ds-section">
   <div class="ds-container">
     <div class="ds-section-header ds-section-header--center ds-reveal">
-      <span class="ds-eyebrow" id="contact-subtitle" data-i18n="contact-subtitle">Contact</span>
+      <span class="ds-eyebrow" id="contact-subtitle" data-i18n="contact-subtitle">Get in Touch</span>
       <h2 class="ds-h2 ds-text-gradient" id="contact-title" data-i18n="contact-title">Contact</h2>
     </div>
 
@@ -799,7 +822,7 @@
           <div class="ds-contact-item__icon"><svg aria-hidden="true" class="ds-icon"><use href="#icon-map-marker"/></svg></div>
           <div>
             <div class="ds-contact-item__label" id="contact-address-label" data-i18n="contact-address-label">Address</div>
-            <div class="ds-contact-item__value" id="contact-address-value" data-i18n="contact-address-value">DaKao, District 1, HCMC, VietNam</div>
+            <div class="ds-contact-item__value" id="contact-address-value" data-i18n="contact-address-value">Da Kao, District 1, HCMC, Vietnam</div>
           </div>
         </a>
         <a href="mailto:thanghoang07@gmail.com" class="ds-contact-item">
@@ -835,7 +858,7 @@
          ───────────────────────────────────── -->
 <footer class="ds-footer">
   <div class="ds-container ds-footer__inner">
-    <span class="ds-logo ds-logo--sm">Thang.</span>
+    <span class="ds-logo ds-logo--sm">Thang</span>
     <p id="copyright" class="ds-footer__copy">© <span id="footer-year">2026</span> thanghoang07. <span data-i18n="rights">All rights reserved.</span></p>
     <div class="ds-footer__socials">
       <a href="https://linkedin.com/in/thanghoang07" target="_blank" rel="noopener" class="ds-btn ds-btn--icon"
